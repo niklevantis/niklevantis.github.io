@@ -15,7 +15,7 @@
   <link rel="shortcut icon" href="favicon.ico">
   <link rel="alternate" type="application/rss+xml" title="RSS" href="http://scriptogr.am/nicklevantis/feed">
   <link href="style.css" rel="stylesheet" type="text/css">
-        <script type="text/javascript" src="http://levantis.tumblr.com/js"></script>
+    <script type="text/javascript" src="http://levantis.tumblr.com/api/read/js?num=12"></script>
 </head>
 <body>
 
@@ -28,36 +28,88 @@
 / |/  /  (  /(  (__ (- \/ (/ /) /  /  _)  
                                           
 </pre>
-          <h2><a href="http://nicklevantis.com">Music, Photography &amp; Artwork exploration</a></h2>
+                    <h2><a href="http://nicklevantis.com">Music &amp; Artwork exploration</a></h2>
          </div>
          <div class="pages">
-             <a href="blog.html">#Blog</a>
+             <a href="http://nicklevantis.com/">#Home</a>
+            <a href="http://scriptogr.am/nicklevantis">#News</a>
             <a href="about.html">#About</a>
             <a href="songs.html">#Songs</a>
+            <a href="http://scriptogr.am/nicklevantis/tag/photos">#Photos</a>
+           <a href="http://scriptogr.am/nicklevantis/tag/artwork">#Artwork</a>
             <a href="contact.html">#Contact</a>
-        </div>
-      </div>
-      <div class="container">
+
+                    </div>
       
 
-                 <div class="post">
-            <div class="content">
-            <div class="date">Aug 31, 2013</div>
-            <div class="title"><h2>The crowd of tolerance </h2></div>
-            <div class="body-post">
-              <!--if excerpt-->
-              <!--endif-->
-              <blockquote>
-  <p>The Economic “global machine” absorbs social vibrations and neutralise any reactions.</a>.</p>
-</blockquote>
+                         <div class="content">
+                         <div id="entries">
+            <script>
+//This may all work if rehashed as an instant function and using document.write() inside the "entries" div and may also make vidsArray and the pullVids() method obselete - this is just how I ended up writing it all.
+_globalObj = {};
+_globalObj.writeEntries = function(x){
+  var posts = x.posts,
+  i = posts.length,
+  r = posts.length - i,
+  output = "",
+  title = "",
+  vidsArray = [];
 
-<p>Hidden behind the gray shades of the current political and economic developments, the word that marks today and tomorrow is confusion and disorientation. 
-Societies that accepted pathetically the consuming role rejecting their humanity today feel guilty.
+  //This is simple but if you don't know javascript it simply loops through the posts and, depending on the type, writes the html for your page.
+  while(i--) {
+    r = posts.length - (i + 1);
+    output += '<div class="tumblr_entry ' + (posts.length - i) + '">';
+    switch (posts[r].type) {
+      case "regular":
+        title = '<h2 class="tumblr_title">' + posts[r]["regular-title"] + '</h2><p class="tumblr_date">' + posts[r]["date"] + '</p>';
+        content = '<div class="tumblr_body">' + posts[r]["regular-body"] + '</div>';
+        break;
+       case "photo":
+        title = '<h2 class="tumblr_title"></h2><p class="tumblr_date">' + posts[r]["date"] + '</p>';
+        //there are several different photo options "photo-url-1280" is the highest quality option (I think) have a look at the tumblr_api_read object in your browser console to see what they all are
+        content = '<div class="tumblr_body"><img class="tumblr_photo" src="' + posts[r]["photo-url-1280"] + '"/></div><div class="tumblr_body">' + posts[r]["photo-caption"] + '</div>';
+        break;
+      case "audio":
+        title = '<h2 class="tumblr_title">' + posts[r]["id3-title"] + ' - ' + posts[r]["id3-artist"] + '</h2><h3 class="tumblr_date">' + posts[r]["date"] + '</h3>';
+        content = '<div class="audio-embed">' + posts[r]["audio-embed"] + posts[r]["audio-caption"] + '</div>';
+        break;
+      case "video":
+        title = '<h2 class="tumblr_title">Video</h2><h3 class="tumblr_date">' + posts[r]["date"] + '</h3>';
+        content = '<div class="tumblr_body">' + posts[r]["video-player-500"] + posts[r]["video-caption"] + '</div>';
+        //due to the posts being added to page after load the video won't display unless you add the variables to this array and invoke them once they are drawn to page.
+        vidsArray.push(posts[r]["video-player"].substr(posts[r]["video-player"].indexOf('rVideo(') + 7, (posts[r]["video-player"].indexOf('</scrip')-(posts[r]["video-player"].indexOf('rVideo(') + 7))).split(","));
+        break;
+      case "quote":
+        title = '<h2 class="tumblr_title">Quote</h2><h3 class="tumblr_date">' + posts[r]["date"] + '</h3>';
+        content = '<div class="tumblr_body tumblr_quote">' + posts[r]["quote-text"] + '</div><div class="tumblr_body">' + posts[r]["quote-source"] + '</div>';
+        break;
+      case "link":
+        title = '<h2 class="tumblr_title">Check out this link</h2><h3 class="tumblr_date">' + posts[r]["date"] + '</h3>';
+        content = '<div class="tumblr_link"><a href="' + posts[r]["link-url"] + '">' + posts[r]["link-text"] + '</a></div><div class="tumblr_body">' + posts[r]["link-description"] + '</div>';
+        break;
+      case "conversation":
+        title = '<h2 class="tumblr_title">' + posts[r]["conversation-title"] + ' </h2><h3 class="tumblr_date">' + posts[r]["date"] + '</h3>';
+        content = 'div class="tumblr_body">' + posts[r]["conversation-text"] + '</div>';
+      default:
+        title = "";
+        content = "";
+        break;
+    }
+    output = output + title + content + "</div>";
+  }
+  document.querySelector('#entries').innerHTML = output;
+  _globalObj.pullVids(vidsArray);
+};
 
-All they do is being silent and tolerant . Nobody is able to react against the legal terrorism of debt .The Economic “global machine” absorbs social vibrations and neutralize any reactions.
-In the real world, economical elite dislikes equality and investing more into social fear..</p>
+//This object takes vidsArray and uses it to provide the required arguments to the renderVideo() method that is supplied in tumblelog.js
+_globalObj.pullVids = function(arr) {
+  for(var i = arr.length - 1; i >= 0; i--) {
+    renderVideo(arr[i].shift().replace(/(\"|\|'\))/g, ""),arr[i].shift().replace(/(\"|\'|\))/g, ""),arr[i].shift().replace(/(\"|\'|\))/g, ""),arr[i].shift().replace(/(\"|\'|\))/g, ""),arr[i].join(",").replace(/(\"|\'|\))/g, ""));
+  }
+}
 
-
+_globalObj.writeEntries(tumblr_api_read);
+</script>
 
               <!-- if tags -->
               <!-- endif -->
@@ -73,225 +125,7 @@ In the real world, economical elite dislikes equality and investing more into so
     
       <!-- archive -->
       
-                 <div class="post">
-            <div class="content">
-            <div class="date">Jan 5, 2013</div>
-            <div class="title"><h2><a href="http://scriptogr.am/nicklevantis/post/touch-the-milky-way">Touch the milky way</a> </h2></div>
-            <div class="body-post">
-              <!--if excerpt-->
-              <!--endif-->
-              <p>Some sounds behind the stars. Close your eyes and touch the Milky Way ....</p>
-
-<object height="18" width="100%"><param name="movie" value="https://player.soundcloud.com/player.swf?url=http%3A%2F%2Fapi.soundcloud.com%2Ftracks%2F71758495&amp;color=000000&amp;auto_play=false&amp;player_type=tiny&amp;font=Courier"></param><param name="allowscriptaccess" value="always"></param><param name="wmode" value="transparent"></param><embed wmode="transparent" allowscriptaccess="always" height="18" width="100%" src="https://player.soundcloud.com/player.swf?url=http%3A%2F%2Fapi.soundcloud.com%2Ftracks%2F71758495&amp;color=000000&amp;auto_play=false&amp;player_type=tiny&amp;font=Courier"></embed></object>
-              <!-- if tags -->
-              <!-- endif -->
-             </div><!--end body-->
-          </div><!--end content-->
-          <div class="clear"></div>
-        </div><!--end post-->          
-      <!-- post permalink -->
-      <!-- endif -->
-
-      <!-- page permalink -->
-      <!-- endif -->
-    
-      <!-- archive -->
-      
-                 <div class="post">
-            <div class="content">
-            <div class="date">Jan 4, 2013</div>
-            <div class="title"><h2><a href="http://scriptogr.am/nicklevantis/post/mr-curve-on-jux-frontpage">Mr Curve on Jux frontpage</a> </h2></div>
-            <div class="body-post">
-              <!--if excerpt-->
-              <!--endif-->
-              <p>Mr. Curve short animation currently selected for the front page of <a href="https://jux.com/gallery/800704" title="Mr. Curve">Jux Gallery</a> .
-<img src="https://dl.dropbox.com/u/5647859/images/Mrcurve.gif" alt="Mr Curve"></p>
-
-<p>:)</p>
-
-              <!-- if tags -->
-              <!-- endif -->
-             </div><!--end body-->
-          </div><!--end content-->
-          <div class="clear"></div>
-        </div><!--end post-->          
-      <!-- post permalink -->
-      <!-- endif -->
-
-      <!-- page permalink -->
-      <!-- endif -->
-    
-      <!-- archive -->
-      
-                 <div class="post">
-            <div class="content">
-            <div class="date">Jan 1, 2013</div>
-            <div class="title"><h2><a href="http://scriptogr.am/nicklevantis/post/recycled-music">"Recycled music"</a> </h2></div>
-            <div class="body-post">
-              <!--if excerpt-->
-              <!--endif-->
-              <p><em>I’m tired of seeing people who believe that they offer to the art of music, but in fact offer songs purely based on recycled ideas from the past. There is no revolution … there is no evolution…</em></p>
-
-              <!-- if tags -->
-              <!-- endif -->
-             </div><!--end body-->
-          </div><!--end content-->
-          <div class="clear"></div>
-        </div><!--end post-->          
-      <!-- post permalink -->
-      <!-- endif -->
-
-      <!-- page permalink -->
-      <!-- endif -->
-    
-      <!-- archive -->
-      
-                 <div class="post">
-            <div class="content">
-            <div class="date">Jan 1, 2013</div>
-            <div class="title"><h2><a href="http://scriptogr.am/nicklevantis/post/happy-new-year">"Happy New Year"</a> </h2></div>
-            <div class="body-post">
-              <!--if excerpt-->
-              <!--endif-->
-              <ul>
-<li>Wishing you a healthy, happy and rewarding 2013!*</li>
-</ul>
-
-              <!-- if tags -->
-              <!-- endif -->
-             </div><!--end body-->
-          </div><!--end content-->
-          <div class="clear"></div>
-        </div><!--end post-->          
-      <!-- post permalink -->
-      <!-- endif -->
-
-      <!-- page permalink -->
-      <!-- endif -->
-    
-      <!-- archive -->
-      
-                 <div class="post">
-            <div class="content">
-            <div class="date">Dec 31, 2012</div>
-            <div class="title"><h2><a href="http://scriptogr.am/nicklevantis/post/imperfect-geometric-color-abstraction">Imperfect geometric color abstraction</a> </h2></div>
-            <div class="body-post">
-              <!--if excerpt-->
-              <!--endif-->
-              <p><img src="https://dl.dropbox.com/u/5647859/artwork/geometric.gif" alt="Nick" width="500"></p>
-
-              <!-- if tags -->
-              <ul class="tags">
-                  <li><a href="http://scriptogr.am/nicklevantis/tag/gif">gif</a></li>
-                  <li><a href="http://scriptogr.am/nicklevantis/tag/digital-artwork">digital-artwork</a></li>
-              </ul>  
-              <!-- endif -->
-             </div><!--end body-->
-          </div><!--end content-->
-          <div class="clear"></div>
-        </div><!--end post-->          
-      <!-- post permalink -->
-      <!-- endif -->
-
-      <!-- page permalink -->
-      <!-- endif -->
-    
-      <!-- archive -->
-      
-                 <div class="post">
-            <div class="content">
-            <div class="date">Dec 31, 2012</div>
-            <div class="title"><h2><a href="http://scriptogr.am/nicklevantis/post/i-love-scriptogr.am">I love *scriptogr.am*</a> </h2></div>
-            <div class="body-post">
-              <!--if excerpt-->
-              <!--endif-->
-              <p>I can write  in Markdown format, publish to the web, and keep my posts safe in my Dropbox account.</p>
-
-<p>This is <em>awesome</em></p>
-
-              <!-- if tags -->
-              <!-- endif -->
-             </div><!--end body-->
-          </div><!--end content-->
-          <div class="clear"></div>
-        </div><!--end post-->          
-      <!-- post permalink -->
-      <!-- endif -->
-
-      <!-- page permalink -->
-      <!-- endif -->
-    
-      <!-- archive -->
-      
-                 <div class="post">
-            <div class="content">
-            <div class="date">Dec 30, 2012</div>
-            <div class="title"><h2><a href="http://scriptogr.am/nicklevantis/post/globillusion-song">"Globillusion Song"</a> </h2></div>
-            <div class="body-post">
-              <!--if excerpt-->
-              <!--endif-->
-              <iframe width="100%" height="166" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=http%3A%2F%2Fapi.soundcloud.com%2Ftracks%2F71150433&amp;color=000000&amp;auto_play=false&amp;show_artwork=true"></iframe>
-
-              <!-- if tags -->
-              <!-- endif -->
-             </div><!--end body-->
-          </div><!--end content-->
-          <div class="clear"></div>
-        </div><!--end post-->          
-      <!-- post permalink -->
-      <!-- endif -->
-
-      <!-- page permalink -->
-      <!-- endif -->
-    
-      <!-- archive -->
-      
-                 <div class="post">
-            <div class="content">
-            <div class="date">Dec 30, 2012</div>
-            <div class="title"><h2><a href="http://scriptogr.am/nicklevantis/post/-">"Το πλήθος της ανοχής και της ενοχής"</a> </h2></div>
-            <div class="body-post">
-              <!--if excerpt-->
-              <!--endif-->
-              <p>Κρυμμένοι πίσω από τις γκρίζες σκιές των πολιτικών και οικονομικών εξελίξεων η λέξη που σημαδεύει το σήμερα και το αύριο είναι η σύγχυση και ο αποπροσανατολισμός.</p>
-
-<p>Κοινωνίες που αποδέχθηκαν παθητικά το καταναλωτικό δόλωμα παραμερίζοντας την ανθρωπιά τους νοιώθουν σήμερα ένοχες. Το μόνο που κάνουν είναι να σιωπούν και να ανέχονται.
-</p><p><a class="read-more" title="Continue reading '" Το="" πλήθος="" της="" ανοχής="" και="" ενοχής"'"="" href="http://scriptogr.am/nicklevantis/post/-">Continue reading</a></p>
-              <!-- if tags -->
-              <!-- endif -->
-             </div><!--end body-->
-          </div><!--end content-->
-          <div class="clear"></div>
-        </div><!--end post-->          
-      <!-- post permalink -->
-      <!-- endif -->
-
-      <!-- page permalink -->
-      <!-- endif -->
-    
-      <!-- archive -->
-      
-                 <div class="post">
-            <div class="content">
-            <div class="date">Dec 20, 2012</div>
-            <div class="title"><h2><a href="http://scriptogr.am/nicklevantis/post/13798-a4HWbxNWFM">ΔΙΑΠΙΣΤΩΣΕΙΣ</a> </h2></div>
-            <div class="body-post">
-              <!--if excerpt-->
-              <!--endif-->
-              <p>Είναι καιρός να περάσουμε πλέον απο τις διαπιστώσεις στις πράξεις ενάντια σε κάθε μορφή σύγχρονης οικονομικής βίας που επιβάλλεται στο ταλαίπωρο πειραματόζωο που ονομάζεται Ελλάδα.</p>
-
-<p>Αλήθεια αυτή η μορφή βίας μπορεί να αντιμετωπιστεί με virtual ιντερνετικά “χάδια” η με πραγματικά χαστούκια?</p>
-
-              <!-- if tags -->
-              <ul class="tags">
-                  <li><a href="http://scriptogr.am/nicklevantis/tag/article">article</a></li>
-                  <li><a href="http://scriptogr.am/nicklevantis/tag/greece">greece</a></li>
-              </ul>  
-              <!-- endif -->
-             </div><!--end body-->
-          </div><!--end content-->
-          <div class="clear"></div>
-        </div><!--end post-->          
+                 
       <!-- post permalink -->
       <!-- endif -->
 
