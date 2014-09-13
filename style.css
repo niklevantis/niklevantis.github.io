@@ -461,7 +461,7 @@ font-size: 15px;
 .sc-waveform-container img{display:block;height:0px;width:100%;-webkit-filter:contrast(200%);-webkit-transition:all .1s linear;background-color: rgba(127,127,127,0.99);color:rgba(95,95,95,0.98);margin-top: 12px;}
 .playing .sc-waveform-container img{height:32px;margin:0;background-color: rgba(127,127,127,0.52);}
 .post-detail .playing .sc-waveform-container img{height:32px;margin-top:0px;}
-.sc-buffer{background-color:rgba(143,143,143,0.56);height:2px;-webkit-transition:all .1s linear;}
+.sc-buffer{background-color:rgba(143,143,143,0.56);height:0;-webkit-transition:all .1s linear;}
 .playing .sc-buffer{height:32px;}
 .post-detail .playing .sc-buffer{height:32px;}
 .sc-played{background-color:rgba(0,0,0,1);opacity:0.5;height:0px;-webkit-transition:all .1s linear;}
