@@ -1,10 +1,10 @@
 var   canvas = document.querySelector('canvas'),
          ctx = canvas.getContext('2d'),
    particles = [],
-patriclesNum = 45,
+patriclesNum = 67,
            w = 1500,
            h = 1500,
-      colors = ['rgba(190,117,197,0.08)','rgba(240,97,97,0.02)','rgba(128,122,97,0.08)','rgba(240,137,117,0.09)'];
+      colors = ['rgba(190,117,197,0.03)','rgba(240,97,97,0.02)','rgba(128,122,97,0.03)','rgba(240,137,117,0.03)'];
  
 canvas.width = 1500;
 canvas.height = 1280;
@@ -52,7 +52,7 @@ function draw(){
         
     
        ctx.beginPath();
-    ctx.rect(temp.x, temp.y *factor, 140, 245, Math.PI*2, true);
+    ctx.rect(temp.x, temp.y *factor, 240, 545, Math.PI*2, true);
     ctx.fill();
     
     
