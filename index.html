@@ -13,7 +13,9 @@
 
 	<link rel="stylesheet" href="css/style.css">
 	<script src="js/vendor/modernizr-2.7.1.min.js"></script>
-	
+
+   <script type="text/javascript" src="http://nikoslevantis.tumblr.com/api/read/js?num=1"></script>
+
 
 </script>
 </head>
@@ -93,6 +95,9 @@
 				<li id="tl-arrows-li"><div id="tl-arrows-container"><div id="tl-arrows">>></div></div></li>
 				<li id="about-link">ABOUT</li>
 				<li id="a-arrows-li"><div id="a-arrows-container"><div id="a-arrows">>></div></div></li>
+				<li id="news-link">NEWS</li>
+				<li id="b-arrows-li"><div id="b-arrows-container"><div id="b-arrows">>></div></div></li>
+				
 				
 			</ul>
 		</div>
@@ -134,6 +139,86 @@
 			
 			<a href="http://nikoslevantis.tumblr.com/" title="News" target="_blank"><div class="download-box db2">NEWS</div></a>
 		</div>
+		
+		<div id="news" class="sections clearfix">
+			<div class="close c2"><div class="close-bg-white"></div><div class="close-bg-black"></div></div>
+			<h3 class="h3">NEWS</h3>
+			
+	<div id="entries">
+	
+		<script>
+//This may all work if rehashed as an instant function and using document.write() inside the "entries" div and may also make vidsArray and the pullVids() method obselete - this is just how I ended up writing it all.
+_globalObj = {};
+_globalObj.writeEntries = function(x){
+  var posts = x.posts,
+  i = posts.length,
+  r = posts.length - i,
+  output = "",
+  title = "",
+  vidsArray = [];
+
+  //This is simple but if you don't know javascript it simply loops through the posts and, depending on the type, writes the html for your page.
+  while(i--) {
+    r = posts.length - (i + 1);
+    output += '<div class="tumblr_entry ' + (posts.length - i) + '">';
+    switch (posts[r].type) {
+      case "regular":
+        title = '<h2 class="tumblr_title">' + posts[r]["regular-title"] + '</h2><p class="tumblr_date">' + posts[r]["date"] + '</p>';
+        content = '<div class="tumblr_body">' + posts[r]["regular-body"] + '</div>';
+        break;
+       case "photo":
+        title = '<h2 class="tumblr_title"></h2><p class="tumblr_date">' + posts[r]["date"] + '</p>';
+        //there are several different photo options "photo-url-1280" is the highest quality option (I think) have a look at the tumblr_api_read object in your browser console to see what they all are
+        content = '<div class="tumblr_body"><img class="tumblr_photo" src="' + posts[r]["photo-url-1280"] + '"/></div><div class="tumblr_body">' + posts[r]["photo-caption"] + '</div>';
+        break;
+      case "audio":
+        title = '<h2 class="tumblr_title">' + posts[r]["id3-title"] + ' - ' + posts[r]["id3-artist"] + '</h2><h3 class="tumblr_date">' + posts[r]["date"] + '</h3>';
+        content = '<div class="audio-embed">' + posts[r]["audio-embed"] + posts[r]["audio-caption"] + '</div>';
+        break;
+      case "video":
+        title = '<h2 class="tumblr_title">Video</h2><h3 class="tumblr_date">' + posts[r]["date"] + '</h3>';
+        content = '<div class="tumblr_body">' + posts[r]["video-player-500"] + posts[r]["video-caption"] + '</div>';
+        //due to the posts being added to page after load the video won't display unless you add the variables to this array and invoke them once they are drawn to page.
+        vidsArray.push(posts[r]["video-player"].substr(posts[r]["video-player"].indexOf('rVideo(') + 7, (posts[r]["video-player"].indexOf('</scrip')-(posts[r]["video-player"].indexOf('rVideo(') + 7))).split(","));
+        break;
+      case "quote":
+        title = '<h2 class="tumblr_title">Quote</h2><h3 class="tumblr_date">' + posts[r]["date"] + '</h3>';
+        content = '<div class="tumblr_body tumblr_quote">' + posts[r]["quote-text"] + '</div><div class="tumblr_body">' + posts[r]["quote-source"] + '</div>';
+        break;
+      case "link":
+        title = '<h2 class="tumblr_title">Check out this link</h2><h3 class="tumblr_date">' + posts[r]["date"] + '</h3>';
+        content = '<div class="tumblr_link"><a href="' + posts[r]["link-url"] + '">' + posts[r]["link-text"] + '</a></div><div class="tumblr_body">' + posts[r]["link-description"] + '</div>';
+        break;
+      case "conversation":
+        title = '<h2 class="tumblr_title">' + posts[r]["conversation-title"] + ' </h2><h3 class="tumblr_date">' + posts[r]["date"] + '</h3>';
+        content = 'div class="tumblr_body">' + posts[r]["conversation-text"] + '</div>';
+      default:
+        title = "";
+        content = "";
+        break;
+    }
+    output = output + title + content + "</div>";
+  }
+  document.querySelector('#entries').innerHTML = output;
+  _globalObj.pullVids(vidsArray);
+};
+
+//This object takes vidsArray and uses it to provide the required arguments to the renderVideo() method that is supplied in tumblelog.js
+_globalObj.pullVids = function(arr) {
+  for(var i = arr.length - 1; i >= 0; i--) {
+    renderVideo(arr[i].shift().replace(/(\"|\|'\))/g, ""),arr[i].shift().replace(/(\"|\'|\))/g, ""),arr[i].shift().replace(/(\"|\'|\))/g, ""),arr[i].shift().replace(/(\"|\'|\))/g, ""),arr[i].join(",").replace(/(\"|\'|\))/g, ""));
+  }
+}
+
+_globalObj.writeEntries(tumblr_api_read);
+</script>
+	</div>
+								
+ 
+			
+			<a href="http://nikoslevantis.tumblr.com/" title="News" target="_blank"><div class="download-box db2">MORE NEWS ON TUMBLR</div></a>
+		</div>
+
 		
 		<footer id="footer">
 			<ul class="clearfix">
