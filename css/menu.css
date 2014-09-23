@@ -156,6 +156,19 @@ background: transparent;
 		bottom: 0.25em;
 		left: 0.25em;
 	}
+	
+	.show-menu .menu-wrap {
+	overflow-y: scroll;
+	width: 340px;
+	max-width: 100%;
+	height: 620px;
+	border: 1px solid #fff;
+	-webkit-animation: anim-jelly 0.8s linear forwards;
+	animation: anim-jelly 0.8s linear forwards;
+	margin-top: 2em;
+	background: #222;
+}
+
 }
 
 .menu {
@@ -250,6 +263,20 @@ background: transparent;
 
 	}
 .bounceInDown{top:0}
+
+
+.show-songs .songs-wrap {
+overflow-y: scroll;
+width: 320px;
+max-width: 100%;
+height: 300px;
+border: 1px solid #fff;
+margin-right: -60px;
+-webkit-animation: anim-jelly 0.8s linear forwards;
+animation: anim-jelly 0.8s linear forwards;
+margin-top: 2em;
+background: #222;
+}
 
 }
 
