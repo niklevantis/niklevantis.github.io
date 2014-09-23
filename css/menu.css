@@ -154,7 +154,7 @@ background: transparent;
 	}
 	.menu-wrap {
 		bottom: 0.25em;
-		right: 0.25em;
+		left: 0.25em;
 	}
 }
 
@@ -246,9 +246,13 @@ background: transparent;
 	}
 	.songs-wrap {
 		bottom: 0.25em;
-		left: 0.25em;
+		right: 3em;
+
 	}
+.bounceInDown{top:0}
+
 }
+
 
 .songs {
 	height: 100%;
