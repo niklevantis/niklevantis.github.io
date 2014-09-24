@@ -262,7 +262,7 @@ background: transparent;
 		right: 3em;
 
 	}
-.bounceInDown{top:0}
+.bounceInDown{font-size:.7em ;top:10px}
 
 
 .show-songs .songs-wrap {
@@ -277,6 +277,10 @@ animation: anim-jelly 0.8s linear forwards;
 margin-top: 2em;
 background: #373737;
 }
+
+.links ul{border:none;}
+
+
 
 }
 

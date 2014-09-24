@@ -5,10 +5,10 @@
 
 $(document).ready(function() {
   $('body').particleground({
-    dotColor: '#000',
-    lineColor: '#292929',
-    lineWidth: '1.0001',
-    particleRadius: '5',
+    dotColor: '#9a5319',
+    lineColor: '#223',
+    lineWidth: '0.0001',
+    particleRadius: '9',
     parallaxMultiplier: '5'
   });
 });
