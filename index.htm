@@ -13,9 +13,39 @@
     <!--[if IE]>
       <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
+    
+     <script type="text/javascript" >
+   	$(document).ready(function(){
+   	  $('#loadtxt').css({ 'width':'100%', 'text-align':'center','font-weight':'100', 'font-size':'30.3pt' });
+   	  var h1 = $('h1').height();
+   	  var h = h1/2;
+   	  var w1 = $(window).height();
+   	  var w = w1/2;
+   	  var m = w - h
+   	  $('#loadtxt').css("margin-top",m + "px")
+   	});
+   	</script>
+   
 </head>
- 
 
+
+<body>
+
+<script type="text/javascript">  
+$(function(){
+   setTimeout(function() {
+      $("#loadtxt").fadeOut("slow", function() {
+         $("#preloader").hide();
+      });
+   }, 1500);
+});
+</script>
+
+<div id="preloader">
+<div id="loadtxt">
+◉
+ </div>
+</div>
 
 
 <div class="container">
