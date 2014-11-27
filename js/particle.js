@@ -5,9 +5,9 @@
 
 $(document).ready(function() {
   $('body').particleground({
-    dotColor: '#9a5319',
-    lineColor: '#223',
-    lineWidth: '0.0001',
+    dotColor: '#4E90ED',
+    lineColor: '#fff',
+    lineWidth: '0.1111',
     particleRadius: '9',
     parallaxMultiplier: '5'
   });
