@@ -166,7 +166,7 @@ background: transparent;
 	-webkit-animation: anim-jelly 0.8s linear forwards;
 	animation: anim-jelly 0.8s linear forwards;
 	margin-top: 2em;
-	background: #373737;
+	background: #326DC5;
 }
 
 }
@@ -275,7 +275,7 @@ margin-right: -60px;
 -webkit-animation: anim-jelly 0.8s linear forwards;
 animation: anim-jelly 0.8s linear forwards;
 margin-top: 2em;
-background: #373737;
+background: #326DC5;
 }
 
 .links ul{border:none;}
