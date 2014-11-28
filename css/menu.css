@@ -197,7 +197,7 @@ background: transparent;
 }
 
 .show-menu .menu-wrap {
-	overflow-y: scroll;
+	overflow-y: none;
 	width: 340px;
 	max-width: 100%;
 	height: 620px;
