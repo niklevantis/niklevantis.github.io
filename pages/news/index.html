@@ -59,76 +59,19 @@
 		</div>
 
 		<div id="content-wrapper">
-<div id="entries">
-			
-<script>
-//This may all work if rehashed as an instant function and using document.write() inside the "entries" div and may also make vidsArray and the pullVids() method obselete - this is just how I ended up writing it all.
-_globalObj = {};
-_globalObj.writeEntries = function(x){
-  var posts = x.posts,
-  i = posts.length,
-  r = posts.length - i,
-  output = "",
-  title = "",
-  vidsArray = [];
+<div id="entries"><div class="tumblr_entry 1"><h2 class="tumblr_title">New music project with Eugene from Ethereal Movement</h2><p class="tumblr_date">Sun, 21 Sep 2014 02:15:00</p><div class="tumblr_body"><p><img alt="image" src="https://31.media.tumblr.com/0967d4735283e6c8308e9cd51f9226a4/tumblr_inline_nc82yk3gdT1ra95g6.jpg"></p>
 
-  //This is simple but if you don't know javascript it simply loops through the posts and, depending on the type, writes the html for your page.
-  while(i--) {
-    r = posts.length - (i + 1);
-    output += '<div class="tumblr_entry ' + (posts.length - i) + '">';
-    switch (posts[r].type) {
-      case "regular":
-        title = '<h2 class="tumblr_title">' + posts[r]["regular-title"] + '</h2><p class="tumblr_date">' + posts[r]["date"] + '</p>';
-        content = '<div class="tumblr_body">' + posts[r]["regular-body"] + '</div>';
-        break;
-       case "photo":
-        title = '<h2 class="tumblr_title"></h2><p class="tumblr_date">' + posts[r]["date"] + '</p>';
-        //there are several different photo options "photo-url-1280" is the highest quality option (I think) have a look at the tumblr_api_read object in your browser console to see what they all are
-        content = '<div class="tumblr_body"><img class="tumblr_photo" src="' + posts[r]["photo-url-1280"] + '"/></div><div class="tumblr_body">' + posts[r]["photo-caption"] + '</div>';
-        break;
-      case "audio":
-        title = '<h2 class="tumblr_title">' + posts[r]["id3-title"] + ' - ' + posts[r]["id3-artist"] + '</h2><h3 class="tumblr_date">' + posts[r]["date"] + '</h3>';
-        content = '<div class="audio-embed">' + posts[r]["audio-embed"] + posts[r]["audio-caption"] + '</div>';
-        break;
-      case "video":
-        title = '<h2 class="tumblr_title">Video</h2><h3 class="tumblr_date">' + posts[r]["date"] + '</h3>';
-        content = '<div class="tumblr_body">' + posts[r]["video-player-500"] + posts[r]["video-caption"] + '</div>';
-        //due to the posts being added to page after load the video won't display unless you add the variables to this array and invoke them once they are drawn to page.
-        vidsArray.push(posts[r]["video-player"].substr(posts[r]["video-player"].indexOf('rVideo(') + 7, (posts[r]["video-player"].indexOf('</scrip')-(posts[r]["video-player"].indexOf('rVideo(') + 7))).split(","));
-        break;
-      case "quote":
-        title = '<h2 class="tumblr_title">Quote</h2><h3 class="tumblr_date">' + posts[r]["date"] + '</h3>';
-        content = '<div class="tumblr_body tumblr_quote">' + posts[r]["quote-text"] + '</div><div class="tumblr_body">' + posts[r]["quote-source"] + '</div>';
-        break;
-      case "link":
-        title = '<h2 class="tumblr_title">Check out this link</h2><h3 class="tumblr_date">' + posts[r]["date"] + '</h3>';
-        content = '<div class="tumblr_link"><a href="' + posts[r]["link-url"] + '">' + posts[r]["link-text"] + '</a></div><div class="tumblr_body">' + posts[r]["link-description"] + '</div>';
-        break;
-      case "conversation":
-        title = '<h2 class="tumblr_title">' + posts[r]["conversation-title"] + ' </h2><h3 class="tumblr_date">' + posts[r]["date"] + '</h3>';
-        content = 'div class="tumblr_body">' + posts[r]["conversation-text"] + '</div>';
-      default:
-        title = "";
-        content = "";
-        break;
-    }
-    output = output + title + content + "</div>";
-  }
-  document.querySelector('#entries').innerHTML = output;
-  _globalObj.pullVids(vidsArray);
-};
+<p>A journey of experimentation with many influences from the 80’s combined with elements of today’s electronic music. More news and music soon..</p></div></div><div class="tumblr_entry 2"><h2 class="tumblr_title"></h2><p class="tumblr_date">Sat, 20 Sep 2014 20:53:00</p><div class="tumblr_body"><img class="tumblr_photo" src="http://40.media.tumblr.com/ba804b814a500abe1dd4df9c28ff3bd4/tumblr_n3gv0yfEw41rlnxwwo2_r1_500.jpg"></div><div class="tumblr_body"><p>"Real music should not be a piece of compromise and should not be just a pile of recycled ideas on the altar of success but a genuine culture of art with unique elements that can touch the soul of every listener ”</p></div></div><div class="tumblr_entry 3"><h2 class="tumblr_title">Greece a country of tolerance</h2><p class="tumblr_date">Sat, 20 Sep 2014 00:00:00</p><div class="tumblr_body"><p><strong><img alt="image" src="https://31.media.tumblr.com/e0707e38c6af9980aa93c6783195a022/tumblr_inline_mykwdcCJQX1ra95g6.jpg"></strong></p>
 
-//This object takes vidsArray and uses it to provide the required arguments to the renderVideo() method that is supplied in tumblelog.js
-_globalObj.pullVids = function(arr) {
-  for(var i = arr.length - 1; i >= 0; i--) {
-    renderVideo(arr[i].shift().replace(/(\"|\|'\))/g, ""),arr[i].shift().replace(/(\"|\'|\))/g, ""),arr[i].shift().replace(/(\"|\'|\))/g, ""),arr[i].shift().replace(/(\"|\'|\))/g, ""),arr[i].join(",").replace(/(\"|\'|\))/g, ""));
-  }
-}
+<p><strong>There are two ways to conquer and enslave a nation. One is by sword. The other is by debt.</strong> – John Adams</p>
+<p><strong>H</strong>idden behind the gray shades of the current financial and political situation in Greece, the words that marks today and tomorrow is the confusion and disorientation. <a href="http://nicklevantis.svbtle.com/behind-the-curtains-1" target="_blank">Read More</a></p>
+<p><!-- more --></p>
+<div class="post-field body notes-source">
 
-_globalObj.writeEntries(tumblr_api_read);
-</script>
-</div>
-    </div>
+</div></div></div><div class="tumblr_entry 4"><h2 class="tumblr_title">Check out this link</h2><h3 class="tumblr_date">Thu, 11 Sep 2014 23:42:00</h3><div class="tumblr_link"><a href="http://pulseandsine.tumblr.com/">Pulse and Sine</a></div><div class="tumblr_body"><blockquote class="link_og_blockquote">
+<div>My Collection &nbsp;of cafe racers - timeless - unique - custom motorcycles</div>
+</blockquote>
+<p><a href="http://pulseandsine.tumblr.com/" target="_blank"><img alt="" src="https://31.media.tumblr.com/2d4c45f791046af89769796f3ddc5c05/tumblr_nbr8e41N1W1rlnxwwo1_500.jpg"></a></p></div></div><div class="tumblr_entry 5"><h2 class="tumblr_title"></h2><p class="tumblr_date">Sat, 07 Jun 2014 21:13:00</p><div class="tumblr_body"><img class="tumblr_photo" src="http://40.media.tumblr.com/0cda3d5f183ee0dd185b50ffc74bfdef/tumblr_n6t9b2vZ4T1rlnxwwo1_1280.jpg"></div><div class="tumblr_body"><p><iframe frameborder="no" height="20" scrolling="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/153283853&amp;color=282828&amp;inverse=false&amp;auto_play=false&amp;show_user=false" width="100%"></iframe></p></div></div><div class="tumblr_entry 6"><h2 class="tumblr_title"></h2><p class="tumblr_date">Tue, 03 Jun 2014 22:34:19</p><div class="tumblr_body"><img class="tumblr_photo" src="http://40.media.tumblr.com/1fe574a134f22dcc7123e0e152ba4dfb/tumblr_n6lyd77h1R1rlnxwwo1_1280.jpg"></div><div class="tumblr_body"></div></div></div>    </div>
 
 	</div>
   
