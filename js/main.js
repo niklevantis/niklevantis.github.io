@@ -16,7 +16,7 @@ $(function() {
 			},
 			onEnd : {
 				duration: 0, // Duration of the animations, if any.
-				render: function (url, $container, $content) {
+				render: function (url, $container, $content, $entries ) {
 					$body.css('cursor', 'auto');
 					$body.find('a').css('cursor', 'auto');
 					$container.html($content);
@@ -27,7 +27,7 @@ $(function() {
 					$('body').toggleClass('project');
 				}
 			},
-			callback: function(url, $container, $content) {
+			callback: function(url, $container, $content, $entries ) {
 				$('body').removeClass('startTransition projectTransition');
 
 				if (window.ga)
