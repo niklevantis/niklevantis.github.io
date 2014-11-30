@@ -3,7 +3,7 @@ $(function() {
 
 	// SmoothState
 	var $body = $('html, body'),
-		content = $('#wrapper', '#entries').smoothState({
+		content = $('#wrapper, #entries').smoothState({
 			onStart : {
 				duration: 800,
 				render: function(url, $container) {
