@@ -59,7 +59,7 @@
 		</div>
 
 		<div id="content-wrapper">
-<div id="entries">
+
 			
 <script>
 //This may all work if rehashed as an instant function and using document.write() inside the "entries" div and may also make vidsArray and the pullVids() method obselete - this is just how I ended up writing it all.
@@ -114,7 +114,7 @@ _globalObj.writeEntries = function(x){
     }
     output = output + title + content + "</div>";
   }
-  document.querySelector('#entries').innerHTML = output;
+  document.querySelector('#content-wrapper').innerHTML = output;
   _globalObj.pullVids(vidsArray);
 };
 
@@ -127,7 +127,7 @@ _globalObj.pullVids = function(arr) {
 
 _globalObj.writeEntries(tumblr_api_read);
 </script>
-</div>
+
     </div>
 
 	</div>
