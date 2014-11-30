@@ -7,7 +7,7 @@ $(function() {
 			onStart : {
 				duration: 800,
 				render: function(url, $container) {
-					$('#content-wrapper, .img-grid').addClass('hide');
+					$('#content-wrapper, #entries, .img-grid').addClass('hide');
 					startTransition(url);
 					// $body.animate({	scrollTop: 0}, 150, function() {
 					// 	startTransition(url);
