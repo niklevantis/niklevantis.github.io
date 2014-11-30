@@ -37,7 +37,7 @@ $(function() {
 			    }
 			},
 			prefetch: true,
-			pageCacheSize: 4,
+			pageCacheSize: 10,
 			development: false
 		}).data('smoothState');
 
