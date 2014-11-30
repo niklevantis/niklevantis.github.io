@@ -36,7 +36,7 @@ $(function() {
 			        undefined !== window.location.pathname ? window.location.pathname : url);
 			    }
 			},
-			prefetch: true,
+			prefetch: false,
 			pageCacheSize: 10,
 			development: false
 		}).data('smoothState');
