@@ -3,11 +3,11 @@ $(function() {
 
 	// SmoothState
 	var $body = $('html, body'),
-		content = $('#wrapper, #entries').smoothState({
+		content = $('#wrapper').smoothState({
 			onStart : {
 				duration: 800,
 				render: function(url, $container) {
-					$('#content-wrapper, #entries, .img-grid').addClass('hide');
+					$('#content-wrapper, .img-grid').addClass('hide');
 					startTransition(url);
 					// $body.animate({	scrollTop: 0}, 150, function() {
 					// 	startTransition(url);
