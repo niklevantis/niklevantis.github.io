@@ -16,9 +16,9 @@
     
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
      <script src="../../js/jquery-2.1.1.min.js"></script>
-    <script src="../../js/jquery.smoothState.js"></script>
+   
   
-    <script src="../../js/main.js"></script>
+  
 
    <script type="text/javascript" src="http://levantis.tumblr.com/api/read/js?num=6"></script>
        <script src="//use.typekit.net/spi5kvu.js"></script>
@@ -59,7 +59,7 @@
 		</div>
 
 		<div id="content-wrapper">
-
+<div id="entries">
 			
 <script>
 //This may all work if rehashed as an instant function and using document.write() inside the "entries" div and may also make vidsArray and the pullVids() method obselete - this is just how I ended up writing it all.
@@ -114,7 +114,7 @@ _globalObj.writeEntries = function(x){
     }
     output = output + title + content + "</div>";
   }
-  document.querySelector('#content-wrapper').innerHTML = output;
+  document.querySelector('#entries').innerHTML = output;
   _globalObj.pullVids(vidsArray);
 };
 
@@ -127,7 +127,7 @@ _globalObj.pullVids = function(arr) {
 
 _globalObj.writeEntries(tumblr_api_read);
 </script>
-
+</div>
     </div>
 
 	</div>
