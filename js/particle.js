@@ -6,9 +6,9 @@
 $(document).ready(function() {
   $('.side-left').particleground({
     dotColor: '#000000',
-    lineColor: '#737373',
-    lineWidth: '0.2111',
-    particleRadius: '.1',
+    lineColor: '#111111',
+    lineWidth: '8.2111',
+    particleRadius: '4.1',
     parallaxMultiplier: '5'
   });
 });
