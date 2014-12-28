@@ -54,5 +54,5 @@ transform: translateY(-50%) translateX(-50%);
 .button2{position: absolute;
 
 padding: 0 1em;
-	border: 1px solid rgba(255, 255, 255, 0.35);
+	border: 1px solid rgba(110,110,110,0.82);
 }	
