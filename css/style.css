@@ -62,13 +62,13 @@ cursor: pointer;
 -webkit-transform: translateY(-50%) translateX(-50%);
 transform: translateY(-50%) translateX(-50%);
 	border: 1px solid rgba(96, 96, 96, 0.44);
-	background-color: rgba(211, 198, 177, 0.14);
+	background-color: rgba(213, 213, 213, 0.14);
 	}
 
 
 
 .button2{position: absolute;
-background-color: rgba(211, 198, 177, 0.14);
+background-color: rgba(213, 213, 213, 0.14);
 
 padding: 0 1em;
 		border: 1px solid rgba(96, 96, 96, 0.44);
