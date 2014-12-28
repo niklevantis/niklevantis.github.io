@@ -63,6 +63,7 @@ cursor: pointer;
 transform: translateY(-50%) translateX(-50%);
 	border: 1px solid rgba(96, 96, 96, 0.44);
 	background-color: rgba(213, 213, 213, 0.14);
+	z-index:1000;
 	}
 
 
@@ -72,4 +73,5 @@ background-color: rgba(213, 213, 213, 0.14);
 
 padding: 0 1em;
 		border: 1px solid rgba(96, 96, 96, 0.44);
+			z-index:1000;
 }	
