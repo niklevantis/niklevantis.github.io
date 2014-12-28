@@ -58,7 +58,7 @@ padding: 0 1em;
 cursor: pointer;
 -webkit-transform: translateY(-50%) translateX(-50%);
 transform: translateY(-50%) translateX(-50%);
-	border: 2px solid rgba(96, 96, 96, 0.44);
+	border: 1px solid rgba(96, 96, 96, 0.44);
 	}
 	
 
@@ -66,5 +66,5 @@ transform: translateY(-50%) translateX(-50%);
 .button2{position: absolute;
 
 padding: 0 1em;
-		border: 2px solid rgba(96, 96, 96, 0.44);
+		border: 1px solid rgba(96, 96, 96, 0.44);
 }	
