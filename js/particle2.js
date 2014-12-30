@@ -7,8 +7,8 @@ $(document).ready(function() {
   $('.side-right').particleground({
     dotColor: '#AEAEAE',
     lineColor: '#AEAEAE',
-    lineWidth: '0.2111',
-    particleRadius: '93.1',
+    lineWidth: '10.2111',
+    particleRadius: '13.1',
     parallaxMultiplier: '-1'
   });
 });
