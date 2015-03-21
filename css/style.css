@@ -37,7 +37,7 @@ td {
 
 #entries {max-width:500px;}
 
-#entries img{text-align:center;max-width:500px}
+#entries img{text-align:center;max-width:100%;}
 
 #tumblr_body {max-width:100%;}
 /* #Basic Styles
@@ -677,7 +677,7 @@ hr {
 .quarter, .third, .half, .two-thirds {
   float: left;
   display: inline;
-  margin-left: 0;
+  margin-left: 10px;
   margin-right: 10px;
   -webkit-transition: width 0.2s linear;
   -moz-transition: width 0.2s linear;
