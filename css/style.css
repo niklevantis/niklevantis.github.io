@@ -677,7 +677,7 @@ hr {
 .quarter, .third, .half, .two-thirds {
   float: left;
   display: inline;
-  margin-left: 10px;
+  margin-left: 0;
   margin-right: 10px;
   -webkit-transition: width 0.2s linear;
   -moz-transition: width 0.2s linear;
