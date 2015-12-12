@@ -55,30 +55,29 @@ filter: none;
 }
 
 #header-fixed {
-font-family: Helvetica, Arial, sans-serif;
-position: absolute;
-top: 8%;
-letter-spacing: 0;
-z-index: 1;
-width: 32%;
-max-width: 100%;
-text-align:center;
-color: #ffffff;
-font-size: 2em;
-font-weight: 300;
-background-color: #000000;
-letter-spacing: 11px;
-padding: 6px;
-margin-left:60%;
-}
+    font-family: Helvetica,Arial,sans-serif;
+    position: absolute;
+    top: 3.4%;
+    letter-spacing: 0;
+    z-index: 1;
+    width: 6%;
+    max-width: 100%;
+    text-align: center;
+    color: #FFFFFF;
+    font-size: 4em;
+    font-weight: 300;
+    background-color: #000000;
+    letter-spacing: 16px;
+    padding: 10px;
+    margin-left: 65%;}
 
 #header-fixed:hover { background-color: #ffffff;
-color:#333;
+color: #8d8d8d;
  -o-transitionbackground 0.3s ease-in-out ;
   -ms-transition:background 0.3s ease-in-out ;
   -moz-transition:background 0.3s ease-in-out ;
   -webkit-transition:background 0.3s ease-in-out ;
-  font-size: 2em;
+  
    }
 
 
@@ -109,7 +108,7 @@ h1 {font-family: Helvetica,  Arial, sans-serif;}
 body {
     font-family: Helvetica, Arial, sans-serif;
     color: #f3eee4;
-    background: #DBDBDB;
+    background:  #D2D2D2;
     font-size: 0.9em;
     font-weight: 300;
   
@@ -117,7 +116,7 @@ body {
 }
 
 a {
-	color: #000000;
+	color: #808080;
 	text-decoration: none;
 	font-weight: 600;
 	padding: 0 5px;
@@ -237,7 +236,7 @@ canvas{
 
 	top: 50%;
 	left: 50%;
-	background: #c7c7c7;
+	background: #F1F1F1;
 	color: #444444;
 }
 
