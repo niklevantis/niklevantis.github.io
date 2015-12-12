@@ -66,10 +66,10 @@ filter: none;
     color: #FFFFFF;
     font-size: 2.5em;
     font-weight: 300;
-    background-color: #000000;
+    background-color: #3b3b3b;
     letter-spacing: 16px;
     padding: 10px;
-    margin-left: 70%;}
+    margin-left: 7%;}
 
 #header-fixed:hover { background-color: #ffffff;
 color: #8d8d8d;
@@ -111,8 +111,7 @@ body {
     background: #aaaaaa;
     font-size: 0.9em;
     font-weight: 300;
-  
-  
+	border: 10px solid #666666;
 }
 
 a {
@@ -211,16 +210,19 @@ canvas{
 
 .bl-main > section:first-child {
    
-	top: 0%;
-	left: 0%;
-	background: rgb(91, 91, 91);
+	top: 25%;
+	left: 25%;
+	background: #444444;
+	width: 25%;
+	height: 25%;
 	}
 
 .bl-main > section:nth-child(2) {
 
 	top: 25%;
 	left: 50%;
-	background: #605d5d;
+	background: rgba(58, 58, 58, 0.86);
+		width: 25%;
 		height: 25%;
 
 	
@@ -230,16 +232,19 @@ canvas{
   
 	top: 50%;
 	left: 25%;
-	background: #7e7b7b;
-			width: 25%;
+	background: rgba(58, 58, 58, 0.92);
+		width: 25%;
+		height: 25%;
 			}
 
 .bl-main > section:nth-child(4) {
 
 	top: 50%;
 	left: 50%;
-	background: #303030;
+	background: rgba(68, 68, 68, 0.9);
 	color: #444444;
+	width: 25%;
+	height: 25%;
 }
 
 .bl-box {
@@ -285,7 +290,7 @@ top: 0;
 
 letter-spacing: 3px;
 
-		font-size: 15em;
+		font-size: 10em;
 	
 	}
 .bl-box h2 {
@@ -764,7 +769,7 @@ padding: 20px 15% 20px 15%;
 	
 .bl-box h2 {
 
-	font-size: 3em;
+	font-size: 1.5em;
 
 		}
 
@@ -829,7 +834,7 @@ width: 100%;
 	.bl-content{left: 0;}
 	
 	.bl-main > section:first-child {
-   		left: 0%;
+   		;
 	
 	}
 
