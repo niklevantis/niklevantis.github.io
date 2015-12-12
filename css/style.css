@@ -37,7 +37,7 @@ display: block;
 margin-left:auto;
 margin-right:auto;
 margin-bottom: 0;
-max-width:100% ;
+max-width:800px;
 /*
 filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale");
   filter: gray;
@@ -358,6 +358,7 @@ div.bl-panel-items > div > div {
 	overflow: hidden;
 	overflow-y: scroll;
 	-webkit-overflow-scrolling: touch;
+	max-width:800px;
 }
 
 /* Custom content */
