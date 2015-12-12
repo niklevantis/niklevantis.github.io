@@ -301,6 +301,9 @@ position: absolute;
 		}
 .bl-box h2:hover {
 	background-color: none;
+	letter-spacing: 3px;
+	text-transform: LOwercase;
+		font-size: 15em;
 }
 
 .bl-main > section .bl-icon-close {
