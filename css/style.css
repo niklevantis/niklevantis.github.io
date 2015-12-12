@@ -741,6 +741,14 @@ section.bl-expand .bl-icon-close {
 		}
 
 
+	
+	.bl-content {font-size:1em;
+	margin-top: 0px;
+margin-left: 0;
+right: 10px;
+bottom: 0px;}
+
+
 .bl-box {
 		font-size: 80%;
 		
