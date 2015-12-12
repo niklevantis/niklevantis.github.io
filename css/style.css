@@ -358,7 +358,7 @@ div.bl-panel-items > div > div {
 	overflow: hidden;
 	overflow-y: scroll;
 	-webkit-overflow-scrolling: touch;
-	max-width:800px;
+	max-width:100%;
 }
 
 /* Custom content */
