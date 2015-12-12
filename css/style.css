@@ -97,7 +97,7 @@ left: 1%;
 margin: auto;
 width: 25%;
 z-index: 2;
-color: #000000;
+color: #dadada;
 font-size: .8em;
 }
 
@@ -108,7 +108,7 @@ h1 {font-family: Helvetica,  Arial, sans-serif;}
 body {
     font-family: Helvetica, Arial, sans-serif;
     color: #f3eee4;
-    background:  #D2D2D2;
+    background: #aaaaaa;
     font-size: 0.9em;
     font-weight: 300;
   
@@ -213,14 +213,14 @@ canvas{
    
 	top: 0%;
 	left: 0%;
-	background: rgba(229,229,229,1);
+	background: rgb(91, 91, 91);
 	}
 
 .bl-main > section:nth-child(2) {
 
 	top: 25%;
 	left: 50%;
-	background: #e7e7e7;
+	background: #605d5d;
 		height: 25%;
 
 	
@@ -230,7 +230,7 @@ canvas{
   
 	top: 50%;
 	left: 25%;
-	background: #ebebeb;
+	background: #7e7b7b;
 			width: 25%;
 			}
 
@@ -238,7 +238,7 @@ canvas{
 
 	top: 50%;
 	left: 50%;
-	background: #F1F1F1;
+	background: #303030;
 	color: #444444;
 }
 
@@ -293,22 +293,19 @@ position: absolute;
 	font-family: Helvetica, Calibri, Arial, sans-serif;
 	position: relative;
 	text-align: center;
-	color: rgba(193, 193, 193, 0.38);
+	color: rgba(238, 237, 237, 0.48);
 	padding: 20px;
 	width: 100%;
 	font-size: 1.5em;
 	letter-spacing: 3px;
 	font-weight: 300;
-	text-transform: uppercase;
-		}
+	text-transform: uppercase;s		}
 .bl-box h2:hover {
 	background-color: none;
 	letter-spacing: 3px;
-
+color: rgba(175, 175, 175, 0.41);
 		font-size: 6em;
-}
-
-.bl-main > section .bl-icon-close {
+}.bl-main > section .bl-icon-close {
 	font-family: Helvetica,Arial;
 	position: absolute;
 	top: 20px;
@@ -321,6 +318,8 @@ position: absolute;
 color: rgba(197, 197, 197, 0.69);
 
 }
+
+
 
 
 .icon-close {
