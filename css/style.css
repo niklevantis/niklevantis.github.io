@@ -139,6 +139,8 @@ quote {font-family: Helvetica, Calibri, Arial, sans-serif;
 }
 .container { height: 100%; }
 
+
+
 .bl-main {
 	position: relative;
 	width: 100%;
@@ -289,11 +291,11 @@ position: absolute;
 	font-family: Helvetica, Calibri, Arial, sans-serif;
 	position: relative;
 	text-align: center;
-	color: #DADADA;
+	color: rgba(193, 193, 193, 0.38);
 	padding: 20px;
 	width: 100%;
-	font-size: 6em;
-	letter-spacing: 2px;
+	font-size: 5em;
+	letter-spacing: -30px;
 	font-weight: 300;
 	text-transform: uppercase;
 		}
@@ -311,7 +313,7 @@ position: absolute;
 	z-index: 100;
 	opacity: 0;
 	pointer-events: none;
-color: #c5c5c5;
+color: rgba(197, 197, 197, 0.69);
 
 }
 
@@ -354,11 +356,12 @@ div.bl-panel-items > div > div {
 	left: 30px;
 	right: 30px;
 	bottom: 0px;
-	padding: 20px 20% 20px 20%;
+	padding: 20px 30% 20px 30%;
 	overflow: hidden;
 	overflow-y: scroll;
 	-webkit-overflow-scrolling: touch;
 	max-width:100%;
+
 }
 
 /* Custom content */
