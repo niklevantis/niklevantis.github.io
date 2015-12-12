@@ -283,7 +283,9 @@ top: 0;
   -moz-transition:background 0.3s ease-in-out ;
   -webkit-transition:background 0.3s ease-in-out ;
 
+letter-spacing: 3px;
 
+		font-size: 15em;
 	
 	}
 .bl-box h2 {
@@ -294,16 +296,16 @@ position: absolute;
 	color: rgba(193, 193, 193, 0.38);
 	padding: 20px;
 	width: 100%;
-	font-size: 5em;
-	letter-spacing: -30px;
+	font-size: 1.5em;
+	letter-spacing: 3px;
 	font-weight: 300;
 	text-transform: uppercase;
 		}
 .bl-box h2:hover {
 	background-color: none;
 	letter-spacing: 3px;
-	text-transform: LOwercase;
-		font-size: 15em;
+
+		font-size: 6em;
 }
 
 .bl-main > section .bl-icon-close {
