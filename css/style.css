@@ -64,7 +64,7 @@ filter: none;
     max-width: 100%;
     text-align: center;
     color: #FFFFFF;
-    font-size: 2.5em;
+    font-size: 1.8em;
     font-weight: 300;
     background-color: #3b3b3b;
     letter-spacing: 16px;
@@ -745,6 +745,7 @@ section.bl-expand .bl-icon-close {
 		}
 
 
+	
 	
 	.bl-content {font-size:1em;
 	margin-top: 0px;
