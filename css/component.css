@@ -6,22 +6,43 @@ html.js,
 
 /* Pages nav */
 
-/*
+
 #page-home {
 	background-color: white;
 	color: black;
 }
 
 
+
 #page-docu {
 	background-color: black;
+	color: white;
 	
 }
 
+#page-docu .bp-header__title {
+	color: white;
+	background-color: #d1d1d1;
+}
 #page-blog {
 	background-color: yellow;
 	color: black;
-}*/
+}
+
+#page-software {
+	background-color: #2f4e55;
+	color: white;
+}
+
+#page-software .bp-header__title {
+	color: white;
+}
+
+
+#page-contact {
+	background-color: #ec7d00;
+	
+}
 
 
 .pages-nav {
