@@ -36,12 +36,24 @@ html.js,
 
 #page-software .bp-header__title {
 	color: white;
+	
 }
 
 
 #page-contact {
 	background-color: #ec7d00;
-	
+	color: black;
+
+}
+
+#page-contact a {
+	color: black;
+	font-size: 1.2em;
+}
+
+#page-contact a:hover {
+	color: #ffffff;
+	font-size: 1.2em;
 }
 
 
@@ -156,7 +168,7 @@ html.js,
 
 .link--faded:hover,
 .link--faded:focus {
-	color: #5c5edc;
+	color: #999999;
 }
 
 .link--page.link--faded {

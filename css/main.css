@@ -47,7 +47,7 @@ body {
 
 a {
 	text-decoration: none;
-	color: #5c5edc;
+	color: #8b8b8b;
 	outline: none;
 }
 
@@ -87,7 +87,7 @@ a:hover {
 	padding: 0 0 0.6em 0.1em;
 	letter-spacing: 0.5em;
 	text-transform: uppercase;
-	color: #5c5edc;
+	color: #8e8e8e;
 }
 
 .bp-tooltip:after {
@@ -114,7 +114,7 @@ a:hover {
 	letter-spacing: 0;
 	text-transform: none;
 	color: #fff;
-	background: #5c5edc;
+	background: #868686;
 }
 
 .bp-nav {
@@ -149,7 +149,7 @@ a:hover {
 }
 
 .bp-nav__item:hover {
-	background: #5c5edc;
+	background: #f5f5f5;
 }
 
 .bp-icon:after {
@@ -159,7 +159,7 @@ a:hover {
 	font-variant: normal;
 	text-align: center;
 	text-transform: none;
-	color: #5c5edc;
+	color: #ffffff;
 	-webkit-font-smoothing: antialiased;
 
 	speak: none;
