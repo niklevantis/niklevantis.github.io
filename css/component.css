@@ -385,4 +385,12 @@ html.js,
 	.poster {
 		margin: 1em;
 	}
+	
+	.tumblr_body {
+		font-size: 1.25em;
+		max-width: 100%;
+		margin-top: 1.5em;
+	}
+	
+	
 }
