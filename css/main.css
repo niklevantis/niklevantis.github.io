@@ -8,7 +8,7 @@
 	src: url('../fonts/bpicons/bpicons.eot?#iefix') format('embedded-opentype'), url('../fonts/bpicons/bpicons.woff') format('woff'), url('../fonts/bpicons/bpicons.ttf') format('truetype'), url('../fonts/bpicons/bpicons.svg#bpicons') format('svg');
 }
 
-
+canvas{ width: 100%;height:100%;}
 /* Made with http://icomoon.io/ */
 
 
@@ -73,7 +73,7 @@ a:hover {
 }
 
 .bp-header__desc {
-	font-size: 0.95em;
+	font-size: 1.10em;
 	margin: 0.5em 0 1em;
 	padding: 0;
 }

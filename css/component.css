@@ -6,6 +6,24 @@ html.js,
 
 /* Pages nav */
 
+/*
+#page-home {
+	background-color: white;
+	color: black;
+}
+
+
+#page-docu {
+	background-color: black;
+	
+}
+
+#page-blog {
+	background-color: yellow;
+	color: black;
+}*/
+
+
 .pages-nav {
 	display: -webkit-flex;
 	display: flex;
@@ -46,8 +64,8 @@ html.js,
 }
 
 .pages-nav__item {
-	width: 33%;
-	padding: 1em;
+	width: 33.3%;
+	padding: 0.1em;
 }
 
 .js .pages-nav__item {
@@ -191,6 +209,9 @@ html.js,
 	max-height: 80%;
 }
 
+
+
+
 /* Menu button */
 
 .menu-button {
@@ -265,6 +286,13 @@ html.js,
 .menu-button--open::after {
 	-webkit-transform: rotate3d(0, 0, 1, -45deg);
 	transform: rotate3d(0, 0, 1, -45deg);
+}
+
+
+.tumblr_body {
+	font-size: 1.25em;
+	max-width: 50%;
+	margin-top: 1.5em;
 }
 
 @media screen and (max-width: 60em) {
