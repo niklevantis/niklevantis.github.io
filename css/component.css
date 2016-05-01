@@ -380,6 +380,7 @@ html.js,
 	}
 	.info {
 		font-size: 0.85em;
+		max-width: 100%;
 	}
 	.poster {
 		margin: 1em;
