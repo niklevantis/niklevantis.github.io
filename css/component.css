@@ -8,14 +8,14 @@ html.js,
 
 
 #page-home {
-	background-color: white;
+	background-color: rgba(255, 255, 255, 0.91);
 	color: black;
 }
 
 
 
 #page-docu {
-	background-color: black;
+	background-color: rgba(0, 0, 0, 0.91);
 	color: white;
 	
 }
@@ -25,13 +25,13 @@ html.js,
 
 }
 #page-blog {
-	background-color: yellow;
+	background-color: rgba(254, 255, 0, 0.79);
 	color: black;
 	overflow: auto;
 }
 
 #page-software {
-	background-color: #2f4e55;
+	background-color: rgba(47, 77, 84, 0.95);
 	color: white;
 }
 
@@ -42,7 +42,7 @@ html.js,
 
 
 #page-contact {
-	background-color: #ec7d00;
+	background-color: rgba(236, 125, 0, 0.9);
 	color: black;
 
 }
