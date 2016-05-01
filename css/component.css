@@ -27,6 +27,7 @@ html.js,
 #page-blog {
 	background-color: yellow;
 	color: black;
+	overflow: auto;
 }
 
 #page-software {
@@ -326,6 +327,22 @@ html.js,
 	font-size: 1.25em;
 	max-width: 50%;
 	margin-top: 1.5em;
+}
+
+img.tumblr_photo {
+width: 540px;
+	max-width: 100%;
+}
+
+.widget {
+	width: 540px;
+		max-width: 100%;
+	
+}
+
+.image {
+	width: 540px;
+		max-width: 100%;
 }
 
 @media screen and (max-width: 60em) {
