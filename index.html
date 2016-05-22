@@ -2,7 +2,17 @@
 <html>
 	<head>
 
-  <title>Nick Levantis</title>
+<script type="text/javascript" >
+	$(document).ready(function(){
+	  $('#loadtxt').css({ 'width':'100%', 'text-align':'center','font-weight':'100', 'font-size':'11.3pt' });
+	  var h1 = $('h1').height();
+	  var h = h1/2;
+	  var w1 = $(window).height();
+	  var w = w1/2;
+	  var m = w - h
+	  $('#loadtxt').css("margin-top",m + "px")
+	});
+	</script>  <title>Nick Levantis</title>
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta name="HandheldFriendly" content="true">
   <meta name="description" content="Nick Levantis — Electronica composer - Music and Artwork Exploration">
@@ -25,18 +35,7 @@
 </style>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
      
-   
-   <script type="text/javascript" >
-   	$(document).ready(function(){
-   	  $('#loadtxt').css({ 'width':'100%', 'text-align':'center','font-weight':'100', 'font-size':'11.3pt' });
-   	  var h1 = $('h1').height();
-   	  var h = h1/2;
-   	  var w1 = $(window).height();
-   	  var w = w1/2;
-   	  var m = w - h
-   	  $('#loadtxt').css("margin-top",m + "px")
-   	});
-   	</script>
+ 
    <script type="text/javascript" src="http://levantis.tumblr.com/api/read/js?num=1"></script>
    
 </head>
