@@ -27,7 +27,7 @@ a {
 	color: #090c93;
 	text-decoration: none;
 	background-color: rgba(246, 244, 191, 0.24);
-	padding: 1px 5px;
+	padding: 0 5px;
 }
 
 a:hover, a:focus {
@@ -157,7 +157,7 @@ main {
 	max-width: 65vw;
 	margin: 0 auto;
 	text-align: justify;
-	font-size: 1.15em;
+	font-size: 1.25em;
 	line-height: 1.6;
 }
 
@@ -171,7 +171,7 @@ main {
 
 /* Related demos */
 .content--related {
-	font-size: 1.35em;
+	font-size: 1.15em;
 	font-weight: bold;
 	padding: 3em 0 6em;
 	text-align: right;
@@ -318,6 +318,7 @@ main {
 	background-repeat: no-repeat;
 	background-position: 50% 50%;
 	background-size: cover;
+	background-color: rgba(151, 255, 168, 0.036);
 }
 
 .pop-media--circle {
@@ -413,6 +414,7 @@ main {
 	user-select: none;
 	-webkit-touch-callout: none;
 	-khtml-user-select: none;
+	padding:0 5px;
 }
 
 .pop-text--s1:hover {
