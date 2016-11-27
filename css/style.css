@@ -26,7 +26,8 @@ a {
 	outline: none;
 	color: #090c93;
 	text-decoration: none;
-	background-color: rgba(246, 244, 191, 0.35);
+	background-color: rgba(246, 244, 191, 0.24);
+	padding: 1px 5px;
 }
 
 a:hover, a:focus {
@@ -642,6 +643,7 @@ main {
 	to {
 		-webkit-mask-position: 100% 50%;
 		mask-position: 100% 50%;
+		color: rgba(0, 20, 199, 0.31);
 	}
 }
 
