@@ -584,7 +584,7 @@ main {
 
 .pop-media--full {
 	position: fixed;
-	width:45%;
+	width:30%;
 	height:100%;
   	z-index: 104;
 }
