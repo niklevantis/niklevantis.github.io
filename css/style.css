@@ -19,9 +19,9 @@ h1{
 
 a {
 	outline: none;
-	color: #a4a4a4;
-	text-decoration: underline;
-	background-color: rgba(246, 244, 191, 0.46);
+	color: #090c93;
+	text-decoration: none;
+	background-color: rgba(246, 244, 191, 0.35);
 }
 
 a:hover, a:focus {
@@ -152,7 +152,7 @@ main {
 	margin: 0 auto;
 	text-align: justify;
 	font-size: 1.15em;
-	line-height: 1.5;
+	line-height: 1.6;
 }
 
 .content--blended p:nth-of-type(even) {
@@ -239,7 +239,7 @@ main {
 	}
 
 .content__paragraph--c2 {
-	color: rgba(10, 50, 16, 0.51);
+	color: rgb(4, 0, 175);
 	mix-blend-mode: exclusion;
 }
 
