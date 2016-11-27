@@ -17,6 +17,11 @@ h1{
 	color: #090c93;font-size:3em;
 }
 
+h6 {
+	font-size:.7em;
+	font-weight:100;
+}
+
 a {
 	outline: none;
 	color: #090c93;
