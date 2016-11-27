@@ -49,7 +49,7 @@
 		}
 
 		request.onerror = function() {
-			alert('BufferLoader: XHR error');
+		
 		}
 
 		request.send();

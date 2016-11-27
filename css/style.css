@@ -13,6 +13,10 @@ body {
 		
 }
 
+h1{
+	color: #090c93;font-size:3em;
+}
+
 a {
 	outline: none;
 	color: #a4a4a4;
