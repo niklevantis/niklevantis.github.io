@@ -163,7 +163,7 @@ main {
 /* Content */
 .content {
 	position: relative;
-	max-width:900px;
+	max-width:1080px;
 	margin:0 auto;
 }
 
@@ -172,8 +172,8 @@ main {
 	max-width: 65vw;
 	margin: 0 auto;
 	text-align: justify;
-	font-size: 1.60em;
-	line-height: 1.6;
+	font-size: 1.30em;
+	line-height: 1.8;
 }
 
 .content--blended p:nth-of-type(even) {
@@ -255,7 +255,7 @@ main {
 /* Individual paragraph colors and blend modes */
 
 .content__paragraph--c1 {
-	color: #343434;
+	color: #222;
 	mix-blend-mode: color-dodge;
 	}
 
