@@ -1,20 +1,35 @@
 *, *::after, *::before { -webkit-box-sizing: border-box; box-sizing: border-box; }
 
+html {
+
+text-rendering: optimizeLegibility !important;
+
+-webkit-font-smoothing: antialiased !important;
+
+   text-shadow: 1px 1px 1px rgba(0,0,0,0.004);
+}
+
 body {
-	font-family:'Space mono', sans-serif, 'Avenir Next', Avenir, 'Helvetica Neue', Helvetica, 'Segoe UI', Arial, sans-serif;
-	color: #fff;
+	font-family:'Poppins', sans-serif;
+	color: #222;
 	background: #ffffff;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
 	overflow: auto;
 	overflow-x: hidden;
 	position: relative;
 	width: 100vw;
+	font-weight: normal;
+	letter-spacing: 0.01em; 
+	
 		
+}
+
+header {
+	font-weight:100;
 }
 
 h1{
 	color: #090c93;font-size:3em;
+	font-weight:100;
 }
 
 h6 {
@@ -148,7 +163,7 @@ main {
 /* Content */
 .content {
 	position: relative;
-	max-width:800px;
+	max-width:900px;
 	margin:0 auto;
 }
 
@@ -157,7 +172,7 @@ main {
 	max-width: 65vw;
 	margin: 0 auto;
 	text-align: justify;
-	font-size: 1.30em;
+	font-size: 1.60em;
 	line-height: 1.6;
 }
 
@@ -240,7 +255,7 @@ main {
 /* Individual paragraph colors and blend modes */
 
 .content__paragraph--c1 {
-	color: #000;
+	color: #343434;
 	mix-blend-mode: color-dodge;
 	}
 
