@@ -163,11 +163,14 @@ main {
 
 
 /* Content */
+
+
+
 .content {
 	position: relative;
 	max-width:1080px;
 	margin:0 auto;
-}
+	 }
 
 .content--blended p {
 	padding: 0 0 2em 0;
