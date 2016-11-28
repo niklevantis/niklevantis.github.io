@@ -157,7 +157,7 @@ main {
 	max-width: 65vw;
 	margin: 0 auto;
 	text-align: justify;
-	font-size: 1em;
+	font-size: 1.25em;
 	line-height: 1.6;
 }
 
@@ -240,7 +240,7 @@ main {
 /* Individual paragraph colors and blend modes */
 
 .content__paragraph--c1 {
-	color: rgba(61, 61, 61, 0.77);
+	color: #000;
 	mix-blend-mode: color-dodge;
 	}
 
