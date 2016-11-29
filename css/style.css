@@ -51,11 +51,6 @@ a:hover, a:focus {
 	color: #ff3232;
 	text-decoration: line-through;
 	border: 2px solid #ff4646;
-		
-		-webkit-transition: border-color 0s 0.05s;
-		transition: border-color 0s 0.05s;
-	}
-	
 }
 
 main {
@@ -455,7 +450,10 @@ main {
 }
 
 .pop-text--s2:hover {
-	}
+	border-color: none;
+	-webkit-transition: border-color 0s 0.05s;
+	transition: border-color 0s 0.05s;
+}
 
 .pop-text--s3:hover {
 	color: #000;
