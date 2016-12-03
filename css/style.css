@@ -735,15 +735,15 @@ main {
 }
 
 .pop-text__split {
-	font-size: 1.65em;
-	font-weight: bold;
+	font-size: 3.65em;
+	font-weight: 300;
 	line-height: 250px;
 	position: relative;
 	z-index: 1000;
 	display: inline-block;
 	flex: none;
-	margin: 0 0 0 -0.4em;
-	color: #fded62;
+	margin: 0 0 0 -0.1em;
+	color: #000000;
 	-webkit-transition: -webkit-transform 0.3s;
 	transition: transform 0.3s;
 }
