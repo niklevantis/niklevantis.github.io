@@ -15,6 +15,13 @@
     <link rel="icon" href="images/favicon.png">
 
    <link href="https://fonts.googleapis.com/css?family=Poppins:400,500" rel="stylesheet">    <script src="js/bundle.js"></script>
+   
+     <style>
+                     /* glitch elem must have absolute position */
+           .glitch-img {position: absolute; width : 100%; height : 100%; top: 0 ; left : 0; background-position:center;  -moz-background-size:cover;-o-background-size:cover;-webkit-background-size:cover;background-size:cover;
+           } 
+           
+       </style>
 </head>
 <body>
    <script>
@@ -31,6 +38,10 @@
    <script>
    !function(){"use strict";function b(a,b){a.play(),a.setAttribute("data-playing","true"),b.classList.add("playing")}function c(a,b){a.pause(),a.setAttribute("data-playing","false"),b.classList.remove("playing")}var a="listen-node";window.onload=function(){var b,c,d,e=document.getElementsByClassName(a),f=document.createElement("style");f.type="text/css",f.innerHTML=".listen-node {display: inline-block; background: rgba(0, 20, 199, 0.0); padding: 0 2px; border-radius:1px; cursor: pointer;} .listen-node i {font-size: 0.7em; border: 0.5em solid transparent; border-left: 0.75em solid; display: inline-block; margin-left: 5px;} .listen-node .playing { border: 0; border-left: 0.75em double; border-right: 0.5em solid transparent; height: 1em;}",document.getElementsByTagName("head")[0].appendChild(f);for(var g=0;c=e[g];++g)b=document.createElement("audio"),d=document.createElement("i"),b.src=c.getAttribute("data-src"),b.setAttribute("data-playing","false"),c.id=a+"-"+g,c.insertBefore(d,c.firstChild),c.appendChild(b)},document.addEventListener("click",function(d){var e,f,g;d.target.className===a?(e=d.target.children[1],f=d.target,g=d.target.children[0]):d.target.parentElement&&d.target.parentElement.className===a&&(e=d.target.parentElement.children[1],f=d.target.parentElement,g=d.target),e&&f&&g&&(e.srt=parseInt(f.getAttribute("data-start"))||0,e.end=parseInt(f.getAttribute("data-end"))||e.duration,e&&"false"===e.getAttribute("data-playing")?((e.srt>e.currentTime||e.end<e.currentTime)&&(e.currentTime=e.srt),b(e,g)):c(e,g),function a(){var b=requestAnimationFrame(a),d=100*(e.currentTime-e.srt)/(e.end-e.srt);d=d<100?d:100,f.style.background="linear-gradient(to right, rgba(0, 20, 199, 0.1)"+d+"%, rgba(0, 20, 199, 0.05)"+d+"%)",e.end<e.currentTime&&(c(e,g),cancelAnimationFrame(b))}())})}(); </script>
    
+      
+   
+      
+   
     <div class="particle-container" id="particles"></div>
 
 	<section class="landing" id="landing">
@@ -42,9 +53,11 @@
 		</nav>
 
 		<div class="landing__title">
-		<!--	<div class="landing__mask top-mask">
-				<h1>Nick Levantis</h1>
-			</div>-->
+	<div class="landing__mask top-mask">
+		
+		
+				<iframe width="100%" height="20" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/117184964&amp;color=000000&amp;auto_play=true&amp;hide_related=false&amp;show_comments=true&amp;show_user=false&amp;show_reposts=false"></iframe>
+			</div>
 			<div class="landing__mask">
 				<p>Music and Artwork Exploration</p>
 			</div>
@@ -52,11 +65,20 @@
 	</section>
 
 	<section class="about" id="about">
+	  <div class="glitch-img" style="background-image: url('images/mosh1.jpg')"></div>
+	
         <div class="center">
-			<h2>About</h2>
+        
+        
+		
+			                 
+			                
 			                  <p>
+			                  
 			                  Nick Levantis grew up in a fertile cultural and musical period in the early eighties. Programming and synths helped him to step deeper into the world of <span class="listen-node" data-src="https://dl.dropboxusercontent.com/u/5647859/audioplayer/touchthemilkyway.mp3" data-start="0" data-end="200"  >electronic music </span> and  computer art. Over three decades he has formed bands and collaborated with many other musicians experimenting through different styles.</p>
 			                <p>  Today is creating pieces of music and is trying to differentiate by surpassing the limits of specific genres. Recent activities include the creation of visuals and <span class="listen-node" data-src="https://dl.dropboxusercontent.com/u/5647859/audioplayer/annoyingthinks.mp3" data-start="0" data-end="236">music for theatre</span>. Nick's latest project is the experimental electronic band <a href="http://paralogik.github.io" target="_blank" data-img="img/eye.gif">Paralogik</a> which created together with Eugene Broumidis. Their <span class="listen-node" data-src="https://dl.dropboxusercontent.com/u/5647859/audioplayer/Paralogik-Dystopia.mp3" data-start="0" data-end="247"  >dark sound </span> travels through ethereal and nostalgic melodies with lyrics that touch many unresolved social concerns. Τhe first live performance of Paralogik will take place at 9 December 2016 in Athens</span> Sofokleous 5 Str.</p>
+			                
+			                
 			                  
 			</div>
 			        </div>
