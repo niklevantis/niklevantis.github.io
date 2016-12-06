@@ -430,7 +430,7 @@
 
 	        scene = new THREE.Scene();
 
-	        var geometry = new THREE.BoxGeometry(20, 20, 20);
+	        var geometry = new THREE.BoxGeometry(10, 10, 10);
 
 	        function buildCube() {
 
