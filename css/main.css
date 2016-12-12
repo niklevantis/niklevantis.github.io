@@ -224,14 +224,40 @@ h1 {
 }
 #soundcloud {
 	position: fixed;
-	bottom: 1.0rem;
-	right: 1rem;
-	width: 6.4rem;
-	height: 6.4rem;
+	bottom: 1rem;
+	right: 2.7rem;
+	width: 2.4rem;
+	height: 2.4rem;
 	background: transparent url(img/soundcloud-logo.svg) no-repeat center scroll;
-	background-size: 4.4rem auto;
+	background-size: 1.4rem auto;
 	z-index: 100;
 }
+
+
+#vsco {
+	position: fixed;
+	bottom: 3rem;
+	right: 2.7rem;
+	width: 2.4rem;
+	height: 2.4rem;
+	background: transparent url(img/vsco-logo.svg) no-repeat center scroll;
+	background-size: 1.4rem auto;
+	z-index: 100;
+}
+
+
+#facebook {
+	position: fixed;
+	bottom: 5rem;
+	right: 2.7rem;
+	width: 2.4rem;
+	height: 2.4rem;
+	background: transparent url(img/facebook-logo.svg) no-repeat center scroll;
+	background-size: 1.4rem auto;
+	z-index: 100;
+}
+
+
 ul#nav {
     position: fixed;
    top: 4.0rem;
@@ -568,6 +594,14 @@ section#work {
 		font-size: .9rem;
 	}
 	#soundcloud {
+		display: none;
+	}
+	
+	#facebook{
+		display: none;
+	}
+	
+	#vsco{
 		display: none;
 	}
 	ul#nav {
