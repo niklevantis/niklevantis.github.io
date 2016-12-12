@@ -178,7 +178,8 @@ p {
 	margin: 0 0 2.0rem;
 }
 a {
-	color: #0000ee;
+	color: #000000;
+	
 }
 strong {
 	font-weight: 700;
@@ -250,7 +251,7 @@ ul#nav {
 			position: relative;
 			font-size: 1.4rem;
 			line-height: 1;
-			color: #0000ee;
+			color: #000000;
 			text-decoration: none;
 			transition: color 0.3s ease;
 		}
@@ -301,6 +302,18 @@ section#home {
 	    width: auto;
 		height: 40.8rem;
 	}
+	
+	
+	iframe {
+	    position: absolute;
+	    top: 50%;
+	    left: 50%;
+	    transform: translate3d(-50%,-50%,0);
+	    width: 20px;
+		height: 20px;
+		z-index: 10000;
+	}
+	
 	
 /*
 <----------------||----------------$About----------------||---------------->
@@ -431,6 +444,7 @@ section#work {
 				font-weight: 700;
 				transform: translateX(-50%);
 				text-decoration: none;
+				color: #575757;
 			}
 				.cap span {
 					display: block;
@@ -458,7 +472,7 @@ section#work {
 				width: 1.0rem;
 				height: 1.0rem;
 				transform: rotate(45deg);
-				border: .2rem solid #0000ee;
+				border: .2rem solid #000000;
 				margin-bottom: 1.5rem;
 				transition: all 0.3s ease;
 				cursor: pointer;
@@ -467,7 +481,7 @@ section#work {
 				margin: 0;
 			}
 			#pager > span.active {
-				background: #0000ee;
+				background: #000000;
 			}
 	/*Cycle-Loader*/
 	#cycle-loader {
@@ -488,13 +502,14 @@ section#work {
 	}
 			#cycle-loader circle {
 				stroke-width: 4px;
-				stroke: #0000ee;
+				stroke: #000;
 			}
 			#cycle-loader.active circle {
 				stroke-dasharray: 114px;
 				stroke-dashoffset: 114px;
 				animation: dash 6s linear infinite;
 				-webkit-animation: dash 6s linear infinite;
+				color:black;
 			}
 			@-webkit-keyframes dash {
 				0% 		{ stroke-dashoffset: 114px; }
