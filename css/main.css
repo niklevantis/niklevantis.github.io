@@ -582,6 +582,10 @@ section#work {
 		#contact-form ul > li {
 			width: 100%;
 		}
+	
+	
+	iframe { display:none;}
+	
 	#about p {
 		width: 100%;
 		padding: 0 3.6rem;
