@@ -584,7 +584,7 @@ section#work {
 		}
 	
 	
-	iframe { display:none;}
+	iframe { display:none!important;}
 	
 	#about p {
 		width: 100%;
