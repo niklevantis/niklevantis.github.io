@@ -568,7 +568,7 @@ section#work {
 		display: none;
 	}
 	section#home {
-		background: transparent url(img/Eye.gif) no-repeat center scroll;
+		background: transparent url(img/rotate.gif) no-repeat center scroll;
 		background-size: auto 30.8rem;
 	}
 	#about p {
