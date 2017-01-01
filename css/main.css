@@ -391,6 +391,11 @@ section#about {
 		text-align: justify;
 }
 
+.tumblr_title{
+	padding-left: 10px;
+	
+}
+
 .tumblr_date	{
 font-size: 1rem;
 max-width: 540px;
@@ -571,8 +576,8 @@ section#contact {
 		font-size: 2rem;
 		width: 50.0rem;
 		position: absolute;
-		top: 50%;
-		left: 50%;
+		top: 30%;
+		left: 70%;
 		transform: translate(-50%,-50%);
 		transition: opacity 0.6s ease;
 			text-align: justify;
