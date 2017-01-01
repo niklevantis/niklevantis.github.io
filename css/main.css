@@ -395,8 +395,8 @@ font-weight:normal;
 		display: none;
 	}
 	.tumblr_photo {
-		max-width: 540px;
-		width:100%;
+		max-width: 540px!important;
+		width:100%!important;
 	}
 	.audio-embed {
 		width: 400px!important;
