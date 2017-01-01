@@ -550,6 +550,38 @@ section#work {
 			}
 		
 /*
+
+
+/*
+<----------------||----------------$Contact----------------||---------------->
+*/
+section#contact {
+	position: relative;
+	width: 100%;
+	min-height: 60.0rem;
+	min-height: 100vh;
+}
+	#contact p {
+		font-size: 2rem;
+		width: 50.0rem;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%,-50%);
+		transition: opacity 0.6s ease;
+			text-align: justify;
+	}
+	
+	
+		
+	#contact p.hide {
+		opacity: 0;
+	}
+
+/*
+
+
+
 <----------------||----------------$Responsive----------------||---------------->
 */
 @media only screen and (max-width: 768px) {
