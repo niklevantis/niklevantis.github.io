@@ -329,8 +329,13 @@ section#home {
 		height: 40.8rem;
 	}
 	
-	
 	iframe {
+		max-width: 540px;
+		width:100%
+	}
+	
+	
+/*	iframe {
 	    position: absolute;
 	    top: 50%;
 	    left: 50%;
@@ -338,7 +343,7 @@ section#home {
 	    width: 20px;
 		height: 20px;
 		z-index: 10000;
-	}
+	}*/
 	
 	
 /*
@@ -617,7 +622,7 @@ section#contact {
 		}
 	
 	
-	iframe { display:none!important;}
+/*	iframe { display:none!important;}*/
 	
 	#about p {
 		width: 100%;
