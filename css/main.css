@@ -614,7 +614,7 @@ section#contact {
 		display: none;
 	}
 	section#home {
-		background: transparent url(img/rotate.gif) no-repeat center scroll;
+		background: transparent url(img/Eye.gif) no-repeat center scroll;
 		background-size: auto 30.8rem;
 	}
 	#about p {
@@ -643,7 +643,7 @@ section#contact {
 		line-height: 3.6rem;
 		font-size: .9rem;
 	}
-	#soundcloud {
+	/*#soundcloud {
 		display: none;
 	}
 	
@@ -653,7 +653,7 @@ section#contact {
 	
 	#vsco{
 		display: none;
-	}
+	}*/
 	ul#nav {
 		display: none;
 	}
