@@ -579,7 +579,7 @@ section#contact {
 		width: 20.0rem;
 		position: absolute;
 		top: 30%;
-		left: 80%;
+		left: 90%;
 		transform: translate(-50%,-50%);
 		transition: opacity 0.6s ease;
 			text-align: justify;
