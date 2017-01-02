@@ -331,7 +331,9 @@ section#home {
 	
 	iframe {
 		max-width: 540px;
-		width:100%
+		width:100%;
+		margin-top:20px;
+margin-bottom: 20px;
 	}
 	
 	
@@ -393,7 +395,7 @@ section#about {
 
 .tumblr_title{
 	padding-left: 10px;
-	
+	margin-top:40px;
 }
 
 .tumblr_date	{
