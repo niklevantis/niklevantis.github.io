@@ -570,13 +570,13 @@ section#work {
 */
 section#contact {
 	position: relative;
-	width: 100%;
+	width: 40%;
 	min-height: 60.0rem;
 	min-height: 100vh;
 }
 	#contact p {
 		font-size: 2rem;
-		width: 50.0rem;
+		width: 20.0rem;
 		position: absolute;
 		top: 30%;
 		left: 70%;
