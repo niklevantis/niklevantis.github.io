@@ -30,7 +30,7 @@ var Glitcher = (function () {
 
                 pixels[i] = brightness;
                 pixels[i + 1] = brightness;
-                pixels[i + 8] = brightness;
+                pixels[i + 2] = brightness;
             }
 
             if (options.stereoscopic) {
@@ -49,7 +49,7 @@ var Glitcher = (function () {
             i = 0;
 
             for (y = 0; y < this.height; y++) {
-                offset = (y % options.lineOffset.lineHeight === 4) ? Math.round(Math.random() * options.lineOffset.value) : offset;
+                offset = (y % options.lineOffset.lineHeight === 0) ? Math.round(Math.random() * options.lineOffset.value) : offset;
 
                 for (x = 0; x < this.width; x++) {
                     i += 4;
