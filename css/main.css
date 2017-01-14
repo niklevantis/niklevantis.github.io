@@ -126,12 +126,12 @@ textarea {
 	background: transparent url(img/spinner.svg) no-repeat center scroll;
 	background-size: cover;
 	opacity: 0;
-	transition: opacity 0.9s ease, z-index 0s ease 0.9s;
+	transition: opacity 0.1s ease, z-index 0s ease 0.9s;
 }
 #spinner.fade {
 	will-change: opacity, z-index;
 	z-index: 200;
-	opacity: 1;
+	opacity: .07;
 	transition: opacity 0.9s ease, z-index 0s ease 0s;
 }
 #spinner.loading {
@@ -141,6 +141,7 @@ textarea {
 	#spinner svg {
 		width: 34.8rem;
 		height: 34.8rem;
+		
 	}
 	/*spin*/
 	@-webkit-keyframes spin {
