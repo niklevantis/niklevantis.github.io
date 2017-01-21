@@ -96,7 +96,7 @@ var glitcher = new Glitcher({
         blue: 0
     },
     lineOffset: {
-        value: 4
+        value: 8
     }
 });
 
