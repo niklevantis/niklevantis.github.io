@@ -100,7 +100,7 @@ var glitcher = new Glitcher({
     }
 });
 
-glitcher.glitch('http://nicklevantis.com/css/img/Eye.gif', function () {
+glitcher.glitch('http://nicklevantis.com/css/img/intro.jpg', function () {
     document.body.appendChild(glitcher.canvas);
 });
 
