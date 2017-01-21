@@ -869,17 +869,17 @@ section#contact {
     }
 }
 #entries {
-	 padding: 25px;;
+	 padding: 25px;
 }
 
-/*canvas { 
-opacity:1;
-  position : absolute;
-  top      : 0;
-  right    : 0;
-  bottom   : 0;
-  left     : 0;
-  margin   : auto;
-  max-width:500px;
-  width:100%;
-}*/
+canvas 
+	
+{
+padding:60px;
+opacity:.6;
+ position: absolute;
+ top: 50%;
+ left: 50%;
+ transform: translate3d(-50%,-50%,0);
+ width: auto;
+ height: 40.8rem;}
