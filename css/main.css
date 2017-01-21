@@ -394,13 +394,6 @@ section#about {
 		text-align: justify;
 }
 
-
-
-#entries {
-	 padding: 25px;
-}
-
-
 .tumblr_title{
 	padding-left: 10px;
 	margin-top:40px;
@@ -875,8 +868,9 @@ section#contact {
         page-break-after: avoid;
     }
 }
-
-
+#entries {
+	 padding: 25px;
+}
 
 canvas 
 	
@@ -891,5 +885,3 @@ opacity:1;
 
  
  height: 50.8rem;}
- 
- 
