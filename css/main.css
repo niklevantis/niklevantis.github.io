@@ -620,7 +620,9 @@ section#contact {
 	}
 	
 	canvas {
-		background-size: auto 30.8rem;	}
+		background-size: auto 30.8rem;
+		 height: 30.8rem;
+			}
 	#about p {
 		font-size: 1.8rem;
 		text-align: justify;
