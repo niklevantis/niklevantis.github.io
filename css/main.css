@@ -622,16 +622,17 @@ section#contact {
 	canvas 
 		
 	{
-	padding:0;
+	padding:60px;
 	opacity:1;
 	 position: absolute;
 	 top: 50%;
 	 left: 50%;
 	 transform: translate3d(-50%,-50%,0);
-	 width: auto;
-	max-width:320px;
+	 width: 100%;
+	max-width: 320px;
 	 
-	 height: 30.8rem;}
+	 height: auto;}
+	 
 	#about p {
 		font-size: 1.8rem;
 		text-align: justify;
