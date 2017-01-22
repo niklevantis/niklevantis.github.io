@@ -629,7 +629,7 @@ section#contact {
 	 left: 50%;
 	 transform: translate3d(-50%,-50%,0);
 	 width: auto;
-	
+	max-width:320px;
 	 
 	 height: 30.8rem;}
 	#about p {
