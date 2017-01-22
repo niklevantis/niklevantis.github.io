@@ -619,20 +619,7 @@ section#contact {
 		background-size: auto 30.8rem;
 	}
 	
-	canvas 
-		
-	{
-	padding:60px;
-	opacity:1;
-	 position: absolute;
-	 top: 50%;
-	 left: 50%;
-	 transform: translate3d(-50%,-50%,0);
-	 width: 60%;
-	max-width: 300px;
-	 
-	}
-	 
+		 
 	#about p {
 		font-size: 1.8rem;
 		text-align: justify;
