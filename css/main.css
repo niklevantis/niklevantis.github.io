@@ -619,6 +619,9 @@ section#contact {
 		background-size: auto 30.8rem;
 	}
 	
+	canvas{
+		display:none;
+	}
 		 
 	#about p {
 		font-size: 1.8rem;
