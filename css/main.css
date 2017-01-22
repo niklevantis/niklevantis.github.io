@@ -629,9 +629,9 @@ section#contact {
 	 left: 50%;
 	 transform: translate3d(-50%,-50%,0);
 	 width: 100%;
-	max-width: 320px;
+	max-width: 500px;
 	 
-	 height: auto;}
+	}
 	 
 	#about p {
 		font-size: 1.8rem;
