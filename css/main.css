@@ -622,7 +622,7 @@ section#contact {
 	canvas 
 		
 	{
-	padding:60px;
+	padding:0;
 	opacity:1;
 	 position: absolute;
 	 top: 50%;
