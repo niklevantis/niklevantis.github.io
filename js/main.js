@@ -1,109 +1,157 @@
-jQuery(document).ready(function($) {
+(function() {
+	// Initialize the TabsNav.
+	var tnav = new TabsNav(document.querySelector('nav.tabsnav'), {
+			movable: 'all',
+			extramovable: '.content',
+			layout: 'vertical',
+			animeduration: 700,
+			animeeasing: 'easeInOutCubic',
+			animedelay: 100,
+			onOpenBarsUpdate: openTabCallback,
+			onOpenTab: function() {
+				// Show the back button after the tab is open.
+				anime({
+					targets: backCtrl,
+					duration: 800,
+					easing: 'easeOutExpo',
+					scale: [0,1],
+					opacity: {
+						value: 1,
+						duration: 300,
+						easing: 'linear'
+					}
+				});
+			}
+		}),
 
+		// The content items and the back control.
+		contentItems = [].slice.call(document.querySelectorAll('.tabscontent > .tabscontent__item')),
+		backCtrl = document.querySelector('.tabscontent > button.btn--back'),
+		// menu ctrl for smaller screens (the tabs are not initially shown and toggling this button will show/hide the tabs)
+		menuCtrl = document.querySelector('button.btn--menu'),
+		isContentShown = false, current;
 
-	/*
-	 * Nav / Cycle Loader
-	 */
-	var doOnce = true;
-	$('#nav').onePageNav({
-		scrollSpeed: 	350,
-		//start cycle
-		scrollChange:	function(i){
-			if($(i).attr('id')=='trigger-cycle'){
-				$('#cycle-loader').removeClass('hide');
-				$('#cycle-loader').addClass('active');
-				if(doOnce==true) {
-					cycle();
-					doOnce = false;
+	function openTabCallback(anim, idx, tab) {
+		if( anim.progress > 60 && !isContentShown ) {
+			isContentShown = true;
+			current = idx;
+
+			var contentItem = contentItems[idx],
+				content = {
+					img: contentItem.querySelector('img.poster__img'),
+					title: contentItem.querySelector('.poster__title'),
+					deco: contentItem.querySelector('.poster__deco'),
+					box: contentItem.querySelector('.poster__box'),
+					number: contentItem.querySelector('.poster__number')
+				};
+
+			// Hide the content elements.
+			content.img.style.opacity = content.title.style.opacity = content.deco.style.opacity = content.box.style.opacity = content.number.style.opacity = 0;
+			// Show content item.
+			contentItem.style.opacity = 1;
+			contentItem.classList.add('tabscontent__item--current');
+
+			// Animate content elements in.
+			anime.remove([content.img, content.title, content.box, content.number, content.deco]);
+			anime({
+				targets: [content.img, content.title, content.box, content.number, content.deco],
+				easing: 'easeOutExpo',
+				duration: function(t,i) {
+					return 600 + i*100;
+				},
+				scaleX: function(t,i) {
+					return i === 0 ? [0,1] : 1;
+				},
+				translateX: function(t,i) {
+					return [-80-i*150,0];
+				},
+				rotate: function(t,i) {
+					return i === 2 ? [-40,0] : 0;
+				},
+				opacity: {
+					value: 1,
+					duration: 300,
+					easing: 'linear'
 				}
-			}
-			else{
-				$('#cycle-loader').addClass('hide');
-			}
+			});
 		}
-	});
-	// disable #cycle-loader if cycle is stopped
-	$('#pager span').on('click', function(e){
-		$('#cycle-loader').addClass('disabled');
-		setTimeout(function(){
-			$('#cycle-loader').removeClass('active');	
-		}, 600);
-	});
-	// manage cycle-loader on nav click events
-	$('#trigger-cycle').on('click', function(e){
-		$('#cycle-loader').removeClass('hide');
-		$('#cycle-loader').addClass('active');
-		if(doOnce==true) {
-			cycle();
-			doOnce = false;
-		}
-	});
-	$('#nav > li').not('#trigger-cycle').on('click', function(e){
-		$('#cycle-loader').addClass('hide');
-	});	
-	
-	
-	/*
-	 * Work Cycle
-	 */
-	function cycle(){
-		var index  = 0;
-		var $pager = $('#pager span');
-		var $cycle = $('#cycle > a');
-		var pagerTimer = setInterval(function() {
-			index = (index < $pager.length - 1) ? index + 1 : 0;
-			$cycle.removeClass('active').eq(index).addClass('active');
-			$pager.removeClass('active').eq(index).addClass('active');
-		}, 6000);
-		$pager.click(function(e){
-			clearInterval(pagerTimer);
-			if(!$(this).hasClass('active')) {
-				index = $(this).index();
-				$cycle.removeClass('active').eq(index).addClass('active');
-				$pager.removeClass('active').eq(index).addClass('active');
+	}
+
+	backCtrl.addEventListener('click', closeTabs);
+
+	function closeTabs() {
+		if( !tnav.isOpen ) return;
+
+		var contentItem = contentItems[current],
+			content = {
+				img: contentItem.querySelector('img.poster__img'),
+				title: contentItem.querySelector('.poster__title'),
+				deco: contentItem.querySelector('.poster__deco'),
+				box: contentItem.querySelector('.poster__box'),
+				number: contentItem.querySelector('.poster__number')
+			};
+
+		// Hide the content elements.
+		anime.remove([content.img, content.title, content.box, content.number, content.deco]);
+		// Animate content elements out.
+		anime({
+			targets: [content.deco, content.number, content.box, content.title, content.img],
+			easing: 'easeInOutCubic',
+			duration: function(t,i) {
+				return 600 + i*100;
+			},
+			delay: function(t,i,c) {
+				return (c-i-1)*35;
+			},
+			translateX: function(t,i) {
+				return [0,-200-i*150];
+			},
+			rotate: function(t,i) {
+				return i === 2 ? [0,-40] : 0;
+			},
+			opacity: {
+				value: 0,
+				duration: 450
+			},
+			update: function(anim) {
+				if( anim.progress > 20 && isContentShown ) {
+					isContentShown = false;
+					// Close tab.
+					tnav.close();
+				}
+			},
+			complete: function() {
+				// Hide content item.
+				contentItem.style.opacity = 0;
+				contentItem.classList.remove('tabscontent__item--current');
 			}
 		});
-	};
-	
-	
-	/*
-	 * Work Parallax
-	 */	
-	$('#work').mousemove(function(e){
-		if(Modernizr.touch) return;
-		// Get Cursor Coordinates
-		var mouseX = e.pageX;
-		var mouseY = e.pageY;
-		// Loop through each element with the data attribute
-		$('*[data-mouse-parallax]').each(function(){
-			// Calculate mouse position minus the position of the center of each element
-			var x = mouseX - $(this).offset().left - ($(this).width() / 2);
-			var y = mouseY - $(this).offset().top - ($(this).height() / 2);
-			// Get multiplier value from data attribute
-			var factor = parseFloat($(this).data('mouse-parallax'));
-			// Calculate transform values
-			var newX = x * factor;
-			var newY = y * factor;
-			$(this).css({ 'transform': 'translate3d( '+ newX + 'px, ' + newY + 'px, 0 )' });
+
+		// Hide back ctrl
+		anime.remove(backCtrl);
+		anime({
+			targets: backCtrl,
+			duration: 800,
+			easing: 'easeOutExpo',
+			scale: [1,0],
+			opacity: {
+				value: 0,
+				duration: 200,
+				easing: 'linear'
+			}
 		});
-	});
-	
+	}
 
+	menuCtrl.addEventListener('click', toggleTabs);
 
+	function toggleTabs() {
+		var state = tnav.toggleVisibility();
+		if( state === 0 ) {
+			menuCtrl.classList.remove('btn--menu-active');
+		}
+		else if( state === 1 ) {
+			menuCtrl.classList.add('btn--menu-active');
+		}
+	}
 
-	/*
-	 * Loading
-	 */
-	$(window).load(function() {
-		setTimeout(function(){
-			$('#loader').removeClass('loading');
-			$('#spinner').removeClass('fade');	
-			$('#ink').get(0).play()
-			setTimeout(function(){
-				$('#spinner').removeClass('loading');	
-			}, 900);
-		}, 900);
-	});
-
-
-});
+})();
