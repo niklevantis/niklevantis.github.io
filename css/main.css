@@ -936,3 +936,20 @@ opacity:1;
 	background-repeat: no-repeat;
 	background-position: 50% 0%;
 }
+
+
+.tumblr_posts :nth-child( 1 ) .number:before {
+  content: none;
+}
+.tumblr_posts:nth-child( 2 ) .number:after {
+  content: ' ';
+}
+.tumblr_posts:nth-child( 3 ) .number:after {
+  content: ' ';
+}
+.tumblr_posts:nth-child( 4 ) .number:after {
+  content: ' ';
+}
+.tumblr_posts:nth-child( 5 ) .number:after {
+  content: ' ';
+}

@@ -6,7 +6,7 @@ jQuery(document).ready(function($) {
 	 */
 	var doOnce = true;
 	$('#nav').onePageNav({
-		scrollSpeed: 	350,
+		scrollSpeed: 	250,
 		//start cycle
 		scrollChange:	function(i){
 			if($(i).attr('id')=='trigger-cycle'){
