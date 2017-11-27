@@ -1,0 +1,154 @@
+<!doctype html>
+<html class="no-js">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>NICK LEVANTIS</title>
+	<meta name="description" content="Nick Levantis, electronica, electro, Ambient, Avant Garde.">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- Place favicon.ico and apple-touch-icon(s) in the root directory -->
+  <link rel="shortcut icon" href="favicon.ico"> 
+	<link rel="stylesheet" href="../css/style.css">
+	<script src="../js/vendor/modernizr-2.7.1.min.js"></script>
+ <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+   <script type="text/javascript" src="http://nikoslevantis.tumblr.com/api/read/js?num=1"></script>
+</head>
+<body>
+<!--[if lt IE 8]>
+	<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+<![endif]-->
+
+
+<div id="d-hide-img">
+	<img class="hide-img" src="../img/large.jpg">
+	<img class="hide-img" src="../img/small.jpg">
+</div>
+
+<div id="body-bg"></div>
+<div id="m-body-bg"></div>
+<div id="bg-cover"></div>
+
+
+
+<div id="d-container">
+	
+	<a href="../index.html" title="NICK LEVANTIS">
+		<div id="d-title" class="clearfix">
+		
+			<span>NICK LEVANTIS</span></a>
+		<h1>NEWS</h1>
+			</div>
+		<div class="info">
+		<p>More News artwork and Photos on  <a href="http://nikoslevantis.tumblr.com/"> Tumblr. </a></p>
+		
+		</div>
+
+
+
+	<div class="container">
+	
+	
+	
+	<div id="entries">
+	
+		<script>
+//This may all work if rehashed as an instant function and using document.write() inside the "entries" div and may also make vidsArray and the pullVids() method obselete - this is just how I ended up writing it all.
+_globalObj = {};
+_globalObj.writeEntries = function(x){
+  var posts = x.posts,
+  i = posts.length,
+  r = posts.length - i,
+  output = "",
+  title = "",
+  vidsArray = [];
+
+  //This is simple but if you don't know javascript it simply loops through the posts and, depending on the type, writes the html for your page.
+  while(i--) {
+    r = posts.length - (i + 1);
+    output += '<div class="tumblr_entry ' + (posts.length - i) + '">';
+    switch (posts[r].type) {
+      case "regular":
+        title = '<h2 class="tumblr_title">' + posts[r]["regular-title"] + '</h2><p class="tumblr_date">' + posts[r]["date"] + '</p>';
+        content = '<div class="tumblr_body">' + posts[r]["regular-body"] + '</div>';
+        break;
+       case "photo":
+        title = '<h2 class="tumblr_title"></h2><p class="tumblr_date">' + posts[r]["date"] + '</p>';
+        //there are several different photo options "photo-url-1280" is the highest quality option (I think) have a look at the tumblr_api_read object in your browser console to see what they all are
+        content = '<div class="tumblr_body"><img class="tumblr_photo" src="' + posts[r]["photo-url-1280"] + '"/></div><div class="tumblr_body">' + posts[r]["photo-caption"] + '</div>';
+        break;
+      case "audio":
+        title = '<h2 class="tumblr_title">' + posts[r]["id3-title"] + ' - ' + posts[r]["id3-artist"] + '</h2><h3 class="tumblr_date">' + posts[r]["date"] + '</h3>';
+        content = '<div class="audio-embed">' + posts[r]["audio-embed"] + posts[r]["audio-caption"] + '</div>';
+        break;
+      case "video":
+        title = '<h2 class="tumblr_title">Video</h2><h3 class="tumblr_date">' + posts[r]["date"] + '</h3>';
+        content = '<div class="tumblr_body">' + posts[r]["video-player-500"] + posts[r]["video-caption"] + '</div>';
+        //due to the posts being added to page after load the video won't display unless you add the variables to this array and invoke them once they are drawn to page.
+        vidsArray.push(posts[r]["video-player"].substr(posts[r]["video-player"].indexOf('rVideo(') + 7, (posts[r]["video-player"].indexOf('</scrip')-(posts[r]["video-player"].indexOf('rVideo(') + 7))).split(","));
+        break;
+      case "quote":
+        title = '<h2 class="tumblr_title">Quote</h2><h3 class="tumblr_date">' + posts[r]["date"] + '</h3>';
+        content = '<div class="tumblr_body tumblr_quote">' + posts[r]["quote-text"] + '</div><div class="tumblr_body">' + posts[r]["quote-source"] + '</div>';
+        break;
+      case "link":
+        title = '<h2 class="tumblr_title">Check out this link</h2><h3 class="tumblr_date">' + posts[r]["date"] + '</h3>';
+        content = '<div class="tumblr_link"><a href="' + posts[r]["link-url"] + '">' + posts[r]["link-text"] + '</a></div><div class="tumblr_body">' + posts[r]["link-description"] + '</div>';
+        break;
+      case "conversation":
+        title = '<h2 class="tumblr_title">' + posts[r]["conversation-title"] + ' </h2><h3 class="tumblr_date">' + posts[r]["date"] + '</h3>';
+        content = 'div class="tumblr_body">' + posts[r]["conversation-text"] + '</div>';
+      default:
+        title = "";
+        content = "";
+        break;
+    }
+    output = output + title + content + "</div>";
+  }
+  document.querySelector('#entries').innerHTML = output;
+  _globalObj.pullVids(vidsArray);
+};
+
+//This object takes vidsArray and uses it to provide the required arguments to the renderVideo() method that is supplied in tumblelog.js
+_globalObj.pullVids = function(arr) {
+  for(var i = arr.length - 1; i >= 0; i--) {
+    renderVideo(arr[i].shift().replace(/(\"|\|'\))/g, ""),arr[i].shift().replace(/(\"|\'|\))/g, ""),arr[i].shift().replace(/(\"|\'|\))/g, ""),arr[i].shift().replace(/(\"|\'|\))/g, ""),arr[i].join(",").replace(/(\"|\'|\))/g, ""));
+  }
+}
+
+_globalObj.writeEntries(tumblr_api_read);
+</script>
+	</div>
+	
+	</div>
+	
+		
+ 
+</div>
+  
+</div>
+
+<div id="d-loading"></div>
+
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+	<script>window.jQuery || document.write('<script src="../js/vendor/jquery-1.11.0.min.js"><\/script>')</script>
+	<script src="../js/min/plugins.js"></script>
+	<script src="../js/min/scripts.js"></script>
+	
+
+	<!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+		<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-11329699-4', 'auto');
+  ga('send', 'pageview');
+
+</script>
+</body>
+</html>
+
+<!-- Localized -->

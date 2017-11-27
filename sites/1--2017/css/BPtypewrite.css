@@ -1,0 +1,10 @@
+@font-face {
+    font-family: 'BPtypewrite';
+    src: url('BPtypewrite.eot'); /* IE9 Compat Modes */
+    src: url('BPtypewrite.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+         url('BPtypewrite.woff') format('woff'), /* Modern Browsers */
+         url('BPtypewrite.ttf') format('truetype'); /* Safari, Android, iOS */
+    font-style: normal;
+    font-weight: 400;
+    text-rendering: optimizeLegibility;
+}
