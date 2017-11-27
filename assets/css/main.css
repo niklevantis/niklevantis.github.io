@@ -75,15 +75,22 @@ a,
 a:hover {
   color: #404040; }
 
-a,
-a:hover {
-  text-decoration: none;
+a {
+  text-decoration:none ;
   border: none;
   border-style: none;
   box-shadow: none;
 	color: #313131;
 }
 
+
+a:hover{
+  text-decoration:underline overline #FF3028;
+	border: none;
+	border-style: none;
+	box-shadow: none;
+	
+}
 /* -- Content -- */
 @-webkit-keyframes fadein {
   from {
@@ -99,7 +106,7 @@ a:hover {
 
 pre { font-family: 'Source Code Pro', monospace; width: 45ch; margin: 4em auto; padding: .5em; line-height: 0; counter-reset: line;color: rgb(19, 19, 19)
 }
-pre span { display: block; line-height: 1.25rem;
+pre span { display: block; line-height: 1.4rem;
 	color: #2f2f2f;
 }
 pre span:before { counter-increment: line; content: counter(line); display: inline-block; border-right: 1px solid #474747; width: 3ch; padding: 0 .5em; margin-right: .5em; color: #474747; text-align: right; }
@@ -125,6 +132,13 @@ body.page-template-page-fullsingle-me {
   
   color: #000000!important;
 }
+
+
+a {
+  cursor:pointer;
+}
+
+
   body.page-template-page-fullsingle-me p {
     margin-bottom: 28px;
     color: #999999; }
@@ -207,6 +221,7 @@ body.page-template-page-fullsingle-me {
     color: rgba(40, 40, 40, 0.88);
     transition: 1s; }
     .bio a:hover {
+    font-weight: 400;
       color: rgba(255, 33, 33, 0.88);
       transition: 0.1s; }
 
