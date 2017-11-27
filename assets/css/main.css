@@ -20,7 +20,9 @@ time, mark, audio, video {
   border: 0;
   font-size: 100%;
   font: inherit;
-  vertical-align: baseline; }
+  vertical-align: baseline; 
+  font-weight: 700;
+  }
 
 article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
@@ -104,7 +106,7 @@ a:hover{
     opacity: 1; } }
 
 
-pre { font-family: 'BPtypewrite', monospace; width: 45ch; margin: 4em auto; padding: .5em; line-height: 0; counter-reset: line;color: rgb(19, 19, 19)
+pre { font-family: Lekton, monospace; width: 45ch; margin: 4em auto; padding: .5em; line-height: 0; counter-reset: line;color: rgb(19, 19, 19)
 }
 pre span { display: block; line-height: 1.4rem;
 	color: #2f2f2f;
@@ -210,7 +212,7 @@ a {
           justify-content: s;
   -webkit-animation: fadein 8s;
           animation: fadein 8s;
-  letter-spacing: -1px;
+  /*letter-spacing: -1px;*/
   max-width: 66%;
   text-align: left;
    }
@@ -324,10 +326,10 @@ body.page-template-page-fullsingle-me.me-video {
    {
    text-align:left;
       overflow: hidden; /* Ensures the content is not revealed until the animation */
-      border-right: .55em solid gray; /* The typwriter cursor */
+      border-right: .55em solid #333; /* The typwriter cursor */
       white-space: nowrap; /* Keeps the content on a single line */
       margin: 0 auto; /* Gives that scrolling effect as the typing happens */
-      font-family: 'BPtypewrite', monospace; 
+      font-family: Lekton, monospace; 
       font-weight:400;
       animation: 
         typing 3.5s steps(40, end),
