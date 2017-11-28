@@ -150,11 +150,11 @@ a {
         line-height: 40px; } }
 
 .fs-me {
-  padding: 10vh 10vw;
+  padding: 10vh 15vw;
   overflow: hidden;
   position: absolute;
   z-index: 1000;
-  width: 100%; }
+  width: 70%; }
   @media (max-width: 500px) {
     .fs-me {
       padding: 5vh 5vw;
