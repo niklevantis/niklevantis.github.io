@@ -21,7 +21,7 @@ time, mark, audio, video {
   font-size: 100%;
   font: inherit;
   vertical-align: baseline; 
-  font-weight: 700;
+  font-weight: 400;
   }
 
 article, aside, details, figcaption, figure,
@@ -106,9 +106,9 @@ a:hover{
     opacity: 1; } }
 
 
-pre { font-family: Lekton, monospace; width: 45ch; margin: 4em auto; padding: .5em; line-height: 0; counter-reset: line;color: rgb(19, 19, 19)
+pre { font-family: Lekton, monospace; width: 45ch; margin: 4em auto; padding: .5em; line-height: 0; counter-reset: line;color: rgb(19, 19, 19);font-size:1.18em;
 }
-pre span { display: block; line-height: 1.4rem;
+pre span { display: block; line-height: 1.28rem;letter-spacing:-.5px;
 	color: #2f2f2f;
 }
 pre span:before { counter-increment: line; content: counter(line); display: inline-block; border-right: 1px solid #474747; width: 3ch; padding: 0 .5em; margin-right: .5em; color: #474747; text-align: right; }
@@ -213,7 +213,7 @@ a {
   -webkit-animation: fadein 8s;
           animation: fadein 8s;
   /*letter-spacing: -1px;*/
-  max-width: 66%;
+ 
   text-align: left;
    }
   @media (max-width: 800px) {
