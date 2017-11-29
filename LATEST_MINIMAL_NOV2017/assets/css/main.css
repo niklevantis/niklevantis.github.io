@@ -22,6 +22,7 @@ time, mark, audio, video {
   font: inherit;
   vertical-align: baseline; 
   font-weight: 400;
+  text-shadow: .9px .6px .8px #000000;
   }
 
 article, aside, details, figcaption, figure,
