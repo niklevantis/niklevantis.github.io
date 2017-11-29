@@ -116,10 +116,10 @@ pre a { cursor: text;
 	color: #2f2f2f;
 }
 a { color: #000000;}
-#no_1 { animation: music 5s infinite cubic-bezier(1,0,1,0); }
-#no_2 { animation: art 5s infinite cubic-bezier(1,0,1,0); }
-#no_3 { animation: aster 5s infinite cubic-bezier(1,0,1,0); }
-#coil { animation: nick 5s infinite cubic-bezier(1,0,1,0); }
+#no_1 { animation: music 5s infinite cubic-bezier(1,0,.5,0); }
+#no_2 { animation: art 5s infinite cubic-bezier(1,0,.5,0); }
+#no_3 { animation: aster 5s infinite cubic-bezier(1,0,.5,0); }
+#coil { animation: nick 5s infinite cubic-bezier(1,0,.5,0); }
 @keyframes music { 0% { background-color: #eee; } 20% { background-color: #555; } 40% { background-color: #eee; } 60% { background-color: #eee; } 80% { background-color: #555; } }
 @keyframes art { 0% { background-color: #eee; } 20% { background-color: #eee; } 40% { background-color: #555; } 60% { background-color: #eee; } 80% { background-color: #555; } }
 @keyframes aster{ 0% { background-color: #eee; } 20% { background-color: #eee; } 40% { background-color: #eee; } 60% { background-color: #555; } 80% { background-color: #555; } }
