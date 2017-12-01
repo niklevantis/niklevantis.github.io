@@ -36,7 +36,7 @@ a img{
 
 img{
   border: 0;
-  margin-bottom: -8px;
+  margin-bottom: -6px;
   width: auto;
   height: auto;
 }
@@ -52,7 +52,7 @@ img{
 #content_container{
   position: relative;
   width: 1030px;
-  top: 150px;
+  top: 120px;
 }
 
 #text_contact{
