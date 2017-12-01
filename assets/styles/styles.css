@@ -208,6 +208,19 @@ img{
     height: 13px;
     background-size: 12px 13px;
   }
+  
+  #space_small {
+  	padding-top:0;
+  }
+  
+  #space_large {
+  	padding-top:0;
+  }
+  
+  p {
+  	font-size: 22px;
+  }
+  
  }
 
 /* Localized */
