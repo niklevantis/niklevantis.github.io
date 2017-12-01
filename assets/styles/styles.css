@@ -52,7 +52,7 @@ img{
 #content_container{
   position: relative;
   width: 1030px;
-  top: 120px;
+  top: 130px;
 }
 
 #text_contact{
@@ -101,7 +101,13 @@ img{
   width: 100%;
 }
 
+#space_small {
+	padding-top:10%;
+}
 
+#space_large {
+	padding-top:18%;
+}
 
 @media screen and (max-width: 1130px) {
   #container_navbar{
