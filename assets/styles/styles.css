@@ -41,9 +41,10 @@ img{
   height: auto;
 }
 
-/*p {
-  margin: 0;
-}*/
+
+.inline {
+    display: inline;
+}
 
 #text_home{
   opacity: 0;
