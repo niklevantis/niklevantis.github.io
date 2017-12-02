@@ -71,6 +71,7 @@ a img { display:none;padding-bottom:10px; }
 
 .tumblr_body {
 	font-size: 20px;
+	max-width: 500px;
 }
 
 .tumblr_title{
