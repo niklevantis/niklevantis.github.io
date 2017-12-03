@@ -4,8 +4,9 @@ html {
 
 body {
   margin: 0px;
-  font-family: Arial;
+  font-family:'Univers CE 45', Arial;
   font-size: 30px;
+  font-weight: 300;
   line-height: 36px;
   color:#000;
   background-color: #fff;
