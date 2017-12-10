@@ -164,6 +164,7 @@ ul a {
 	font-size: 3em;
 	max-height: 100%;
 	overflow-y: auto;
+	-webkit-overflow-scrolling: touch;
 }
 
 .md-show {
@@ -253,6 +254,7 @@ ul a {
 	font-weight: 100;
 	max-height: 100%;
 	overflow-y: auto;
+	-webkit-overflow-scrolling: touch;
 	letter-spacing:1px;
 	line-height: 1.3em;
 }
