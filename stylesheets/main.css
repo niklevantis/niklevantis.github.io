@@ -138,8 +138,7 @@ ul a {
      display: block;
      width: 200px;
      Height:2%
-    
-     
+    z-index: 2000;     
    }
 
 .md-close a{
@@ -150,7 +149,7 @@ ul a {
 .md-modal {
   margin: auto;
 	position: fixed;
-	top: 200px;
+	top: 100px;
 	left: 0;
   right: 0;
 	width: 80%;
@@ -324,3 +323,40 @@ iframe {
 	opacity: 1;
 }
 
+
+@media screen and (max-width: 640px) {
+  /* comes into effect for screens less than or equal to 320 pixels */
+  .md1-modal {
+    
+  	top: 100px;
+  	
+  	font-size: 1em;
+  	 line-heightine-height: 1.3em;
+  }
+  
+  .md-modal {
+    
+  	top: 140px;
+  	left: 0;
+    right: 0;
+  	width: 80%;
+  	max-width: 90%;
+  	  	font-size: 1.5em;
+  }
+  
+    .md-close {
+       position:Fixed ;
+       margin-top: -10px;
+       display: block;
+       width: 200px;
+       Height:2%
+      z-index: 3000;     
+     }
+  
+  .md-close a{
+  	font-size: 1em;
+  	color: #c9c9c9;
+  }
+  
+  
+  }

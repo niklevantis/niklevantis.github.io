@@ -46,10 +46,11 @@
 	
 	
 	<div class="md-modal md-effect-12">
+	    <li class="md-close" data-modal="modal-12"><a class="md-close" href="#">click here to close</a></li>
 	    <div class="md-content">
 	      
-	        <div>
-	            <li class="md-close" data-modal="modal-12"><a class="md-close" href="#">click here to close</a></li>
+	       
+	            
 	         
 	            <p>Nick grew up in a fertile cultural and musical period in the early eighties. Over three decades he has formed bands and collaborated with many other musicians experimenting through different styles. Today is creating pieces of music and is trying to differentiate by surpassing the limits of specific genres. Recent activities include the creation of visuals and music for theatre.</p>
 	            	            
@@ -59,9 +60,8 @@
 	
 	<div class="md1-modal md1-effect-12">
 	    <div class="md1-content">
-	      
-	        <div>
-	            <li class="md1-close" data-modal="modal-12"><a class="md1-close" href="#">click here to close</a></li>
+	      <li class="md1-close" data-modal="modal-12"><a class="md1-close" href="#">click here to close</a></li>	        <div>
+	            
 	         <p><div id="entries">
 	           <script>
 _globalObj={},_globalObj.writeEntries=function(t){for(var e=t.posts,l=e.length,a=e.length-l,i="",s="",r=[];l--;){switch(a=e.length-(l+1),i+='<div class="tumblr_entry '+(e.length-l)+'">',e[a].type){case"regular":s='<h2 class="tumblr_title">'+e[a]["regular-title"]+'</h2><p class="tumblr_date">'+e[a].date+"</p>",content='<div class="tumblr_body">'+e[a]["regular-body"]+"</div>";break;case"photo":s='<h2 class="tumblr_title"></h2><p class="tumblr_date">'+e[a].date+"</p>",content='<div class="tumblr_body"><img class="tumblr_photo" src="'+e[a]["photo-url-1280"]+'"/></div><div class="tumblr_body">'+e[a]["photo-caption"]+"</div>";break;case"audio":s='<h2 class="tumblr_title">'+e[a]["id3-title"]+'</h2><h3 class="tumblr_date">'+e[a].date+"</h3>",content='<div class="audio-embed">'+e[a]["audio-embed"]+e[a]["audio-caption"]+"</div>";break;case"video":s='<h2 class="tumblr_title"></h2><h3 class="tumblr_date">'+e[a].date+"</h3>",content='<div class="tumblr_body">'+e[a]["video-player-500"]+e[a]["video-caption"]+"</div>",r.push(e[a]["video-player"].substr(e[a]["video-player"].indexOf("rVideo(")+7,e[a]["video-player"].indexOf("</scrip")-(e[a]["video-player"].indexOf("rVideo(")+7)).split(","));break;case"quote":s='<h2 class="tumblr_title">Quote</h2><h3 class="tumblr_date">'+e[a].date+"</h3>",content='<div class="tumblr_body tumblr_quote">'+e[a]["quote-text"]+'</div><div class="tumblr_body">'+e[a]["quote-source"]+"</div>";break;case"link":s='<h2 class="tumblr_title">Check out this link</h2><h3 class="tumblr_date">'+e[a].date+"</h3>",content='<div class="tumblr_link"><a href="'+e[a]["link-url"]+'">'+e[a]["link-text"]+'</a></div><div class="tumblr_body">'+e[a]["link-description"]+"</div>";break;case"conversation":s='<h2 class="tumblr_title">'+e[a]["conversation-title"]+' </h2><h3 class="tumblr_date">'+e[a].date+"</h3>",content='div class="tumblr_body">'+e[a]["conversation-text"]+"</div>";default:s="",content=""}i=i+s+content+"</div>"}document.querySelector("#entries").innerHTML=i,_globalObj.pullVids(r)},_globalObj.pullVids=function(t){for(var e=t.length-1;e>=0;e--)renderVideo(t[e].shift().replace(/(\"|\|'\))/g,""),t[e].shift().replace(/(\"|\'|\))/g,""),t[e].shift().replace(/(\"|\'|\))/g,""),t[e].shift().replace(/(\"|\'|\))/g,""),t[e].join(",").replace(/(\"|\'|\))/g,""))},_globalObj.writeEntries(tumblr_api_read);
@@ -83,7 +83,7 @@ _globalObj={},_globalObj.writeEntries=function(t){for(var e=t.posts,l=e.length,a
 	    </video>
 	</div>
 	<div class="soundcloud">
-		 <iframe width="20" height="20" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/262271125&amp;color=%23000000&amp;auto_play=true&amp;hide_related=false&amp;show_comments=true&amp;show_user=false&amp;show_reposts=false&amp;show_teaser=true"></iframe>
+		 <iframe width="20" height="20" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/262271125&amp;color=%23000000&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=false&amp;show_reposts=false&amp;show_teaser=true"></iframe>
 			</div>
   <section id="card">
     
