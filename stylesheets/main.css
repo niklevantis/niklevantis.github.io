@@ -134,22 +134,24 @@ ul a {
 
    .md-close {
      position:Fixed ;
-     margin-top: -20px;
-     display: block;
-     width: 200px;
-     Height:2%
-    z-index: 2000;     
+     left: 10%;
+    display: block;
+     width: 100px;
+     Height:100px;
+     top: 12%;
+     z-index: 3000;
+     
    }
 
 .md-close a{
-	font-size: .4em;
-	color: #c9c9c9;
+	font-size: 1em;
+	color: #fe7878;
 }
 
 .md-modal {
   margin: auto;
 	position: fixed;
-	top: 100px;
+	top: 10px;
 	left: 0;
   right: 0;
 	width: 80%;
@@ -220,28 +222,29 @@ ul a {
 }
 
   .md1-close {
-     position:Fixed ;
-     margin-top: -10px;
+   
+   margin-top: 14px;
      display: block;
      width: 200px;
-     Height:2%;
-     z-index:3000;
+     Height:30px;
+     right:0;
+     z-index: 3000;
    }
    
     
 
 .md1-close a{
-	
-	color: #c9c9c9;
+	font-size: 2em;
+	color: #fe7878;
 }
 
 .md1-modal {
     margin: auto;
 	position: fixed;
-	top: 90px;
+	top: 10px;
 	left: 0;
     right: 0;
-	width: 500px;
+	
 	max-width: 90%;
     height: auto;
 	z-index: 2000;
@@ -270,8 +273,11 @@ iframe {
 }
 
 #entries {
+	
 	display: block;
 	z-index: 3000;
+	width: 500px;
+	max-width: 100%;
 }
 
 .md1-overlay {
@@ -324,39 +330,3 @@ iframe {
 }
 
 
-@media screen and (max-width: 640px) {
-  /* comes into effect for screens less than or equal to 320 pixels */
-  .md1-modal {
-    
-  	top: 100px;
-  	
-  	font-size: 1em;
-  	 line-heightine-height: 1.3em;
-  }
-  
-  .md-modal {
-    
-  	top: 140px;
-  	left: 0;
-    right: 0;
-  	width: 80%;
-  	max-width: 90%;
-  	  	font-size: 1.5em;
-  }
-  
-    .md-close {
-       position:Fixed ;
-       margin-top: -10px;
-       display: block;
-       width: 200px;
-       Height:2%
-      z-index: 3000;     
-     }
-  
-  .md-close a{
-  	font-size: 1em;
-  	color: #c9c9c9;
-  }
-  
-  
-  }
