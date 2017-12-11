@@ -43,16 +43,7 @@ body {
     
 }*/
 
-#widget-wrapper{
-	background: #fdfffc00;
-	
-}
 
-
- #widget {
-       border: none!important;
-   
-}
 
 iframe {
 
@@ -99,7 +90,7 @@ h1 a:link {
 }
 
 h1 a:hover {
-	color: #FFBC00;
+	color: rgba(255, 188, 0, 0.33);
 }
 
 h2 {
@@ -142,7 +133,7 @@ a:active {
 }
 
 a:hover {
-	color: #FFBC00;
+	color: rgba(255, 188, 0, 0.33);
 }
 
 ul a {
@@ -255,7 +246,7 @@ ul a {
 
 .md1-close a{
 	font-size: 2em;
-	color: #FFBC00;
+	color: rgba(255, 188, 0, 0.3);
 }
 
 .md1-modal {
@@ -298,6 +289,10 @@ iframe {
 	vertical-align:top;
 }
 
+widget-header {
+   
+    display: none;
+}
 
 #entries {
 	
