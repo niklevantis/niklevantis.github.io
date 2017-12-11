@@ -55,8 +55,8 @@ iframe {
 
 body {
 		font-family: 'Proxima Nova', 'Helvetica', 'Arial', sans-serif;
-	color: #000;
-	background:#fff;
+	color: rgb(61, 190, 179);
+	background: rgb(255, 255, 255);
 }
 
 section#card {
@@ -64,6 +64,7 @@ section#card {
 	bottom: 20%;
 	left: 12%;
 	height: 100px;
+	color: #087369a6;
 }
 
 
@@ -125,7 +126,7 @@ a:link,
 a:hover,
 a:visited,
 a:active {
-	color: #000;
+	color: rgb(61, 190, 179);
 	border: none;
 	text-decoration: none;
 
@@ -139,7 +140,7 @@ a:hover {
 ul a {
 	font-size: 14px;
 	line-height: 19px;
-
+color: #087369a6;
 	-webkit-font-smoothing: antialiased;
 }
 
