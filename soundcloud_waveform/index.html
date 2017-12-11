@@ -19,13 +19,16 @@
   <meta name="twitter:image" content="http://nicklevantis.com/social.jpg" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:site" content="@nicklevantis" />
+
+ <!--  <script type="text/javascript" src="http://levantis.tumblr.com/api/read/json?num=3"></script> --> 
    <meta charset="utf-8">
   <meta name="description" content="Nick Levantis."/>
   <link href="stylesheets/normalize.css" media="all" rel="stylesheet" />
   <link href="stylesheets/main.css" media="all" rel="stylesheet" />
     <link href="stylesheets/fonts.css" media="all" rel="stylesheet" />
   <script src="js/jquery-2.0.3.min.js"></script>
-  
+   <script src="js/soundcloud.player.api.js"></script>
+   <script src="js/sc-player.js"></script>
   <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -39,13 +42,12 @@
   </head>
 <body>
 	
-	 
-	 <iframe width="100%" height="1000" src="https://clyp.it/4r1smbfi/widget" frameborder="0"></iframe>	
+	
 	<div class="md-modal md-effect-12">
 	    <li class="md-close" data-modal="modal-12"><a class="md-close" href="#">X</a></li>
 	    <div class="md-content">
 	      
-	   
+	    </br></br></br></br>	            
 	         
 	            <p>Nick grew up in a fertile cultural and musical period in the early eighties. Over three decades he has formed bands and collaborated with many other musicians experimenting through different styles. Today is creating pieces of music and is trying to differentiate by surpassing the limits of specific genres. Recent activities include the creation of visuals and music for theatre.</p>
 	            	            
@@ -53,21 +55,52 @@
 	    </div>
 	</div>
 	
-		<div class="md-overlay"></div>
+	<!--<div class="md1-modal md1-effect-12">
+	      <li class="md1-close" data-modal="modal-12"><a class="md1-close" href="#">X</a></li>	        <div>
+	    <div class="md1-content">
+	    
+	            
+	         <p><div id="entries">
+	           <script>
+_globalObj={},_globalObj.writeEntries=function(t){for(var e=t.posts,l=e.length,a=e.length-l,i="",s="",r=[];l--;){switch(a=e.length-(l+1),i+='<div class="tumblr_entry '+(e.length-l)+'">',e[a].type){case"regular":s='<h2 class="tumblr_title">'+e[a]["regular-title"]+'</h2><p class="tumblr_date">'+e[a].date+"</p>",content='<div class="tumblr_body">'+e[a]["regular-body"]+"</div>";break;case"photo":s='<h2 class="tumblr_title"></h2><p class="tumblr_date">'+e[a].date+"</p>",content='<div class="tumblr_body"><img class="tumblr_photo" src="'+e[a]["photo-url-1280"]+'"/></div><div class="tumblr_body">'+e[a]["photo-caption"]+"</div>";break;case"audio":s='<h2 class="tumblr_title">'+e[a]["id3-title"]+'</h2><h3 class="tumblr_date">'+e[a].date+"</h3>",content='<div class="audio-embed">'+e[a]["audio-embed"]+e[a]["audio-caption"]+"</div>";break;case"video":s='<h2 class="tumblr_title"></h2><h3 class="tumblr_date">'+e[a].date+"</h3>",content='<div class="tumblr_body">'+e[a]["video-player-500"]+e[a]["video-caption"]+"</div>",r.push(e[a]["video-player"].substr(e[a]["video-player"].indexOf("rVideo(")+7,e[a]["video-player"].indexOf("</scrip")-(e[a]["video-player"].indexOf("rVideo(")+7)).split(","));break;case"quote":s='<h2 class="tumblr_title">Quote</h2><h3 class="tumblr_date">'+e[a].date+"</h3>",content='<div class="tumblr_body tumblr_quote">'+e[a]["quote-text"]+'</div><div class="tumblr_body">'+e[a]["quote-source"]+"</div>";break;case"link":s='<h2 class="tumblr_title">Check out this link</h2><h3 class="tumblr_date">'+e[a].date+"</h3>",content='<div class="tumblr_link"><a href="'+e[a]["link-url"]+'">'+e[a]["link-text"]+'</a></div><div class="tumblr_body">'+e[a]["link-description"]+"</div>";break;case"conversation":s='<h2 class="tumblr_title">'+e[a]["conversation-title"]+' </h2><h3 class="tumblr_date">'+e[a].date+"</h3>",content='div class="tumblr_body">'+e[a]["conversation-text"]+"</div>";default:s="",content=""}i=i+s+content+"</div>"}document.querySelector("#entries").innerHTML=i,_globalObj.pullVids(r)},_globalObj.pullVids=function(t){for(var e=t.length-1;e>=0;e--)renderVideo(t[e].shift().replace(/(\"|\|'\))/g,""),t[e].shift().replace(/(\"|\'|\))/g,""),t[e].shift().replace(/(\"|\'|\))/g,""),t[e].shift().replace(/(\"|\'|\))/g,""),t[e].join(",").replace(/(\"|\'|\))/g,""))},_globalObj.writeEntries(tumblr_api_read);
+	           </script>
+	         </div></p>
+	            	            
+	        </div>
+	    </div>
+	</div>
+	<div class="md1-overlay"></div>	-->
+	<div class="md-overlay"></div>
 
 
-
+<!--<div class="fullscreen-bg">
+	    <video loop muted autoplay poster="img/cables.jpg" class="fullscreen-bg__video">
+	        
+	        <!--<source src="img/cables.webm" type="video/webm">
+	        <source src="img/cables.mp4" type="video/mp4">
+	        <source src="img/cables.ogv" type="video/ogg">--*>
+	    </video>
+	</div>-->
+<div class="player">
+            
+        <p> <a href="https://soundcloud.com/nicklevantis/annoying-thinks" class="sc-player">Volunteer</a></p>
+          </div>	
 	
-		
-		
-	
-					
+	<!-- <iframe width="100%" height="265" src="https://clyp.it/4r1smbfi/widget" frameborder="0"></iframe>-->	<div class="soundcloud">
+		<!--
+		 <iframe width="20" height="20" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/262271125&amp;color=%23000000&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=false&amp;show_reposts=false&amp;show_teaser=true"></iframe>-->
+			</div>
   <section id="card">
     
+
+           
+
+
     <h1><a href="index.html">nick levantis</a></h1>
     <h2></h2>
     <ul id="contact">
       <li class="md-trigger" data-modal="modal-12"><a href="#">about</a></li>
+   <!--   <li class="md1-trigger" data-modal="modal-12"><a href="#">news</a></li>-->
        <li><a target="_blank" href="http://nicklevantis.svbtle.com">news</a></li>
       <li><a target="_blank" href="http://vsco.co/nicklevantis">vsco</a></li>
       <li><a target="_blank" href="http://soundcloud.com/nicklevantis">soundcloud</a></li>
@@ -78,13 +111,7 @@
     
    
   </section>
-  <div class="bottom-helper">
-  	
-  	
-  	<span<div id="footnotes"><p>© Nick Levantis 2017   |  (Use Chrome or Safari browsers for better experience)</p>      </div>
-  	
-  	</span>
-  </div>
+  
    
     <script type="text/javascript">
   	$(function () {
@@ -122,27 +149,7 @@
   	        $('body').fadeIn(800);
   	    });
   	</script>
-  	 <script type="text/javascript">
-  	 	   $(function() {
-  	 	       function reposition() {
-  	 	           var modal = $(this),
-  	 	               dialog = modal.find('.md-content');
-  	 	           modal.css('display', 'block');
-  	 	           
-  	 	           // Dividing by two centers the modal exactly, but dividing by three 
-  	 	           // or four works better for larger screens.
-  	 	           dialog.css("margin-top", Math.max(0, ($(window).height() - dialog.height()) / 2));
-  	 	       }
-  	 	       // Reposition when a modal is shown
-  	 	       $('.md-modal').on('md-show', reposition);
-  	 	       // Reposition when the window is resized
-  	 	       $(window).on('resize', function() {
-  	 	           $('.md-modal:visible').each(reposition);
-  	 	       });
-  	 	   });
-  	 	     	 	</script>
   	  	
-  	    	  	
  </body>
 </html>
 <!-- Localized -->
