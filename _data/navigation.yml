@@ -4,7 +4,7 @@ main:
   - title: "Songs"
     url: /songs/
   - title: "Contact"
-#    url: /contact/
+    url: /contact/
 #  - title: "Tags"
 #    url: /tags/
 #  - title: "Pages"
