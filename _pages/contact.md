@@ -1,8 +1,8 @@
 ---
 permalink: /contact/
-layout: splash
+layout: single
 ---
-
+<p>
 
 <h2 title="Social Links">Social Links</h2>
 
@@ -18,3 +18,4 @@ layout: splash
 <ul>
 <li><a href="mailto:&#110;&#105;&#099;&#107;&#108;&#101;&#118;&#097;&#110;&#116;&#105;&#115;&#064;&#103;&#109;&#097;&#105;&#108;&#046;&#099;&#111;&#109;">drop me a line</a></li>
 </ul>
+</p>
