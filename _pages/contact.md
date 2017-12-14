@@ -1,9 +1,6 @@
 ---
-
-layout: single
-
 permalink: /contact/
-
+layout: splash
 ---
 
 
