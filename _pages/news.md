@@ -2,6 +2,7 @@
 permalink: /news/
 layout: archive
 author_profile: false
+
 ---
 <h1>News</h1>
 
