@@ -60,7 +60,7 @@ n.sc-play{background-color: rgba(0, 0, 0, 0);}
 .post-detail .playing .sc-played{height:32px;}
 .sc-time-indicators{position:absolute;right:20%;top:-14px;z-index:4000;line-height:1;opacity:0.8;-webkit-animation:popin .2s linear;display:none;color: #f5f5f5;}
 .playing .sc-time-indicators{display:block;}
-.sc-time-indicators,.sc-position, .sc-duration{color:#dedede;font-size:.8em;font-weight: 300;
+.sc-time-indicators,.sc-position, .sc-duration{color:#dedede;font-size:.8em;font-weight:700;
 }
 .sc-info,
 .sc-artwork-list,

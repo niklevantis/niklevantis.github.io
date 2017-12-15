@@ -37,7 +37,7 @@ layout: single
           </div>
 
    <div class="player">
-            <div class="songtitle"><strong>Fragments </strong> Fragments of my dreams </div>  
+            <div class="songtitle"><strong>Fragments </strong>...of my dreams </div>  
          <a href="http://soundcloud.com/nicklevantis/fragments" class="sc-player">Fragments</a>
           </div>
   <div class="player">
