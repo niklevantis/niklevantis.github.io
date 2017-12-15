@@ -1,7 +1,7 @@
 ---
 permalink: /about/
 layout: single
-toc: true
+
 ---
 <h1>About</h1>
 {% include figure image_path="assets/images/nick.jpg" alt="nick" caption="" %}

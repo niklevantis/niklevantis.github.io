@@ -3,7 +3,7 @@ permalink: /contact/
 layout: single
 ---
 <p>
-
+<h1>Contact</h1>
 <h2 title="Social Links">Social Links</h2>
 
 <ul>

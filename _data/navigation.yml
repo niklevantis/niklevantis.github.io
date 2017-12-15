@@ -3,10 +3,11 @@ main:
     url:  /about/
   - title: "Songs"
     url: /songs/
+  - title: "News"
+    url: /news/
   - title: "Contact"
     url: /contact/
-#  - title: "Tags"
-#    url: /tags/
+
 #  - title: "Pages"
 #    url: /page-archive/
 #  - title: "Collections"
