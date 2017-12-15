@@ -9,6 +9,8 @@
   {% endfor %}
 {% else %}
   <script src="{{ '/assets/js/main.min.js' | absolute_url }}"></script>
+  <script src="{{ '/assets/js/sc-player.js' | absolute_url }}"></script>
+  <script src="{{ '/assets/js/soundcloud.player.api.js' | absolute_url }}"></script>
 {% endif %}
 
 {% if site.search == true or page.layout == 'search' %}
