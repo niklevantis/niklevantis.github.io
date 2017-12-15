@@ -66,3 +66,6 @@ n.sc-play{background-color: rgba(0, 0, 0, 0);}
 .sc-artwork-list,
 .sc-trackslist,
 .sc-info-toggle{display:none;}
+.page__footer {
+	display: none!important;
+}
