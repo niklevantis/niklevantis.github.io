@@ -5,6 +5,8 @@ main:
     url: /songs/
   - title: "News"
     url: /news/
+  - title: "Works"
+    url: /works/
   - title: "Contact"
     url: /contact/
 
