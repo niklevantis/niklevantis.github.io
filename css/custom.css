@@ -733,3 +733,10 @@ body.home03 .menu-item a {
     max-width: 80px;
   }
 }
+
+.ux-background-img-2nd :hover{
+	z-index: 10;
+	
+}
+
+
