@@ -916,6 +916,10 @@ li.menu-item + .ux-woo-cart-wrap {
 
 }
 
+.currentColor {
+	#000
+}
+
 /* 1.3.2 Menu show */
 .head-meta {
   float: right;

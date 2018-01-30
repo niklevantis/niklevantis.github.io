@@ -27,7 +27,7 @@ button:hover, input[type="submit"]:hover,.ux-btn:not(.tw-style-a):hover,.quote-w
 a, .entry p a, .comment p a, #header .search-top-btn-class:hover,.menu-panel-bottom-text-link-item.current,.article-cate-a,.article-cate-a:after,.article-tag-label a[rel="tag"],.article-tag-label a[rel="tag"]:after, .post-categories a,.widget_archive li,.widget_categories li,.widget_nav_menu li,.widget_pages li,.archive-sticky, .archive-sticky polyline,.archive-sticky line,
 .sidebar_widget a:hover, .archive-tit a:hover, #sidebar a:hover, #comments .comment-author a:hover,#comments .reply a:hover,.fourofour-wrap a, .pagenums .current,.page-numbers.current, .gallery-info-property-con a, .grid-meta-a,.archive-meta .article-cate-a,.post-meta-social-li a.share:hover,.comment-body a:hover
 { 
-  color: #D4BE83; 
+  color: #1103fb; 
 }
 .tagcloud a:hover, input.idi_send:hover 
 { 
@@ -37,7 +37,7 @@ a, .entry p a, .comment p a, #header .search-top-btn-class:hover,.menu-panel-bot
   display:none;
 }
 .menu-item > a:hover, .menu-item > a:focus,.light-logo #navi_wrap > ul > li > a:hover,#navi_wrap > ul > li > a:hover, .socialmeida-a:hover .socialmeida-text, .socialmeida-a:focus .socialmeida-text,.socialmeida-a:hover .fa,.archive-more-a:hover, .archive-more-a:focus, .gallery-link-a:focus, .gallery-link-a:hover,#header .wpml-translation li .current-language, .current-language .languages-shortname,#header .wpml-translation li a:hover {
-  color: #D4BE83; 
+  color: #1b00ec; 
 }
 
 /* Auxiliary Color */
