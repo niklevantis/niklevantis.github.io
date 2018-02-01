@@ -446,12 +446,26 @@ transition: opacity 250ms ease-in-out;
   position: relative; display: block; background-color: #f0f0f0;
 }
 .ux-lazyload-img {
-  position: absolute; left: 0; top: 0; max-width: 100%; width: 100%; height: auto;
+  position: absolute; left: -1px; right: -1px; bottom: -1px; top: -1px; 
+  z-index: 10000;
 }
 .ux-lazyload-bgimg,
 .post-cover > .ux-background-img {
   position: absolute; left: -1px; right: -1px; bottom: -1px; top: -1px; 
+
 }
+
+
+.ux-lazyload-img2 {
+  position: absolute; left: 0; top: 0; max-width: 100%; width: 100%; height: auto;
+
+}
+
+.ux-lazyload-bgimg,
+.post-cover > .ux-background-img {
+	
+}
+
 .lazy-hidden {
   opacity: 0;
 }
