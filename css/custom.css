@@ -426,7 +426,15 @@ body.home03 .menu-item a {
 .grid-list-5000 .grid-item-inside { 
   margin-left: 0px; margin-right: 0px; margin-top: 20px; margin-bottom: 20px;
 }
-
+.grid-text-center .grid-item-con-text {
+	color: #343434;
+	font-size:1.9em;
+	display: block;
+	padding: 40px;
+	background-color: rgba(255, 255, 255, 0.5);
+	
+	
+}
 
 /* For home06.html */
 /* Grid Item Mouseover Masker BG */
