@@ -786,4 +786,17 @@ iframe {
 		
 	  height: 300%; }
 		  
+	.widget {
+	   	    border: 1px solid #e5e5e500!important;
+	    overflow: hidden;
+	    background-color: none!important;
+	}
 	
+	
+.g-background-default {
+	    background-color: #f5f5f500!important;
+	}
+	
+	#widget {
+		background: none;
+	}
