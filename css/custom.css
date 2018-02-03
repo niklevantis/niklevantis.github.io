@@ -649,6 +649,9 @@ body.home03 .menu-item a {
   .module-id-401 .module-inside {
     padding-left: 120px; padding-right: 120px;
   }
+  
+   
+  
 }
 
 @media (max-width:767px) {
@@ -702,6 +705,17 @@ body.home03 .menu-item a {
     margin-top: 10px;margin-bottom: 60px; 
   }
 
+
+/* For home05.html */
+.grid-list-5000 { 
+  margin-left:-0px; margin-right:-0px; margin-top:80px; margin-bottom:20px;
+}
+.grid-list-5000 .grid-item-inside { 
+  margin-left: 0px; margin-right: 0px; margin-top: 20px; margin-bottom: 20px;
+}
+
+
+
   /* For home08.html */
   .module-id-8000 .module-inside { margin-top: 0px;margin-bottom: 0px; }
 
@@ -729,10 +743,22 @@ body.home03 .menu-item a {
   }
 }
 
+
+
 @media (max-width: 480px){ 
 .responsive-ux.navi-show-center.header-demo #logo img {
     max-width: 80px;
   }
+  
+ /* For home05.html */
+ .grid-list-5000 { 
+   margin-left:-0px; margin-right:-0px; margin-top:80px; margin-bottom:20px;
+ }
+ .grid-list-5000 .grid-item-inside { 
+   margin-left: 0px; margin-right: 0px; margin-top: 20px; margin-bottom: 20px;
+ }
+ 
+  
 }
 
 .ux-background-img-2nd :hover{
