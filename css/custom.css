@@ -768,3 +768,14 @@ body.home03 .menu-item a {
 
 iframe {
 	}
+	
+	
+		
+		
+		.hover_img a { position:relative;max-width: 500px; }
+	.hover_img a span { position:absolute; display:none; z-index:99; }
+	.hover_img a:hover span { display:block;margin-top: 3%;width:400px;opacity: .4; ;
+		
+	  height: 300%; }
+		  
+	
