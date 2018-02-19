@@ -811,3 +811,8 @@ iframe {
 	    min-width: 100%; 
 	    min-height: 100%;
 	}
+	
+	
+.html5-video-player .ytp-watermark {
+	   display: none!important;
+	}
