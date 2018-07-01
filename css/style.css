@@ -1376,6 +1376,10 @@ body.page .title-wrap {
 }
 .archive-list {
   margin-top: -100px;
+  font-size: 18px;
+      font-family: courier new, monospace;
+      font-weight: 500;
+  
 }
 .archive-item {
   margin-top: 100px;
