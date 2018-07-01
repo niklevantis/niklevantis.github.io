@@ -418,7 +418,8 @@ font-family: 'Lato', arial;
 }
 
 
-.tumblr_entry{margin-top:20px;margin-bottom:40px;border-bottom: 1px dotted #ff5151;}
+.tumblr_entry{margin-top:20px;margin-bottom:40px;border-bottom: 1px dotted #ff5151;text-align: left;
+}
 
 .tumblr_date {
 	padding: 10px 0px 20px 0px;
@@ -437,9 +438,44 @@ font-family: 'Lato', arial;
 }
 
 .tumblr_quote {
- 	margin: 30px;
- 	text-align: left;
+ 	
+ 	border-left:	10px solid #ccc;
+ 	margin:			1.5em 10px;
+ 	padding:		.5em 10px;
+ 	
 
+}
+
+.tumblr_quote :before {
+
+	font-size:		4em;
+	line-height:	.1em;
+	margin-right:	.25em;
+	vertical-align:	-.4em;
+}
+
+
+.tumblr_quote {
+	display:		inline;
+}
+
+
+blockquote {
+	
+	border-left:	10px solid #ccc;
+	margin:			0;
+	padding:		0 10px;
+	
+}
+blockquote:before {
+	color:			#ccc;
+	font-size:		4em;
+	line-height:	.1em;
+	margin-right:	.25em;
+	vertical-align:	-.4em;
+}
+blockquote p {
+	display:		inline;
 }
 
 .tumblr_photo {
