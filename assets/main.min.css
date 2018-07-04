@@ -1,7 +1,7 @@
 
 body {
 
-	letter-spacing:0.5px;
+	
 	font-family: 'Press Start 2P', cursive;
 opacity: 0.6;
 	background-color: #000;
@@ -26,7 +26,7 @@ opacity: 0.6;
   top: 20px; left: 20px;
   z-index: 2;
 	line-height: 1.2em;
-  letter-spacing:1px;
+
   color:#fff;
 max-width:600px;
 
@@ -47,7 +47,7 @@ max-width:600px;
   }
   p {
     margin: 0;
-    font-size: 1.1rem;
+    font-size: 0.8rem;
     
   }
   a {
