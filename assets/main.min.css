@@ -23,9 +23,9 @@ body {
   position: absolute;
   top: 20px; left: 20px;
   z-index: 2;
-	line-height: 1em;
+	line-height: 2em;
   letter-spacing:1px;
-  color:#228b22;
+  color:#00ff00;
 max-width:600px;
 
 }
