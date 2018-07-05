@@ -3,9 +3,10 @@ body {
 
 	
 	font-family: 'Press Start 2P', cursive;
-opacity: 0.6;
+
 	background-color: #000;
 	font-size: .7em;
+	color: rgba(255, 255, 255, 0.58);
 }
 
 .inline {
@@ -16,6 +17,7 @@ opacity: 0.6;
 }
 
 .p-canvas-webgl {
+  opacity: 0.4;
   position: fixed;
   z-index: 1;
   top: 0; left: 0;
@@ -27,7 +29,7 @@ opacity: 0.6;
   z-index: 2;
 	line-height: 1.2em;
 
-  color:#fff;
+  	color: rgba(255, 255, 255, 0.18);
 max-width:600px;
 
 }
@@ -51,7 +53,7 @@ max-width:600px;
     
   }
   a {
-    color: #fff;
+  	color: rgba(255, 255, 255, 0.28);
     font-weight:400;
   }
   
