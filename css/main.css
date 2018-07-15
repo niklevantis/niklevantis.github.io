@@ -37,6 +37,10 @@ body {
 #entries {
 	display: block;
 	z-index: 10000;
+	text-transform: none;
+	font-family: "Courier New", monospace;
+	font-weight: 100;
+	line-height: 1.3rem;
 }
 
 /* Fade effect */
