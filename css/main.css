@@ -34,6 +34,10 @@ body {
 	--color-info: #000;
 }
 
+#entries {
+	display: block;
+	z-index: 10000;
+}
 
 /* Fade effect */
 .js body {
@@ -182,6 +186,8 @@ main {
 	align-self: end;
 	justify-self: end;
 }
+
+
 
 .github {
 	display: block;
@@ -408,7 +414,7 @@ a.demo--current {
 	position: absolute;
 	top: 0;
 	left: 5vw;
-	width: 6vw;
+	width: 4vw;
 	height: 100vh;
 	justify-content: left;
 	align-items: left;
@@ -662,6 +668,9 @@ a.demo--current {
 		clip-path: polygon(0 72%, 100% 72%, 100% 78%, 0 78%);
 	}
 }
+
+
+
 
 @keyframes glitch-anim-2 {
 	0%, 100% { 
