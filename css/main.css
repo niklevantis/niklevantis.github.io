@@ -382,7 +382,7 @@ a.demo--current {
 }
 
 
-.slide__p{
+.slide__col{
     font-size: 1rem;
     font-weight: 100;
     text-transform: none;
@@ -390,6 +390,7 @@ a.demo--current {
     max-width: 100%;
     cursor: default;
     color: #fff;
+    z-index: 12000;
 }
 
 .slide__description a {
