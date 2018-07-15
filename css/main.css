@@ -197,26 +197,26 @@ main {
 	margin: 0.25rem;
 }
 
-.demos {
+.sites {
 	position: relative;
 	display: block;
 	justify-self: end;
 	align-self: start;
 	text-align: center;
-	grid-area: demos;
+	grid-area: sites;
 	pointer-events: auto;
 	padding: 0.5rem 0 0 0;
 }
 
-.demo:not(:last-child) {
+.site:not(:last-child) {
 	margin: 0 1rem 0 0;
 }
 
-.demo span {
+.site span {
 	white-space: nowrap;
 }
 
-a.demo--current {
+a.site--current {
 	pointer-events: none;
 	color: var(--color-link-hover);
 }
@@ -412,8 +412,9 @@ a.demo--current {
 	display: flex;
 	flex-direction: column;
 	position: absolute;
+	padding-top:2vw;
 	top: 0;
-	left: 5vw;
+	right: 5vw;
 	width: 4vw;
 	height: 100vh;
 	justify-content: left;
@@ -483,6 +484,22 @@ a.demo--current {
 		padding: 0 0 2rem 0;
 		justify-content: center !important;
 	} 
+	
+	
+	.slide-nav {
+	    display: flex;
+	    flex-direction: column;
+	    position: absolute;
+	    top: 2vw;
+	    left: 5vw;
+	    width: 4vw;
+	    height: 100vh;
+	    justify-content: left;
+	    align-items: left;
+	}
+	
+	
+	
 	.slide__text {
 		position: relative;
 		top: auto;
@@ -510,7 +527,7 @@ a.demo--current {
 		max-width: none;
 	}
 	.slides--contained + .slide-nav {
-		left: auto !important;
+		right: auto !important;
 		justify-content: center !important;
 		position: relative !important;
 		top: auto !important;

@@ -10,9 +10,9 @@
  */
 {
 	setTimeout(() => document.body.classList.add('render'), 60);
-	const navdemos = Array.from(document.querySelectorAll('nav.demos > .demo'));
+	const navdemos = Array.from(document.querySelectorAll('nav.sites > .site'));
 	const total = navdemos.length;
-	const current = navdemos.findIndex(el => el.classList.contains('demo--current'));
+	const current = navdemos.findIndex(el => el.classList.contains('site--current'));
 	const navigate = (linkEl) => {
 		document.body.classList.remove('render');
 		document.body.addEventListener('transitionend', () => window.location = linkEl.href);

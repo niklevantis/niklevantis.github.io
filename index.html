@@ -12,7 +12,7 @@
 		<link rel="stylesheet" type="text/css" href="css/main.css" />
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 		<script type="text/javascript" src="http://levantis.tumblr.com/api/read/json?num=2"></script>
-		<script>document.documentElement.className="js";var supportsCssVars=function(){var e,t=document.createElement("style");return t.innerHTML="root: { --tmp-var: bold; }",document.head.appendChild(t),e=!!(window.CSS&&window.CSS.supports&&window.CSS.supports("font-weight","var(--tmp-var)")),t.parentNode.removeChild(t),e};supportsCssVars()||alert("Please view this demo in a modern browser that supports CSS Variables.");</script>
+		<script>document.documentElement.className="js";var supportsCssVars=function(){var e,t=document.createElement("style");return t.innerHTML="root: { --tmp-var: bold; }",document.head.appendChild(t),e=!!(window.CSS&&window.CSS.supports&&window.CSS.supports("font-weight","var(--tmp-var)")),t.parentNode.removeChild(t),e};supportsCssVars()||alert("Please view this site in a modern browser that supports CSS Variables.");</script>
 
 	
 	
@@ -50,7 +50,7 @@
 							
 						</div>
 						<div class="slide__text">
-							<!--<h2 class="slide__title">Broken Glow</h2>-->
+						
 							<p class="slide__description">Nick grew up in a fertile cultural and musical period in the early eighties. Programming and synths helped him to step deeper into the world of <span class="listen-node" data-src="http://nicklevantis.com/audio/touch-the-milky-way.mp3" data-start="0" data-end="200"  >electronic music </span> and  computer art. Over three decades he has formed bands and collaborated with many other musicians experimenting through different styles.
 							Today is creating pieces of music and is trying to differentiate by surpassing the limits of specific genres. Recent activities include the creation of visuals and <span class="listen-node" data-src="http://nicklevantis.com/audio/fosse_4th.mp3" data-start="0" data-end="236">music for theatre</span>.
 																											
@@ -86,7 +86,7 @@
 						
 						<div class="slide__text">
 						<h2 class="slide__title">News </h2></br></br>
-							<p class="slide__text">
+							<p class="slide__description">
 														<div id="entries">
 															<script>
 																_globalObj={};_globalObj.writeEntries=function(e){var t=e.posts,n=t.length,r=t.length-n,i="",s="",o=[];while(n--){r=t.length-(n+1);i+='<div class="tumblr_entry '+(t.length-n)+'">';switch(t[r].type){case"regular":s='<h2 class="tumblr_title">'+t[r]["regular-title"]+'</h2><p class="tumblr_date">'+t[r]["date"]+"</p>";content='<div class="tumblr_body">'+t[r]["regular-body"]+"</div>";break;case"photo":s='<h2 class="tumblr_title"></h2><p class="tumblr_date">'+t[r]["date"]+"</p>";content='<div class="tumblr_body"><img class="tumblr_photo" src="'+t[r]["photo-url-1280"]+'"/></div><div class="tumblr_body">'+t[r]["photo-caption"]+"</div>";break;case"audio":s='<h2 class="tumblr_title">'+t[r]["id3-title"]+'</h2><h3 class="tumblr_date">'+t[r]["date"]+"</h3>";content='<div class="audio-embed">'+t[r]["audio-embed"]+t[r]["audio-caption"]+"</div>";break;case"video":s='<h2 class="tumblr_title"></h2><h3 class="tumblr_date">'+t[r]["date"]+"</h3>";content='<div class="tumblr_body">'+t[r]["video-player-500"]+t[r]["video-caption"]+"</div>";o.push(t[r]["video-player"].substr(t[r]["video-player"].indexOf("rVideo(")+7,t[r]["video-player"].indexOf("</scrip")-(t[r]["video-player"].indexOf("rVideo(")+7)).split(","));break;case"quote":s='<h2 class="tumblr_title">Quote</h2><h3 class="tumblr_date">'+t[r]["date"]+"</h3>";content='<div class="tumblr_body tumblr_quote">'+t[r]["quote-text"]+'</div><div class="tumblr_body">'+t[r]["quote-source"]+"</div>";break;case"link":s='<h2 class="tumblr_title">Check out this link</h2><h3 class="tumblr_date">'+t[r]["date"]+"</h3>";content='<div class="tumblr_link"><a href="'+t[r]["link-url"]+'">'+t[r]["link-text"]+'</a></div><div class="tumblr_body">'+t[r]["link-description"]+"</div>";break;case"conversation":s='<h2 class="tumblr_title">'+t[r]["conversation-title"]+' </h2><h3 class="tumblr_date">'+t[r]["date"]+"</h3>";content='div class="tumblr_body">'+t[r]["conversation-text"]+"</div>";default:s="";content="";break}i=i+s+content+"</div>"}document.querySelector("#entries").innerHTML=i;_globalObj.pullVids(o)};_globalObj.pullVids=function(e){for(var t=e.length-1;t>=0;t--){renderVideo(e[t].shift().replace(/(\"|\|'\))/g,""),e[t].shift().replace(/(\"|\'|\))/g,""),e[t].shift().replace(/(\"|\'|\))/g,""),e[t].shift().replace(/(\"|\'|\))/g,""),e[t].join(",").replace(/(\"|\'|\))/g,""))}};_globalObj.writeEntries(tumblr_api_read)
@@ -110,8 +110,8 @@
 			</div>
 		</main>
 		<script src="js/imagesloaded.pkgd.min.js"></script>
-		<script src="js/demo.js"></script>
-		<script src="js/demo1.js"></script>
+		<script src="js/js.js"></script>
+		<script src="js/main.js"></script>
 		<script>
 		  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 		  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
