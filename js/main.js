@@ -33,8 +33,8 @@
             this.slides = [];
             this.DOM.slides.forEach(slide => this.slides.push(new Slide(slide)));
             this.current = 0;
-            this.glitchTime = 1600;
-            this.totalGlitchSlices = 45;
+            this.glitchTime = 1200;
+            this.totalGlitchSlices = 5;
         }
         glitch(slideFrom, slideTo) {
             return new Promise((resolve, reject) => {
