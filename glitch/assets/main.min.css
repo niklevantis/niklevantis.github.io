@@ -4,9 +4,9 @@ body {
 	
 	font-family: 'Press Start 2P', cursive;
 
-	background-color: #000;
+	/*background-color: #000;*/
 	font-size: .7em;
-	color: rgba(255, 255, 255, 0.58);
+	color: rgba(255, 255, 255, 1);
 }
 
 .inline {
@@ -17,7 +17,7 @@ body {
 }
 
 .p-canvas-webgl {
-  opacity: 0.4;
+  opacity: 1;
   position: fixed;
   z-index: 1;
   top: 0; left: 0;
@@ -29,7 +29,7 @@ body {
   z-index: 2;
 	line-height: 1.2em;
 
-  	color: rgba(255, 255, 255, 0.18);
+  	color: rgba(255, 255, 255, 0.48);
 max-width:600px;
 
 }
