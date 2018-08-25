@@ -375,7 +375,7 @@ figure{
 figure.close:before{
     content:'';
     position:absolute;
-    width:0.6em;
+    width:1.6em;
     height:0.2em;
     background:#000;
     top:50%;
@@ -388,7 +388,7 @@ figure.close:before{
 figure.close:after{
     content:'';
     position:absolute;
-    width:0.6em;
+    width:1.6em;
     height:0.2em;
     background:#000;
     top:50%;
