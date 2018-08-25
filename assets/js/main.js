@@ -277,7 +277,6 @@ $(document).ready(function(){
             var id = $(this).find('video').attr('id');
             if ( id ) {
                 var video = $('#'+id).get(0);
-                video.muted= false;
                 video.play();
             }
         });
@@ -285,7 +284,6 @@ $(document).ready(function(){
             var id = $(this).find('video').attr('id');
             if ( id ) {
                 var video = $('#'+id).get(0);
-                video.muted= true;
                 video.pause();
                 video.currentTime = 0;
             }
