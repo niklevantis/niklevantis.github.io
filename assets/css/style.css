@@ -114,7 +114,7 @@ section{
     -webkit-transform:translateY(-50%)
 }
 #progress{
-    height:50%;
+    height:1.5em;
     width:0;
     position:fixed;
     bottom:0;
