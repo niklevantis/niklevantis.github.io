@@ -22,7 +22,7 @@ var introLoop = function() {
         $('#intro main').removeClass('loaded');
         setTimeout(function(){
             var url = window.location.href;
-            window.location.replace(url+"home.html");
+            window.location.replace(url+"home");
         },1000);
         
     } else {
