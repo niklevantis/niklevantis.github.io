@@ -122,9 +122,9 @@ section{
     background:#000
 }
 nav{
-    padding-top:1.5em;
+    padding-top:3.5em;
     padding-bottom:1.5em;
-    background:#fff;
+    background: rgba(255, 255, 255, 0);
     position:fixed;
     z-index:1000
 }
