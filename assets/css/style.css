@@ -139,8 +139,9 @@ nav .center{
     left:50%;
     transform:translateX(-50%);
     -webkit-transform:translateX(-50%)
+    TOP:-30px;
 }
-nav .center .crown{
+nav .center .c{
     opacity:0;
     width:1.75em;
     transform:translateY(-0.14em);
@@ -154,7 +155,7 @@ nav .right{
     font-size:1em;
     line-height:0.5em
 }
-.on-load nav .center .crown{
+.on-load nav .center .c{
     opacity:1
 }
 footer{
@@ -371,6 +372,7 @@ figure{
     width:0.7em;
     height:0.7em;
     position:relative
+    top: -30px;
 }
 figure.close:before{
     content:'';
@@ -687,7 +689,7 @@ dl dd{
 #mainmenu li:first-child{
     margin-left:0
 }
-.crown{
+.c{
     display:inline-block;
     vertical-align:baseline;
     width:1.5em;
