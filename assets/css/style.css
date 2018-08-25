@@ -138,8 +138,8 @@ nav .center{
     position:absolute;
     left:50%;
     transform:translateX(-50%);
-    -webkit-transform:translateX(-50%)
-    TOP:-30px;
+    -webkit-transform:translateX(-50%);
+    top:-30px;
 }
 nav .center .c{
     opacity:0;
@@ -371,7 +371,7 @@ main .row{
 figure{
     width:0.7em;
     height:0.7em;
-    position:relative
+    position:relative;
     top: -30px;
 }
 figure.close:before{
