@@ -22,7 +22,7 @@ var introLoop = function() {
         $('#intro main').removeClass('loaded');
         setTimeout(function(){
             var url = window.location.href;
-            window.location.replace(url+"home");
+            window.location.replace(url+"home/");
         },1000);
         
     } else {
@@ -295,7 +295,7 @@ $(document).ready(function(){
     image.onload = function () {
         $('body').addClass('on-load');
     }
-    image.src = $('').attr('src');
+    image.src = $('.crown').attr('src');
     
 });
 
