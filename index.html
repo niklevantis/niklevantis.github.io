@@ -140,6 +140,7 @@ a:hover{color:#ccc;transition-timing-function: ease-in-out; transition: 0.45s;}
 	padding-top: 40px;
 	padding-left: 30px;
 	padding-right: 20px;
+	overflow: auto;
 }
 
 .colorize {
@@ -180,7 +181,7 @@ a:hover{color:#ccc;transition-timing-function: ease-in-out; transition: 0.45s;}
     left: 50%;
     margin-left: -512px;  
   }
-p, a{ font-size:30px}
+p, a{ font-size:25px}
 
 .colorize {
 		display: none;
@@ -188,6 +189,16 @@ p, a{ font-size:30px}
 	
 .left {
 		width: 90%;right: 30px;
+	}
+	
+	
+	.play {
+		font-size: 15px;
+	}
+	
+	
+	.stop {
+		font-size: 15px;
 	}
 }
 
@@ -344,7 +355,18 @@ h1 {
 }
 
 
-
+.left::-webkit-scrollbar {
+    width: .2em;
+}
+ 
+v::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+}
+ 
+.left::-webkit-scrollbar-thumb {
+  background-color: white;
+  outline: 1px solid slategrey;
+}
 
 </style>
 </head><!DOCTYPE html>
@@ -375,7 +397,7 @@ h1 {
 <p>Nick creates pieces of music trying to differentiate and surpass the limits of specific genres with basic philosophy that there is no evolution in art without the presence of internal or social reversals.</p>
 </br>
 <p><span class="audio">
-  <span>nowhere:</span>
+  <span>nowhere :</span>
     <span class="play">PLAY</span>
     <span class="stop">STOP</span>
   <audio>
@@ -384,16 +406,21 @@ h1 {
 </span>
 </br>
 <span class="audio">
-  <span>romance:</span>
+  <span>romance :</span>
     <span class="play">PLAY</span>
     <span class="stop">STOP</span>
   <audio>
   				<source src="https://nicklevantis.com/audio/romance.mp3" type="audio/mpeg">
 				</audio>
-</span></p>
+</span>
 </br></br>
-<p><span>links: <a href="https://nicklevantis.svbtle.com">svbtle</a>
-<a href="https://soundcloud.com/nicklevantis">soundcloud</a></span></p>
+
+</p>
+
+<p><span>--> <a href="https://nicklevantis.svbtle.com">svbtle</a>
+<a href="https://soundcloud.com/nicklevantis">soundcloud</a></span>
+<a href="https://youtube.com/nicklevantis">youtube</a></span>
+</p>
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
