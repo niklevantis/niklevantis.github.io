@@ -42,7 +42,17 @@ h2 {
 
 p {font-size:45px;
 display: block;
-max-width: 100%;
+max-width: 100%%;
+-ms-word-break: break-all;
+ word-break: break-all;
+
+ /* Non standard for webkit */
+ word-break: break-word;
+
+-webkit-hyphens: auto;
+   -moz-hyphens: auto;
+    -ms-hyphens: auto;
+        hyphens: auto;
 }
 
 img{right: 0 ;
@@ -65,52 +75,7 @@ background:no-repeat;
 
 }
 
-.canvas-wrapper {
-  position: absolute;
-  overflow: hidden;
-  tpo: 0;
-  left:30px;
-  width: 100vw;
-  height: 100vh;
-}
-.canvas-wrapper canvas {
-  display: block;
-  position: absolute;
-  left: 0;
-  top: 0;
-}
 
-
-
-.canvas-wrapper {
-  position: absolute;
-  overflow: hidden;
-  tpo: 0;
-  left:30px;
-  width: 100vw;
-  height: 100vh;
-}
-.canvas-wrapper canvas {
-  display: block;
-  position: absolute;
-  left: 0;
-  top: 0;
-}
-
-
-header {
-  position: relative;
-  display: flex;
-  height: 100vh;
-  width: 100%;
-}
-header .logo {
-  position: relative;
-  display: block;
-  margin: auto;
-  max-width: 420px;
-}
-    
 a{font-size:45px;
 color:#000;
 transition-timing-function: ease-in-out; transition: 0.45s;
@@ -151,16 +116,7 @@ a:hover{color:#ccc;transition-timing-function: ease-in-out; transition: 0.45s;}
 }
 
 
-.left{
-	text-align: left;
-	display: block;
-	left: 0;
-	position: fixed;
-	padding: 10px;
-	background-color: #000;
-	color: #fff;
-	bottom: 0;
-}
+
 
 .play:active  {
 	display: inline-block;
@@ -171,16 +127,29 @@ a:hover{color:#ccc;transition-timing-function: ease-in-out; transition: 0.45s;}
 }
 
 
-
+.left {
+	display: block;
+	width: 50%;
+	height: 100%;
+	background-color:#fff;
+	position: fixed;
+	z-index: 1000;
+	left: 5px;
+	margin-left: -10px;
+	margin-top: -30px;
+	padding-top: 40px;
+	padding-left: 30px;
+	padding-right: 20px;
+}
 
 .colorize {
 	display: block;
-	width: 60%;
+	width: 50%;
 	height: 100%;
-	background-color: #fffded;
+	background-color: #000;
 	position: fixed;
 	z-index: -100;
-	margin-left: -30px;
+	right: -30px;
 	margin-top: -30px;
 }
 
@@ -213,6 +182,160 @@ a:hover{color:#ccc;transition-timing-function: ease-in-out; transition: 0.45s;}
 p{ font-size:30px}
 }
 
+
+
+    * {
+    margin: 0;
+    padding: 0;
+}
+
+
+canvas {
+	opacity: .3;
+}
+
+html {
+    height: 100%;
+    overflow: hidden;
+}
+
+canvas {
+    z-index: 1;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.caps {
+    z-index: 2;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    animation: as 8s linear infinite;
+}
+
+.caps img {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+@keyframes as {
+    0% {
+        opacity: 0;
+    }
+    10% {
+        opacity: .3;
+    }
+    20% {
+        opacity: .1;
+    }
+    30% {
+        opacity: .5;
+    }
+    40% {
+        opacity: 0;
+    }
+    50% {
+        opacity: .8;
+    }
+    55% {
+        opacity: 0;
+    }
+    55% {
+        opacity: 0;
+    }
+}
+
+.frame {
+    z-index: 3;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: -moz-radial-gradient(center, ellipse cover, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 19%, rgba(0, 0, 0, 0.9) 100%); /* FF3.6+ */
+    background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, rgba(0, 0, 0, 0)), color-stop(19%, rgba(0, 0, 0, 0)), color-stop(100%, rgba(0, 0, 0, 0.9))); /* Chrome,Safari4+ */
+    background: -webkit-radial-gradient(center, ellipse cover, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 19%, rgba(0, 0, 0, 0.9) 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-radial-gradient(center, ellipse cover, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 19%, rgba(0, 0, 0, 0.9) 100%); /* Opera 12+ */
+    background: -ms-radial-gradient(center, ellipse cover, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 19%, rgba(0, 0, 0, 0.9) 100%); /* IE10+ */
+    background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 19%, rgba(0, 0, 0, 0.9) 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = '#00000000', endColorstr = '#e6000000', GradientType = 1); /* IE6-9 fallback on horizontal gradient */
+
+}
+
+.frame div {
+    position: absolute;
+    left: 0;
+    top: -20%;
+    width: 100%;
+    height: 50%;
+    background-color: rgba(0, 0, 0, .12);
+    box-shadow: 0 0 10px rgba(0, 0, 0, .3);
+    animation: asd 12s linear infinite;
+}
+
+.frame div:nth-child(1) {
+    animation-delay: 0;
+}
+
+.frame div:nth-child(2) {
+    animation-delay: 4s;
+}
+
+.frame div:nth-child(3) {
+    animation-delay: 8s;
+}
+
+@keyframes asd {
+    0% {
+        top: -20%;
+    }
+    100% {
+        top: 100%;
+    }
+}
+
+h1 {
+    z-index: 3;
+    position: absolute;
+    font: bold 1000px/1000px Arial, sans-serif;
+    left: 50%;
+    top: 50%;
+    margin-top: -500px;
+    width: 100%;
+    margin-left: -50%;
+    height: 200px;
+    text-align: center;
+    color: transparent;
+    background: none;
+    text-shadow: 0 0 30px rgba(255, 255, 255, .5);
+    animation: asdd 2s linear infinite;
+}
+
+@keyframes asdd {
+    0% {
+        text-shadow: 0 0 30px rgba(0, 0, 0, .5);
+    }
+    33% {
+        text-shadow: 0 0 10px rgba(0, 0, 0, .4);
+    }
+    66% {
+        text-shadow: 0 0 20px rgba(0, 0, 0, .2);
+    }
+    100% {
+        text-shadow: 0 0 40px rgba(0, 0, 0, .8);
+    }
+}
+
+
+
+
 </style>
 </head><!DOCTYPE html>
 <html lang="en">
@@ -225,20 +348,23 @@ p{ font-size:30px}
 	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 	<![endif]-->
 </head>
+
 <body>
 
-
-<div id="colorize"></div>
-
-
-
+<div class="colorize">
+<h1>#</h1>
+<div class="caps"><img src="https://nicklevantis.com/images/synth.jpg" alt=""></div>
+<canvas id="canvas"></canvas>
 </div>
 
 
 
+<div class="left">
+<p>Nick Levantis</p>
+</br>
 <p>Nick creates pieces of music trying to differentiate and surpass the limits of specific genres with basic philosophy that there is no evolution in art without the presence of internal or social reversals.</p>
-<span class="big">RECENT SONGS</span>
-<span class="audio">
+</br>
+<p><span class="audio">
   <span>nowhere:</span>
     <span class="play">PLAY</span>
     <span class="stop">STOP</span>
@@ -254,11 +380,12 @@ p{ font-size:30px}
   <audio>
   				<source src="https://nicklevantis.com/audio/romance.mp3" type="audio/mpeg">
 				</audio>
-</span>
+</span></p>
+</br></br>
 <p><span>links: <a href="https://nicklevantis.svbtle.com">svbtle</a>
 <a href="https://soundcloud.com/nicklevantis">soundcloud</a></span></p>
+</div>
 
- <div id="js-canvas-wrapper" class="canvas-wrapper"></div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>
   $(document).ready(function() {
@@ -289,5 +416,48 @@ p{ font-size:30px}
   
 </script>
     
+<script>
+var Application = ( function () {
+        var canvas;
+        var ctx;
+        var imgData;
+        var pix;
+        var WIDTH;
+        var HEIGHT;
+        var flickerInterval;
+
+        var init = function () {
+            canvas = document.getElementById('canvas');
+            ctx = canvas.getContext('2d');
+            canvas.width = WIDTH = 700;
+            canvas.height = HEIGHT = 500;
+            ctx.fillStyle = 'white';
+            ctx.fillRect(0, 0, WIDTH, HEIGHT);
+            ctx.fill();
+            imgData = ctx.getImageData(0, 0, WIDTH, HEIGHT);
+            pix = imgData.data;
+            flickerInterval = setInterval(flickering, 30);
+        };
+
+        var flickering = function () {
+            for (var i = 0; i < pix.length; i += 4) {
+                var color = (Math.random() * 255) + 50;
+                pix[i] = color;
+                pix[i + 1] = color;
+                pix[i + 2] = color;
+            }
+            ctx.putImageData(imgData, 0, 0);
+        };
+
+        return {
+            init: init
+        };
+    }());
+
+    Application.init();    
+    
+</script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
+
 </body>
 </html>
