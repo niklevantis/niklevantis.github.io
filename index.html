@@ -54,14 +54,23 @@ min-height: 100%;
 max-width:100%;
 position: fixed;
 opacity: 0.3;
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+margin-top: -200px;
+z-index: -1000;
+=======
+>>>>>>> Stashed changes
 margin-top:0;
 z-index: -3;
+>>>>>>> origin/master
 bottom: 0;
  -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
 background:no-repeat;
+<<<<<<< Updated upstream
 }
 
 .canvas-wrapper {
@@ -79,6 +88,25 @@ background:no-repeat;
   top: 0;
 }
 
+=======
+}
+
+.canvas-wrapper {
+  position: absolute;
+  overflow: hidden;
+  tpo: 0;
+  left:30px;
+  width: 100vw;
+  height: 100vh;
+}
+.canvas-wrapper canvas {
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+>>>>>>> Stashed changes
 header {
   position: relative;
   display: flex;
@@ -103,7 +131,7 @@ text-decoration: line-through;
 	font-weight: 700;
 	word-break:break-word;
 	word-wrap: break-word;
-	display: inline-block;
+	display: block;
 	opacity: 0.05;
 margin-top: -46px;
 margin-left: -30px;
@@ -117,7 +145,7 @@ a:hover{color:#ccc;transition-timing-function: ease-in-out; transition: 0.45s;}
 	font-size: 30px;
 	border: 4px solid #333;
 	padding: 5px;
-	z-index: 100;
+	z-index: 100000;
 }
 
 .right {
@@ -147,16 +175,29 @@ a:hover{color:#ccc;transition-timing-function: ease-in-out; transition: 0.45s;}
 	display: inline-block;
 	font-size: 30px;
 	background-color: yellow;
+	z-index: 100000;
 	
 }
 
+<<<<<<< Updated upstream
 .colorize {
+=======
+<<<<<<< HEAD
+span .big{
+	z-index: 1000;
+}
+
+#colorize {
+=======
+.colorize {
+>>>>>>> origin/master
+>>>>>>> Stashed changes
 	display: block;
 	width: 60%;
 	height: 100%;
 	background-color: #fffded;
 	position: fixed;
-	z-index: -2;
+	z-index: -100;
 	margin-left: -30px;
 	margin-top: -30px;
 }
@@ -166,13 +207,14 @@ a:hover{color:#ccc;transition-timing-function: ease-in-out; transition: 0.45s;}
 	font-size: 30px;
 	border: 4px solid #333;
 	padding: 5px;
-	z-index: 100;
+	z-index: 100000;
 }
 
 .stop:active  {
 	display: inline-block;
 	font-size: 30px;
 	background-color: red;
+	z-index: 100000;
 	
 }
 	
@@ -202,11 +244,25 @@ p{ font-size:30px}
 	<![endif]-->
 </head>
 <body>
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+
+<div id="colorize"></div>
+<a class="left" href="https://nicklevantis.svbtle.com">svbtle</a>
+<a class="right" href="https://soundcloud.com/nicklevantis">soundcloud</a>
+</br></br>
+=======
+>>>>>>> Stashed changes
 <div class="colorize">
 
 </div>
 
 
+<<<<<<< Updated upstream
+=======
+>>>>>>> origin/master
+>>>>>>> Stashed changes
 <p>Nick creates pieces of music trying to differentiate and surpass the limits of specific genres with basic philosophy that there is no evolution in art without the presence of internal or social reversals.</p>
 <span class="big">RECENT SONGS</span>
 <span class="audio">
@@ -338,6 +394,7 @@ p{ font-size:30px}
       }
 
       if ( options.wacky === true ) {
+<<<<<<< Updated upstream
 
         displacementSprite.anchor.set(0.5);
         displacementSprite.x = renderer.width / 2;
@@ -350,6 +407,20 @@ p{ font-size:30px}
       // PIXI tries to fit the filter bounding box to the renderer so we optionally bypass
       displacementFilter.autoFit = options.displaceAutoFit;
 
+=======
+
+        displacementSprite.anchor.set(0.5);
+        displacementSprite.x = renderer.width / 2;
+        displacementSprite.y = renderer.height / 2; 
+      }
+
+      displacementSprite.scale.x = 1;
+      displacementSprite.scale.y = 1;
+
+      // PIXI tries to fit the filter bounding box to the renderer so we optionally bypass
+      displacementFilter.autoFit = options.displaceAutoFit;
+
+>>>>>>> Stashed changes
       stage.addChild( displacementSprite );
 
     };
