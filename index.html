@@ -360,7 +360,7 @@ h1 {
 }
  
 v::-webkit-scrollbar-track {
-    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0);
 }
  
 .left::-webkit-scrollbar-thumb {
@@ -467,7 +467,7 @@ var Application = ( function () {
             canvas = document.getElementById('canvas');
             ctx = canvas.getContext('2d');
             canvas.width = WIDTH = 700;
-            canvas.height = HEIGHT = 500;
+            canvas.height = HEIGHT = 900;
             ctx.fillStyle = 'white';
             ctx.fillRect(0, 0, WIDTH, HEIGHT);
             ctx.fill();
