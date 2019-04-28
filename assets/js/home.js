@@ -8,3 +8,4 @@ function onLoadMetaData(){setVideoDimensions();}
 function onResize(){setVideoDimensions();}
 function onOrientationChange(){setVideoDimensions();}
 document.getElementById('video_01').currentTime=60;document.getElementById('video_02').currentTime=10;document.getElementById('video_03').currentTime=61;video_01.addEventListener('loadedmetadata',onLoadMetaData,false);video_02.addEventListener('loadedmetadata',onLoadMetaData,false);video_03.addEventListener('loadedmetadata',onLoadMetaData,false);video_04.addEventListener('loadedmetadata',onLoadMetaData,false);video_05.addEventListener('loadedmetadata',onLoadMetaData,false);video_06.addEventListener('loadedmetadata',onLoadMetaData,false);window.addEventListener('resize',onResize,false);window.addEventListener('orientationchange',onOrientationChange,false);
+
