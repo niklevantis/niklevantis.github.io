@@ -40,6 +40,12 @@ a:hover{
     -o-transition:all .2s linear;
     transition:all .2s linear
 }
+
+h6 {
+    font-family:renomono,monospace;
+    letter-spacing: 2px;
+ }
+
 svg{
     overflow:visible;
     margin:0
