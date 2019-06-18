@@ -1,6 +1,24 @@
-title: Nick Levantis
-logo: /assets/img/eye.gif
-description: Nick Levantis music & artwork 
-show_downloads: false
-google_analytics:
-theme: jekyll-theme-minimal
+title:              Nick Levantis 
+email:              nicklevantis@gmail.com
+description:       Nick Levantis music & artwork 
+author:             Nick Levantis 
+baseurl:            ""
+url:                "https://nicklevantis.com"
+
+# Social Profiles
+twitter_username:   nicklevantis
+github_username:    nicklevantis
+facebook_username:  nicklevantis1
+linkedin_username:
+
+# Add your google-analytics ID here to activate google analytics
+google_analytics:   UA-XXXXXXXXX-X # out your google-analytics code
+
+# Build settings
+markdown:           kramdown
+paginate:           5
+paginate_path:      "/posts/page:num/"
+plugins:
+  - jekyll-feed
+  - jekyll-paginate
+  - jekyll-sitemap ## Uncomment this line to silently generate a sitemaps.org compliant sitemap for your Jekyll site
