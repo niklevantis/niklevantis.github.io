@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Din is noise sonic exploration"
-date:   2019-05-03 10:18:00
+date:   2019-04-01 10:18:00
 description: Social
 ---
 >**DIN Is Noise is a computer program, You can use your mouse and keyboard to make sounds Inspired by central-asian bowed string instruments, The Morin Khuur, the Kobyz, the Erhu, the Kamancheh, the Sarangi, and Cello.**

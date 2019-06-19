@@ -7,7 +7,7 @@ description: Social
 
 [![think.gif](https://svbtleusercontent.com/xhvmqdkwhmfxtg_small.gif)](https://svbtleusercontent.com/xhvmqdkwhmfxtg.gif)
 
->###Some of them they taught us  about good and evil. And some others they put in our lives innumerable "musts" by limiting our time so to have falsely limited the need for "why" for an actual esoteric search.
+>Some of them they taught us  about good and evil. And some others they put in our lives innumerable "musts" by limiting our time so to have falsely limited the need for "why" for an actual esoteric search.
 
 Strong justifications are:  you must be a "social person" and you must follow  the path of virtue of discipline ... and also the  production processes, profit, wealth for the benefit of course of the few.
 
@@ -24,4 +24,4 @@ Lift your head some night and see the stars .... A truly shocking image of zilli
 
 We have forgotten in these societies fundamental and basic things that would make us more people so that we are truly close to each other. We built economic and social systems to help us and serve us but eventually we were trapped and served by sacrificing our mental health, our time, our feelings. We are essentially more alone than ever ...
 
->###It is probably the time to understand and reconcile (and not just compromise) first of all with ourselves so that we never feel alone. The time has come that we have to respect the uniqueness and diversity around us more than we have learned ...
+>It is probably the time to understand and reconcile (and not just compromise) first of all with ourselves so that we never feel alone. The time has come that we have to respect the uniqueness and diversity around us more than we have learned ...
