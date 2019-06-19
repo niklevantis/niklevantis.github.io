@@ -1,10 +1,9 @@
-+++
+---
 layout: post
 title:  "Synths or software "
 date:   2019-06-06 10:18:00
 description: Social
-
-+++
+---
 
 ![renoise](https://niklevantis.com/img/posts/xx.jpg)
 
