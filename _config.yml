@@ -1,42 +1,31 @@
-name: Nick Levantis
-description: Music and artwork
-meta_description: "Electronic music experimentation"
+# Site settings
+title: Your site
+description: >
+    Your description
+author: Your name
+email: your@e.mail
+baseurl: "" # the subpath of your site, e.g. /blog
+url: "https://yourname.github.io" # the base hostname & protocol for your site
+twitter_username: YourTwitter
+github_username:  YourGitHub
 
-aboutPage: true
+disqus_shortname: YourDisqusShortname
 
+# Build settings
+include: [_pages]
 markdown: kramdown
-highlighter: rouge
+permalink: /:year/:month/:title
+sass:
+    style: compressed
 
-plugins: [jekyll-paginate]
-paginate: 20
-domain_name: 'https://nicklevantis.com'
-google_analytics: 'UA-XXXXXXXX-X'
-disqus: false
-disqus_shortname: 'your-disqus-shortname'
+gems:
+  - jemoji
+  - jekyll-sitemap
+# - amp-jekyll # Acceletrated Mobile Pages
 
-# Details for the RSS feed generator
-url:            'https://nicklevantis.com'
-author:         'Nick Levantis'
-authorTwitter:  'nicklevantis'
+# AMP Settings
+# ampdir: amp/
+# enable_amp: true
 
-permalink:       /:year/:title/
-
-defaults:
-    -
-        scope:
-            path: "" # empty string for all files
-            type: pages
-        values:
-            layout: default
-    -
-        scope:
-            path: "" # empty string for all files
-            type: posts
-        values:
-            layout: post
-    -
-        scope:
-            path: ""
-            type: drafts
-        values:
-            layout: post
+# Google Analytics
+# google_analytics: UA-XXXXXXXX-X

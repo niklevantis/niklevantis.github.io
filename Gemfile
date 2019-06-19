@@ -1,2 +1,5 @@
 source 'https://rubygems.org'
-gem 'github-pages', group: :jekyll_plugins
+
+gem 'github-pages'
+gem 'amp-jekyll'
+gem 'jekyll-sitemap'

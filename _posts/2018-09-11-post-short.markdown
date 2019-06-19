@@ -1,4 +1,5 @@
 ---
+layout: post
 title:  "Your post is too short"
 date:   2018-09-11 10:18:00
 description: Social

@@ -1,4 +1,5 @@
 ---
+layout: post
 title:  "Overthrow and zeroing"
 date:   2019-02-02 10:18:00
 description: Social
