@@ -5,7 +5,7 @@ permalink: /about/
 ---
 ![Nick](https://nicklevantis.com/img/bg-about.jpg)
 
-<p>Nick grew up in a fertile cultural and musical period in the early eighties. Programming and synths helped him to step deeper into the world of electronic music and computer art.</p> <p>Over three decades he has played and collaborated with many other musicians experimenting through different styles. Today is creating pieces of music and is trying to differentiate and surpass the limits of specific genres.</p> <p>The last three years has created many genre agnostic songs that are meant to travel the listener to the magical world of electronic music.</p>
+<p>Nick grew up in a fertile cultural and musical period in the early eighties. His intense social concerns led him to work with music. Over three decades he has formed bands and collaborated with other musicians experimenting through <span class="listen-node" data-src="http://niklevantis.github.io/audio/citizen_of_pain.mp3" data-start="0" data-end="271">different</span> styles. Recent activities include live coding music, creation of visuals and <span class="listen-node" data-src="http://niklevantis.github.io/audio/fosse_4th.mp3" data-start="0" data-end="271">music for theatre</span>. More on <a href="https://soundcloud.com/nicklevantis">Soundcloud</a> and <a href="https://youtube.com/nicklevantis">Youtube</a>.</p>
 
 
 
