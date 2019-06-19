@@ -1,0 +1,52 @@
+---
+layout: post
+title:  "Radium music editor"
+date:   2019-05-03 10:18:00
+description: Social
+---
+>I am particularly pleased about the inclusion of my musical ideas as demo songs for [Radium Music Editor](http://users.notam02.no/%7Ekjetism/radium/) . Radium evolves from the developer of the legendary Octamed (Amiga) Kjetil Matheussen.
+
+Radium is a music editor with a revolutionary interface. Compared to the normal sequencers (or DAW if you prefer) interface editing is quicker and more musical data fits on the screen.
+
+Compared to  [trackers](https://en.wikipedia.org/wiki/Music_tracker), note positions and effects are edited graphically, which should be quicker, provide more vertical space and give a better musically overview. (Everything can also be edited by text, like in a normal tracker)
+
+[![radium_perspective_5_6_3.png](https://svbtleusercontent.com/djmpWdmkcuc7iwVXV1Uhh10xspap_small.png)](https://svbtleusercontent.com/djmpWdmkcuc7iwVXV1Uhh10xspap.png)
+
+
+However, despite its unusual appearance, it's a design goal for Radium to be straightforward to use, and easy to learn. It should not be harder to learn Radium than any tracker or most MIDI sequencers. Users who are accustomed to more traditional trackers might use a little bit time in the beginning getting used to the interface. 
+
+The development of Radium started in 1999 based on ideas developed 1997-1999 while extending the Octamed tracker on the Amiga. The first public version of Radium was released in 2000. Since then Radium has been ported to Linux, Windows, and Mac OS X. Radium is one of the oldest and most advanced tracker-like music editors of today. 
+
+<iframe width="1280" height="400" src="https://www.youtube.com/embed/_7-hJx7Lir4" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
+>Some of the features
+
+   * Audio and MIDI multitracker
+   * Velocity automation
+   * Effect automation
+   * Pitch automation
+   * Tempo automation
+   * Smooth scrolling
+   * Frame-accurately synchronize playback
+   * Optional piano roll
+   * Tickless
+   * Global swing and swing-per-track
+   * Modular mixer and/or mixer strips
+   * MIDI sequencing
+   * Hard drive audio recording
+   * AU, LADSPA, VST, and VST3 plugins
+   * (More than 100 LADSPA plugins are included)
+   * Several built-in effects and instruments
+    (virtual instruments, multiband compressor, modulators, etc.)
+   * Pure Data embeded 
+   * Includes a Faust audio DSP development environment
+   *Various types of zooming
+   *Microtonality
+   * Scripting. Choose between Python or Scheme. Large parts of Radium itself, such as the mixer GUI and the plugin manager, are scripted. Other languages can be added on request
+   * Plugin delay compensation applied to all parts of the audio graph
+   * Multicore support
+   * Unlimited undo/redo
+   * Open source with a straightforward and easy to use build system .
+
+
+

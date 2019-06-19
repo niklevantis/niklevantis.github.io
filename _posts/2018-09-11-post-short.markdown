@@ -20,4 +20,4 @@ In a world that observes the following is reasonable that everything around us i
 * Compromise ...
 * Vanity..
 
-{% include footer.html %}
+
