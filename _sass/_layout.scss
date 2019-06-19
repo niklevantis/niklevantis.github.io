@@ -244,3 +244,20 @@ video {
 .fluid-width-video-wrapper {
     max-height: 100vh;
   }
+
+  .fluid-width-video-wrapper {
+    width: 100%;
+    position: relative;
+    padding: 0;
+    max-width: 133.33vh; /* 100vh / (3/4) */
+  }
+  
+  .fluid-width-video-wrapper:before {
+    padding-top: 75%; /* 3/4 */
+    display: block;
+    content: ' ';
+  }
+  
+  .fluid-width-video-wrapper iframe {
+    /* unchanged from above */
+  }
