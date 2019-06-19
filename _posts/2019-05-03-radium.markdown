@@ -17,7 +17,7 @@ However, despite its unusual appearance, it's a design goal for Radium to be str
 
 The development of Radium started in 1999 based on ideas developed 1997-1999 while extending the Octamed tracker on the Amiga. The first public version of Radium was released in 2000. Since then Radium has been ported to Linux, Windows, and Mac OS X. Radium is one of the oldest and most advanced tracker-like music editors of today. 
 
-<iframe width="1280" height="400" src="https://www.youtube.com/embed/_7-hJx7Lir4" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+<iframe width="901" height="507" src="https://www.youtube.com/embed/_7-hJx7Lir4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 >Some of the features
 
