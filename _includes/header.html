@@ -1,6 +1,7 @@
 <header class="c-page__header">
-        <span><img src="https://nicklevantis.com/img/logo2.gif" alt="logo" style="width:60px;height:60px;">
-        <h1>{{ site.description }}</h1></span>
+    <div class="logo">
+       <img src="https://nicklevantis.com/img/logo2.gif" alt="logo" style="width:60px;height:60px;"></div>
+        <h1>{{ site.description }}</h1>
 	{% if page.title == 'Home' %}
     <p>
         <a href="{{ "/" | prepend: site.baseurl }}">Home</a><span class="u-separate"></span> <a href="{{ "/about/" | prepend: site.baseurl }}">About</a><span class="u-separate"></span> <a href="{{ "/links/" | prepend: site.baseurl }}">Links</a>
