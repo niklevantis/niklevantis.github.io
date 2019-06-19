@@ -1,49 +1,50 @@
 ---
 layout: default
+archive: true
 ---
 
-<!-- Page Header -->
-{% if page.background %}
-<header class="masthead" style="background-image: url('{{ page.background | prepend: site.baseurl | replace: '//', '/' }}')">
-  {% else %}
-  <header class="masthead">
-    {% endif %}
-    <div class="overlay"></div>
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-8 col-md-10 mx-auto">
-          <div class="post-heading">
-            <h1>{{ page.title }}</h1>
-            {% if page.subtitle %}
-            <h2 class="subheading">{{ page.subtitle }}</h2>
-            {% endif %}
-          </div>
+<article class="post">
+    <header>
+        <h1>{{ page.title }}</h1>
+        <h2 class="headline">{{ page.date | date:"%B %-d, %Y" }}</h2>
+    </header>
+    <section id="post-body">
+        {{content}}
+    </section>
+</article>
+<footer id="post-meta" class="clearfix">
+    <a href="http://twitter.com/{{ site.authorTwitter }}">
+        <img class="avatar" src="{{ "/" | relative_url  }}assets/images/avatar.png">
+        <div>
+            <span class="dark">{{ site.author }}</span>
+            <span>{{ site.description }}</span>
         </div>
-      </div>
+    </a>
+
+    <section id="sharing">
+        {% include share.html %}
+    </section>
+</footer>
+
+<!-- Disqus comments -->
+{% if site.disqus %}
+    <div class="archive readmore">
+        <h3>Comments</h3>
+        {% include disqus.html %}
     </div>
-  </header>
+{% endif %}
 
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-8 col-md-10 mx-auto">
+<!-- Archive post list -->
+{% if page.archive %}
+    <ul id="post-list" class="archive readmore">
+        <h3>Read more</h3>
+        {% for post in site.posts %}
+            <li>
+                <a href="{{ "/" | relative_url  }}{{ post.url | remove_first: '/' }}">{{ post.title }}<aside class="dates">{{ post.date | date:"%b %d" }}</aside></a>
+            </li>
+        {% endfor %}
+    </ul>
+{% endif %}
 
-        {{ content }}
 
-        <hr>
 
-        <div class="clearfix">
-
-          {% if page.previous.url %}
-          <a class="btn btn-primary float-left" href="{{ page.previous.url | prepend: site.baseurl | replace: '//', '/' }}" data-toggle="tooltip" data-placement="top" title="{{ page.previous.title }}">&larr; Previous<span class="d-none d-md-inline">
-              Post</span></a>
-          {% endif %}
-          {% if page.next.url %}
-          <a class="btn btn-primary float-right" href="{{ page.next.url | prepend: site.baseurl | replace: '//', '/' }}" data-toggle="tooltip" data-placement="top" title="{{ page.next.title }}">Next<span class="d-none d-md-inline">
-              Post</span> &rarr;</a>
-          {% endif %}
-
-        </div>
-
-      </div>
-    </div>
-  </div>

@@ -1,24 +1,42 @@
-title:              Nick Levantis 
-email:              nicklevantis@gmail.com
-description:        music & artwork 
-author:             Nick Levantis 
-baseurl:            ""
-url:                "https://nicklevantis.com"
+name: Nick Levantis
+description: Music and artwork
+meta_description: "Electronic music experimentation"
 
-# Social Profiles
-twitter_username:   nicklevantis
-github_username:    
-facebook_username:  
-soundcloud_username: nicklevantis
+aboutPage: true
 
-# Add your google-analytics ID here to activate google analytics
-google_analytics:   UA-XXXXXXXXX-X # out your google-analytics code
+markdown: kramdown
+highlighter: rouge
 
-# Build settings
-markdown:           kramdown
-paginate:           5
-paginate_path:      "/posts/page:num/"
-plugins:
-  - jekyll-feed
-  - jekyll-paginate
-  - jekyll-sitemap ## Uncomment this line to silently generate a sitemaps.org compliant sitemap for your Jekyll site
+plugins: [jekyll-paginate]
+paginate: 20
+domain_name: 'https://nicklevantis.com'
+google_analytics: 'UA-XXXXXXXX-X'
+disqus: false
+disqus_shortname: 'your-disqus-shortname'
+
+# Details for the RSS feed generator
+url:            'https://nicklevantis.com'
+author:         'Nick Levantis'
+authorTwitter:  'nicklevantis'
+
+permalink:       /:year/:title/
+
+defaults:
+    -
+        scope:
+            path: "" # empty string for all files
+            type: pages
+        values:
+            layout: default
+    -
+        scope:
+            path: "" # empty string for all files
+            type: posts
+        values:
+            layout: post
+    -
+        scope:
+            path: ""
+            type: drafts
+        values:
+            layout: post
