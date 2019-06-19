@@ -1,13 +1,13 @@
 # Site settings
-title: Your site
+title: Nick Levantis
 description: >
     Your description
-author: Your name
-email: your@e.mail
+author: Nick Levantis
+email: nicklevantis@gmail.com
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "https://yourname.github.io" # the base hostname & protocol for your site
-twitter_username: YourTwitter
-github_username:  YourGitHub
+url: "https://nicklevantis.com" # the base hostname & protocol for your site
+twitter_username: nicklevantis
+github_username:  nicklevantis
 
 disqus_shortname: YourDisqusShortname
 
