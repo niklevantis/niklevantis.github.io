@@ -14,8 +14,7 @@ description: Social
 And 2 for drones. Goodbye again, Sine, Triangle, Pulse and Saw,
 While we install Bezier curves on Carriers and Modulators,
 Chowning's Yamaha pipe still pours $$$
-
-<iframe width="1280" height="400" src="https://www.youtube.com/embed/HYAbzn2fnnk" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+<iframe width="1280" height="720" src="https://www.youtube.com/embed/HYAbzn2fnnk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 
 
