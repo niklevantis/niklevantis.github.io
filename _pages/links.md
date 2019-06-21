@@ -7,10 +7,10 @@ permalink: /links/
 
  
  
- [Soundcloud](https://soundcloud.com/nicklevantis/) Songs
+ Songs:  [Soundcloud](https://soundcloud.com/nicklevantis/) 
 
- [Youtube](https://youtube.com/nicklevantis/) Videos
+ Videos: [Youtube](https://youtube.com/nicklevantis/) 
 
-  [Vsco](https://vsco.co/nicklevantis/images/1) Photos
+ Photos: [Vsco](https://vsco.co/nicklevantis/images/1) 
 
 
