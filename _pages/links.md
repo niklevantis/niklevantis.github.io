@@ -4,7 +4,7 @@ title: Links
 permalink: /links/
 ---
 
-
+![contact](https://nicklevantis.com/img/contact.jpg)
  
  
  Songs  : [Soundcloud](https://soundcloud.com/nicklevantis/) 
