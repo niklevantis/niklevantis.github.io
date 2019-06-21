@@ -5,8 +5,12 @@ permalink: /links/
 ---
 
 
- [Soundcloud](http://soundcloud.com/nicklevantis/) 
+ 
+ 
+ [Soundcloud](https://soundcloud.com/nicklevantis/) Songs
 
- [Youtube](http://youtube.com/nicklevantis/) 
+ [Youtube](https://youtube.com/nicklevantis/) Videos
+
+  [Vsco](https://vsco.co/nicklevantis/images/1) Photos
 
 
