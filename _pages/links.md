@@ -7,7 +7,7 @@ permalink: /links/
 
  
  
- Songs:  [Soundcloud](https://soundcloud.com/nicklevantis/) 
+ Songs : [Soundcloud](https://soundcloud.com/nicklevantis/) 
 
  Videos: [Youtube](https://youtube.com/nicklevantis/) 
 
