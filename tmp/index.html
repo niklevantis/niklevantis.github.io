@@ -18,7 +18,7 @@
   <link rel="shortcut icon" href="favicon.ico">
 
 <style>
-  
+
   body {
  font-family: helvetica, arial;
  padding:20px;
@@ -126,7 +126,7 @@ a:hover{color:#ccc;transition-timing-function: ease-in-out; transition: 0.45s;}
 	font-size: 30px;
 	background-color: yellow;
 	z-index: 100000;
-	
+
 }
 
 
@@ -171,34 +171,34 @@ a:hover{color:#ccc;transition-timing-function: ease-in-out; transition: 0.45s;}
 	font-size: 30px;
 	background-color: red;
 	z-index: 100000;
-	
+
 }
-	
+
 .audio {
 	display:inline-block;
 	padding-bottom: 20px;
 }
 
-@media screen and (max-width: 768px) { 
+@media screen and (max-width: 768px) {
   img {
     left: 50%;
-    margin-left: -512px;  
+    margin-left: -512px;
   }
 .word_action, .fragment_text, p, a{ font-size:25px}
 
 .colorize {
 		display: none;
 	}
-	
+
 .left {
 	width: 80%;
 	}
-	
+
 	.play {
 		font-size: 15px;
 	}
-	
-	
+
+
 	.stop {
 		font-size: 15px;
 	}
@@ -360,11 +360,11 @@ h1 {
 .left::-webkit-scrollbar {
     width: .2em;
 }
- 
+
 v::-webkit-scrollbar-track {
     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0);
 }
- 
+
 .left::-webkit-scrollbar-thumb {
   background-color: white;
   outline: 1px solid slategrey;
@@ -562,7 +562,6 @@ div [class*=underline]{
     line-height:70%
 }
 
- 
 
 
 </style>
@@ -570,9 +569,9 @@ div [class*=underline]{
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	
+
 	<title></title>
-	
+
 	<!--[if lt IE 9]>
 	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 	<![endif]-->
@@ -585,7 +584,7 @@ div [class*=underline]{
 <div class="frame">
     <div></div>
 
-  
+
 </div>
 <h1>✖</h1>
 <div id="img-container">
@@ -628,14 +627,16 @@ div [class*=underline]{
 
 </br>
 
+<a class="twitter-timeline" data-width="600" data-link-color="#000000" data-tweet-limit="1" href="https://twitter.com/nicklevantis?ref_src=twsrc%5Etfw">Tweets by nicklevantis</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>
   $(document).ready(function() {
-  
+
   var $player = $('.audio');
-  
+
   $player.each(function(index) {
     var audio = $(this).find('audio')[0];
     var $playButton = $(this).find('.play');
@@ -645,21 +646,21 @@ div [class*=underline]{
       $player.trigger('stop_all');
       audio.play();
     });
- 
+
     $stopButton.on('click', function(){
       audio.pause();
     });
-   
+
     $player.on('stop_all', function(){
       audio.pause();
     });
-    
+
   });
 });
 
-  
+
 </script>
-    
+
 <script>
 var Application = ( function () {
         var canvas;
@@ -698,8 +699,8 @@ var Application = ( function () {
         };
     }());
 
-    Application.init();    
-    
+    Application.init();
+
 </script>
   <script type="text/javascript" src="assets/js/home.js"></script>
   <script type="text/javascript">
@@ -716,9 +717,9 @@ var Application = ( function () {
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
-      
+
         gtag('config', 'UA-11329699-4');
       </script>
-      
+
 </body>
 </html>
