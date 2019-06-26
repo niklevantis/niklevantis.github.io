@@ -16,12 +16,12 @@
 
 // Font families
 @mixin ff--sans-serif($font-weight: normal) {
-    font-family: 'Inconsolata', monospace;
+    font-family: 'Roboto', sans-serif;
     font-weight: $font-weight;
 }
 
 @mixin ff--code {
-    font-family: 'Inconsolata', monospace;
+    font-family: 'Roboto', sans-serif;
 }
 
 // Font sizing
