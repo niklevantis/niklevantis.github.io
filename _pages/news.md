@@ -1,6 +1,7 @@
 ---
 layout: page
 title: News
+permalink: /links/
 ---
 
 <section class="c-archives">
