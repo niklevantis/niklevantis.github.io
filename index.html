@@ -12,12 +12,12 @@ title: Home
     {% capture next_year %}{{ post.previous.date | date: "%Y" }}{% endcapture %}
 
     {% if forloop.first %}
-        <h2 class="c-archives__year" id="{{ this_year }}-ref">{{this_year}}</h2>
+        <h3 class="c-archives__year" id="{{ this_year }}-ref">{{this_year}}</h3>
         <ul class="c-archives__list">
     {% endif %}
         <li class="c-archives__item">
             <h3><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></h3>
-            <h4>{{ post.date | date: "%b %-d, %Y" }}</h4>
+            <h3>{{ post.date | date: "%b %-d, %Y" }}</h3>
         </li>
     {% if forloop.last %}
         </ul>
