@@ -17,7 +17,7 @@ title: Home
     {% endif %}
         <li class="c-archives__item">
             <h3><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></h3>
-            <p>{{ post.date | date: "%b %-d, %Y" }}</p>
+            <h4>{{ post.date | date: "%b %-d, %Y" }}</h4>
         </li>
     {% if forloop.last %}
         </ul>
