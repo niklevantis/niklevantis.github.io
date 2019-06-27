@@ -8,6 +8,15 @@
 
 .c-page__header {
     margin-bottom: 10rem; // 100px
+        margin-bottom: 10rem;
+        display: inline-block;
+        width: 100%;
+        align-content: center;
+        align-items: center;
+        text-align: center;
+    }
+    
+    
     display: inline-block;
     h1 {
         margin-bottom: 2.5rem; // 25px
@@ -21,10 +30,10 @@
 }
 
 .logo {
-	position:fixed;
-	left:10px;
+	margin 0 auto;
+    padding-bottom: 5rem;
 	display:block;
-	top: 10px;
+
 }
 
 .c-page__footer {
