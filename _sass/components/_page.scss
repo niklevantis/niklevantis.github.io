@@ -1,0 +1,72 @@
+/* ==========================================================================
+   Page
+   ========================================================================== */
+
+.c-page {
+
+}
+
+.c-page__header {
+    margin-bottom: 10rem; // 100px
+        margin-bottom: 10rem;
+        display: inline-block;
+        width: 100%;
+        align-content: center;
+        align-items: center;
+        text-align: center;
+    }
+    
+    .c-page__header a {
+		font-size: 17px;
+	}
+	
+	h1 {
+        margin-bottom: 2.5rem; // 25px
+        @include fs--heading-2;
+        color: $c-base__02;
+    }
+
+    p {
+        line-height:1.6;
+    }
+   
+   
+
+   
+   .logo {
+	margin: 0 auto;
+    padding-bottom: 5rem;
+	display:block;
+
+}
+
+.c-page__footer p {
+    line-height: 1.5;
+    font-size: 1.3rem!important;
+
+}
+
+
+
+.c-page__footer {
+    margin-bottom: 10rem;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-wrap: wrap;
+        -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+        -ms-flex-align: center;
+            align-items: center;
+    p {
+        @include fs--body;
+        color: $c-base__01;
+    }
+}

@@ -1,0 +1,14 @@
+---
+layout: post
+title:  "ORCΛ esoteric Programming Language "
+date:   2019-06-18 10:18:00
+description: Music
+---
+
+![Orca](https://nicklevantis.com/img/posts/orca.jpg)
+
+ORCA is an open-source visual programming language, designed to create procedural sequencers on the fly, and control other applications.
+
+ORCA is not a synthesizer, but a livecoding environment to write generative tools able to send MIDI, OSC or UDP data to DAWs (like Ableton, Renoise, VCV Rack, etc.), or an audio server such as SuperCollider. You can also use Pilot, a companion application to ORCA.
+
+<iframe width="1012" height="574" src="https://www.youtube.com/embed/GTNNNIn_gJs" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
