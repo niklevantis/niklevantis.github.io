@@ -20,7 +20,7 @@ article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{
     display:block
 }
 body{
-    line-height:1;
+    line-height:1.2;
     font-family: 'Work Sans', sans-serif;
 }
 ol,ul{
@@ -71,7 +71,7 @@ p {
 
 
 h1, h2, h3, h4 {
-	font-weight: 700;
+	font-weight: 400;
 }
 
 h1 {
@@ -95,10 +95,10 @@ details summary::-webkit-details-marker{
     content:''
 }
 .headline,.video-ui .time,h3,dl,#mainmenu a{
-    font-weight: 700;
+    font-weight: 400;
     text-transform:uppercase;
-    font-size:0.9em;
-    line-height:1em
+    font-size:0.8em;
+    line-height:1.2em
 }
 @-moz-keyframes fadeIn{
     from{
@@ -160,8 +160,8 @@ nav{
     z-index:1000
 }
 nav .left.headline,nav .video-ui .left.time,.video-ui nav .left.time,nav blockquote.left,nav h3.left,nav dl.left,nav #mainmenu a.left,#mainmenu nav a.left{
-    font-size:1.2em;
-    font-weight: 700;
+    font-size:0.9em;
+    font-weight: 400;
     letter-spacing:1px;
 }
 nav .center{
