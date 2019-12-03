@@ -25,15 +25,20 @@
 </head>
 
 <body>
-  	<h1>Nick Levantis</h1>
-  	
-  	 	<iframe width="300" height="300" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/428890971&color=%23444444&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=false&visual=true"></iframe>  	  <canvas id="webgl" width="500" height="1758">
-
  
-  </canvas>
+
+ <canvas id="webgl" width="500" height="1758"> </canvas>
+ <div class="container">
+  	<div class="data">NICK LEVANTIS</div>
+<iframe width="20px" height="20" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/397801470&color=%23000000&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"></iframe>
+  	 	
 <div class="foot">
 <a href="https://youtube.com/nicklevantis" target="_blank"> Youtube</a>   <a href="https://soundcloud.com/nicklevantis" target="_blank">Soundcloud</a> <a href="https://nicklevantis.svbtle.com" target="_blank">Svbtle</a>
 </div>
+ 
+ 
+
+
 <script id="vertexShader" type="x-shader/x-vertex">
   attribute vec4 a_position;
   
@@ -67,10 +72,10 @@
   #define pow2(x) (x * x)
 
   const int samples = 2;
-  const float sigma = float(samples) * 0.25;
+  const float sigma = float(samples) * 0.125;
 
   float gaussian(vec2 i) {
-      return 1.0 / (2.0 * PI * pow2(sigma)) * exp(-((pow2(i.x) + pow2(i.y)) / (2.0 * pow2(sigma))));
+      return 1.0 / (4.0 * PI * pow2(sigma)) * exp(-((pow2(i.x) + pow2(i.y)) / (2.0 * pow2(sigma))));
   }
 
   vec3 blur(sampler2D sp, vec2 uv, vec2 scale) {
@@ -98,19 +103,19 @@
     vec2 uv = getScreenSpace();
     vec2 sample = gl_FragCoord.xy / u_resolution;
     
-    vec3 colour = vec3(sin(uv.x)*.5+.5, sin(uv.y)*.5+.5, 1.);
+    vec3 colour = vec3(sin(uv.x)*0.045+0.15, sin(uv.y)*.0131+.931, .805);
     float s = texture2D(u_buffer, sample).r;
     
-    vec2 ps = vec2(1.0) / u_resolution.xy;
+    vec2 ps = vec2(2.0) / u_resolution.xy;
     
     if(u_bufferpass) {
       s = (blur(u_buffer, sample + vec2(.001), ps*blurStrength) * blurMultiplier).r;
       
-      float c = s * .999 + smoothstep(length(ps)*20., .0, length(uv - u_mouse)*.5) * .5;
+      float c = s * .999 + smoothstep(length(ps)*10., .010, length(uv - u_mouse)*.425) * .925;
       colour = vec3(c);
     } else {
-      colour = mix(vec3(0.2), colour, sin(s)*.5+.5);
-      colour *= colour*2.;
+      colour = mix(vec3(10.91), colour, sin(s)*.95+.15);
+      colour *= colour*1.;
     }
 
     gl_FragColor = vec4(colour,9.0);
@@ -134,14 +139,33 @@
     </script>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-11329699-4"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-    
-      gtag('config', 'UA-11329699-4');
-    </script>
+   
+ <script src="https://cdn.jsdelivr.net/npm/baffle@0.3.6/dist/baffle.min.js"></script>
 
+<script>
+const text =  baffle(".data");
+text.set({
+  characters: '░▒░ ░██░> ████▓ >█> ░/█>█ ██░░ █<▒ ▓██░ ░/░▒',
+        speed: 120
+});
+
+text.start();
+text.reveal(4000);
+
+</script>
+
+
+<script>
+const text =  baffle(".foot");
+text.set({
+  characters: '░▒░ ░██░> ████▓ >█> ░/█>█',
+        speed: 120
+});
+
+text.start();
+text.reveal(3000);
+
+</script>
 
 </body>
 
