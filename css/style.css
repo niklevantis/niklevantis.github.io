@@ -37,11 +37,6 @@ text-align:centre;
 	color:grey;
 	font-size: 14px;
 }
-canvas {
-  position: fixed;
-  touch-action: none;
-  opacity:0.09;
-}
 
 
 h1 {
