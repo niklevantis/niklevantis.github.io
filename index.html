@@ -140,8 +140,8 @@ height: 100%;
 
 </head>
 <body>
- <canvas id="webgl" width="500" height="1758"> </canvas>
-<!-- <button><h1>◑</h1></button> -->
+
+
 
 		<!-- Navigation -->
 
@@ -407,90 +407,7 @@ $("button").click(function () {
 
 </script>
 
-<script id="vertexShader" type="x-shader/x-vertex">
-  attribute vec4 a_position;
-  
-  uniform mat4 u_modelViewMatrix;
-  uniform mat4 u_projectionMatrix;
-  
-  void main() {
-    gl_Position = a_position;
-  }
-</script>
 
-<script id="fragmentShader" type="x-shader/x-fragment">
-  precision highp float;
-  
-  uniform vec2 u_resolution;
-  uniform vec2 u_mouse;
-  uniform float u_time;
-  uniform sampler2D u_noise;
-  uniform sampler2D u_buffer;
-  uniform bool u_bufferpass;
-  
-  
-  #define PI 3.141592653589793
-  #define TAU 6.283185307179586
-  
-  vec2 getScreenSpace() {
-    vec2 uv = (gl_FragCoord.xy) / min(u_resolution.y, u_resolution.x);
-    
-    return uv;
-  }
-
-  #define pow2(x) (x * x)
-
-  const int samples = 2;
-  const float sigma = float(samples) * 0.125;
-
-  float gaussian(vec2 i) {
-      return 11.0 / (1.0 * PI * pow2(sigma)) * exp(-((pow2(i.x) + pow2(i.y)) / (11.0 * pow2(sigma))));
-  }
-
-  vec3 blur(sampler2D sp, vec2 uv, vec2 scale) {
-      vec3 col = vec3(0.0);
-      float accum = 0.0;
-      float weight;
-      vec2 offset;
-
-      for (int x = -samples / 2; x < samples / 2; ++x) {
-          for (int y = -samples / 2; y < samples / 2; ++y) {
-              offset = vec2(x, y);
-              weight = gaussian(offset);
-              col += texture2D(sp, uv + scale * offset).rgb * weight;
-              accum += weight;
-          }
-      }
-
-      return col / accum;
-  }
-  
-  const float blurStrength = 1.94;
-  const float blurMultiplier = .998;
-  
-  void main() {
-    vec2 uv = getScreenSpace();
-    vec2 sample = gl_FragCoord.xy / u_resolution;
-    
-    vec3 colour = vec3(sin(uv.x)*0.86015+0.305, sin(uv.y)*.40031+.631, .805);
-    float s = texture2D(u_buffer, sample).r;
-    
-    vec2 ps = vec2(2.0) / u_resolution.xy;
-    
-    if(u_bufferpass) {
-      s = (blur(u_buffer, sample + vec2(.0001), ps*blurStrength) * blurMultiplier).r;
-      
-      float c = s * .999 + smoothstep(length(ps)*10., .0010, length(uv - u_mouse)*.425) * .925;
-      colour = vec3(c);
-    } else {
-      colour = mix(vec3(11.91), colour, sin(s)*.95+.15);
-      colour *= colour*2.;
-    }
-
-    gl_FragColor = vec4(colour,2.0);
-  }
-  
-</script>
   <script src='js/apxlmx.js'></script>
 
   
