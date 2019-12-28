@@ -183,5 +183,98 @@ This situation would not be happening for a long time yet. The social explosion 
 !function(){"use strict";function b(a,b){a.play(),a.setAttribute("data-playing","true"),b.classList.add("playing")}function c(a,b){a.pause(),a.setAttribute("data-playing","false"),b.classList.remove("playing")}var a="listen-node";window.onload=function(){var b,c,d,e=document.getElementsByClassName(a),f=document.createElement("style");f.type="text/css",f.innerHTML=".listen-node {display: inline-block; background:rgba(0, 0, 0, 0.05); padding: 1px 5px; border-radius:4px; cursor: pointer;} .listen-node i {font-size: 0.7em; border: 0.5em solid transparent; border-left: 0.75em solid; display: inline-block; margin-left: 5px;} .listen-node .playing { border: 0; border-left: 0.75em double; border-right: 0.5em solid transparent; height: 1em;}",document.getElementsByTagName("head")[0].appendChild(f);for(var g=0;c=e[g];++g)b=document.createElement("audio"),d=document.createElement("i"),b.src=c.getAttribute("data-src"),b.setAttribute("data-playing","false"),c.id=a+"-"+g,c.insertBefore(d,c.firstChild),c.appendChild(b)},document.addEventListener("click",function(d){var e,f,g;d.target.className===a?(e=d.target.children[1],f=d.target,g=d.target.children[0]):d.target.parentElement&&d.target.parentElement.className===a&&(e=d.target.parentElement.children[1],f=d.target.parentElement,g=d.target),e&&f&&g&&(e.srt=parseInt(f.getAttribute("data-start"))||0,e.end=parseInt(f.getAttribute("data-end"))||e.duration,e&&"false"===e.getAttribute("data-playing")?((e.srt>e.currentTime||e.end<e.currentTime)&&(e.currentTime=e.srt),b(e,g)):c(e,g),function a(){var b=requestAnimationFrame(a),d=100*(e.currentTime-e.srt)/(e.end-e.srt);d=d<100?d:100,f.style.background="linear-gradient(to right, rgba(0, 0, 0, 0.1)"+d+"%, rgba(0, 0, 0, 0.05)"+d+"%)",e.end<e.currentTime&&(c(e,g),cancelAnimationFrame(b))}())})}(); </script>
 <script>$(".text .read-more").click(function(a){a.preventDefault();$(a.currentTarget).parent(".text").toggleClass("open")});</script>
 <script type=text/javascript>(function(d,e,k,j,f,c,b){d.GoogleAnalyticsObject=f;d[f]=d[f]||function(){(d[f].q=d[f].q||[]).push(arguments)},d[f].l=1*new Date();c=e.createElement(k),b=e.getElementsByTagName(k)[0];c.async=1;c.src=j;b.parentNode.insertBefore(c,b)})(window,document,"script","https://www.google-analytics.com/analytics.js","ga");ga("create","UA-11329699-4","nicklevantis.com");ga("send","pageview");</script>
+
+<script id="vertexShader" type="x-shader/x-vertex">
+  attribute vec4 a_position;
+  
+  uniform mat4 u_modelViewMatrix;
+  uniform mat4 u_projectionMatrix;
+  
+  void main() {
+    gl_Position = a_position;
+  }
+</script>
+
+<script id="fragmentShader" type="x-shader/x-fragment">
+  precision highp float;
+  
+  uniform vec2 u_resolution;
+  uniform vec2 u_mouse;
+  uniform float u_time;
+  uniform sampler2D u_noise;
+  uniform sampler2D u_buffer;
+  uniform bool u_bufferpass;
+  
+  
+  #define PI 3.141592653589793
+  #define TAU 6.283185307179586
+  
+  vec2 getScreenSpace() {
+    vec2 uv = (gl_FragCoord.xy) / min(u_resolution.y, u_resolution.x);
+    
+    return uv;
+  }
+  #define pow2(x) (x * x)
+  const int samples = 2;
+  const float sigma = float(samples) * 0.125;
+  float gaussian(vec2 i) {
+      return 11.0 / (1.0 * PI * pow2(sigma)) * exp(-((pow2(i.x) + pow2(i.y)) / (11.0 * pow2(sigma))));
+  }
+  vec3 blur(sampler2D sp, vec2 uv, vec2 scale) {
+      vec3 col = vec3(0.0);
+      float accum = 0.0;
+      float weight;
+      vec2 offset;
+      for (int x = -samples / 2; x < samples / 2; ++x) {
+          for (int y = -samples / 2; y < samples / 2; ++y) {
+              offset = vec2(x, y);
+              weight = gaussian(offset);
+              col += texture2D(sp, uv + scale * offset).rgb * weight;
+              accum += weight;
+          }
+      }
+      return col / accum;
+  }
+  
+  const float blurStrength = 1.94;
+  const float blurMultiplier = .998;
+  
+  void main() {
+    vec2 uv = getScreenSpace();
+    vec2 sample = gl_FragCoord.xy / u_resolution;
+    
+    vec3 colour = vec3(sin(uv.x)*0.86015+0.305, sin(uv.y)*.40031+.631, .805);
+    float s = texture2D(u_buffer, sample).r;
+    
+    vec2 ps = vec2(2.0) / u_resolution.xy;
+    
+    if(u_bufferpass) {
+      s = (blur(u_buffer, sample + vec2(.0001), ps*blurStrength) * blurMultiplier).r;
+      
+      float c = s * .999 + smoothstep(length(ps)*10., .0010, length(uv - u_mouse)*.425) * .925;
+      colour = vec3(c);
+    } else {
+      colour = mix(vec3(11.91), colour, sin(s)*.95+.15);
+      colour *= colour*2.;
+    }
+    gl_FragColor = vec4(colour,2.0);
+  }
+  
+</script>
+  <script src='js/apxlmx.js'></script>
+
+  
+
+    <script  src="js/index.js"></script>
+
+
+<script type="text/javascript">
+        $(document).ready(function(){
+            $("body").mousemove(function(event){
+                $("#cursor").css("left", event.pageX)
+                $("#cursor").css("top", event.pageY)
+            })
+        })
+    </script>
 </body>
 </html>
