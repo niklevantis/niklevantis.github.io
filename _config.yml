@@ -1,6 +1,6 @@
 # Site/SEO settings
 email: nicklevantis@gmail.com
-baseurl: "https://nicklevantis.com"
+baseurl: ""
 permalink: /:year/:month/:day/:title/
 google_analytics: 
 
