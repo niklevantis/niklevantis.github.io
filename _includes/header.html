@@ -1,0 +1,14 @@
+<header class="c-page__header">
+    <div class="logo">
+    <a href="https://www.youtube.com/watch?v=_aDEUADhDSU" target="_blank"><img src="https://nicklevantis.com/img/logo2.gif" alt="logo" style="width:60px;height:60px;"></a></div>
+        <h1>{{ site.description }}</h1>
+	{% if page.title == 'Home' %}
+   
+        <a href="{{ "/" | prepend: site.baseurl }}">Home</a><span class="u-separate"></span> <a href="{{ "/about/" | prepend: site.baseurl }}">About</a><span class="u-separate"></span><a href="{{ "/news/" | prepend: site.baseurl }}">News</a><span class="u-separate"></span> <a href="{{ "/links/" | prepend: site.baseurl }}">Links</a>
+   
+	{% else %}
+  
+        <a href="{{ "/" | prepend: site.baseurl }}">&lt;&ndash;&ndash; Back</a>
+    
+	{% endif %}
+</header>
