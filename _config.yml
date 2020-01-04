@@ -1,31 +1,85 @@
-# Site settings
-title: Nick Levantis
-description: >
-    Nick Levantis
-author: Nick Levantis
+# Site/SEO settings
 email: nicklevantis@gmail.com
-baseurl: "" # the subpath of your site, e.g. /blog
-url: "https://nicklevantis.com" # the base hostname & protocol for your site
-twitter_username: nicklevantis
-soundcloud_username:  nicklevantis
+baseurl: ""
+permalink: /:year/:month/:day/:title/
+google_analytics: 
 
-disqus_shortname: YourDisqusShortname
+name: Nick Levantis
+title: The Barber Theme
+description: >
+  Nick Levantis -Music and artwork exploration
+url: https://nicklevantis.com
+twitter_username: nicklevantis
+default_img: /images/about.jpg
+social:
+  - name: twitter
+    url: https://twitter.com/nicklevantis
+  - name: instagram
+    url: https://www.instagram.com/nicklevantis/
+  - name: linkedin
+    url: https://www.linkedin.com/in/nicklevantis/
+  - name: github
+    url: https://github.com/niklevantis
+  - name: codepen
+    url: https://codepen.io/nicklevantis/
+
+# Contact settings
+contact_img: /images/synth.jpg
+formcarry: https://formcarry.com/s/HkIo0nMb7
+
+# Disqus settings
+disqus: test-apkdzgmqhj
+
+# MailChimp settings
+mailchimp_action: https://samesies.us17.list-manage.com/subscribe/post-json?u=66ddf555dab480e6a8606430b&amp;id=89b3ee034f
+mailchimp_input: b_66ddf555dab480e6a8606430b_89b3ee034f
+
+# Author settings
+author:
+  - name: Nick Levantis
+    bio: TNick Levantis was born and raised in Athens.
+    url: https://nicklevantis.com
+
+# Pagination settings
+pagination:
+  enabled: true
+  debug: false
+  per_page: 12
+  permalink: '/page/:num/'
+  title: ':title'
+  limit: 0
+  sort_field: 'date'
+  sort_reverse: true
+autopages:
+  enabled: true
+  categories:
+    enabled: false
+  collections:
+    enabled: false
+  tags:
+    layouts: 
+      - 'tag.html'
+    title: 'Nick Levantis'
+    permalink: '/tag/:tag'
+    slugify:
+      mode: raw
+      cased: true
 
 # Build settings
-include: [_pages]
 markdown: kramdown
-permalink: /:year/:month/:title
-sass:
-    style: compressed
-
-gems:
-  - jemoji
+plugins:
+  - jekyll-paginate-v2
   - jekyll-sitemap
-# - amp-jekyll # Acceletrated Mobile Pages
-
-# AMP Settings
-# ampdir: amp/
-# enable_amp: true
-
-# Google Analytics
-# google_analytics: UA-XXXXXXXX-X
+compress_html:
+  clippings: all
+  comments: all
+  startings: [html, head, body]
+exclude:
+  - node_modules
+  - .DS_Store
+  - barber.jpg
+  - Gemfile
+  - Gemfile.lock
+  - gulpfile.js
+  - package.json
+  - README.md

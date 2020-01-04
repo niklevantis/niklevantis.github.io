@@ -1,10 +1,21 @@
 ---
-layout: page
-title: Home
+layout: default
+pagination:
+  enabled: true
 ---
+<!-- The main content area -->
+<div class="posts">
+  <div class="grid-xlarge">
+    <div class="posts__container" itemscope itemtype="http://schema.org/Blog" data-columns>
 
+      {% for post in paginator.posts %}
 
+        <!-- The tag below includes the markup for each post - partials/post-card.html -->
+        {% include post-card.html %}
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/6FH82Lyt4EE?controls=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-</br>
-</br></br></br></br>
+      {% endfor %}
+    </div>
+  </div>
+
+  {% include pagination.html %}
+</div>
