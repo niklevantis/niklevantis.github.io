@@ -209,4 +209,4 @@ pause:after {
   
 }
 
-.notes {display:none;}
+.notes {display:none!important;}
