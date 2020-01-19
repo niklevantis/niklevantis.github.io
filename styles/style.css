@@ -73,9 +73,9 @@ p > a {
 
 .song:before { background: #2bc5b4; }
 .music:before { background: #f32782; opacity: 0.6; }
-.svbtle:before { background:  #5851db; }
-.soundcloud:before { background: orangered; }
-.twitter:before { background: #00acee; }
+.svbtle:before { background:  #5851db; opacity: 0.4;}
+.soundcloud:before { background: orangered; opacity: 0.4;}
+.twitter:before { background: #00acee;opacity: 0.4; }
 
 
 .before:before,
