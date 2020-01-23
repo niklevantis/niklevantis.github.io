@@ -23,6 +23,8 @@ a { cursor: pointer; text-decoration:none; color: #202020; }
     margin: 0 auto;
 }
 
+.listen-node {margin-left: -40px;}
+
 p {
     font-size: 1.3rem;
     line-height: 2.5rem;
@@ -166,4 +168,6 @@ footer {
     margin-top:100px;
     margin-bottom:100px;
 }
+
+
 
