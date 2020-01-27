@@ -161,7 +161,7 @@ p > a {
      }
 }
 
-@media screen and (max-width: 560px) {
+@media screen and (max-width: 900px) {
     
     body { padding: 40px; }
 }
@@ -169,6 +169,15 @@ p > a {
 footer {
     margin-top:100px;
     margin-bottom:100px;
+
+#content {
+    position: relative;
+    top:5vh;
+    margin-bottom: 30vh;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
 }
 
 
