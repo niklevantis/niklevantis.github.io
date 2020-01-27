@@ -16,12 +16,16 @@ body{
 a { cursor: pointer; text-decoration:none; color: #202020; }
 
 #content {
-    position: relative;
-    top:30vh;
-    margin-bottom: 30vh;
-    max-width: 500px;
-    margin: 0 auto;
+  position: relative;
+  top:36vh;
+  margin-bottom: 30vh;
+  max-width: 500px;
+  margin: 0 auto;
+  
+    
 }
+
+.listen-node {margin-left: -40px;}
 
 p {
     font-size: 1.3rem;
@@ -175,4 +179,6 @@ footer {
 }
 
 }
+
+
 
