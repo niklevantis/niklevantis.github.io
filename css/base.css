@@ -246,10 +246,10 @@ a:after {
         color:orangered;
     }
 
-    .instagram a {
+    .svbtle a {
         color: #833AB4;
     }
-    .instagram a:hover {
+    .svbtle a:hover {
         color: #833AB4;
     }
 
@@ -261,6 +261,6 @@ a:after {
     }
 
     .spacer {
-        height: 12vh;
+        height: 1vh;
     }
 }
