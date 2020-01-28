@@ -77,7 +77,7 @@ body, html {
 }
 
 .spacer {
-    height: 1vh;
+    height: 2vh;
 }
 
 .marquee-left, .marquee-right {
@@ -148,7 +148,7 @@ a:after {
 
 .hover-reveal {
     position: fixed;
-    width: 500px;
+    width: 450px;
     height: 350px;
     top: 0;
     left: 0;
@@ -207,60 +207,15 @@ a:after {
     body {
         background-color: #ffffff;
     }
-    a {
-        -webkit-text-stroke-width: 0px;
-        -webkit-text-stroke-color: #000000;
-        color: #ffffff;
-    }
+   
 
     a:after {
         width: 50px;
         background-color: #262626;
     }
 
-    .nick a {
-        color: #262626;
-    }
-    .nick a:hover {
-        color: #262626;
-    }
-
-    .title a {
-        color: #1505E6;
-    }
-    .title a:hover {
-        color: #1505E6;
-    }
-
-    .youtube a {
-        color: red;
-    }
-    .youtube a:hover {
-        color: #ff0000;
-    }
-
-    .soundcloud a {
-        color: #ff4500;
-    }
-    .soundcloud a:hover {
-        color:orangered;
-    }
-
-    .svbtle a {
-        color: #833AB4;
-    }
-    .svbtle a:hover {
-        color: #833AB4;
-    }
-
-    .twitter a {
-        color: #1DA1F2;
-    }
-    .twitter a:hover {
-        color: #1DA1F2;
-    }
-
+    
     .spacer {
-        height: 1vh;
+        height: 2vh;
     }
 }

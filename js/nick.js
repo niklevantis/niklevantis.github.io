@@ -183,14 +183,14 @@ else
 
         /** nick hover **/
         $( ".nick a" ).mouseover(function() {
-            $('.outer-wrapper').data('original-color', $(this).css('background-color')).css('background-color','#262626');
+            $('.outer-wrapper').data('original-color', $(this).css('background-color')).css('background-color','#ffbb0e');
         }).mouseleave(function() {
 //        $(this).css("color", $(this).data("original-text-color"));
         });
 
         /** Title hover **/
         $( ".title a" ).mouseover(function() {
-            $('.outer-wrapper').data('original-color', $(this).css('background-color')).css('background-color','#1505E6');
+            $('.outer-wrapper').data('original-color', $(this).css('background-color')).css('background-color','#7ED9D9');
         }).mouseleave(function() {
 //        $('.outer-wrapper').css("background-color", $('.outer-wrapper').data("original-color"));
         });
@@ -231,21 +231,21 @@ else
 
         $('.marquee-left').marquee({
             direction: 'left',
-            duration: 40000,
+            duration: 30000,
             gap: 0,
             delayBeforeStart: 0,
             duplicated: true,
-            //pauseOnHover: true,
+            pauseOnHover: true,
             startVisible: true
         });
 
         $('.marquee-right').marquee({
             direction: 'right',
-            duration: 40000,
+            duration: 30000,
             gap: 0,
             delayBeforeStart: 0,
             duplicated: true,
-            //pauseOnHover: true,
+            pauseOnHover: true,
             startVisible: true
         });
     });
