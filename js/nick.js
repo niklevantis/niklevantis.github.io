@@ -183,7 +183,7 @@ else
 
         /** nick hover **/
         $( ".nick a" ).mouseover(function() {
-            $('.outer-wrapper').data('original-color', $(this).css('background-color')).css('background-color','#ffbb0e');
+            $('.outer-wrapper').data('original-color', $(this).css('background-color')).css('background-color','#ffbb0e',"opacity:0.3");
         }).mouseleave(function() {
 //        $(this).css("color", $(this).data("original-text-color"));
         });
