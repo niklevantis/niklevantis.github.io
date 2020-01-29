@@ -2,7 +2,8 @@
 .heading.fscroll h1 {
 	top: 0;
 	position: fixed;
-	width: 100%
+	width: 100%;
+	
 }
 
 a,
@@ -360,7 +361,8 @@ html {
 	justify-content: center;
 	height: 100vh;
 	align-items: center;
-	background: #fff
+	background: #fff;
+	
 }
 
 .heading.fscroll {
@@ -382,6 +384,7 @@ html {
 	display: flex;
 	justify-content: center;
 	margin: 0
+
 }
 
 .heading p {
@@ -501,4 +504,11 @@ html {
 	.heading .split {
 		font-size: 245px
 	}
+}
+
+
+iframe {display:inline-block;margin-bottom: 7px;}
+
+strong {
+color: grey;
 }
