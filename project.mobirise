@@ -1,7 +1,7 @@
 {
   "settings": {
     "name": "Nick Levantis",
-    "currentPage": "works.html",
+    "currentPage": "index.html",
     "theme": {
       "name": "mobirise-amp",
       "title": "Mobirise AMP",
@@ -743,7 +743,7 @@
             },
             ".mbr-col-sm-12, .mbr-text": {
               "color": "#767676",
-              "text-align": "left"
+              "text-align": "center"
             }
           },
           "_name": "footer1",
@@ -1304,7 +1304,7 @@
             },
             ".mbr-col-sm-12, .mbr-text": {
               "color": "#767676",
-              "text-align": "left"
+              "text-align": "center"
             }
           },
           "_name": "footer1",
@@ -1970,7 +1970,7 @@
             },
             ".mbr-col-sm-12, .mbr-text": {
               "color": "#767676",
-              "text-align": "left"
+              "text-align": "center"
             }
           },
           "_name": "footer1",
@@ -2548,7 +2548,7 @@
             },
             ".mbr-col-sm-12, .mbr-text": {
               "color": "#767676",
-              "text-align": "left"
+              "text-align": "center"
             }
           },
           "_name": "footer1",
@@ -3107,7 +3107,7 @@
             },
             ".mbr-col-sm-12, .mbr-text": {
               "color": "#767676",
-              "text-align": "left"
+              "text-align": "center"
             }
           },
           "_name": "footer1",
@@ -3666,7 +3666,7 @@
             },
             ".mbr-col-sm-12, .mbr-text": {
               "color": "#767676",
-              "text-align": "left"
+              "text-align": "center"
             }
           },
           "_name": "footer1",
@@ -4541,7 +4541,7 @@
             },
             ".mbr-col-sm-12, .mbr-text": {
               "color": "#767676",
-              "text-align": "left"
+              "text-align": "center"
             }
           },
           "_name": "footer1",
@@ -5237,7 +5237,7 @@
             },
             ".mbr-col-sm-12, .mbr-text": {
               "color": "#767676",
-              "text-align": "left"
+              "text-align": "center"
             }
           },
           "_name": "footer1",
@@ -5819,7 +5819,7 @@
             },
             ".mbr-col-sm-12, .mbr-text": {
               "color": "#767676",
-              "text-align": "left"
+              "text-align": "center"
             }
           },
           "_name": "footer1",
@@ -6401,7 +6401,7 @@
             },
             ".mbr-col-sm-12, .mbr-text": {
               "color": "#767676",
-              "text-align": "left"
+              "text-align": "center"
             }
           },
           "_name": "footer1",
@@ -6983,7 +6983,7 @@
             },
             ".mbr-col-sm-12, .mbr-text": {
               "color": "#767676",
-              "text-align": "left"
+              "text-align": "center"
             }
           },
           "_name": "footer1",
@@ -7565,7 +7565,7 @@
             },
             ".mbr-col-sm-12, .mbr-text": {
               "color": "#767676",
-              "text-align": "left"
+              "text-align": "center"
             }
           },
           "_name": "footer1",
@@ -8147,7 +8147,7 @@
             },
             ".mbr-col-sm-12, .mbr-text": {
               "color": "#767676",
-              "text-align": "left"
+              "text-align": "center"
             }
           },
           "_name": "footer1",
@@ -8787,7 +8787,7 @@
             },
             ".mbr-col-sm-12, .mbr-text": {
               "color": "#767676",
-              "text-align": "left"
+              "text-align": "center"
             }
           },
           "_name": "footer1",
@@ -9410,7 +9410,7 @@
             },
             ".mbr-col-sm-12, .mbr-text": {
               "color": "#767676",
-              "text-align": "left"
+              "text-align": "center"
             }
           },
           "_name": "footer1",
@@ -10181,7 +10181,7 @@
             },
             ".mbr-col-sm-12, .mbr-text": {
               "color": "#767676",
-              "text-align": "left"
+              "text-align": "center"
             }
           },
           "_name": "footer1",
@@ -10953,7 +10953,7 @@
             },
             ".mbr-col-sm-12, .mbr-text": {
               "color": "#767676",
-              "text-align": "left"
+              "text-align": "center"
             }
           },
           "_name": "footer1",
