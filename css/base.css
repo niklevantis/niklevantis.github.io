@@ -290,9 +290,9 @@ body {
   }
   
   .content__type-special {
-	font-size: 30vw;
+	font-size: 40vw;
 	display: block;
-	margin: 0 auto;
+	margin: -3vh auto;
 	text-align: center;
   }
   
