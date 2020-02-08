@@ -458,6 +458,17 @@ bottom: 0;
 left: 0;
 }
 
+.not {
+	text-align: center;
+	margin: 0 auto;
+	display:inline-block;
+	bottom:10vw;
+	position: absolute
+
+	
+	  }
+
+	 
 
 
 .centre {
@@ -632,3 +643,4 @@ main {
 p{font-size: 3vw;
 line-height: 3vh;
   }}
+
