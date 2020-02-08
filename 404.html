@@ -1,15 +1,59 @@
----
-layout: default
-title: Page Not Found
-permalink: /404
----
-<!--
-This error template is used for all 404 errors, which might occur on your site.
-It's a good idea to keep this template as minimal as possible in terms of both file size and complexity.
--->
-<section class="mast section-padding--double">
-  <div class="grid-small">
-    <h2>404</h2>
-    <p class="mast__text">This page does not exist.</p>
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+
+    <title>Nick Levantis</title>
+    <meta name="description" content="Nick Levantis — life and emotions through visuals and sounds - Music and Artwork Exploration" />
+    <meta name="keywords" content="music, electronic music, experimental music" />
+    <meta name="author" content="Nick Levantis" />
+    <link rel="shortcut icon" href="https://nicklevantis.com/favicon.ico" />
+    <meta name="OWNER" content="Nick Levantis" />
+    <meta name="AUTHOR" content="Nick Levantis" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="HandheldFriendly" content="true">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+
+    <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/3.3.0/build/cssreset/reset-min.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel='stylesheet' href='css/owl.carousel.min.css'>
+
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script type="text/javascript" src="js/js.js"></script>
+    <script type="text/javascript" src="js/jquery.stellar.min.js"></script>
+    <script type="text/javascript" src="js/waypoints.min.js"></script>
+    <script type="text/javascript" src="js/jquery.easing.1.3.js"></script>
+
+</head>
+
+<body>
+
+    <div class="slide" id="slide1" data-slide="1" data-stellar-background-ratio="0.5">
+        <a class="button" data-slide="2" title="">404</a>
+        <a href="https://nicklevantis.com/" >Return to Site</a>  
+    </div>
+
+   
+    
   </div>
-</section>
+
+  
+    
+
+    <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+    <script src="js/accordion.js"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
+    <script src='js/owl.carousel.js'></script>
+    <script src="js/count.js"></script>
+
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script>
+    <script type="text/javascript">
+      !function(){"use strict";function b(a,b){a.play(),a.setAttribute("data-playing","true"),b.classList.add("playing")}function c(a,b){a.pause(),a.setAttribute("data-playing","false"),b.classList.remove("playing")}var a="listen-node";window.onload=function(){var b,c,d,e=document.getElementsByClassName(a),f=document.createElement("style");f.type="text/css",f.innerHTML=".listen-node {display: inline-block; background:rgba(0, 0, 0, 0.05); padding: 1px 5px; border-radius:4px; cursor: pointer;} .listen-node i {font-size: 0.7em; border: 0.5em solid transparent; border-left: 0.75em solid; display: inline-block; margin-left: 5px;} .listen-node .playing { border: 0; border-left: 0.75em double; border-right: 0.5em solid transparent; height: 1em;}",document.getElementsByTagName("head")[0].appendChild(f);for(var g=0;c=e[g];++g)b=document.createElement("audio"),d=document.createElement("i"),b.src=c.getAttribute("data-src"),b.setAttribute("data-playing","false"),c.id=a+"-"+g,c.insertBefore(d,c.firstChild),c.appendChild(b)},document.addEventListener("click",function(d){var e,f,g;d.target.className===a?(e=d.target.children[1],f=d.target,g=d.target.children[0]):d.target.parentElement&&d.target.parentElement.className===a&&(e=d.target.parentElement.children[1],f=d.target.parentElement,g=d.target),e&&f&&g&&(e.srt=parseInt(f.getAttribute("data-start"))||0,e.end=parseInt(f.getAttribute("data-end"))||e.duration,e&&"false"===e.getAttribute("data-playing")?((e.srt>e.currentTime||e.end<e.currentTime)&&(e.currentTime=e.srt),b(e,g)):c(e,g),function a(){var b=requestAnimationFrame(a),d=100*(e.currentTime-e.srt)/(e.end-e.srt);d=d<100?d:100,f.style.background="linear-gradient(to right, rgba(0, 0, 0, 0.1)"+d+"%, rgba(0, 0, 0, 0.05)"+d+"%)",e.end<e.currentTime&&(c(e,g),cancelAnimationFrame(b))}())})}(); </script>
+      
+
+</body>
+
+</html>
