@@ -473,7 +473,10 @@ left: 0;
 
 	}
 	 
+.big {
 
+	font-size: 20vw;
+}
 
 .centre {
   position: absolute;
