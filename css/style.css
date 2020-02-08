@@ -440,8 +440,10 @@ a.active:after {
 content: "−";
 }
 
+strong {
+font-weight: 900;
 
-
+}
 /* Movement */
 .movement  {
 position:relative;
@@ -651,3 +653,15 @@ p{font-size: 3vw;
 line-height: 3vh;
   }}
 
+.sc{
+	display: block;
+text-align: center;
+font-size: 50vw;
+margin-top:17vw;
+}
+
+.sc:hover{
+
+color: rgba(0, 0, 0, 0.915);
+cursor:pointer;
+}

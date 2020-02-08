@@ -47,7 +47,7 @@
 </div>
 
 <div class="slide" id="slide3" data-slide="3" data-stellar-background-ratio="0.5">
-  <a class="button2" data-slide="2" title="">▲</a>
+  <a class="button1" data-slide="4" title="">▲</a>
         <ul class="accordion">
             <li>
                 <a>About</a>
@@ -66,7 +66,7 @@
                 </p>
             </li>
             <li>
-                <a>News</a>
+                <a class="active">News</a>
 
             </li>
         </ul>
@@ -82,7 +82,7 @@
             <div class="b">
 
                 <h1>ORCA</h1>
-                <p>My new favorite music sequencer is Orca. Designed by Devine Lu Linvega (Hundred Rabbits) and is a ingenious approach that really takes every musical idea to another level. Orca is an esoteric programming language, designed to create procedural sequencers in which each letter of the alphabet is an operation, where lowercase letters operate on bang, uppercase letters operate on each frame. The application is not a synthesizer, but a flexible livecoding environment capable of sending MIDI, OSC & UDP to your audio interface, like Ableton, Renoise, VCV Rack or SuperCollider. You can also use Pilot, a companion application to ORCA. Find Orca here</p>
+                <p>My new favorite music sequencer is <strong>Orca</strong>. Designed by Devine Lu Linvega (Hundred Rabbits) and is a ingenious approach that really takes every musical idea to another level. Orca is an esoteric programming language, designed to create procedural sequencers in which each letter of the alphabet is an operation, where lowercase letters operate on bang, uppercase letters operate on each frame. The application is not a synthesizer, but a flexible livecoding environment capable of sending MIDI, OSC & UDP to your audio interface, like Ableton, Renoise, VCV Rack or SuperCollider. You can also use Pilot, a companion application to ORCA. Find Orca here</p>
             </div>
             <div class="b">
                 <h1>BAD</h1>
@@ -106,6 +106,8 @@
   
     <br>
     <br>
+    <div class="slide" id="slide4" data-slide="4" data-stellar-background-ratio="0.5">
+
     <footer>
       
         <h5>
@@ -114,9 +116,9 @@
     <a href="https://nicklevantis.svbtle.com/" target="_blank">Svbtle</a>
   </h5>
     </footer>
-
+   
     <div class="space"></div>
-
+    <div class="sc" onclick="call()">▲</div> </div>
     <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
     <script src="js/accordion.js"></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
@@ -127,6 +129,16 @@
     <script type="text/javascript">
       !function(){"use strict";function b(a,b){a.play(),a.setAttribute("data-playing","true"),b.classList.add("playing")}function c(a,b){a.pause(),a.setAttribute("data-playing","false"),b.classList.remove("playing")}var a="listen-node";window.onload=function(){var b,c,d,e=document.getElementsByClassName(a),f=document.createElement("style");f.type="text/css",f.innerHTML=".listen-node {display: inline-block; background:rgba(0, 0, 0, 0.06); padding: 0 ; border-radius:4px; cursor: pointer;} .listen-node i {font-size: 0.7em; border: 0.5em solid transparent; border-left: 0.75em solid; display: inline-block; margin-left: 5px;} .listen-node .playing { border: 0; border-left: 0.75em double; border-right: 0.5em solid transparent; height: 1em;}",document.getElementsByTagName("head")[0].appendChild(f);for(var g=0;c=e[g];++g)b=document.createElement("audio"),d=document.createElement("i"),b.src=c.getAttribute("data-src"),b.setAttribute("data-playing","false"),c.id=a+"-"+g,c.insertBefore(d,c.firstChild),c.appendChild(b)},document.addEventListener("click",function(d){var e,f,g;d.target.className===a?(e=d.target.children[1],f=d.target,g=d.target.children[0]):d.target.parentElement&&d.target.parentElement.className===a&&(e=d.target.parentElement.children[1],f=d.target.parentElement,g=d.target),e&&f&&g&&(e.srt=parseInt(f.getAttribute("data-start"))||0,e.end=parseInt(f.getAttribute("data-end"))||e.duration,e&&"false"===e.getAttribute("data-playing")?((e.srt>e.currentTime||e.end<e.currentTime)&&(e.currentTime=e.srt),b(e,g)):c(e,g),function a(){var b=requestAnimationFrame(a),d=100*(e.currentTime-e.srt)/(e.end-e.srt);d=d<100?d:100,f.style.background="linear-gradient(to right, rgba(0, 0, 0, 0.01)"+d+"%, rgba(0, 0, 0, 0.01)"+d+"%)",e.end<e.currentTime&&(c(e,g),cancelAnimationFrame(b))}())})}(); </script>
       
+     
+      <script>
+    function call() {
+        var body = $("html, body");
+        body.stop().animate({scrollTop:0}, 500, 'swing', function() {
+        });
+    }
+</script>
+      
+     
 
 </body>
 
