@@ -1,16 +1,89 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset
-      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
-            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
-
-
-<url>
-  <loc>https://nicklevantis.com/</loc>
-  <lastmod>2020-02-08T22:44:48+00:00</lastmod>
-</url>
-
-
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+	<url>
+		<loc>https://nicklevantis.com/index.html</loc>
+	</url>
+	<url>
+		<loc>https://nicklevantis.com/nowhere.html</loc>
+	</url>
+	<url>
+		<loc>https://nicklevantis.com/about.html</loc>
+	</url>
+	<url>
+		<loc>https://nicklevantis.com/songs.html</loc>
+	</url>
+	<url>
+		<loc>https://nicklevantis.com/dystopia.html</loc>
+	</url>
+	<url>
+		<loc>https://nicklevantis.com/romance.html</loc>
+	</url>
+	<url>
+		<loc>https://nicklevantis.com/news.html</loc>
+	</url>
+	<url>
+		<loc>https://nicklevantis.com/contact.html</loc>
+	</url>
+	<url>
+		<loc>https://nicklevantis.com/orca.html</loc>
+	</url>
+	<url>
+		<loc>https://nicklevantis.com/bad.html</loc>
+	</url>
+	<url>
+		<loc>https://nicklevantis.com/Synthsorsoftware.html</loc>
+	</url>
+	<url>
+		<loc>https://nicklevantis.com/messagesfromthepast.html</loc>
+	</url>
+	<url>
+		<loc>https://nicklevantis.com/overthrowandzeroing.html</loc>
+	</url>
+	<url>
+		<loc>https://nicklevantis.com/radium.html</loc>
+	</url>
+	<url>
+		<loc>https://nicklevantis.com/paralogik.html</loc>
+	</url>
+	<url>
+		<loc>https://nicklevantis.com/artwork.html</loc>
+	</url>
+	<url>
+		<loc>https://nicklevantis.com/works.html</loc>
+	</url>
+	<url>
+		<loc>https://nicklevantis.com/blackwhite.html</loc>
+	</url>
+	<url>
+		<loc>https://nicklevantis.com/pigs.html</loc>
+	</url>
+	<url>
+		<loc>https://nicklevantis.com/paintings.html</loc>
+	</url>
+	<url>
+		<loc>https://nicklevantis.com/summer.html</loc>
+	</url>
+	<url>
+		<loc>https://nicklevantis.com/broken.html</loc>
+	</url>
+	<url>
+		<loc>https://nicklevantis.com/videos.html</loc>
+	</url>
+	<url>
+		<loc>https://nicklevantis.com/curve.html</loc>
+	</url>
+	<url>
+		<loc>https://nicklevantis.com/geocolor.html</loc>
+	</url>
+	<url>
+		<loc>https://nicklevantis.com/korgproprologue.html</loc>
+	</url>
+	<url>
+		<loc>https://nicklevantis.com/news2.html</loc>
+	</url>
+	<url>
+		<loc>https://nicklevantis.com/social_loneliness.html</loc>
+	</url>
+	<url>
+		<loc>https://nicklevantis.com/greece.html</loc>
+	</url>
 </urlset>
