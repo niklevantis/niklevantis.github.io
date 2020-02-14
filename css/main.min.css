@@ -249,9 +249,9 @@ button h3 {
 }
 
 @font-face {
-	font-family: HelveticaNeue;
-	src: url(fonts/HelveticaNeueMedium.woff2) format("woff2"), url(fonts/HelveticaNeueMedium.woff) format("woff");
-	font-weight: 500;
+	font-family: Web-Regular;
+	src: url(fonts/Web-Regular.woff2) format("woff2"), url(fonts/Web-Regular.woff) format("woff");
+	font-weight: normal;
 	font-style: normal
 }
 
@@ -266,8 +266,8 @@ li,
 p,
 section,
 ul {
-	font-family: HelveticaNeue, Helvetica, Arial, sans-serif;
-	font-weight: 500;
+	font-family: 'Web-Regular', Helvetica, Helvetica Neue, Arial, sans-serif;
+	font-weight: normal;
 	font-size: 24px;
 	line-height: 1.15;
 	-webkit-text-size-adjust: 100%
