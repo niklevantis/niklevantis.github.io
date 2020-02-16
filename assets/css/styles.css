@@ -238,10 +238,10 @@ header li .active{
         width:calc(100% - 80px)
     }
     .header_text ul li{
-        letter-spacing: .3px;
-        text-align: left;
-        font-size: 52px;
-        line-height: 65px;
+        letter-spacing:.3px;
+        text-align:left;
+        font-size:24px;
+        line-height:55px
     }
 }
 @media only screen and (max-width:414px){
