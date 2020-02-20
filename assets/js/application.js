@@ -106,3 +106,5 @@ layers.forEach(function(layer) {
   layer.addEventListener('mouseleave', randomize);
   // layer.addEventListener('mouseout', randomize);
 });
+
+
