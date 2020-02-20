@@ -116,7 +116,7 @@ body {
   height: 100vh;
   grid-template-columns: repeat(2, 1fr);
   z-index: 300;
-  background: rgba(0, 0, 0, 0.1); 
+  background: rgba(0, 0, 0, 0); 
   
 }
 
@@ -311,7 +311,6 @@ body {
     position: static;
     width: 100%;
     height: auto;
-    outline: solid 1px red; 
     overflow: hidden;
   }
 
