@@ -116,9 +116,14 @@ body {
   height: 100vh;
   grid-template-columns: repeat(2, 1fr);
   z-index: 300;
-  background: rgba(0, 0, 0, 0); 
-  
+  background: url(../images/dot.png) repeat; 
+ 
 }
+  
+
+
+
+
 
 .layer {
   opacity: 0;
@@ -154,6 +159,7 @@ body {
   text-shadow: #000 1px 1px 1px;
   animation: textanimation .3s infinite;
   opacity: 0.7;
+  
 }
 
 .layer-content a {
