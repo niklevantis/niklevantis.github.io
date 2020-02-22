@@ -120,8 +120,12 @@ li {
     transform: translateX(-50%) translateY(-50%) scale(2);
     background-size: 100%;
     background-position: 50%;
-    opacity:.4;
+  
+  
 }
+
+
+
 
 .white_bc {
     width: 100%;
@@ -468,3 +472,38 @@ cursor: pointer;
   z-index: 99999;
 
 }
+
+
+#title .hide {
+      opacity: 0;
+      transition: opacity 0.2s;
+      color:grey;
+     text-transform: uppercase;
+}
+
+   
+
+#title:hover .hide {
+      opacity: 1;
+      transition: opacity 0.2s;
+    
+}
+
+#title {
+    padding: 20px 32px;
+    margin: 0;
+    z-index: 102;
+    color:#414141;
+        cursor: pointer;
+  
+}
+
+
+#title,
+.white_bc {
+    position: fixed;
+    left: 0;
+    top: 0
+}
+
+.smallfont{font-size: 10px}
