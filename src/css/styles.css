@@ -353,6 +353,12 @@ nav a {
   line-height: 1.3;
 }
 
+.about {
+    display: block;
+    padding:1% 18% 0 18%; 
+   
+}
+
 #mainWrapper, #pageWrapper {
   display: grid;
   padding: 10vH 8vW 8vH 8vW;
@@ -502,13 +508,28 @@ Modify as content requires.
 
 @media only screen and (min-width: 35em) {
     /* Style adjustments for viewports that meet the condition */
+    
+
 }
+    
+@media only screen and (max-width: 768px) {
+    /* Style adjustments for viewports that meet the condition */
+    
+    .about {
+ 
+    padding:2% 2% 0 4%; 
+   
+}    
+    
+}
+    
 
 @media print,
 (-webkit-min-device-pixel-ratio: 1.25),
 (min-resolution: 1.25dppx),
 (min-resolution: 120dpi) {
     /* Style adjustments for high resolution devices */
+    
 }
 
 /* ==========================================================================
@@ -572,7 +593,7 @@ http://www.phpied.com/delay-loading-your-print-css/
     img {
         page-break-inside: avoid;
     }
-
+#82c6c3
     img {
         max-width: 100% !important;
     }
@@ -588,11 +609,11 @@ http://www.phpied.com/delay-loading-your-print-css/
     h3 {
         page-break-after: avoid;
     }
-}
+    
 
-
-.about {
-    display: block;
-    padding:6% 8% 0 8%; 
    
+}  
+    
 }
+
+
