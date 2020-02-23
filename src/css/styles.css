@@ -202,11 +202,12 @@ ul, li {
 }
 
 h2 {
-  font-size: 1.5rem;
+  font-size: 2.4rem;
   font-weight: normal;
-  line-height: 2.5rem;
+  line-height: 1.4;
   margin: 0;
   padding: 0;
+  letter-spacing: 0.1rem
 }
 
 p {
@@ -331,12 +332,13 @@ circle {
 
 header {
   display: grid;
-  grid-template-columns: 2fr 1fr;
+  grid-template-columns: 2fr .2fr;
   grid-gap: 30px;
   padding: 4rem 5rem;
-  font-size: 1.5rem;
+  font-size: 2.1rem;
   font-weight: normal;
-  line-height: 2.5rem;
+     letter-spacing: 0.1rem
+  line-height: 1.4;
 }
 
 nav a {
