@@ -201,7 +201,7 @@ margin: 0 auto;
   	  width: 100%;
 	  }
 	  .button{
-	  margin-top:-1vw;
+	  margin-top:-10vw;
 	  margin-left:-50%;
 	  position:absolute;
 	  top:50%;
@@ -223,7 +223,7 @@ margin: 0 auto;
 	  -o-transform: rotate(-180deg);
 	 
 	  }
-	  .button:hover{
+	  .button a:hover{
 	  cursor:pointer;
 	  text-decoration:none;
 	  color:rgba(0, 0, 0, 0.91);
