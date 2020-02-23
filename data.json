@@ -1,0 +1,63 @@
+{
+  "audio_0":
+  {
+    "id": 0,
+    "name": "Nowhere",
+    "url": "audio/nowhere.mp3",
+    "type": "Loop",
+    "style": "Ambiant",
+    "bgColor": "#000000",
+    "circleColorIn": "#000000",
+    "circleColorMean": "#575757",
+    "circleColorOut": "#838b85",
+    "fontColor": "#fff",
+    "borderColor": "rgba(255, 255, 255, 0.2)",
+    "uiTheme": "light"
+  },
+  "audio_1":
+  {
+    "id": 1,
+    "name": "Change the world",
+    "url": "audio/changetheworld.mp3",
+    "type": "Loop",
+    "style": "Ambiant",
+    "bgColor": "#B6CFBC",
+    "circleColorIn": "#29827F",
+    "circleColorMean": "#14554E",
+    "circleColorOut": "#29827F",
+    "fontColor": "#fff",
+    "borderColor": "rgba(255, 255, 255, 0.2)",
+    "uiTheme": "light"
+  },
+  "audio_2":
+  {
+    "id": 2,
+    "name": "Citizen of pain",
+    "url": "audio/citizen_of_pain.mp3",
+    "type": "Loop",
+    "style": "Ambiant",
+    "bgColor": "#485867",
+    "circleColorIn": "#E8AD95",
+    "circleColorMean": "#E17480",
+    "circleColorOut": "#3B5B77",
+    "fontColor": "#fff",
+    "borderColor": "rgba(255, 255, 255, 0.2)",
+    "uiTheme": "light"
+  },
+  "audio_3":
+  {
+    "id": 3,
+    "name": "Volunteer",
+    "url": "audio/volunteer.mp3",
+    "type": "Loop",
+    "style": "Ambiant",
+    "bgColor": "#d7e1e3",
+    "circleColorIn": "#eef3f5",
+    "circleColorMean": "#ccc2d1",
+    "circleColorOut": "#848090",
+    "fontColor": "#000",
+    "borderColor": "rgba(255, 255, 255, 0.2)",
+    "uiTheme": "dark"
+  }
+ 
+}
