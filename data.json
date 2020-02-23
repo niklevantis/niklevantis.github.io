@@ -22,12 +22,12 @@
     "type": "Loop",
     "style": "Ambiant",
     "bgColor": "#B6CFBC",
-    "circleColorIn": "#29827F",
-    "circleColorMean": "#14554E",
-    "circleColorOut": "#29827F",
-    "fontColor": "#fff",
+    "circleColorIn": "#82c6c3",
+    "circleColorMean": "#ffffff",
+    "circleColorOut": "#b8c7c7",
+    "fontColor": "#000",
     "borderColor": "rgba(255, 255, 255, 0.2)",
-    "uiTheme": "light"
+    "uiTheme": "dark"
   },
   "audio_2":
   {

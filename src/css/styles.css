@@ -176,8 +176,7 @@ body {
   font-weight: normal;
   font-style: normal;
   line-height: 1.4;
-  overflow-x: hidden;
-  overflow-y: hidden;
+
   color: #333333;
 }
 
@@ -332,7 +331,7 @@ circle {
 
 header {
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr;
+  grid-template-columns: 2fr 1fr;
   grid-gap: 30px;
   padding: 4rem 5rem;
   font-size: 1.5rem;
@@ -354,7 +353,7 @@ nav a {
 
 #mainWrapper, #pageWrapper {
   display: grid;
-  padding: 30vH 8vW 8vH 8vW;
+  padding: 10vH 8vW 8vH 8vW;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   /* repeat = as many times as you can fit */
   /* auto-fit = fit as many items on the line as possible, go bigger if you need to */
@@ -591,5 +590,7 @@ http://www.phpied.com/delay-loading-your-print-css/
 
 
 .about {
-    padding:2% 8% 0 8%; 
+    display: block;
+    padding:6% 8% 0 8%; 
+   
 }
