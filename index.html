@@ -48,7 +48,8 @@ main, /* 2 */
 menu,
 nav,
 section,
-summary { /* 1 */
+summary { /* 1 */cript type="text/javascript">
+            !function(){"use strict";function b(a,b){a.play(),a.setAttribute("data-playing","true"),b.classList.add("playing")}function c(a,b){a.pause(),a.setAttribute("data-playing","false"),b.classList.remove("playing")}var a="listen-node";window.onload=function(){var b,c,d,e=document.getElementsByClassName(a),f=document.createElement("style");f.type="text/css",f.innerHTML=".listen-node {display: inline-block; background:rgba(0, 0, 0, 0); border-radius:4px; cursor: pointer;} .listen-node i {font-size: 0.7em; border: 0.5em solid transparent; border-left: 0.75em solid; display: inline-block; margin-left: 5px;} .listen-node .playing { border: 0; border-left: 0.75em double; border-right: 0.5em solid transparent; height: 1em;}",document.getElementsByTagName("head")[0].appendChild(f);for(var g=0;c=e[g];++g)b=document.createElement("audio"),d=document.createElement("i"),b.src=c.getAttribute("data-src"),b.setAttribute("data-playing","false"),c.id=a+"-"+g,c.insertBefore(d,c.firstChild),c.appendChild(b)},document.addEventListener("click",function(d){var e,f,g;d.target.className===a?(e=d.target.children[1],f=d.target,g=d.target.children[0]):d.target.parentElement&&d.target.parentElement.
   display: block;
 }
 
@@ -444,7 +445,7 @@ a:hover {
     
     strong{font-weight: 700;color:black}
     
- h1{position:relative}@-webkit-keyframes swing{0%{-webkit-transform:translate3d(0,0,100px);transform:translate3d(0,0,100px)}100%{-webkit-transform:translate3d(15px,0,100px);transform:translate3d(15px,0,100px)}}@keyframes swing{0%{-webkit-transform:translate3d(0,0,100px);-ms-transform:translate3d(0,0,100px);transform:translate3d(0,0,100px)}100%{-webkit-transform:translate3d(15px,0,100px);transform:translate3d(15px,0,100px)}}.swing{-webkit-animation-name:swing;animation-name:swing;-webkit-animation-duration:.3s;animation-duration:.3s;-webkit-animation-direction:alternate-reverse;animation-direction:alternate-reverse;-webkit-animation-timing-function:ease-in-out;animation-timing-function:ease-in-out;-webkit-animation-iteration-count:infinite;animation-iteration-count:infinite}body{padding:40px}body{padding:0 15px;-webkit-transform-style:preserve-3d;transform-style:preserve-3d}a,span,p,h2,ul{line-height:1.5;-webkit-transform:translateZ(100px);transform:translateZ(100px)}
+ h1{position:relative}@-webkit-keyframes swing{0%{-webkit-transform:translate3d(0,0,100px);transform:translate3d(0,0,100px)}100%{-webkit-transform:translate3d(15px,0,100px);transform:translate3d(15px,0,100px)}}@keyframes swing{0%{-webkit-transform:translate3d(0,0,100px);-ms-transform:translate3d(0,0,100px);transform:translate3d(0,0,100px)}100%{-webkit-transform:translate3d(15px,0,100px);transform:translate3d(15px,0,100px)}}.swing{-webkit-animation-name:swing;animation-name:swing;-webkit-animation-duration:.3s;animation-duration:.3s;-webkit-animation-direction:alternate-reverse;animation-direction:alternate-reverse;-webkit-animation-timing-function:ease-in-out;animation-timing-function:ease-in-out;-webkit-animation-iteration-count:infinite;animation-iteration-count:infinite}body{padding:40px}body{padding:0 15px;-webkit-transform-style:preserve-3d;transform-style:preserve-3d}a,span,p,h2,ul{-webkit-transform:translateZ(100px);transform:translateZ(100px)}
 </style>
 </head><body style="font-family: 'VT323', courier, monospace;
 word-break: break-all; line-height: 1; font-size: 42px;">
