@@ -167,12 +167,12 @@ a:focus {
 	pointer-events: auto;
 	background: #000;
 	color: var(--color-link);
-	padding: 1.84rem 2rem;
+	padding: 1.9rem 2rem;
 	font-family: inherit;
 	margin: 2rem;
 	border-radius: 12.25rem;
 	font-size: 2rem;
-    border: 3px solid var(--color-link);
+    border: 8px solid rgba(255, 255, 255, 0.31);
 }
 
 .button:hover,
@@ -247,6 +247,7 @@ a:focus {
 	font-weight: inherit;
 	margin: 0;
 	color: var(--color-title);
+    text-transform: none
 }
 
 .content__credits {
@@ -378,6 +379,6 @@ a:focus {
 		justify-content: flex-end;
 	}
 	.content__title {
-		font-size: 8.75vw;
+		font-size: 4.75vw;
 	}
 }
