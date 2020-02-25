@@ -165,13 +165,14 @@ a:focus {
 
 .button--box {
 	pointer-events: auto;
-	background: var(--color-link);
-	color: var(--color-bg);
-	padding: 0.5rem 2rem;
+	background: #000;
+	color: var(--color-link);
+	padding: 1.84rem 2rem;
 	font-family: inherit;
 	margin: 2rem;
-	border-radius: 1.25rem;
-	font-size: 1rem;
+	border-radius: 12.25rem;
+	font-size: 2rem;
+    border: 3px solid var(--color-link);
 }
 
 .button:hover,
