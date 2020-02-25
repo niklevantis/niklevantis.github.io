@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Nick Levantis</title>
+    <meta name="description" content="Nick Levantis — life and emotions through visuals and sounds - Music and Artwork Exploration" />
+    <meta name="keywords" content="mudic, electronic music, experimental music" />
+    <meta name="author" content="Nick Levantis" />
+    <link rel="shortcut icon" href="favicon.ico" />
+    <link rel="stylesheet" type="text/css" href="css/base.css" />
+    <link href="https://fonts.googleapis.com/css?family=Dorsa&display=swap" rel="stylesheet">
+    
+    <script>
+    document.documentElement.className = "js";
+    var supportsCssVars = function() {
+        var e,
+            t = document.createElement("style");
+        return (
+            (t.innerHTML = "root: { --tmp-var: bold; }"),
+            document.head.appendChild(t),
+            (e = !!(
+                window.CSS &&
+                window.CSS.supports &&
+                window.CSS.supports("font-weight", "var(--tmp-var)")
+            )),
+            t.parentNode.removeChild(t),
+            e
+        );
+    };
+    supportsCssVars() ||
+        alert(
+            "Please view this demo in a modern browser that supports CSS Variables."
+        );
+    </script>
+</head>
+
+<body >
+    
+    <main>
+        <div class="message">Some message for mobile (if needed).</div>
+        <div class="frame">
+            <a href="https://nicklevantis.com" > <h1 class="frame__title">NICK LEVANTIS</h1></a>
+          
+            <div class="frame__social">
+                <a href="https://soundcloud.com/nicklevantis" class="frame__demo">SOUNDCLOUD  </a>  -
+                <a href="https://youtube.com/nicklevantis" > YOUTUBE  </a> - <a href="https://nicklevantis.svbtle.com" > SVBTLE</a>
+            </div>
+        </div>
+        <div class="content">
+            <div class="fold-content" id="base-content">
+                <!-- CONTENT INSIDE HERE -->
+                <p class="content__type">
+                    <span class="content__type-special">MUSIC</span> Nick creates pieces of music trying to differentiate and surpass the limits of specific genres with basic philosophy that there is no evolution in art without the presence of internal or social reversals.
+                </p>
+                <a href="https://www.youtube.com/watch?v=6FH82Lyt4EE&t" > <img class="content__img" src="img/broken.gif" alt="Nick" /></a>
+               
+            </div>
+            <div class="screen" id="fold-wrapper"></div>
+            <button class="btn-debug" id="btn-debug">See Planes</button>
+        </div>
+    </main>
+    
+    <script src="./js/imagesloaded.pkgd.min.js"></script>
+    <script src="./js/split.js"></script>
+    
+
+
+
+</body>
+
+</html>
