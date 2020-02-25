@@ -167,7 +167,7 @@ a:focus {
 	pointer-events: auto;
 	background: #000;
 	color: var(--color-link);
-	padding: 1.9rem 2rem;
+	padding: 2rem 2rem;
 	font-family: inherit;
 	margin: 2rem;
 	border-radius: 12.25rem;
