@@ -1,618 +1,74 @@
 <!DOCTYPE html>
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
-<title>
-Nick Levantis - media artist musician
-</title>
-<link rel="shortcut icon" href=favicon.ico>
-<link href="https://fonts.googleapis.com/css?family=VT323&display=swap" rel="stylesheet"> 
-<style>
-/*! normalize.css v4.1.1 | MIT License | github.com/necolas/normalize.css */
-
-/**
- * 1. Change the default font family in all browsers (opinionated).
- * 2. Prevent adjustments of font size after orientation changes in IE and iOS.
- */
-
-html {
-  font-family: sans-serif; /* 1 */
-  -ms-text-size-adjust: 100%; /* 2 */
-  -webkit-text-size-adjust: 100%; /* 2 */
-}
-
-/**
- * Remove the margin in all browsers (opinionated).
- */
-
-body {
-  margin: 0;
-}
-
-/* HTML5 display definitions
-   ========================================================================== */
-
-/**
- * Add the correct display in IE 9-.
- * 1. Add the correct display in Edge, IE, and Firefox.
- * 2. Add the correct display in IE.
- */
-
-article,
-aside,
-details, /* 1 */
-figcaption,
-figure,
-footer,
-header,
-main, /* 2 */
-menu,
-nav,
-section,
-summary { /* 1 */cript type="text/javascript">
-            !function(){"use strict";function b(a,b){a.play(),a.setAttribute("data-playing","true"),b.classList.add("playing")}function c(a,b){a.pause(),a.setAttribute("data-playing","false"),b.classList.remove("playing")}var a="listen-node";window.onload=function(){var b,c,d,e=document.getElementsByClassName(a),f=document.createElement("style");f.type="text/css",f.innerHTML=".listen-node {display: inline-block; background:rgba(0, 0, 0, 0); border-radius:4px; cursor: pointer;} .listen-node i {font-size: 0.7em; border: 0.5em solid transparent; border-left: 0.75em solid; display: inline-block; margin-left: 5px;} .listen-node .playing { border: 0; border-left: 0.75em double; border-right: 0.5em solid transparent; height: 1em;}",document.getElementsByTagName("head")[0].appendChild(f);for(var g=0;c=e[g];++g)b=document.createElement("audio"),d=document.createElement("i"),b.src=c.getAttribute("data-src"),b.setAttribute("data-playing","false"),c.id=a+"-"+g,c.insertBefore(d,c.firstChild),c.appendChild(b)},document.addEventListener("click",function(d){var e,f,g;d.target.className===a?(e=d.target.children[1],f=d.target,g=d.target.children[0]):d.target.parentElement&&d.target.parentElement.
-  display: block;
-}
-
-/**
- * Add the correct display in IE 9-.
- */
-
-audio,
-canvas,
-progress,
-video {
-  display: inline-block;
-}
-
-/**
- * Add the correct display in iOS 4-7.
- */
-
-audio:not([controls]) {
-  display: none;
-  height: 0;
-}
-
-/**
- * Add the correct vertical alignment in Chrome, Firefox, and Opera.
- */
-
-progress {
-  vertical-align: baseline;
-}
-
-/**
- * Add the correct display in IE 10-.
- * 1. Add the correct display in IE.
- */
-
-template, /* 1 */
-[hidden] {
-  display: none;
-}
-
-/* Links
-   ========================================================================== */
-
-/**
- * 1. Remove the gray background on active links in IE 10.
- * 2. Remove gaps in links underline in iOS 8+ and Safari 8+.
- */
-
-a {
-  background-color: transparent; /* 1 */
-  -webkit-text-decoration-skip: objects; /* 2 */
-}
-
-/**
- * Remove the outline on focused links when they are also active or hovered
- * in all browsers (opinionated).
- */
-
-a:active,
-a:hover {
-  outline-width: 0;
-}
-
-/* Text-level semantics
-   ========================================================================== */
-
-/**
- * 1. Remove the bottom border in Firefox 39-.
- * 2. Add the correct text decoration in Chrome, Edge, IE, Opera, and Safari.
- */
-
-abbr[title] {
-  border-bottom: none; /* 1 */
-  text-decoration: underline; /* 2 */
-  text-decoration: underline dotted; /* 2 */
-}
-
-/**
- * Prevent the duplicate application of `bolder` by the next rule in Safari 6.
- */
-
-b,
-strong {
-  font-weight: inherit;
-}
-
-/**
- * Add the correct font weight in Chrome, Edge, and Safari.
- */
-
-b,
-strong {
-  font-weight: bolder;
-}
-
-/**
- * Add the correct font style in Android 4.3-.
- */
-
-dfn {
-  font-style: italic;
-}
-
-/**
- * Correct the font size and margin on `h1` elements within `section` and
- * `article` contexts in Chrome, Firefox, and Safari.
- */
-
-h1 {
-  font-size: 2em;
-  margin: 0.67em 0;
-}
-
-/**
- * Add the correct background and color in IE 9-.
- */
-
-mark {
-  background-color: #ff0;
-  color: #000;
-}
-
-/**
- * Add the correct font size in all browsers.
- */
-
-small {
-  font-size: 80%;
-}
-
-/**
- * Prevent `sub` and `sup` elements from affecting the line height in
- * all browsers.
- */
-
-sub,
-sup {
-  font-size: 75%;
-  line-height: 0;
-  position: relative;
-  vertical-align: baseline;
-}
-
-sub {
-  bottom: -0.25em;
-}
-
-sup {
-  top: -0.5em;
-}
-
-/* Embedded content
-   ========================================================================== */
-
-/**
- * Remove the border on images inside links in IE 10-.
- */
-
-img {
-  border-style: none;
-}
-
-/**
- * Hide the overflow in IE.
- */
-
-svg:not(:root) {
-  overflow: hidden;
-}
-
-/* Grouping content
-   ========================================================================== */
-
-/**
- * 1. Correct the inheritance and scaling of font size in all browsers.
- * 2. Correct the odd `em` font sizing in all browsers.
- */
-
-code,
-kbd,
-pre,
-samp {
-  font-family: monospace, monospace; /* 1 */
-  font-size: 1em; /* 2 */
-}
-
-/**
- * Add the correct margin in IE 8.
- */
-
-figure {
-  margin: 1em 40px;
-}
-
-/**
- * 1. Add the correct box sizing in Firefox.
- * 2. Show the overflow in Edge and IE.
- */
-
-hr {
-  box-sizing: content-box; /* 1 */
-  height: 0; /* 1 */
-  overflow: visible; /* 2 */
-}
-
-/* Forms
-   ========================================================================== */
-
-/**
- * 1. Change font properties to `inherit` in all browsers (opinionated).
- * 2. Remove the margin in Firefox and Safari.
- */
-
-button,
-input,
-select,
-textarea {
-  font: inherit; /* 1 */
-  margin: 0; /* 2 */
-}
-
-/**
- * Restore the font weight unset by the previous rule.
- */
-
-optgroup {
-  font-weight: bold;
-}
-
-/**
- * Show the overflow in IE.
- * 1. Show the overflow in Edge.
- */
-
-button,
-input { /* 1 */
-  overflow: visible;
-}
-
-/**
- * Remove the inheritance of text transform in Edge, Firefox, and IE.
- * 1. Remove the inheritance of text transform in Firefox.
- */
-
-button,
-select { /* 1 */
-  text-transform: none;
-}
-
-/**
- * 1. Prevent a WebKit bug where (2) destroys native `audio` and `video`
- *    controls in Android 4.
- * 2. Correct the inability to style clickable types in iOS and Safari.
- */
-
-button,
-html [type="button"], /* 1 */
-[type="reset"],
-[type="submit"] {
-  -webkit-appearance: button; /* 2 */
-}
-
-/**
- * Remove the inner border and padding in Firefox.
- */
-
-button::-moz-focus-inner,
-[type="button"]::-moz-focus-inner,
-[type="reset"]::-moz-focus-inner,
-[type="submit"]::-moz-focus-inner {
-  border-style: none;
-  padding: 0;
-}
-
-/**
- * Restore the focus styles unset by the previous rule.
- */
-
-button:-moz-focusring,
-[type="button"]:-moz-focusring,
-[type="reset"]:-moz-focusring,
-[type="submit"]:-moz-focusring {
-  outline: 1px dotted ButtonText;
-}
-
-/**
- * Change the border, margin, and padding in all browsers (opinionated).
- */
-
-fieldset {
-  border: 1px solid #c0c0c0;
-  margin: 0 2px;
-  padding: 0.35em 0.625em 0.75em;
-}
-
-/**
- * 1. Correct the text wrapping in Edge and IE.
- * 2. Correct the color inheritance from `fieldset` elements in IE.
- * 3. Remove the padding so developers are not caught out when they zero out
- *    `fieldset` elements in all browsers.
- */
-
-legend {
-  box-sizing: border-box; /* 1 */
-  color: inherit; /* 2 */
-  display: table; /* 1 */
-  max-width: 100%; /* 1 */
-  padding: 0; /* 3 */
-  white-space: normal; /* 1 */
-}
-
-/**
- * Remove the default vertical scrollbar in IE.
- */
-
-textarea {
-  overflow: auto;
-}
-
-/**
- * 1. Add the correct box sizing in IE 10-.
- * 2. Remove the padding in IE 10-.
- */
-
-[type="checkbox"],
-[type="radio"] {
-  box-sizing: border-box; /* 1 */
-  padding: 0; /* 2 */
-}
-
-/**
- * Correct the cursor style of increment and decrement buttons in Chrome.
- */
-
-[type="number"]::-webkit-inner-spin-button,
-[type="number"]::-webkit-outer-spin-button {
-  height: auto;
-}
-
-/**
- * 1. Correct the odd appearance in Chrome and Safari.
- * 2. Correct the outline style in Safari.
- */
-
-[type="search"] {
-  -webkit-appearance: textfield; /* 1 */
-  outline-offset: -2px; /* 2 */
-}
-
-/**
- * Remove the inner padding and cancel buttons in Chrome and Safari on OS X.
- */
-
-[type="search"]::-webkit-search-cancel-button,
-[type="search"]::-webkit-search-decoration {
-  -webkit-appearance: none;
-}
-
-/**
- * Correct the text style of placeholders in Chrome, Edge, and Safari.
- */
-
-::-webkit-input-placeholder {
-  color: inherit;
-  opacity: 0.54;
-}
-
-/**
- * 1. Correct the inability to style clickable types in iOS and Safari.
- * 2. Change font properties to `inherit` in Safari.
- */
-
-::-webkit-file-upload-button {
-  -webkit-appearance: button; /* 1 */
-  font: inherit; /* 2 */
-}
-}
-
-a, a:visited {
-    text-decoration: none!important;
-    color: black!important;
-}
-}
-a:hover {
-  color:red;
-}
-.bio {
-  font-weight: bold;
-}
- 
-
-    
-    strong{font-weight: 700;color:black}
-    
- h1{position:relative}@-webkit-keyframes swing{0%{-webkit-transform:translate3d(0,0,100px);transform:translate3d(0,0,100px)}100%{-webkit-transform:translate3d(15px,0,100px);transform:translate3d(15px,0,100px)}}@keyframes swing{0%{-webkit-transform:translate3d(0,0,100px);-ms-transform:translate3d(0,0,100px);transform:translate3d(0,0,100px)}100%{-webkit-transform:translate3d(15px,0,100px);transform:translate3d(15px,0,100px)}}.swing{-webkit-animation-name:swing;animation-name:swing;-webkit-animation-duration:.3s;animation-duration:.3s;-webkit-animation-direction:alternate-reverse;animation-direction:alternate-reverse;-webkit-animation-timing-function:ease-in-out;animation-timing-function:ease-in-out;-webkit-animation-iteration-count:infinite;animation-iteration-count:infinite}body{padding:40px}body{padding:0 15px;-webkit-transform-style:preserve-3d;transform-style:preserve-3d}a,span,p,h2,ul{-webkit-transform:translateZ(100px);transform:translateZ(100px)}
-</style>
-</head><body style="font-family: 'VT323', courier, monospace;
-word-break: break-all; line-height: 1; font-size: 42px;">
-<span class=bio>nick levantis</span>.m‰Ók"àÛã–¬(W†¼0¡r A©·­x¤KÖ™ÅgÁ ]ÐÆ¿àxDznÙÈ$%úáˆÄÖ²Z.Np]ø#àÕ</div>™’šöˆ'å‚·ËÜˆø;¨×ÈØ‰$€*1*etk›¾aë?gu©ó‚EJÞ“'qlE/Æ(WS&gt;El¸ŠÀÞšÈ’ã~ºöðÁŒÂ‡BëÛL"¡°äw„¥vêÇæ$ÍUüÜ³ê¿¹9öT:Ÿê‰L‰Î!¿"ƒÐvo%¢"Ù+Â¥ \Np]ø#àÕWüæA ¦oë›Ë›o H jÔïÂìµ)¦ufÞ–Å¬cçCGÂ?uþÙb 
- t@”XAÈ[ù§ÚÎþ¢;|‚,ˆ´ÄEZé'Œ=3PˆÎUìðsì¦$eK
- ˆšH·Í~ìÍK¡ÍÞ’©n›ý.UfÄe`'–hê‰Ú¤‡¼t?Ý† l
- ‚ÎpEk'3u+ƒÒ'ºI™LÐd
-    
-...... <span class=listen-node data-src=https://nicklevantis.com/audio/nowhere.mp3 data-start=0 data-end=236>Nowhere</span>
-......
-]i¨^`!0ªÊçøšŠ=ué«äÇ¢F9IA}ÇåÒtÁõ1²2yRîÌóiÃ‹Ó;bÑ–Ð
- ¨­yµ'JØ§dþéÊ\†—Ôé£à©0‹#cèÕV]†Ëîw€¨w)U–IùSat¯ùxü_©{‡s­(u£3-8eÿÿiØUüµþ¨
- `ÇZdÅ#Âùöþ]½ÎËŒàhú€»ÞG¸Çz-Ó[Ü˜’ë0®&lt;ö§Ä—@ùV¢ .... <a href="https://nicklevantis.com/#bio"> bio</a> ....
- O$žµ3îÕÝ¾-‚ò2¬»lá4¥wà²¾ci‹‘ºdò
- ¸%*÷2šžèÆÎ™ÁÊB#ïw%€þ¸ÆRÖÞëB%9ØX+kŸ—äd~0«&gt;ž‡—:îaž4.ZýmŽ™é§.êUcÓ;Þß^ˆpi
- Q5Wy» ......<span class=listen-node data-src=https://nicklevantis.com/audio/romance.mp3 data-start=0 data-end=236>Romance</span> 
-......
- ¹¦Á“L`ì¦ÿlÛo­ÕÜ×$ÈQPë–M&lt;ÐèdÕdÛ:þ\û¤áw´hò¬^„$àµ+Â¾$ý+üÖÞ-`86x«ˆµH&gt;m­¸3I!Ç‚!ã"*Ñ*^î–²¬Š8ªv&gt;`cŽ
- ˆ.R äŒüJqòæ½N3ŠKÜ{AI¯A[t3&gt;­&amp; (ÓIµJ”.™mªL
- +lyNe¨×h‡˜lsÎ®½‚m‰Ók"àÛã–¬(W†¼0¡r A©·­x¤KÖ™ÅgÁ ]ÐÆ¿àxDznÙÈ$%úáˆÄÖ²Z.
- º!«¿Ë4Ý¢GÈ×lÐ êßêmÓ–ÿ}È@Ý6U®€ ®&gt;ýŽ£^&amp;LŠ,Ž=\4&lt;æç3mœ|¦¥ÍcÞMÉ
- kÇ[1S~kÊ@1 Oëæ&gt;­›0;NÔŸÊ¤M«¢/Ïéí¼N–Ö!ª-j ñb¿xá±çø¦š
- †½¹ê7¬žT&lt;Äê»äÂ¥±Yf¼o++g]‡a@¾ïñ#J‘¯$K&gt;S8ñMBé§³9Q%¬¤ž8qYìÈz†O¸ô/¦ÐAá|¸vß?˜Ä˜Îa¦AÙñmZáÅT€tk£Ô1—ô
- g½If\]ò=0’ã{ 
-¢0øQÉÒ°*êS&lt;ÚÑ”ú±JêÃ‚4q+ ...... <span class=listen-node data-src=https://nicklevantis.com/audio/annoying-thinks.mp3 data-start=0 data-end=236>Annoying</span>
-......
- ÃKèÃz²þœYDÌY`©©ŽT&amp;ééL8Rƒƒ.7îø‘XÁ/ÃôLŠÇ”óé$1¿ƒÀ`lK¸@ìØf–N5[¢PAZjÓÍ”˜N.#k0–g(g¦Çå"HþŸø
- ïØ;F‰êŠÜ+g%â mÊ0§^&gt;hÄ¦Ã {½IÑ%úúÐ,Ø±Kùß*Ü­ìW‰`MºðµÝU¿¾wéÈ....Songs, videos and news on <a class="soundcloud" href=https://soundcloud.com/nicklevantis/ title=Soundcloud target=_blank> Soundcloud</a>,
-    <a class="youtube" href=https://youtube.com/nicklevantis target=_blank>Youtube</a> and <a class="svbtle" href=https://nicklevantis.svbtle.com/ target=_blank>Svbtle</a>...
- [ž&gt;|¤¿Üeê¢et™‰`QèÃæ‚‘ü`ÓdHè;NËJ€dGÄþ`6s‰¬!û_a·vÙd³'Í=òùû;T1ŽTÑ¸¤%äšf¢ðbŠ'$~ò)¡ç9ÌN/ÐŠ{ÑB\fYóé¥p›ÕÇ’|µ˜ñe$ð9{ëBrƒˆæµ*{zD{V0mPfpÔ}Ú!ÖhÄ°ÍÕ¡í9íe©àUó%Ù–ß˜Îµy’^)Ž×¹ÜÞì|
- wlaeÚ£ ‚ñÖÝ'´$‘:.¿#¦5˜ø”q®Òb,I}ÙØ«âT:h—ô“†¿¬p
- LÙ³tèêxÂÖúñ`¦úå÷,„Ç6Wœº2&lt;2ÚÁ¸¿vZKâ¤“1?™°{–*‹£Å*ÍÁu½“@cài‰Ú
-...... <span class=listen-node data-src=https://nicklevantis.com/audio/dystopia.mp3 data-start=0 data-end=236>Dystopia</span>
-......
-««ùzS$¨ŽšÚ“·í“Ê°ŽBC´¾lË¾y3FŠmš²ó²c3ü©ÂÞRyùÌøýìL¢aþQAÏ*K½GƒU|F¤søÆ€5êËÕöm?^=¸¦Õï›4y:ë(
- ÒSæÄodõ*pÆç®°îåpnrj›ÚoM¯U¬‹}hŽw,³$í]qêLö×=“×È9{îù÷y·UyG"ÏPMc‘È÷ÜþÁû“äËÆ‰|IãZ6/=çóµâ~
- NÃ¢w;¹¢Æœaj@ kœI"i»KÂ &amp;ôûþÑd´)GA£šïë§ôz.÷#£U§Ë›mgÚxÈ'ñ¤lùÏ‰
- c5Ú5cV¤åÏéÄµ½ìŽ ðÑZu”Š ³\J`Ë”¿v²SÛŽÖhgxæ¹ƒô8-«u¢‹?žù:R:@‹Vvõ&amp;¥†ó¤ùd%
- w¦Ûû1îFyÜ†9M!ª‚ï¬ýñµÆU.vÇp!’!áç
- -T}ÚŽÀXŒwH–±˜+®&gt;Ë0CL»ŒÎ§QBç·û†j¢”uêªW†×~2¨€å2ÞRÜy“Ü$8­‰Rn2Ä˜µ°»Íp»ùüðûÍ-Ã‚ªvÙÎä,e9°A“Œ°m
- ïÿäÝz}PÉi©Jmc;ŒÑ{Dšœ(Kî©ò“¿ÃÂÅ^fÚ{P|`Ù;î­r†Vç}'[w²E!ïö%Ê¨ÞCœt‚ðt‘ØºfÜ»MbX(õ3ò­.:ëÚ¡Íh6žßdÀgå«Ø·?oº;*úÄ¨Å|Íå·ŒgSÄW—çêÕPÐÖ}G®Æ‡Ø¬\ÞyðülwÌÂZ
- E ÄÝ(Ö&lt;î5Ç¿í‡o1 Hö4N]Œ8i.ÏáiÏ&amp;Ó ê¾Ÿ€i,ÙSØ¥ê4OÙ_DÈ&gt;Oû—XHs
- Ü*†à0þE1%!€-x, [&gt;Ú²ŒãA¦
- sfDÀ¾.£óZ~?ïÈ$µsÜ6L"ê0Zë”‘:ú{%7ºwÅa×\ä}¨W/9Æ_}3Äì›F»µA‹å÷’M;ß"À‹#Î´šWC„A
- _Àº5Ç'š|NbÍªÄ”'ôýPÒ‹í$
-]ÀÂá²}›Ô—,ïÏwg|J¸óØÇ¸c€®ÒÞŒ7åG›rãLðàM—ä6¾{YÇ”u˜lãH]›w¢åÊyS{[‡ãHþÝ0¢ö,¹Úâ#«°H&amp;3àð›ˆÜÃ‚,ó³j0fD™QRÀ´paˆ¨²_›¨‘uÉ#ÑòMn¯T®ƒé¿:°Ë
- =†À£‡Ÿ`ˆmöÝîKc°ø 6,Žcp‹]\ÌÙ14ŸvFš×jc‚TR¼”aƒ·ðóihšc7ë5½s`€Ô¡` ×¾£/šçÑ&lt;ç›
- ¾¢"@D¸®´Ÿ¦±©Ím‡_‰íš^ç›E©-‘ØCÐO©'œ øý§¢íUEÑ\a|óŽ
- óÑøª³sèxÞ›v1ËKNòÑxMŸÄ°U¤’Ý¼Ý-ªwþ¹v‚¨Ófƒðß^´./Â^OuÅÓü4r&amp;¨KXÓU|„à
- ¥Ã²'HR:v¯Ç$p}÷ãU€é¸­Dc’¹¨¼õ¬4VÁVde·DÞîÿ0æ·È‹
- âLšÈ‚­øÚ“!V™r¸ËÍ‰‘©¿/åÅ@+ÆK”üâœª6Ž-2V‰Er*PÞ€8}û
- ^%¨±ð(ÒO@“sòô¤g#í:nš]¤›`Qã†¾œ²önn‘Bpð&lt;ü™÷¤ŒPõëº«Qôtž‹tA&amp;4›–ãZ–šZ¸˜X*Á
- ôñ½ê´º/"éNuº–MìÅñ vÐtºÁÛÕ&gt;£ØóÑ¥jSfZJ«ìòMÀþ›Ýµ&gt;{ze]€Ø8&gt;fmÜî@aÝ&lt;¥›îsr
- î2†Lµ×„Ô,8n˜AüŒMùÚjÒÓ@õÇžÂX Sq±L.KVÇ¾ëî_^¢”U¥€X
- NnŽÝÏµ³è;RMÅ‡õ,Þ½­T-Ž2.NÖ ¦£8iÎ Z­(å_~Ÿ‡zF-Šs€†Š‹µ @„jd
- ~ËŒjÌÓ^µ@û÷&amp;&lt;Áñüèuîø4wë ù§]÷*(üzy€[#Fˆ7Æ2&amp;+Y(KÄÛ¸Î,$¼
- Ì³à{/SÍ]PÛe[ô²¨´B!ÜDóp;¢Â7?™ÆÝÁ@Ë¿:øO;òíäW&lt;&amp;=Èg#xf@&gt;7—»p`Ü9à˜«ÿ[&lt;Ê
- ÕÆSf¢äKrÚÇ)›±?õhòÎ«ãšŒc^†Ý6ÝŽN2blŒH"Þõ­³1`²¡,
- EsˆŽ·'·´|SËôóšŽ´}·™#$šÂ`°qO-ýÖ‰=o8p¯
- 2ÖœŸO°M˜AWœ&gt;µ©Ëì¸[j€ªFÆÿ·îÝ°&gt;zšo&amp;—­_ùµ#wð¼œ½t’^ý:ùþ;1Ì¾»¸7ÇäÝ¿#çò+UáSí/Ëâ–ˆžWÇm£Æ«.ÝÑ3I^J4}¿ß˜GFÍ›8[)ª}¯å*Ü¨½ÂQƒŸ–ÅJ_\§‹×æê
- Çãok"%pj‹¹5'uÔSÅ¨9@Æ¦?ñßáˆèFäWlñ$€÷wfcwh0‚19òÙã‹
- *5}Èd'#Ç‘.îÑÇiö´ÄÔ'ªPPaë§xšÃ Š_;úÓ8
- ÊÙsÌPLÎånW¥$*1­XþÅ½W?œuÍØÎ?x^õìqÀÞ{®¾ ÑŽ‚ºŒá†'ÞŽ÷¸hóÅf’ƒ–_Ýr*O„Ô½}‡
- ôó}ñsyˆ€X)%.,ÀI]x“
- @‘[êþ/#ØÎ·ôÔýõcŒÌÊ¦‘£¤øÝÏ”2ú&gt;ÎÛÞ‹¸}+ÍcnªñTÁ7û”Zí–úñÿ¨ø!È¹\ë‰uý³P×‚›CqÕ‘æžòHökP™Z”§´±vüfWA–‚%±ä1-®b$÷òkº#¥R˜pw‡rB2xfXˆ.™£æKdŽµXÎvjrˆýGßç3o¥qø#¾½e{1gÔ©–Ï)ÜqlY&lt;óøë0H1öVj'´þ‚NhÜv
- ‰Ö4Íà^Sý§ùr7ï÷
- h‚Ê0¿SòŸš+*¦ú„lLô×S]¦~}æ–êŸÛoo²Uï–Ïiág”™)ÐYÈÕ²¬ó÷0Æ’º:XtFtš´2‹£tÎ†ñÊûÝ6Z[4—ª­:¾®»oÐFäÕŒ–iZqœyN?¨Ü"MìÚ@jü¤¥š‚ü¼EU;2ÆãƒÆäŸ&gt;lWã¤üsñß\vÛ|‚pÙ‚Æ+
- ¿ÄôÏH{'0mI–U'ˆS}š°‹t@Å)ÇaÑÿ½ºµÙ˜Å™ 3:ò;p[em Ÿ*Øëš|)ë=–â—€DJ¸úur
- QéA†4´x Ã³&lt;9o ªÇÂ£Òs üÇGú® kjºL`\»SLîƒo%&lt;þÂF.÷¯ å·ªë
- õ·C­?\úoè¥'ÚŠÕE
- àüaEI§yíï°›!KsòŒ53ùžíÐ©vØ»Š¸/H9eM*Ä&lt;²âjžÊƒËÎðv‚.¸hÚÅ€Ö&amp;X´ã(£-
- ”L’ôLÌSJO—õ³mw+–äÑ±/ýÌÄ¥BÚ’“0Œ°LˆÂ²Ÿ »gïÄÔé&amp;¸išˆÂyƒ«ùCn˜
- Çé&gt;(*”bð„ÛÒ¬“”Q~ùÏå—jÇtYôêaj´?b›‡è”GE–,P›rr–9‚Ÿ@jÃLÄd’Ì¼)Jå5¦†ží1öyÄ@mµ½úNÔXùÇ¿EÙøÆìÛ
- h_mJèCàÀ¤ùâ’û7¦ Å†ŒA´u_ÀlÓdˆ›% Á¿KæÎ©ÌŠ²ïª
- ŸóÄòs5êÜmªW‘ämf'B—A0éØfßÌhÕ¬ö0ùÇ/NÛ7!„?ê®z-ò¾ú´ný”#ãÞPÊ#3ùXuéØ
- dÍPÅU¯P‹vª›D]%Oæ5+ ¬B­ÌÜuÀà²0„ìÊ¼y¼ˆµ^CÛ†°UNÈÆÒyÒNwÔ¬JTe(b]¥£c÷¸3 )Í­Ô
- ¾—¤íWÈ©Òg÷ÜÊÒì²^íôÖxcä¯zk”ý0¿áG\*t„åÉ'eZ3Æ˜êŽi=-ßÐ2Î¯¦tÞÐ—(p9ùÆLyD-QNE¾a£×¾ÐP
- wÔºaÌÍz ¡œ£ ¸«²¤¨¤˜Z§ÙÕ=}#“e^K©’f0†
- ü¼ÓØ?ÞÖœ¼º„YN¬”Øì7|¿Pxé;ÅG\ôïmJÒFªe—‹Á7„³ÀˆØ-Ÿë@)±Œ[²a·~·Tö”gÎ‘‘Œ#?DÌoÍˆÐšU8%Ù^Ì–èÅc_‰å
- ¬¾+ÿô÷d"OX°ÐG×314¸ÚoW"o8A×$ÜèT!-;JåÚr¾Ö&amp;‹H*;ç¢[mEùy%Bq“HÂ:´ûÓj˜©Ÿ‚óTLÀ1Q¤´€ËÓ#u+ç»^]ñ“Ý€ZPsÖäÜ[&amp;¯¢tut·­}¾šLú×
- IfiK ÄGc&gt;¡% 
- Gž^?/cŠµf‹¬®1Ëß¡ëk€ëðhÊòÛö2€é!YÒÙŒ¯œ°³þ!—³6¨®/â9÷xþD&gt;Éöme0‡­–*SÀ’6
- ø%x:ä·ÇØyŒedÿ#¢"–ÜÁß¡êLöŠÒ%dRéî"RØ@vx¹{}$PÛjÂÝuªÆ tf
- çâ^3ï!R|ìÜ&gt;óÆn/V×üM_Y÷ÆúÆÿ Wó¡&amp;Ñ»ÌùÖ0®°m÷@òÃæxxM×ï³–—û
- ÏÔQ©¾Ÿô‚&gt;Q:Z9dÐ©½±KâjQcÛöj`ñÏ¦åh:`@iKèkC°‡cL"Bqô­ƒÖ†ÿIÌMÔ§#[‚øB
- ÅUamG)×¸a»‰ï’v†ôGÌš$ê'7‚
- ÜØãù*¡øiùMm$ËtÐèÔÎü‘¾í«tìL¥¢û(ü¹ìoýbjLf„è«-5áðZ÷õš\Óƒ7?ù‘Ùñ·bæsC©;
- Ú¤É²¥&lt;5-ö©\(’SF%f¼ERÛº˜îFÁ9.#¿r+fÔA\é¯Á\[×Ð–y¼£ï/üNÍÎ!þÌýs+EìZ¾˜‹
- \Îå2(¦HÿF5†SjÍÄ¾" ì4£–Iwõ?ê.¸cŠE^C&amp;«È
-    ...... <span class="hl" id="bio" name="bio">bio:</span><i> Born in Athens, Greece, Nick grew up in a fertile cultural and musical period at the early eighties. He started his first post punk band called “Prisoners” at the age of fifteen together with his friends doing their first rehearsals and concerts in the grey industrial zone of Piraeus port. At mid eighties Nick’s computer programming studies and synths knowledge helped him to step deeper into the world of electronic music and digital art. Alongside the same time tried to express images and feelings through digital art creations combining them with his musical ideas and experimented so to create interactivity between them. At early nineties was the singer and guitar player in a fairly successful alternative underground band at that time in Greece, Sonar Blips (Wipe Out Records). Over the years he has played and collaborated with other artists experimenting through different music genres. Today Nick creates pieces of music trying to differentiate and surpass the limits of specific genres with basic philosophy that there is no evolution in art without the presence of internal or social reversals. The last years has created many genre agnostic songs that are meant to travel the listener to the world of electronic music.</i> <a href="http://nicklevantis.com/#">to top^</a> ......
- zëÌÐªñÈÈ÷'ÕeéÖå]5­J©I¸i±s0R¯ZFÞlN+ "~oBKŠ$.EÚM€óì®![
- ¸^WØá¹Ëûb£)ÑO¦`-mF‰/n®°³ü,&lt;–¨t!Gðá+¡ôó£JâÌ¨¢P£#!Î¿‰=|vj±Ãoz¬
- ýRŠÇ+OM)‚pˆ’¹ÿ‰ì~Âo²do˜+%Å±F˜†ZÓ[Ž@IXõöU“,ÑMÔÌÊÌ¸AQ·±žâ.¢#îäçÓþ˜“!ýâ¡–´z/R¦aUÆ%Ü¼ãxuØ“ˆò»?ÄþB9“}L
- îÉ0ÏAaßÓžÀ4“Þùkd4ôE:ðŠö%åR1Y§0J àçô¹É
- Y¤í¼×Â¯]‡A„†TçÿÏÈ:&gt;tøo?MIrJMˆÒ=Zí^è2mÝÊÎ{í;
- œåBeãÎP¹ä¤`Ú;QJ¦tÿ$jžêò]ŸW&amp;wúmË°“Ðbê6q·öUYVßEq¼ÀhIÝå8¡êp0ÛL$‘¯,²Ñ†×cMs[OÅ]&amp;@µÃŽaBñªÌÌ„ÛÿèÈ8Ãýq,¨šm}Ñ&lt;©E½U—·tÇ8’BHxÞœé›¸'ŠºITÌlØ9©Ë×
- â§îïû”éVKp¸šrÛiŠŠÜx‡knƒû}@tK\µ¥{¾û¤Æ¬’GiUØBQ¿ÕŽ"O5õ ¾
- û½˜ßß¾Óu±Á!~ú?R*š-°Ÿ
- )TE[µ”2î$íìƒ®0™ßèºOæG§,í¿ã²"¨~öé%ûµlÏð«’–ÁPí¡ó1µlæÉÓ' úwdçèÂAñ$VOQ
- ¥ÏÊd8ž½?–V_SþcuÍëjýæø*ŸkHV¨Œ.¾8&amp;Ñ3=!–³áÏ˜dÔEÂÞã
- ?û?y0ˆº„b|LÿÇ¦‹);”B-y.ˆz«Ô}L^Ö3zÚw¾t­][Éê?à[çV|iì'às{£ºÒÁF €X9
- aIbpp6SWæs®Éýt ß¬&lt;ðm1¦~9+ÔxÛý²g¨ÄÁl`Ûô4Hÿcn˜è-¼¼Qª 2&gt;Üë.M#QÝ™ªé’Y
- oÅ€IhÉ)sëë7 NH¸T@o¸GÏá5)Ûêøöò ârþõsxö¿÷W
- @¦¾3Aa)f²‹b€ú¯w³žâáò¸tó1œ”B—L^¡†\–î_ãtQÛ‰ÔDŠEiíŠe#8rŠÄN}ËiRÿÈà7Ž°œéq0÷Ë4(QŠBî_eI˜1Û‰‰~ëú¦ôòÎÌC¸°kCyåº¢uÿ%ß`V$C½"'žÓ¬ö[÷ôv=«AÔ¸’0Æ†&gt;+¼D©ôT%?M¹ùæùÇ
- 2ï6­Æ VENÈ/õ Íq¹®Ø8|ýÔi—e Ã‘Ç£eÝ‘uú¯ó„Ö"øÉªîJ.¿Û%‹Ù=
- F(:pÛ¸ðrpÄÍ-Q¢‡&amp;-bûË(¡¢JdÄV;—`Ý\§Iÿ·7ï0¥“0Ýƒµ
- Aç7^ëè×i+Ûéýþ’’³$¨Õh”(àŸÈ¹§êsÞô+8|›ÓxÂºÀ‡^€‹1u©ßkÂ„hÙ%Ê1ÝÐ‚\jÒUbhf‚ûb4UGëíKØ’î?ÑæøáÄu)üíª¯Â„Pläôò8T™‡YYb^8°‚÷Ÿ%Û«r7K
- ¦”ÏeêlºÌHóB†*d ²:dÁ™câk‰"¾Žh¥t%SDÈHÚCNoüV}Ïñ
- &amp;|ì™„]†ûÓ÷Þ3Ü‡fÎ9‘V%¼kL3W³é«r®ü©„{qáí3½hî&gt;
- UÍx¬_&lt;Œ¿—ªï¼Uí,"VZÀ°àßZŠ!¨º±_ ã^
- ð™®¸TyŽf'S‰Ý&gt;ÿf7Ùþê·ÝµÆ{)gé)w¹ÕÇ&gt;E«æÿùðØ&amp;#(‘?ˆ­
- IUx£(0–÷Èí/JÍÍ-‡ãu¾êRfùù™Ôòzmf¤`38!Ž¥p&gt;¼(\´ãö q|Ú©
- cÈƒ¤öáCÌDuÝ7»o÷e]Äu 'åFoº– }öžÉÀ"»Biš€‡Q–¸Á}K¦+Z-9Ô±+&lt;ÍWù½JßO×LpÃA
- EcÛ­jwD‹E¹¡/U\1v4×y2*Y×ÿÌdôhÎgA.±2§D¡Cå-= ÀÊäz]ÂJ›Òâëv¿Ð†~Pª€:Ž
- ÷5¿©€ý;ø(ý Þ*rD—Ô .×Ío‹Â¯64jhð–¹#b9¥J0³p—öw‚I‹uxj]Ç™ûax
- äQê¾ŒÆÌ&amp;Õ(
- š©dmš£w¹ùîZÀÐÎ18è&gt;w~­Sü¹K‚~üNT.X±=ÙUñ@¿&amp;ŽDŸ‘à½ÅòŠWh1†(òpÿE;\Úw¯6‡¢É&amp;xÁg¢hŸ‹“.ä„Káà©Öà
- ‰¬–ê€‚Ú»e7î89Š9@ì_“tÃ-3e2ó¸/¿ÉÃôSµËçQá4†ºä‹â,ÃÞ
- ÷{ù\6øyKëºýêÁq–êQž¹«®åÜª]‹;.,ýšÿ[ÂË³wWm¦AÀïZÒåóò,þM"¼_™Tz½î\uÃêIé©cÈzØüš!ú0¨³ãQ‹v"„&gt;)¾ò5Zã,/k}Bs¬|‹d!øîÒŒu°Kûn‡qrFùÚ
- BjNîþJf/+Ú±@SFUø€¢òXÃ¸ùËÏô—¼Mlkˆ (Á Ñ
- Š%±ÞLë¡ÎÆÐÛ9fÙ3ï3E`õ’dNüz~}%Ñ¢Ê]‰—_jÂœŽAvL
- a¥;)QGÌIŒ°ªÚ¿ï=”GÏÓÈÄêãoÉ[ªàcô=¯Ùïh0ÿZVEn¨×¦‰ÿÁýÉ=$
- ÂFf[”®×ûj‰´q@¤dbðCnñâÖY°`7»íø\Œ
- ‘ªK,²›ú{Ó¯MN¹èà§Á’¡¡?’Ìõ‡:EÒs0Æ×¾ˆ¥¼T€ãÁ;bmn1¬13–-ƒ®@I{î1R`òþ°±·D‚(e¤«Å©‡‘Ï5®†â`i/Gûº\ænÁ‘-¼Â™úÓ
- ËÂ5¨]Wk:½ÆoJ#§F¦ëÔYž‹7ÎL7Ù4®µùÔ× ïóªó k7f²i]Â¨=0hcq²’ñÅéœ÷˜Q
- ”ÏDÔM`×Ð®,&amp;„
- Q§{TP»vÉ·ÉØ[H—UtÙmi×­CÆÊêOŠx“¨FÓbZ+ÝGÇhJž«ëwšV:9ÌW¬[óSÁzwÕjªóUß7düÎ
- ´Ž9©,Ï×êfZorN“)Pfíì‡O[æ{Ç±žÆöfhé&gt;w¯Ž¦,V©ýVÖhöí‹œ7Ãñ$÷‹¨Ýú——™U.Rzú:¤zò×tµyìT$ïÁ«ë$!
- ÔD))jÒZ#ý[ÃžªÀš±S¡,‹ºY-ã,§mZ´¯ié'°åíŒ¯Ó
- ­À0°L1Ð5S+OéÛ'ùj¯îø9ä½¸€ûtríb[.Ò–Þ” Z?wU˜ºe"P®œ×Ó-+†Nª
- \&amp;^óo*@—¥ErŸ1îÊœz]â0âã?—ò‡cÃSØweò¥þúÖ
- UMJ3LoJ†Ì®’Æ»;'·âÛ]ºâgºcû©_ÕûÀ¾,_¤ñ1ŠiÖ¦
- Þ$‘”ªäMVd½ˆ:‘êÛG©`ƒ¨3õD,³50Ÿôdâ4&gt;ÇžÊ¸† ©;2xWE«êpÐÏs›øØlø
- Ÿ‚¡ÈÆÇãïìã0&amp;ô®Ö
- ÂIœ)ø±8j¨·[·Ì©7üZƒ¨»b:Ÿg¸‘$žLÑIÎÏI¤§j™–JäÁPFjrû-¹’Ö›±O6Õ¬y,Æ+;²¡9ÙÍRÚ¦&gt;²9bÈmaÞ
- É×º`†ËM].a­ƒŽ%RÊîfŒéiæïÎÖ°ÞÂ}þ1o?ÒL·tSwåpapôWp
- ?N@¡,¦Ç_V‹§–—)"ð¢g¨Ýâßæ`¤#öAvS®a²âónL&amp;£Ì®,Z¸éFï;IßnØ/,
- ³B¢KÃ%ë-÷rq×º$‚‰X&amp; Î[²-îçwè&amp;°š" uzƒÃFBA©à5w:\Z“gÐ/b¤PjF Œ6i
- Ã™X¸òD±pˆá“N°ÙDÞeÿO1þÌYôÔ¼ìŸÆ«€¯ ~WÓØs(&gt;Ê‚¢|ªâ˜’vëg(kØÐšÓð
- (¼1.©¿$‡BÎ‘_&amp;å]®x2yæPg¿öš§ßUñîÀÁsæÊ(ÚS@ˆ`»ÃYmû9Š¡[mûiR0±UT{HMö#ú’à&lt;£ØÜ“zï{|BržÓ¾ŽaÛåÇ—è(
- Õ¾G€®Ä âú´B
- Ç(ýP¸áCÕa`i0/_Zh‰à–cXàh®öù§¡ÁQˆ3yêÃú-ŽbÞÜˆkvJãMÍ›x“ÀLÕV’\Ú±´XÖá³ªè#Ê‹š”&gt;PrÕ´-FÐàrY©ºÚ¤ÎDVÕtÂ#£Aýúëkö±°}&gt;Z†˜K)³Ò©T‰á¡«,q}XYìÄÅ9‚Y¢ñ¢Ó‡e6ôéÑg|µÔæoîAN‡±”#
- ÛÇ}G¢êÛ³Àºˆ´ôòœÇc%¿š0ƒf#{ö5³Í×øðÎãIgÎ€
- -!k{‰“–Å]yµ†'Tž5¤_ôç‚`®º"UÃYåÓ+´¦#ÒÚÀjñ€ïÎf¤'Þˆ?|.÷µÜãéà“~F)z*SBXÿuöÓÖ&gt;«Zôtü-]ûÍäÚÞiÞî¿üáKT¤ß9O/mÍY»gXÃR¼½s%m4œ¥^L“$G³µIâ‘_XR­™ŸUsnn"÷"{`röbæÙ%“/²
- (Cà „SlÎ~îÕ¾]p1]Œõ¾á#Œr ¿
- Q™lI?˜4î²TÄíY:€œMéKØž«¦¼2œ\%—tîê‘³o;üU¹l2ÜÔ­`œÉç÷KõMžtM |›‡
- !QUŸºö›_±ôÈkË¦î7ìÔ 6«³}Äþ|\èXßöÜöè¨hçQ_+ë!$àyCºôžGñx½S‘‚.Ÿìë åq·‡
- ƒgg?˜q{Xª)’r– ÑÃ ÔËä«|Ï)Íõ^!^&lt;Èdy+BúMfN
- Žezq¡ƒl×åò˜}e™1ÁÏ“.Ì0ÖP(ÙU×£oð„†Ò¾2“ŠëåS*Q®?gÄ¾ý
- ~„;|EmÕ)pI7mb|Y"H$Lië£UŒìë2ýl–u2ø¢ãiC&gt;üa†\â3\#æ,óÈ43uuZýï¨Ä#ffsÒ&gt;W‚
- #÷Ù4m;é’ts®8@–=“t'¬¦ìÜ‘º"B­ý„!rz­ÙÚÏ‹ H¼‘Ûçb$^z B{X²¼4*-
- &lt;€QäS‡u;&amp;”lÐa@P±áyxI`PÐ­Ìq‰tA£hb¡·Íd¼w{sŽH¦w)jêÏ¯#ô«5ÇÙ†z‘5ù«ö£ä‘î¦7Ü„"I¸¸ïS'u:Lˆƒ|UPŽ‡w~\
- \5Y '&amp;e7}ÏÝRŽHåsp/§“^b#¬ë­a$±uà‡ƒí;ÁoödfI°¢
- &gt;ílÊÚVÏ³!9wÂšæ¢ÃßFxÌê:ª×6Ñq¾2
- ´¤]ËâGùü˜,WÊôÉ.ìË²º¤+´¬¬Ùð"äò’è~ŠŒµßS÷î9
- =üw9œWÔf„¼Ñö¡XReuWÑ§·¡j’;àá’C-‡Dõð3
- OˆäÕKøôVDÞûbÒÿ%¹PI÷–o¬ø‚À3é©%ïTêî!oñÊÐ`¥³ÊÁGVÕà]
- k;˜ØqPÁíæš&gt;XýÅØ$Ñ-dsÕ{[sKÇyM4­DÃNƒÀý1¹ú¾œp°’x°Óµ’~šíMfÄÃ×a:
- Á«fÌÅ‹£@PõÞÈžÜq¤¤c}|µˆùV¼¦ØÜ‰¹$àýŸ‹WF¦èª±ï¨Ï‚ü*EÜû^¼´®Îpƒ_úûÝ‡C"qî?øI§`
- Qûi¿®ðwÃ]ls÷ð.(Dñ&gt;56œ“­+£B_.9jB['—Žþ³»‰ß»ì³jÍ‹ì UT\ûšÚÃÒŸ
-
-
- 
-  <script type="text/javascript">
-            !function(){"use strict";function b(a,b){a.play(),a.setAttribute("data-playing","true"),b.classList.add("playing")}function c(a,b){a.pause(),a.setAttribute("data-playing","false"),b.classList.remove("playing")}var a="listen-node";window.onload=function(){var b,c,d,e=document.getElementsByClassName(a),f=document.createElement("style");f.type="text/css",f.innerHTML=".listen-node {display: inline-block; background:rgba(0, 0, 0, 0); border-radius:4px; cursor: pointer;} .listen-node i {font-size: 0.7em; border: 0.5em solid transparent; border-left: 0.75em solid; display: inline-block; margin-left: 5px;} .listen-node .playing { border: 0; border-left: 0.75em double; border-right: 0.5em solid transparent; height: 1em;}",document.getElementsByTagName("head")[0].appendChild(f);for(var g=0;c=e[g];++g)b=document.createElement("audio"),d=document.createElement("i"),b.src=c.getAttribute("data-src"),b.setAttribute("data-playing","false"),c.id=a+"-"+g,c.insertBefore(d,c.firstChild),c.appendChild(b)},document.addEventListener("click",function(d){var e,f,g;d.target.className===a?(e=d.target.children[1],f=d.target,g=d.target.children[0]):d.target.parentElement&&d.target.parentElement.className===a&&(e=d.target.parentElement.children[1],f=d.target.parentElement,g=d.target),e&&f&&g&&(e.srt=parseInt(f.getAttribute("data-start"))||0,e.end=parseInt(f.getAttribute("data-end"))||e.duration,e&&"false"===e.getAttribute("data-playing")?((e.srt>e.currentTime||e.end<e.currentTime)&&(e.currentTime=e.srt),b(e,g)):c(e,g),function a(){var b=requestAnimationFrame(a),d=100*(e.currentTime-e.srt)/(e.end-e.srt);d=d<100?d:100,f.style.background="linear-gradient(to right, rgba(248, 255, 188, 0.22)"+d+"%, rgba(248, 255, 188, 0.17)"+d+"%)",e.end<e.currentTime&&(c(e,g),cancelAnimationFrame(b))}())})}(); </script>
-           
-<script>var t=document.getElementsByTagName('body')[0];document.documentElement.onmousemove=function(e){t.style.webkitTransform=t.style.transform='rotate3d(10, 180, -6, '+e.pageX/-68+'deg)';};</script>
-
-    
-</body></html>
+<html lang="en" class="no-js">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Nick Levantis | musician & media artist </title>
+		<meta name="description" content="Nick Levantis" />
+		<meta name="keywords" content="Nick Levantis" />
+		<meta name="author" content="Nick Levantis" />
+		<link rel="shortcut icon" href="favicon.ico">
+		<link rel="stylesheet" type="text/css" href="css/main.css" />
+		<script>document.documentElement.className="js";var supportsCssVars=function(){var e,t=document.createElement("style");return t.innerHTML="root: { --tmp-var: bold; }",document.head.appendChild(t),e=!!(window.CSS&&window.CSS.supports&&window.CSS.supports("font-weight","var(--tmp-var)")),t.parentNode.removeChild(t),e};supportsCssVars()||alert("Please view this demo in a modern browser that supports CSS Variables.");</script>
+		
+	</head>
+	<body>
+		<main>
+			<svg class="hidden">
+				<symbol id="icon-soundon" viewBox="0 0 32 31">
+					<title>Sound on</title>
+					<path d="M6.405 9.239H0v13.128h6.405l12.474 8.316V.923L6.405 9.239zM5.75 20.491H1.875v-9.377h3.876v9.377zm11.252 6.687l-9.376-6.25v-10.25l9.376-6.25v22.75zm10.884-21.32c5.484 5.483 5.484 14.406 0 19.89l-1.326-1.326c4.753-4.752 4.753-12.486 0-17.239l1.326-1.326zm-2.652 2.651c4.021 4.022 4.021 10.566 0 14.587l-1.326-1.326c3.29-3.29 3.29-8.644 0-11.935l1.326-1.326zm-2.652 2.652a6.571 6.571 0 010 9.283l-1.327-1.326a4.694 4.694 0 000-6.63l1.327-1.327z"/>
+				</symbol>
+				<symbol id="icon-soundoff" viewBox="0 0 32 31">
+					<title>Sound off</title>
+					<path d="M6.409 9.11H0v13.135h6.409l12.48 8.32V.79L6.41 9.109zm-.655 11.258H1.876v-9.382h3.878v9.382zm11.26 6.691L7.63 20.804V10.55l9.382-6.255V27.06zM32 11.65l-1.327-1.326-4.027 4.027-4.028-4.027-1.327 1.326 4.028 4.028-4.028 4.028 1.327 1.327 4.027-4.028 4.028 4.028L32 19.705l-4.028-4.028L32 11.65z"/>
+				</symbol>
+			</svg>
+			<div class="frame">
+				<h1 class="frame__title">NICK LEVANTIS</h1>
+				<div class="frame__links">
+					
+				</div>
+				<div class="frame__demos">
+					<a href="https://soundcloud.com/nicklevantis" >Soundcloud</a>
+                    <a href="https://youtube.com.com/nicklevantis" >Youtube</a>
+                     <a href="https://nicklevantis.svbtle.com" >Svbtle</a>
+				
+				
+					
+				</div>
+				<button class="toggle toggle--on button" id="toggle-btn">
+					<svg class="toggle__icon toggle__icon--on"><use xlink:href="#icon-soundon"></use></svg>
+					<svg class="toggle__icon toggle__icon--off"><use xlink:href="#icon-soundoff"></use></svg>
+				</button>
+			</div>
+			<div class="content">
+		<h3 class="content__subtitle"></h3>
+				<h3 class="content__title">Broken</h3>
+				<div class="content__credits">
+       			</div>
+			</div>
+			<div class="screen screen--grid intro">
+				<p class="intro__content">
+					<span class="intro__content-line">NICK LEVANTIS</span>
+					<span class="intro__content-line intro__content-line--small"></span>
+				</p>
+				<p class="intro__content">
+					<span class="intro__content-line intro__content-line--small"></span>
+					<span class="intro__content-line">Broken</span>
+				</p>
+			</div>
+			<div class="screen screen--flex action">
+				
+				<button id="play-btn" class="button button--box">Play</button>
+			</div>
+		</main>
+		<div id="p5_loading" class="p5_loading">
+			<div class="p5_loading__inner"></div>
+		</div>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.8.0/p5.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.8.0/addons/p5.dom.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.8.0/addons/p5.sound.min.js"></script>
+		<script src="js/broken.js"></script>
+	</body>
+</html>

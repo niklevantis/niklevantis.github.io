@@ -1,0 +1,359 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-size: 100%;
+  font: inherit;
+  box-sizing: border-box;
+}
+
+body {
+  /* animation: bodyanimation 1s alternate; */
+  cursor: pointer;
+  font-family: sans-serif;
+  /* font-family: '190731'; */
+  background: #000;
+  cursor: url('../images/cursor.png') 10 10, auto;
+}
+
+::-moz-selection {
+  color: #fff;
+}
+
+::selection {
+  color: #fff;
+}
+
+.intro {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(0,0,0,.9);
+  z-index: 500;
+  transition: all 2s;
+}
+
+.intro-content {
+  font-size: 3.5vh;
+  line-height: 3.7vh;
+  text-align: center;
+  color: #fff;
+  text-shadow: #000 1px 1px 1px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 2vh;
+  cursor: url('../images/cursor2.png') 10 10, auto;
+  /* animation: textanimation .3s infinite; */
+
+  /* margin-top: .4vh; */
+}
+
+.intro--invisible {
+  opacity: 0;
+  pointer-events: none;
+}
+
+
+
+
+/* ITEMS */
+
+.items {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.item {
+  width: 50vw;
+  height: 50vh;
+  display: none;
+  overflow: hidden;
+  position: relative;
+  z-index: 100;
+}
+
+.item--visible {
+  display: block;
+}
+
+.item--invert video, .item--invert img {
+  filter: invert(1);
+}
+
+.mobileitem {
+  display: none;
+}
+
+.item video, .item img {
+  min-width: 100%;
+  min-height: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.body--animated {
+  /* animation: bodyanimation .4s reverse; */
+  animation: bodyanimation2 .1s reverse;
+}
+
+
+
+
+
+/* LAYERS */
+
+.layers {
+  position: fixed;
+  display: grid;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  grid-template-columns: repeat(2, 1fr);
+  z-index: 300;
+  background: url(../images/dot.png) repeat; 
+ 
+}
+  
+
+
+
+
+
+.layer {
+  opacity: 0;
+
+  width: 50vw;
+  height: 50vh;
+  overflow: hidden;
+  position: relative;
+}
+
+.layer:hover {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.layer--visible {
+  visibility: visible;
+
+}
+
+.layer-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  transform: translate(-50%, -50%);
+  font-size: 5.5vh;
+  line-height: 5.7vh;
+  text-align: center;
+  color: #fff;
+  color: rgb(128, 255, 212);
+  /* pointer-events: none; */
+  text-shadow: #000 1px 1px 1px;
+  animation: textanimation .3s infinite;
+  opacity: 0.7;
+  
+}
+
+.layer-content a {
+  color: inherit;
+  text-decoration: underline;
+  /* pointer-events: auto; */
+}
+
+.layer-content a:hover {
+  text-decoration: none;
+  border-bottom: none;
+  cursor: url('../images/cursor2.png') 10 10, auto;
+}
+
+.layer-content a:focus, a:focus {
+  outline: solid 4px rgba(250,250,250,.8);
+  text-decoration: none;
+}
+
+
+
+
+@keyframes bodyanimation {
+  from {
+    transform: scale(1);
+  }
+
+  to {
+    transform: scale(4);
+  }
+}
+
+@keyframes bodyanimation2 {
+  0% {
+    margin-left: 40px;
+    margin-top: -80px;
+  }
+
+  20% {
+    margin-left: -20px;
+    margin-top: 100px;
+  }
+
+  40% {
+    margin-left: -120px;
+    margin-top: -80px;
+  }
+
+  60% {
+    margin-left: 40px;
+    margin-top: 40px;
+  }
+
+  80% {
+    margin-left: 100px;
+    margin-top: -140px;
+  }
+
+  100% {
+    margin-left: -140px;
+    margin-top: 80px;
+  }
+}
+
+
+@keyframes textanimation {
+  0% {
+    margin-left: .066vw;
+    margin-top: -.066vw;
+
+    /* text-shadow: #fff 10px 10px 0px; */
+  }
+
+  20% {
+    margin-left: 0px;
+    margin-top: .2vw;
+
+    /* text-shadow: #fff 12px 5px 0px; */
+  }
+
+  40% {
+    margin-left: -.2vw;
+    margin-top: .033vw;
+
+    /* text-shadow: #fff 2px -10px 0px; */
+  }
+
+  60% {
+    margin-left: .4vw;
+    margin-top: -.133vw;
+
+    /* text-shadow: #fff -10px -16px 0px; */
+  }
+
+  80% {
+    margin-left: -.2vw;
+    margin-top: .266vw;
+
+    /* text-shadow: #fff -4px 8px 0px; */
+  }
+
+  100% {
+    margin-left: .2vw;
+    margin-top: .4vw;
+
+    /* text-shadow: #fff 6px -8px 0px; */
+  }
+}
+
+
+@media (any-pointer: coarse), (max-width: 600px) {
+  .mobileitem {
+    display: block;
+    position: fixed;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+
+  .mobileitem video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 100%;
+    min-height: 100%;
+  }
+
+  .mobileitem:after {
+    content: '';
+    background: linear-gradient(0deg, rgba(0,0,0,0) 0%, rgba(0,0,0,.7) 100%);
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+  }
+
+  .item {
+    display: none;
+  }
+
+  .layers {
+    position: static;
+    width: 100%;
+    height: auto;
+    display: block;
+   background: rgba(0,0,0,.2);
+  }
+
+  .layer {
+    display: block;
+    opacity: 1;
+    position: static;
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+  }
+
+  .layer-content {
+    padding: 7.4vh 20px 3.7vh 20px;
+    display: block;
+    position: static;
+  
+    overflow: hidden;
+    width: 100%;
+    height: auto;
+    transform: none;
+    animation: none;
+  }
+
+  .intro {
+    position: static;
+    background: transparent;
+  }
+
+  .intro-content {
+    position: static;
+    transform: none;;
+  }
+
+  .intro--invisible {
+    opacity: 1;
+  }
+
+  .body--animated {
+    animation: none;
+  }
+}
+
+/* Nur Firefox */
+@-moz-document url-prefix() {
+    .body--animated {
+        animation: none !important;
+    }
+}
