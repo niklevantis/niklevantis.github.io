@@ -29,6 +29,16 @@ body {
 	-moz-osx-font-smoothing: grayscale;
 }
 
+#unmuteButton {
+position: fixed;
+right: 32px;
+bottom: 20px;
+ display: inline-block;
+cursor: pointer;
+  width: 26px;
+  z-index: 99999;
+
+}
 
 
 .custom {
