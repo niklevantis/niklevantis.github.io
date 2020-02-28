@@ -5,12 +5,7 @@
     font-weight: normal
 }
 
-@font-face {
-    font-family: 'Neue Haas Grotesk';
-    src: url("../fonts/NHaasGroteskDSPro-56It.ttf") format("woff");
-    font-style: italic;
-    font-weight: normal
-}
+
 body {
 background-color: #ffffff;
   background-repeat: no-repeat;
@@ -318,6 +313,49 @@ top: 2px;
   z-index: 99999;
  
 }
+
+@media (max-width: 1440px) {
+    .main-text {
+  font-size: 1.8vw;
+  letter-spacing: 1px;
+  line-height:1.4;
+ width:100%;
+  margin-top: 1%;
+    padding-left: 20px;
+    padding-right: 10px;
+    max-width: 800px
+	
+}
+    
+.head-text {
+  font-family:  "Neue Haas Grotesk", sans-serif;
+  font-weight: 500;
+  color: #000;
+  font-size: 11vw;
+  letter-spacing: 1px;
+  line-height: 1;
+  width: 100%;
+position: fixed;
+    padding-left: 20px;
+    bottom:0;
+    text-transform: uppercase;
+    letter-spacing: 1vw
+   
+}
+    
+    #unmuteButton {
+position: relative;
+top: 4px;
+ display: inline-block;
+	text-decoration: none;
+  width: 2vw;
+  z-index: 99999;
+
+}
+    
+}
+
+
 
 @media (max-width: 1280px) {
     .main-text {
