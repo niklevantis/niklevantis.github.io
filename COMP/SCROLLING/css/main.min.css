@@ -249,12 +249,12 @@ button h3 {
 }
 
 @font-face {
-	font-family: Web-Regular;
-	src: url(fonts/Web-Regular.woff2) format("woff2"), url(fonts/Web-Regular.woff) format("woff");
-	font-weight: normal;
-	font-style: normal
+    font-family: Suisse;
+    src: url(fonts/suisseintl-regular-webxl.eot);
+    src: url(fonts/suisseintl-regular-webxl.eot#iefix) format('embedded-opentype'), url(fonts/suisseintl-regular-webxl.woff2) format('woff2'), url(fonts/suisseintl-regular-webxl.woff) format('woff'), url(fonts/suisseintl-regular-webxl.svg#FontName) format('svg');
+    font-weight: 400;
+    font-style: normal
 }
-
 body,
 h1,
 h2,
@@ -266,7 +266,7 @@ li,
 p,
 section,
 ul {
-	font-family: 'Web-Regular', Helvetica, Helvetica Neue, Arial, sans-serif;
+	font-family: Suisse, Helvetica, Helvetica Neue, Arial, sans-serif;
 	font-weight: normal;
 	font-size: 24px;
 	line-height: 1.15;
