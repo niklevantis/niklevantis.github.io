@@ -436,11 +436,11 @@ position: fixed;
     top: 0;
     right: .5rem;
     content: attr(data-progress-text);
-    font-family: "Helvetica Neue", sans-serif;
+    font-family: "Neue Haas Grotesk", sans-serif!important;
     font-weight: 100;
     font-size: 15rem;
     line-height: 1;
     text-align: right;
-    color: #000;
+    color: #000!important;
 }
 
