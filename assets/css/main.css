@@ -438,7 +438,7 @@ position: fixed;
     content: attr(data-progress-text);
     font-family: "Neue Haas Grotesk", sans-serif!important;
     font-weight: 100;
-    font-size: 15rem;
+    font-size: 55vw;
     line-height: 1;
     text-align: right;
     color: #000!important;
