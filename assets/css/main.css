@@ -5,12 +5,7 @@
     font-weight: normal
 }
 
-@font-face {
-    font-family: 'Neue Haas Grotesk';
-    src: url("../fonts/NHaasGroteskDSPro-56It.ttf") format("woff");
-    font-style: italic;
-    font-weight: normal
-}
+
 body {
 background-color: #ffffff;
   background-repeat: no-repeat;
