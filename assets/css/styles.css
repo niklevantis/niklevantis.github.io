@@ -1,3 +1,143 @@
+
+@font-face {
+    font-family: 'Neue Haas Grotesk';
+    src: url("../fonts/NHaasGroteskDSPro-55Rg.ttf") format("woff");
+    font-style: normal;
+    font-weight: normal
+}
+
+@font-face {
+    font-family: 'Neue Haas Grotesk';
+    src: url("../fonts/NHaasGroteskDSPro-56It.ttf") format("woff");
+    font-style: italic;
+    font-weight: normal
+}
+
+::-moz-selection {
+    color: #fbfbfb;
+    text-shadow: none;
+    background: #1b1b1b
+}
+
+::selection {
+    color: #fbfbfb;
+    text-shadow: none;
+    background: #1b1b1b
+}
+
+
+p{font-size: 30px;
+line-height: 1.3;
+}
+
+.gdpr-banner {display: none!important;}
+
+.tmblr-iframe--gdpr-banner.tmblr-iframe--loaded {display: none!important;}
+
+.tmblr-iframe {display: none!important;}
+    
+.description-container{display: none!important;}
+    
+#gdprbanner_consent_gdpr_consent{display: none!important;}
+    
+    
+
+    
+    
+.pace {
+  -webkit-pointer-events: none;
+  pointer-events: none;
+ z-index: 2000;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+    background-color: #fff
+}
+
+
+
+.pace.pace-inactive .pace-progress {
+  display: none;
+}
+
+.pace .pace-progress {
+  
+  position: fixed;
+  z-index: 2000;
+  top: 0;
+  right: 0;
+  height: 5rem;
+  width: 5rem;
+
+  -webkit-transform: translate3d(0, 0, 0) !important;
+  -ms-transform: translate3d(0, 0, 0) !important;
+  transform: translate3d(0, 0, 0) !important;
+}
+
+
+
+
+
+.pace .pace-progress:after {
+     
+ 
+    display: block;
+    position: absolute;
+    top: 0;
+    right: .5rem;
+    content: attr(data-progress-text);
+    font-family: "Neue Haas Grotesk", sans-serif!important;
+    font-weight: 100;
+    font-size: 40vw;
+    line-height: 1;
+    text-align: right;
+    color: #000!important;
+}
+
+body.pace-running #pagecontent {
+    opacity: 0;
+}
+body.pace-done #pagecontent {
+    opacity: 1;
+}
+
+.tumblr {
+    max-width: 800px;
+    font-family:  "Neue Haas Grotesk", sans-serif;
+    font-size:30px;
+    letter-spacing: 0.3px;
+    line-height: 1.3
+}
+
+.tumblr_title {font-size: 32px;font-weight: 700}
+
+.tumblr_video{
+  
+ 
+
+  max-width: 800px; 
+ 
+}
+.tumblr_body {padding:30px 0 30px 0;}
+
+
+.tumblr_post .tumblr_photo_post {width: 800px; max-width: 100%}
+
+li{ list-style-type: disc;}
+
+.mod-table__title {font-size:30px;line-height:2}
+
+.mod-table__row {font-size:21px}
+
+
+.tumblr_post {padding:30px 0 30px 0;}
+
+blockquote {font-style: italic;font-weight: 700;padding-top:20px;padding-bottom: 20px;color:#454545;}
+
+ul li{font-size: 20px; line-height: 1.5;font-weight: 700;}
+
+ul {padding-top: 20px}
+
 /*! Flickity v2.0.10
 http://flickity.metafizzy.co
 ---------------------------------------------- */
@@ -1274,91 +1414,6 @@ body {
    
 
 
-@media (max-width: 1024px) {
-    .artist__releases {
-        margin-left: 0;
-        padding-left: calc(((100% - 13px*4) / 5)*1 + 13px);
-        width: 100%;
-        box-sizing: border-box
-    }
-}
-
-@media (max-width: 667px) {
-    .artist__releases {
-        width: 100%;
-        margin-left: 0;
-        padding-left: 0
-    }
-}
-
-
-
-
-.artist-gallery {
-    position: absolute;
-    width: calc(((100% - 13px*4)/5)*4 + 13px*3);
-    margin-left: 0;
-    margin-bottom: 13px;
-    position: static;
-    opacity: 0
-}
-
-.artist-gallery .release__gallery__info {
-    padding-left: 0
-}
-
-.artist-gallery .release__gallery__info__caption {
-    visibility: visible
-}
-
-@media (max-width: 1024px) {
-    .artist-gallery {
-        margin-left: calc(((100% - 13px*4)/5)*1 + 13px*1)
-    }
-}
-
-@media (max-width: 667px) {
-    .artist-gallery {
-        position: static;
-        width: calc(100% + 13px*2);
-        margin-left: -13px;
-        margin-bottom: 0
-    }
-
-    .artist-gallery .release__gallery__info {
-        padding-left: 13px
-    }
-}
-
-.artist__back-button {
-    margin-bottom: 4em
-}
-
-.artist__back-button a:hover span {
-    border-bottom: 1px solid;
-    padding-bottom: 0px
-}
-
-@media (max-width: 667px) {
-    .artist__back-button {
-        margin-bottom: 20px;
-        display: none
-    }
-
-    .artist__back-button--mobile {
-        display: block
-    }
-}
-
-
-@media (max-width: 667px) {
-    .event__gallery {
-        width: calc(100% + 13px*2);
-        margin-bottom: 0
-    }
-}
-
-
 
 
 .information__main-wrapper {
@@ -1369,6 +1424,11 @@ body {
 }
 
 @media (max-width: 1024px) {
+    
+    .tumblr_title {font-size: 32px;font-weight: 700}
+    
+    .tumblr_post {padding-bottom: 20px}
+    
     .information__main-wrapper {
         max-width: calc((((100% - 13px*2) - 13px*8) / 6) * 5 + (13px * (5 - 1)))
     }
@@ -1458,142 +1518,3 @@ body {
     }
 }
 
-
-@font-face {
-    font-family: 'Neue Haas Grotesk';
-    src: url("../fonts/NHaasGroteskDSPro-55Rg.ttf") format("woff");
-    font-style: normal;
-    font-weight: normal
-}
-
-@font-face {
-    font-family: 'Neue Haas Grotesk';
-    src: url("../fonts/NHaasGroteskDSPro-56It.ttf") format("woff");
-    font-style: italic;
-    font-weight: normal
-}
-
-::-moz-selection {
-    color: #fbfbfb;
-    text-shadow: none;
-    background: #1b1b1b
-}
-
-::selection {
-    color: #fbfbfb;
-    text-shadow: none;
-    background: #1b1b1b
-}
-
-
-p{font-size: 30px;
-line-height: 1.3;
-}
-
-.gdpr-banner {display: none!important;}
-
-.tmblr-iframe--gdpr-banner.tmblr-iframe--loaded {display: none!important;}
-
-.tmblr-iframe {display: none!important;}
-    
-.description-container{display: none!important;}
-    
-#gdprbanner_consent_gdpr_consent{display: none!important;}
-    
-    
-
-    
-    
-.pace {
-  -webkit-pointer-events: none;
-  pointer-events: none;
- z-index: 2000;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  user-select: none;
-    background-color: #fff
-}
-
-
-
-.pace.pace-inactive .pace-progress {
-  display: none;
-}
-
-.pace .pace-progress {
-  
-  position: fixed;
-  z-index: 2000;
-  top: 0;
-  right: 0;
-  height: 5rem;
-  width: 5rem;
-
-  -webkit-transform: translate3d(0, 0, 0) !important;
-  -ms-transform: translate3d(0, 0, 0) !important;
-  transform: translate3d(0, 0, 0) !important;
-}
-
-
-
-
-
-.pace .pace-progress:after {
-     
- 
-    display: block;
-    position: absolute;
-    top: 0;
-    right: .5rem;
-    content: attr(data-progress-text);
-    font-family: "Neue Haas Grotesk", sans-serif!important;
-    font-weight: 100;
-    font-size: 40vw;
-    line-height: 1;
-    text-align: right;
-    color: #000!important;
-}
-
-body.pace-running #pagecontent {
-    opacity: 0;
-}
-body.pace-done #pagecontent {
-    opacity: 1;
-}
-
-.tumblr {
-    max-width: 800px;
-    font-family:  "Neue Haas Grotesk", sans-serif;
-    font-size:30px;
-    letter-spacing: 0.3px;
-    line-height: 1.3
-}
-
-.tumblr_title {font-size: 32px;font-weight: 700}
-
-.tumblr_video{
-  
- 
-
-  max-width: 800px; 
- 
-}
-.tumblr_body {padding:30px 0 30px 0;}
-
-
-.tumblr_post .tumblr_photo_post {width: 800px; max-width: 100%}
-
-li{ list-style-type: disc;}
-
-.mod-table__title {font-size:30px;line-height:2}
-
-.mod-table__row {font-size:21px}
-
-
-.tumblr_post {padding:30px 0 30px 0;}
-
-blockquote {font-style: italic;font-weight: 700;padding-top:20px;padding-bottom: 20px;color:#454545;}
-
-ul li{font-size: 20px; line-height: 1.5;font-weight: 700;}
-
-ul {padding-top: 20px}
