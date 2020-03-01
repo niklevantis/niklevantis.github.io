@@ -324,7 +324,7 @@ a:hover,
 a:visited {
     padding: 0;
     margin: 0;
-    font-size: 100%;
+    font-size: 120%;
     color: #1b1b1b;
     text-decoration: none;
     vertical-align: baseline;
@@ -616,7 +616,7 @@ body {
 }
 
 .menu__item:after {
-    content: ",";
+    content: "-";
     margin-left: -0.17em
 }
 
