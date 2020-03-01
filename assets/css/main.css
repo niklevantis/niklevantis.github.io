@@ -521,3 +521,5 @@ margin-right: 40px;
 top: 10px;cursor: pointer;display: inline-block;border: none;
     background: none;
 }
+
+.gdpr-banner {display: none!important;}
