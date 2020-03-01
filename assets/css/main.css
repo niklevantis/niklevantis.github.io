@@ -523,3 +523,5 @@ top: 10px;cursor: pointer;display: inline-block;border: none;
 }
 
 .gdpr-banner {display: none!important;}
+
+.tmblr-iframe--gdpr-banner.tmblr-iframe--loaded {display: none!important;}
