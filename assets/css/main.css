@@ -503,8 +503,7 @@ img {margin: 0 auto;}
 margin-top: -78px;
 margin-right: 40px;
     cursor: pointer;
-    border: none;
-    background: none;
+    
 }
 .close-btn:hover {
   color: red;
@@ -519,5 +518,6 @@ margin-right: 40px;
 }
 
 #modal-btn{font-size:30px;float: right;position: fixed;right: 30px;
-top: 10px;cursor: pointer;display: inline-block;
+top: 10px;cursor: pointer;display: inline-block;border: none;
+    background: none;
 }

@@ -300,12 +300,12 @@ window.docReady(function() {
     'use strict';
 
 	// Click Manage options
-	document.querySelector(".final-btn-consent .btn.no").click();
+	document.querySelector(".gdprbanner_consent_gdpr_consent .accept-button").click();
 	document.querySelector("a.manage-link").click();
 	var els = document.querySelectorAll(".binary-switch");
 	els.forEach(function(el) {
 		if (el.querySelector("input").checked) {
-			el.querySelector(".binary-switch-button").click();
+			el.querySelector(".accept-button").click();
 			console.log(el);
 		}
 	});
