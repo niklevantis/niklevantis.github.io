@@ -503,6 +503,8 @@ img {margin: 0 auto;}
 margin-top: -78px;
 margin-right: 40px;
     cursor: pointer;
+    border: none;
+    background: none;
 }
 .close-btn:hover {
   color: red;
