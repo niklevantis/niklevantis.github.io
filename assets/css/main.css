@@ -441,9 +441,9 @@ font-size:40px;
     
 }
     
-    #modal-btn{font-size:60px;float: right;position: fixed;right: 40px;
+    #modal-btn{font-size:60px;position: fixed;left: 0;
 top: 10px;cursor: pointer;display: inline-block;border: none;
-    background: none;
+    background: none;width: 100%;
 }
     
   #unmuteButton {
@@ -454,5 +454,12 @@ top: 3px;
 cursor: pointer;
 
 }  
+    
+.modal-content {
+    font-size: 40px;
+    font-family: "Neue Haas Grotesk", sans-serif;
+    line-height: 1.3;
+   
+}
     
 }
