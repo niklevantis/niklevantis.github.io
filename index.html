@@ -432,10 +432,31 @@ window.onclick = function(e){
 })();
     
 </script>
+<script>
     
-    
+var initDestroyTimeOutPace = function() {
+    var counter = 0;
 
+    var refreshIntervalId = setInterval( function(){
+        var progress; 
 
+        if( typeof $( '.pace-progress' ).attr( 'data-progress-text' ) !== 'undefined' ) {
+            progress = Number( $( '.pace-progress' ).attr( 'data-progress-text' ).replace("%" ,'') );
+        }
+
+        if( progress === 99 ) {
+            counter++;
+        }
+
+        if( counter > 50 ) {
+            clearInterval(refreshIntervalId);
+            Pace.stop();
+        }
+    }, 100);
+}
+initDestroyTimeOutPace();    
+
+</script>
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-11329699-4"></script>
 <script>
