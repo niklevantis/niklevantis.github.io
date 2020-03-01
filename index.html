@@ -27,10 +27,10 @@
 <body class="body-template--home">
 	<div id="pagecontent">
 		<header class="header">
-			<div class="logo">
+			
 				<a href="index.html">
-					<h1>NICKLEVANTIS</h1> </a>
-			</div>
+					<div class="logo"><h1>NICKLEVANTIS</h1></div> </a>
+			
 			<nav class="menu">
 				<div class="menu__item is-active"> <a href="/">
 							Home
@@ -45,7 +45,9 @@
 		</header>
 		<div class="logo-home-nick">
 			<a href="index.html">
-				<h1>NICKLEVANTIS</h1> </a>
+                <div class="logo"><h1>NICKLEVANTIS</h1></div>
+                
+				 </a>
 		</div>
 		<main class="main">
 			<div class="news-wrapper">
@@ -111,6 +113,19 @@
 				</div>
 			</div>
 		</main>
+        <script src="https://cdn.jsdelivr.net/npm/baffle@0.3.6/dist/baffle.min.js"></script>
+
+<script>
+const text =  baffle(".logo");
+text.set({
+  characters: 'L27OVX NTYSQZ+-•~!=*',
+        speed: 60
+});
+
+text.start(9000);
+text.reveal(8000, 600);
+
+</script>
 		<script src="assets/js/scripts.js"></script>
 		<script type="text/javascript">
 		! function() {

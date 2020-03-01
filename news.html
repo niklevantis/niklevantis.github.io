@@ -27,8 +27,8 @@
 <body class="body-template--news">
 	<div id="pagecontent">
 		<header class="header">
-			<div class="logo"> <a href="index.html">
-									NICKLEVANTIS						</a> </div>
+			<a href="index.html">
+					<div class="logo"><h1>NICKLEVANTIS</h1></div> </a>
 			<nav class="menu">
 				<div class="menu__item "> <a href="/">
 							Home
@@ -114,6 +114,20 @@
 		$(".tumblr_video").fitVids();
 	});
 	</script>
+     <script src="https://cdn.jsdelivr.net/npm/baffle@0.3.6/dist/baffle.min.js"></script>
+
+<script>
+const text =  baffle(".logo");
+text.set({
+  characters: 'L27OVX NTYSQZ+-•~!=*',
+        speed: 60
+});
+
+text.start(9000);
+text.reveal(8000, 600);
+
+</script>
+    
 </body>
 
 </html>
