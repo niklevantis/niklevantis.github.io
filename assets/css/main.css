@@ -16,7 +16,25 @@ background-color: #ffffff;
   display: none;
 }
 
+button:active {
+outline: none;
+border: none;
+}
 
+button:focus {outline:0;}
+
+button:hover {
+  color: red;
+  text-decoration: none;
+   text-decoration-color: red;
+      transition: color 0.25s ease-out; 
+  	-webkit-transition: color 0.25s ease-out; 
+  	-moz-transition: color 0.25s ease-out; 
+  	-o-transition: color 0.25s ease-out;	
+  	 transition: 1s;
+  	 -webkit-transition: color 1s; 
+  	 -moz-transition:  1s; 
+}
 
 .head-text {
   font-family:  "Neue Haas Grotesk", sans-serif;
@@ -427,9 +445,22 @@ margin-right: 40px;
     cursor: pointer;
     
 }
+
+
 .close-btn:hover {
   color: red;
+  text-decoration: none;
+   text-decoration-color: red;
+      transition: color 0.25s ease-out; 
+  	-webkit-transition: color 0.25s ease-out; 
+  	-moz-transition: color 0.25s ease-out; 
+  	-o-transition: color 0.25s ease-out;	
+  	 transition: 1s;
+  	 -webkit-transition: color 1s; 
+  	 -moz-transition:  1s; 
 }
+
+
 @-webkit-keyframes animatetop {
   from {top:-300px; opacity:0} 
   to {top:0; opacity:1}
@@ -523,3 +554,5 @@ ol {list-style-type: none}
 .iframe-controls-container.iframe-controls-container--unified{display: none!important;}
 
 .iframe-controls-container.iframe-controls-container--levantis.iframe-controls-container--stroked-buttons .tx-icon-button, .iframe-controls-container.iframe-controls-container--levantis.iframe-controls-container--stroked-buttons .tx-icon-button:active, .iframe-controls-container.iframe-controls-container--levantis.iframe-controls-container--stroked-buttons .tx-icon-button:focus{ display: none!important;}
+
+
