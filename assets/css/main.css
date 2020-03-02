@@ -60,11 +60,11 @@ position: fixed;
   font-size: 30px;
   letter-spacing: 1px;
   line-height:1.3;
- width:100%;
+ width:800px;
   margin-top: 1%;
     padding-left: 50px;
     padding-right: 40px;
-    max-width: 800px
+    max-width: 100%
 	
 }
 
@@ -415,7 +415,8 @@ body.pace-done #pagecontent {
 }
 
 .tumblr {
-    max-width: 800px;
+    max-width: 100%;
+    width: 800px;
     font-family:  "Neue Haas Grotesk", sans-serif;
     font-size:30px;
     letter-spacing: 0.3px;
@@ -446,7 +447,7 @@ img {margin: 0 auto;}
    
 }
 
-.bio {padding:0 40px 0 40px;max-width: 800px}
+.bio {padding:0 40px 0 40px;max-width: 100%;width: 800px}
 
 .modal-content {
   position: relative; 
@@ -506,6 +507,22 @@ top: 10px;cursor: pointer;display: inline-block;border: none;
 img {max-width: 100%}
 
 h2{padding-left: 20px;}
+
+
+
+ol {list-style-type: none}
+
+.iframe-controls-container.iframe-controls-container--levantis{
+    color: #444444;
+    display: none!important;
+}
+
+
+.iframe-controls-container.iframe-controls-container--unified{display: none!important;}
+
+.iframe-controls-container.iframe-controls-container--levantis.iframe-controls-container--stroked-buttons .tx-icon-button, .iframe-controls-container.iframe-controls-container--levantis.iframe-controls-container--stroked-buttons .tx-icon-button:active, .iframe-controls-container.iframe-controls-container--levantis.iframe-controls-container--stroked-buttons .tx-icon-button:focus{ display: none!important;}
+
+
 
 @media only screen and (max-width: 768px)
 
@@ -570,17 +587,3 @@ cursor: pointer;
         height: 100%;
     }
 }
-
-ol {list-style-type: none}
-
-.iframe-controls-container.iframe-controls-container--levantis{
-    color: #444444;
-    display: none!important;
-}
-
-
-.iframe-controls-container.iframe-controls-container--unified{display: none!important;}
-
-.iframe-controls-container.iframe-controls-container--levantis.iframe-controls-container--stroked-buttons .tx-icon-button, .iframe-controls-container.iframe-controls-container--levantis.iframe-controls-container--stroked-buttons .tx-icon-button:active, .iframe-controls-container.iframe-controls-container--levantis.iframe-controls-container--stroked-buttons .tx-icon-button:focus{ display: none!important;}
-
-
