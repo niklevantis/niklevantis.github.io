@@ -2,15 +2,15 @@
 @font-face {
   font-family: "NimbusSansDOT-Regu";
 
-  src: url("./fonts/NimbusSansDOT-Regu.woff") format("woff"), /* Modern Browsers */
-    url("./fonts/NimbusSansDOT-Regu.woff2") format("woff2"); /* Modern Browsers */
+  src: url("../../assets/fonts/NimbusSansDOT-Regu.woff") format("woff"), /* Modern Browsers */
+    url("../../assets/fonts/NimbusSansDOT-Regu.woff2") format("woff2"); /* Modern Browsers */
   font-weight: normal;
   font-style: normal;
 }
 
 body {
 
-
+letter-spacing: 1.3px;
 }
 
       #content {
@@ -24,7 +24,8 @@ font-weight: normal;
 
 }
 p{
-  line-height: 1.2;
+  line-height: 1.3;
+    
 }
 
 #imagesmobile{
@@ -147,7 +148,7 @@ line-height: 1.1;
 
 
 
-  .ball {
+  .frame {
     width: 285px;
     height: auto;
     position: absolute;
@@ -162,7 +163,7 @@ line-height: 1.1;
 
 
 
-  .ball2 {
+  .frame2 {
     display: none;
       width: 329px;
       height: auto;
@@ -175,7 +176,7 @@ line-height: 1.1;
     }
 
 
-    .ball3 {
+    .frame3 {
         display: none;
       width: 310px;
       height: auto;
@@ -189,7 +190,7 @@ line-height: 1.1;
       }
 
 
-    .ball4 {
+    .frame4 {
         display: none;
         width: 380px;
         height: auto;
@@ -201,7 +202,7 @@ line-height: 1.1;
         transform: translate(-50%, -50%);
         }
 
-  .ball5 {
+  .frame5 {
       display: none;
       width: 330px;
       height: auto;
@@ -213,7 +214,7 @@ line-height: 1.1;
       transform: translate(-50%, -50%);
             }
 
-  .ball6 {
+  .frame6 {
           display: none;
                 width: 320px;
                 height: auto;
@@ -225,7 +226,7 @@ line-height: 1.1;
                 transform: translate(-50%, -50%);
                       }
 
-  .ball7 {
+  .frame7 {
   display: none;
       width: 390px;
       height: auto;
@@ -236,7 +237,7 @@ line-height: 1.1;
       -ms-transform: translate(-50%, -50%);
       transform: translate(-50%, -50%);}
 
-  .ball8 {
+  .frame8 {
   display: none;
   width: 380px;
   height: auto;
@@ -247,7 +248,7 @@ line-height: 1.1;
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);}
 
-    .ball9 {
+    .frame9 {
     display: none;
     width: 339px;
     height: auto;
@@ -259,7 +260,7 @@ line-height: 1.1;
     transform: translate(-50%, -50%);
       }
 
-      .ball10 {
+      .frame10 {
       display: none;
       width: 356px;
       height: auto;
@@ -271,7 +272,7 @@ line-height: 1.1;
       transform: translate(-50%, -50%);
         }
 
-        .ball11 {
+        .frame11 {
         display: none;
         width: 275px;
         height: auto;
@@ -284,7 +285,7 @@ line-height: 1.1;
           }
 
 
-          .ball12 {
+          .frame12 {
           display: none;
           width: 345px;
           height: auto;
@@ -297,7 +298,7 @@ line-height: 1.1;
             }
 
 
-            .ball13 {
+            .frame13 {
             display: none;
             width: 305px;
             height: auto;
@@ -310,7 +311,7 @@ line-height: 1.1;
               }
 
 
-              .ball14 {
+              .frame14 {
               display: none;
               width: 365px;
               height: auto;
@@ -323,7 +324,7 @@ line-height: 1.1;
                 }
 
 
-                .ball15 {
+                .frame15 {
                 display: none;
                 width: 286px;
                 height: auto;
@@ -335,7 +336,7 @@ line-height: 1.1;
                 transform: translate(-50%, -50%);
                   }
 
-                  .ball16 {
+                  .frame16 {
                   display: none;
                   width: 290px;
                   height: auto;
@@ -347,7 +348,7 @@ line-height: 1.1;
                   transform: translate(-50%, -50%);
                     }
 
-                    .ball17 {
+                    .frame17 {
                     display: none;
                     width: 400px;
                     height: auto;
@@ -360,7 +361,7 @@ line-height: 1.1;
                       }
 
 
-                      .ball18 {
+                      .frame18 {
                       display: none;
                       width: 405px;
                       height: auto;
@@ -373,7 +374,7 @@ line-height: 1.1;
                         }
 
 
-                        .ball19 {
+                        .frame19 {
                         display: none;
                         width: 325px;
                         height: auto;
@@ -386,7 +387,7 @@ line-height: 1.1;
                           }
 
 
-                          .ball20 {
+                          .frame20 {
                           display: none;
                           width: 370px;
                           height: auto;
@@ -398,7 +399,7 @@ line-height: 1.1;
                           transform: translate(-50%, -50%);
                             }
 
-                            .ball21 {
+                            .frame21 {
                             display: none;
                             width: 340px;
                             height: auto;
@@ -411,7 +412,7 @@ line-height: 1.1;
                               }
 
 
-                              .ball22 {
+                              .frame22 {
                               display: none;
                               width: 430px;
                               height: auto;
@@ -423,7 +424,7 @@ line-height: 1.1;
                               transform: translate(-50%, -50%);
                                 }
 
-                                .ball23 {
+                                .frame23 {
                                   display: none;
                                   width: 285;
                                   height: auto;
@@ -436,7 +437,7 @@ line-height: 1.1;
                                   }
 
 
-                                  .ball24 {
+                                  .frame24 {
                                     display: none;
                                       width: 329px;
                                       height: auto;
@@ -450,7 +451,7 @@ line-height: 1.1;
                                     }
 
 
-                                    .ball25 {
+                                    .frame25 {
                                         display: none;
                                       width: 310px;
                                       height: auto;
@@ -463,7 +464,7 @@ line-height: 1.1;
 
                                       }
 
-                                      .ball26 {
+                                      .frame26 {
                                         display: none;
                                         width: 380px;
                                         height: auto;
@@ -475,7 +476,7 @@ line-height: 1.1;
                                         transform: translate(-50%, -50%);
 
                                         }
-                                        .ball27 {
+                                        .frame27 {
                                           display: none;
                                           width: 330px;
                                           height: auto;
@@ -487,7 +488,7 @@ line-height: 1.1;
                                           transform: translate(-50%, -50%);
                                                   }
 
-                                                  .ball28 {
+                                                  .frame28 {
                                                     display: none;
                                                           width: 320px;
                                                           height: auto;
@@ -499,7 +500,7 @@ line-height: 1.1;
                                                           transform: translate(-50%, -50%);
                                                             }
 
-                                                            .ball29 {
+                                                            .frame29 {
                                                             display: none;
                                                                 width: 390px;
                                                                 height: auto;
@@ -511,7 +512,7 @@ line-height: 1.1;
                                                                 transform: translate(-50%, -50%);
                                                                                                     }
 
-                                                                                                    .ball30 {
+                                                                                                    .frame30 {
                                                                                                     display: none;
                                                                                                     width: 380px;
                                                                                                     height: auto;
@@ -523,7 +524,7 @@ line-height: 1.1;
                                                                                                     transform: translate(-50%, -50%);
                                                                                                       }
 
-                                                                                                      .ball31 {
+                                                                                                      .frame31 {
                                                                                                       display: none;
                                                                                                       width: 339px;
                                                                                                       height: auto;
@@ -535,7 +536,7 @@ line-height: 1.1;
                                                                                                       transform: translate(-50%, -50%);
                                                                                                         }
 
-                                                                                                        .ball32 {
+                                                                                                        .frame32 {
                                                                                                         display: none;
                                                                                                         width: 356px;
                                                                                                         height: auto;
@@ -547,7 +548,7 @@ line-height: 1.1;
                                                                                                         transform: translate(-50%, -50%);
                                                                                                           }
 
-                                                                                                          .ball33 {
+                                                                                                          .frame33 {
                                                                                                           display: none;
                                                                                                           width: 285px;
                                                                                                           height: auto;
@@ -559,7 +560,7 @@ line-height: 1.1;
                                                                                                           transform: translate(-50%, -50%);
                                                                                                             }
 
-                                                                                                            .ball34 {
+                                                                                                            .frame34 {
                                                                                                               display: none;
                                                                                                             width: 385px;
                                                                                                             height: auto;
@@ -571,7 +572,7 @@ line-height: 1.1;
                                                                                                             transform: translate(-50%, -50%);
                                                                                                               }
 
-                                                                                                              .ball35 {
+                                                                                                              .frame35 {
                                                                                                               display: none;
                                                                                                               width: 305px;
                                                                                                               height: auto;
@@ -583,7 +584,7 @@ line-height: 1.1;
                                                                                                               transform: translate(-50%, -50%);
                                                                                                                 }
 
-                                                                                                                .ball36 {
+                                                                                                                .frame36 {
                                                                                                                   display: none;
                                                                                                                   width: 365px;
                                                                                                                   height: auto;
@@ -595,7 +596,7 @@ line-height: 1.1;
                                                                                                                   transform: translate(-50%, -50%);
                                                                                                                   }
 
-                                                                                                                  .ball37 {
+                                                                                                                  .frame37 {
                                                                                                                   display: none;
                                                                                                                   width: 286px;
                                                                                                                   height: auto;
@@ -607,7 +608,7 @@ line-height: 1.1;
                                                                                                                   transform: translate(-50%, -50%);
                                                                                                                     }
 
-                                                                                                                    .ball38 {
+                                                                                                                    .frame38 {
                                                                                                                     display: none;
                                                                                                                     width: 290px;
                                                                                                                     height: auto;
@@ -619,7 +620,7 @@ line-height: 1.1;
                                                                                                                     transform: translate(-50%, -50%);
                                                                                                                       }
 
-                                                                                                                      .ball39 {
+                                                                                                                      .frame39 {
                                                                                                                       display: none;
                                                                                                                       width: 400px;
                                                                                                                       height: auto;
@@ -630,7 +631,7 @@ line-height: 1.1;
                                                                                                                       -ms-transform: translate(-50%, -50%);
                                                                                                                       transform: translate(-50%, -50%);
                                                                                                                         }
-                                                                                                                        .ball40 {
+                                                                                                                        .frame40 {
                                                                                                                         display: none;
                                                                                                                         width: 375px;
                                                                                                                         height: auto;
@@ -642,7 +643,7 @@ line-height: 1.1;
                                                                                                                         transform: translate(-50%, -50%);
                                                                                                                           }
 
-                                                                                                                          .ball41 {
+                                                                                                                          .frame41 {
                                                                                                                           display: none;
                                                                                                                           width: 325px;
                                                                                                                           height: auto;
@@ -654,7 +655,7 @@ line-height: 1.1;
                                                                                                                           transform: translate(-50%, -50%);
                                                                                                                             }
 
-                                                                                                                            .ball42 {
+                                                                                                                            .frame42 {
                                                                                                                             display: none;
                                                                                                                             width: 370px;
                                                                                                                             height: auto;
@@ -665,7 +666,7 @@ line-height: 1.1;
                                                                                                                             -ms-transform: translate(-50%, -50%);
                                                                                                                             transform: translate(-50%, -50%);
                                                                                                                               }
-                                                                                                                              .ball43 {
+                                                                                                                              .frame43 {
                                                                                                                               display: none;
                                                                                                                               width: 340px;
                                                                                                                               height: auto;
@@ -678,7 +679,7 @@ line-height: 1.1;
                                                                                                                                 }
 
 
-                                                                                                                                .ball44 {
+                                                                                                                                .frame44 {
                                                                                                                                 display: none;
                                                                                                                                 width: 430px;
                                                                                                                                 height: auto;
@@ -691,7 +692,7 @@ line-height: 1.1;
                                                                                                                                   }
 
 
-                                                                                                                                  .ball45 {
+                                                                                                                                  .frame45 {
                                                                                                                                       display: none;
                                                                                                                                     width: 285px;
                                                                                                                                     height: auto;
@@ -705,7 +706,7 @@ line-height: 1.1;
                                                                                                                                   }
 
 
-                                                                                                                                    .ball46 {
+                                                                                                                                    .frame46 {
                                                                                                                                       display: none;
                                                                                                                                         width: 329px;
                                                                                                                                         height: auto;
@@ -717,7 +718,7 @@ line-height: 1.1;
                                                                                                                                         transform: translate(-50%, -50%);
                                                                                                                                       }
 
-                                                                                                                                      .ball47 {
+                                                                                                                                      .frame47 {
                                                                                                                                           display: none;
                                                                                                                                         width: 310px;
                                                                                                                                         height: auto;
@@ -729,7 +730,7 @@ line-height: 1.1;
                                                                                                                                         transform: translate(-50%, -50%);
                                                                                                                                         }
 
-                                                                                                                                        .ball48 {
+                                                                                                                                        .frame48 {
                                                                                                                                             display: none;
                                                                                                                                             width: 380px;
                                                                                                                                             height: auto;
@@ -741,7 +742,7 @@ line-height: 1.1;
                                                                                                                                             transform: translate(-50%, -50%);
                                                                                                                                             }
 
-                                                                                                                                            .ball49 {
+                                                                                                                                            .frame49 {
                                                                                                                                                 display: none;
                                                                                                                                                 width: 330px;
                                                                                                                                                 height: auto;
@@ -752,7 +753,7 @@ line-height: 1.1;
                                                                                                                                                 -ms-transform: translate(-50%, -50%);
                                                                                                                                                 transform: translate(-50%, -50%);}
 
-                                                                                                                                                .ball50 {
+                                                                                                                                                .frame50 {
                                                                                                                                                 display: none;
                                                                                                                                                 width: 310px;
                                                                                                                                                 height: auto;
@@ -763,7 +764,7 @@ line-height: 1.1;
                                                                                                                                                 -ms-transform: translate(-50%, -50%);
                                                                                                                                                 transform: translate(-50%, -50%);}
 
-                                                                                                                                                .ball51 {
+                                                                                                                                                .frame51 {
                                                                                                                                                 display: none;
                                                                                                                                                     width: 390px;
                                                                                                                                                     height: auto;
@@ -774,7 +775,7 @@ line-height: 1.1;
                                                                                                                                                     -ms-transform: translate(-50%, -50%);
                                                                                                                                                     transform: translate(-50%, -50%);}
 
-                                                                                                                                                    .ball52 {
+                                                                                                                                                    .frame52 {
                                                                                                                                                     display: none;
                                                                                                                                                     width: 380px;
                                                                                                                                                     height: auto;
@@ -785,7 +786,7 @@ line-height: 1.1;
                                                                                                                                                     -ms-transform: translate(-50%, -50%);
                                                                                                                                                     transform: translate(-50%, -50%);}
 
-                                                                                                                                                    .ball53 {
+                                                                                                                                                    .frame53 {
                                                                                                                                                     display: none;
                                                                                                                                                     width: 339px;
                                                                                                                                                     height: auto;
@@ -796,7 +797,7 @@ line-height: 1.1;
                                                                                                                                                     -ms-transform: translate(-50%, -50%);
                                                                                                                                                     transform: translate(-50%, -50%);}
 
-                                                                                                                                                    .ball54 {
+                                                                                                                                                    .frame54 {
                                                                                                                                                     display: none;
                                                                                                                                                     width: 356px;
                                                                                                                                                     height: auto;
@@ -807,7 +808,7 @@ line-height: 1.1;
                                                                                                                                                     -ms-transform: translate(-50%, -50%);
                                                                                                                                                     transform: translate(-50%, -50%);  }
 
-                                                                                                                                                    .ball55 {
+                                                                                                                                                    .frame55 {
                                                                                                                                                     display: none;
                                                                                                                                                     width: 275px;
                                                                                                                                                     height: auto;
@@ -819,7 +820,7 @@ line-height: 1.1;
                                                                                                                                                     transform: translate(-50%, -50%);}
 
 
-                                                                                                                                                            .ball56 {
+                                                                                                                                                            .frame56 {
                                                                                                                                                             display: none;
                                                                                                                                                             width: 385px;
                                                                                                                                                             height: auto;
@@ -831,7 +832,7 @@ line-height: 1.1;
                                                                                                                                                             transform: translate(-50%, -50%);
                                                                                                                                                               }
 
-                                                                                                                                                              .ball57 {
+                                                                                                                                                              .frame57 {
                                                                                                                                                               display: none;
                                                                                                                                                               width: 305px;
                                                                                                                                                               height: auto;
@@ -844,7 +845,7 @@ line-height: 1.1;
                                                                                                                                                                 }
 
 
-                                                                                                                                                                .ball58 {
+                                                                                                                                                                .frame58 {
                                                                                                                                                                 display: none;
                                                                                                                                                                 width: 365px;
                                                                                                                                                                 height: auto;
@@ -857,7 +858,7 @@ line-height: 1.1;
                                                                                                                                                                   }
 
 
-                                                                                                                                                                  .ball59 {
+                                                                                                                                                                  .frame59 {
                                                                                                                                                                   display: none;
                                                                                                                                                                   width: 286px;
                                                                                                                                                                   height: auto;
@@ -869,7 +870,7 @@ line-height: 1.1;
                                                                                                                                                                   transform: translate(-50%, -50%);
                                                                                                                                                                     }
 
-                                                                                                                                                                    .ball60 {
+                                                                                                                                                                    .frame60 {
                                                                                                                                                                     display: none;
                                                                                                                                                                     width: 290px;
                                                                                                                                                                     height: auto;
@@ -881,7 +882,7 @@ line-height: 1.1;
                                                                                                                                                                     transform: translate(-50%, -50%);
                                                                                                                                                                       }
 
-                                                                                                                                                                      .ball61{
+                                                                                                                                                                      .frame61{
                                                                                                                                                                       display: none;
                                                                                                                                                                       width: 400px;
                                                                                                                                                                       height: auto;
@@ -893,7 +894,7 @@ line-height: 1.1;
                                                                                                                                                                       transform: translate(-50%, -50%);
                                                                                                                                                                         }
 
-                                                                                                                                                                        .ball62 {
+                                                                                                                                                                        .frame62 {
                                                                                                                                                                         display: none;
                                                                                                                                                                         width: 405px;
                                                                                                                                                                         height: auto;
@@ -905,7 +906,7 @@ line-height: 1.1;
                                                                                                                                                                         transform: translate(-50%, -50%);
                                                                                                                                                                           }
 
-                                                                                                                                                                          .ball63 {
+                                                                                                                                                                          .frame63 {
                                                                                                                                                                           display: none;
                                                                                                                                                                           width: 325px;
                                                                                                                                                                           height: auto;
@@ -918,7 +919,7 @@ line-height: 1.1;
                                                                                                                                                                             }
 
 
-                                                                                                                                                                            .ball64 {
+                                                                                                                                                                            .frame64 {
                                                                                                                                                                             display: none;
                                                                                                                                                                             width: 370px;
                                                                                                                                                                             height: auto;
@@ -931,7 +932,7 @@ line-height: 1.1;
                                                                                                                                                                               }
 
 
-                                                                                                                                                                              .ball65 {
+                                                                                                                                                                              .frame65 {
                                                                                                                                                                               display: none;
                                                                                                                                                                               width: 340px;
                                                                                                                                                                               height: auto;
@@ -944,7 +945,7 @@ line-height: 1.1;
                                                                                                                                                                                 }
 
 
-                                                                                                                                                                                .ball66 {
+                                                                                                                                                                                .frame66 {
                                                                                                                                                                                 display: none;
                                                                                                                                                                                 width: 430px;
                                                                                                                                                                                 height: auto;
@@ -957,7 +958,7 @@ line-height: 1.1;
                                                                                                                                                                                   }
 
 
-                                                                                                                                                                                  .ball67 {
+                                                                                                                                                                                  .frame67 {
                                                                                                                                                                                     display: none;
                                                                                                                                                                                     width: 290px;
                                                                                                                                                                                     height: auto;
@@ -973,7 +974,7 @@ line-height: 1.1;
 
 
 
-                                                                                                                                                                                  .ball68 {
+                                                                                                                                                                                  .frame68 {
                                                                                                                                                                                     display: none;
                                                                                                                                                                                       width: 329px;
                                                                                                                                                                                       height: auto;
@@ -986,7 +987,7 @@ line-height: 1.1;
                                                                                                                                                                                     }
 
 
-                                                                                                                                                                                    .ball69 {
+                                                                                                                                                                                    .frame69 {
                                                                                                                                                                                         display: none;
                                                                                                                                                                                       width: 310px;
                                                                                                                                                                                       height: auto;
@@ -998,7 +999,7 @@ line-height: 1.1;
                                                                                                                                                                                       transform: translate(-50%, -50%);}
 
 
-                                                                                                                                                                                      .ball70 {
+                                                                                                                                                                                      .frame70 {
                                                                                                                                                                                           display: none;
                                                                                                                                                                                           width: 380px;
                                                                                                                                                                                           height: auto;
@@ -1010,7 +1011,7 @@ line-height: 1.1;
                                                                                                                                                                                           transform: translate(-50%, -50%);
                                                                                                                                                                                           }
 
-                                                                                                                                                                                    .ball71 {
+                                                                                                                                                                                    .frame71 {
                                                                                                                                                                                         display: none;
                                                                                                                                                                                         width: 330px;
                                                                                                                                                                                         height: auto;
@@ -1022,7 +1023,7 @@ line-height: 1.1;
                                                                                                                                                                                         transform: translate(-50%, -50%);
                                                                                                                                                                                               }
 
-                                                                                                                                                                                    .ball72 {
+                                                                                                                                                                                    .frame72 {
                                                                                                                                                                                             display: none;
                                                                                                                                                                                                   width: 320px;
                                                                                                                                                                                                   height: auto;
@@ -1034,7 +1035,7 @@ line-height: 1.1;
                                                                                                                                                                                                   transform: translate(-50%, -50%);
                                                                                                                                                                                                         }
 
-                                                                                                                                                                                    .ball73 {
+                                                                                                                                                                                    .frame73 {
                                                                                                                                                                                     display: none;
                                                                                                                                                                                         width: 390px;
                                                                                                                                                                                         height: auto;
@@ -1045,7 +1046,7 @@ line-height: 1.1;
                                                                                                                                                                                         -ms-transform: translate(-50%, -50%);
                                                                                                                                                                                         transform: translate(-50%, -50%);}
 
-                                                                                                                                                                                    .ball74 {
+                                                                                                                                                                                    .frame74 {
                                                                                                                                                                                     display: none;
                                                                                                                                                                                     width: 380px;
                                                                                                                                                                                     height: auto;
@@ -1056,7 +1057,7 @@ line-height: 1.1;
                                                                                                                                                                                     -ms-transform: translate(-50%, -50%);
                                                                                                                                                                                     transform: translate(-50%, -50%);}
 
-                                                                                                                                                                                      .ball75 {
+                                                                                                                                                                                      .frame75 {
                                                                                                                                                                                       display: none;
                                                                                                                                                                                       width: 339px;
                                                                                                                                                                                       height: auto;
@@ -1068,7 +1069,7 @@ line-height: 1.1;
                                                                                                                                                                                       transform: translate(-50%, -50%);
                                                                                                                                                                                         }
 
-                                                                                                                                                                                        .ball76 {
+                                                                                                                                                                                        .frame76 {
                                                                                                                                                                                         display: none;
                                                                                                                                                                                         width: 356px;
                                                                                                                                                                                         height: auto;
@@ -1080,7 +1081,7 @@ line-height: 1.1;
                                                                                                                                                                                         transform: translate(-50%, -50%);
                                                                                                                                                                                           }
 
-                                                                                                                                                                                          .ball77 {
+                                                                                                                                                                                          .frame77 {
                                                                                                                                                                                           display: none;
                                                                                                                                                                                           width: 275px;
                                                                                                                                                                                           height: auto;
@@ -1093,7 +1094,7 @@ line-height: 1.1;
                                                                                                                                                                                             }
 
 
-                                                                                                                                                                                            .ball78 {
+                                                                                                                                                                                            .frame78 {
                                                                                                                                                                                             display: none;
                                                                                                                                                                                             width: 385px;
                                                                                                                                                                                             height: auto;
@@ -1106,7 +1107,7 @@ line-height: 1.1;
                                                                                                                                                                                               }
 
 
-                                                                                                                                                                                              .ball79 {
+                                                                                                                                                                                              .frame79 {
                                                                                                                                                                                               display: none;
                                                                                                                                                                                               width: 305px;
                                                                                                                                                                                               height: auto;
@@ -1119,7 +1120,7 @@ line-height: 1.1;
                                                                                                                                                                                                 }
 
 
-                                                                                                                                                                                                .ball80 {
+                                                                                                                                                                                                .frame80 {
                                                                                                                                                                                                 display: none;
                                                                                                                                                                                                 width: 365px;
                                                                                                                                                                                                 height: auto;
@@ -1132,7 +1133,7 @@ line-height: 1.1;
                                                                                                                                                                                                   }
 
 
-                                                                                                                                                                                                  .ball81 {
+                                                                                                                                                                                                  .frame81 {
                                                                                                                                                                                                   display: none;
                                                                                                                                                                                                   width: 256px;
                                                                                                                                                                                                   height: auto;
@@ -1144,7 +1145,7 @@ line-height: 1.1;
                                                                                                                                                                                                   transform: translate(-50%, -50%);
                                                                                                                                                                                                     }
 
-                                                                                                                                                                                                    .ball82 {
+                                                                                                                                                                                                    .frame82 {
                                                                                                                                                                                                     display: none;
                                                                                                                                                                                                     width: 270px;
                                                                                                                                                                                                     height: auto;
@@ -1156,7 +1157,7 @@ line-height: 1.1;
                                                                                                                                                                                                     transform: translate(-50%, -50%);
                                                                                                                                                                                                       }
 
-                                                                                                                                                                                                      .ball83 {
+                                                                                                                                                                                                      .frame83 {
                                                                                                                                                                                                       display: none;
                                                                                                                                                                                                       width: 400px;
                                                                                                                                                                                                       height: auto;
@@ -1169,7 +1170,7 @@ line-height: 1.1;
                                                                                                                                                                                                         }
 
 
-                                                                                                                                                                                                        .ball84 {
+                                                                                                                                                                                                        .frame84 {
                                                                                                                                                                                                         display: none;
                                                                                                                                                                                                         width: 415px;
                                                                                                                                                                                                         height: auto;
@@ -1182,7 +1183,7 @@ line-height: 1.1;
                                                                                                                                                                                                           }
 
 
-                                                                                                                                                                                                          .ball85 {
+                                                                                                                                                                                                          .frame85 {
                                                                                                                                                                                                           display: none;
                                                                                                                                                                                                           width: 325px;
                                                                                                                                                                                                           height: auto;
@@ -1195,7 +1196,7 @@ line-height: 1.1;
                                                                                                                                                                                                             }
 
 
-                                                                                                                                                                                                            .ball86 {
+                                                                                                                                                                                                            .frame86 {
                                                                                                                                                                                                             display: none;
                                                                                                                                                                                                             width: 370px;
                                                                                                                                                                                                             height: auto;
@@ -1207,7 +1208,7 @@ line-height: 1.1;
                                                                                                                                                                                                             transform: translate(-50%, -50%);
                                                                                                                                                                                                               }
 
-                                                                                                                                                                                                              .ball87 {
+                                                                                                                                                                                                              .frame87 {
                                                                                                                                                                                                               display: none;
                                                                                                                                                                                                               width: 340px;
                                                                                                                                                                                                               height: auto;
@@ -1220,7 +1221,7 @@ line-height: 1.1;
                                                                                                                                                                                                                 }
 
 
-                                                                                                                                                                                                                .ball88 {
+                                                                                                                                                                                                                .frame88 {
                                                                                                                                                                                                                 display: none;
                                                                                                                                                                                                                 width: 430px;
                                                                                                                                                                                                                 height: auto;
@@ -1232,7 +1233,7 @@ line-height: 1.1;
                                                                                                                                                                                                                 transform: translate(-50%, -50%);
                                                                                                                                                                                                                   }
 
-                                                                                                                                                                                                                  .ball89 {
+                                                                                                                                                                                                                  .frame89 {
                                                                                                                                                                                                                     display: none;
                                                                                                                                                                                                                     width: 290px;
                                                                                                                                                                                                                     height: auto;
@@ -1245,7 +1246,7 @@ line-height: 1.1;
                                                                                                                                                                                                                     }
 
 
-                                                                                                                                                                                                                    .ball90 {
+                                                                                                                                                                                                                    .frame90 {
                                                                                                                                                                                                                       display: none;
                                                                                                                                                                                                                         width: 329px;
                                                                                                                                                                                                                         height: auto;
