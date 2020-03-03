@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en-En">
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" >
 <meta charset="UTF-8">
 <link rel="profile" href="http://gmpg.org/xfn/11">
@@ -14,26 +15,57 @@
 <title>Nick Levantis</title>
 <link rel='stylesheet'  href='assets/css/main.css' type='text/css' media='all' />
 
-<body >
-	
+    <script src="assets/js/pace.min.js"></script>
+    <script src="assets/js/jquery.js"></script>
+   <script src="assets/js/jquery.fitvids.js"></script>
+    </head>
+<body  >
+	<div id="pagecontent">
 			
 
 		<header class="site-header">
 		
 								<span class="head-text">Nick Levantis</span>
 										
-		</div>
+	
 	</header>
 
 	
 
 		<div class="center-text">
-<p class="main-text"><a href="#" class="first"><span class="u film">Nick</span> <span class="second"><img class="one" src="assets/img/nick.jpg" /></span><span class="third"><img class="one" src="assets/img/n.jpg" /></span></a>is creating pieces of   <a href="#" class="fade film">music<span><video id="video" class="video-background"><source src="https://nicklevantis.com/videos/citizen.mp4"/></video></span></a> and is trying to   <a href="#" class="fade-one film">differentiate<span><video id="video-one" class="video-background"><source src="https://nicklevantis.com/videos/Pigs.mp4"/></video></span></a> by surpassing the limits of  <a href="#" class="fade-two film">specific <span><video id="video-two" class="video-background"><source src="https://nicklevantis.com/videos/Nowhere.mp4"/></video></span></a> music<a href="#" class="fade-three film"> genres<span><video id="video-three" class="video-background"><source src="https://nicklevantis.com/videos/Romance.mp4"/></video></span></a>. You can check out <a href="https://soundcloud.com/nicklevantis" class="first"><span class="u">Soundcloud</span><span class="resume"><img class="resume-img" src="assets/img/soundcloud.jpg" /></span></a> for music, <a href="https://nicklevantis.svbtle.com/" class="first"><span class="u">Svbtle</span><span class="resume"><img class="resume-img" src="assets/img/svbtle.jpg" /></span></a>  for News,  <a href="https://youtube.com/nicklevantis/" class="first"><span class="u film">Youtube</span><span class="resume"><img class="resume-img" src="assets/img/youtube.jpg" /></span> </a> for Videos .</span>
+<p class="main-text"><a href="#" class="first"><span class="u film">Nick</span> <span class="second"><img class="one" src="assets/img/nick.jpg" /></span><span class="third"><img class="one" src="assets/img/n.jpg" /></span></a>is creating pieces of   <a href="#" class="fade film">music<span><video id="video" class="video-background"><source src="https://nicklevantis.com/videos/citizen.mp4"/></video></span></a> and is trying to   <a href="#" class="fade-one film">differentiate<span><video id="video-one" class="video-background"><source src="https://nicklevantis.com/videos/dystopia.mp4"/></video></span></a> by surpassing the limits of  <a href="#" class="fade-two film">specific <span><video id="video-two" class="video-background"><source src="https://nicklevantis.com/videos/Nowhere.mp4"/></video></span></a> music<a href="#" class="fade-three film"> genres<span><video id="video-three" class="video-background"><source src="https://nicklevantis.com/videos/Romance.mp4"/></video></span></a>. You can check out <a href="https://soundcloud.com/nicklevantis" class="first"><span class="u">Soundcloud</span><span class="resume"><img class="resume-img" src="assets/img/soundcloud.jpg" /></span></a> for music, <a href="https://nicklevantis.svbtle.com/" class="first"><span class="u">Svbtle</span><span class="resume"><img class="resume-img" src="assets/img/svbtle.jpg" /></span></a>  for News,  <a href="https://youtube.com/nicklevantis/" class="first"><span class="u film">Youtube</span><span class="resume"><img class="resume-img" src="assets/img/youtube.jpg" /></span> </a> for Videos .</span>
 <span id="center-mute"><img src="assets/img/unmute.png" id="unmuteButton" /></span>
 
-<span id="untext">tap icon for sound</span>
+<span id="untext">tap icon for sound</span> </p>
+    </div>
 
- </p>
+
+<button id="modal-btn">Bio + Blog</button>
+<div class="modal"> 
+  <div class="modal-content">
+    <span class="close-btn">&times;</span>
+     <h2>Bio</h2>
+      <p class="bio"> Nick grew up in a fertile cultural and musical period in the early eighties. Programming and synths helped him to step deeper into the world of electronic music and computer art. Over three decades he has formed bands and collaborated with many other musicians experimenting through different styles. Today is creating pieces of music and is trying to differentiate by surpassing the limits of specific genres. Recent activities include the creation of visuals and music for theatre.</p>
+    
+      
+        <div class="tumblr">
+            <h2>News</h2>
+            
+    <p>
+<script type="text/javascript" src="https://levantis.tumblr.com/js?num=12"></script>
+
+		<script>
+			_globalObj={};_globalObj.writeEntries=function(e){var t=e.posts,n=t.length,r=t.length-n,i="",s="",o=[];while(n--){r=t.length-(n+1);i+='<div class="tumblr_entry '+(t.length-n)+'">';switch(t[r].type){case"regular":s='<h2 class="tumblr_title">'+t[r]["regular-title"]+'</h2><p class="tumblr_date">'+t[r]["date"]+"</p>";content='<div class="tumblr_body">'+t[r]["regular-body"]+"</div>";break;case"photo":s='<h2 class="tumblr_title"></h2><p class="tumblr_date">'+t[r]["date"]+"</p>";content='<div class="tumblr_body"><img class="tumblr_photo" src="'+t[r]["photo-url-1280"]+'"/></div><div class="tumblr_body">'+t[r]["photo-caption"]+"</div>";break;case"audio":s='<h2 class="tumblr_title">'+t[r]["id3-title"]+'</h2><h3 class="tumblr_date">'+t[r]["date"]+"</h3>";content='<div class="audio-embed">'+t[r]["audio-embed"]+t[r]["audio-caption"]+"</div>";break;case"video":s='<h2 class="tumblr_title"></h2><h3 class="tumblr_date">'+t[r]["date"]+"</h3>";content='<div class="tumblr_body">'+t[r]["video-player-500"]+t[r]["video-caption"]+"</div>";o.push(t[r]["video-player"].substr(t[r]["video-player"].indexOf("rVideo(")+7,t[r]["video-player"].indexOf("</scrip")-(t[r]["video-player"].indexOf("rVideo(")+7)).split(","));break;case"quote":s='<h2 class="tumblr_title">Quote</h2><h3 class="tumblr_date">'+t[r]["date"]+"</h3>";content='<div class="tumblr_body tumblr_quote">'+t[r]["quote-text"]+'</div><div class="tumblr_body">'+t[r]["quote-source"]+"</div>";break;case"link":s='<h2 class="tumblr_title">Check out this link</h2><h3 class="tumblr_date">'+t[r]["date"]+"</h3>";content='<div class="tumblr_link"><a href="'+t[r]["link-url"]+'">'+t[r]["link-text"]+'</a></div><div class="tumblr_body">'+t[r]["link-description"]+"</div>";break;case"conversation":s='<h2 class="tumblr_title">'+t[r]["conversation-title"]+' </h2><h3 class="tumblr_date">'+t[r]["date"]+"</h3>";content='div class="tumblr_body">'+t[r]["conversation-text"]+"</div>";default:s="";content="";break}i=i+s+content+"</div>"}document.querySelector("#entries").innerHTML=i;_globalObj.pullVids(o)};_globalObj.pullVids=function(e){for(var t=e.length-1;t>=0;t--){renderVideo(e[t].shift().replace(/(\"|\|'\))/g,""),e[t].shift().replace(/(\"|\'|\))/g,""),e[t].shift().replace(/(\"|\'|\))/g,""),e[t].shift().replace(/(\"|\'|\))/g,""),e[t].join(",").replace(/(\"|\'|\))/g,""))}};_globalObj.writeEntries(tumblr_api_read)
+			</script>
+			<a href="https://levantis.tumblr.com/" title="News" target="_blank">More news</a>
+			</p>
+				
+			
+			</div>
+ 
+  </div>
+</div>
+  
 
 
 <script type="text/javascript">
@@ -154,11 +186,62 @@ text.reveal(8000, 2000);
 </script>
 
 
-<script type='text/javascript'>
-/* <![CDATA[ */
-var lsow_settings = {"mobile_width":"780","custom_css":""};
-/* ]]> */
+<script>
+  $(document).ready(function(){
+    // Target your .container, .wrapper, .post, etc.
+    $(".tumblr_video_post").fitVids();
+  });
 </script>
+
+
+<script>
+    let modalBtn = document.getElementById("modal-btn")
+let modal = document.querySelector(".modal")
+let closeBtn = document.querySelector(".close-btn")
+modalBtn.onclick = function(){
+  modal.style.display = "block"
+}
+closeBtn.onclick = function(){
+  modal.style.display = "none"
+}
+window.onclick = function(e){
+  if(e.target == modal){
+    modal.style.display = "none"
+  }
+}</script>
+
+
+
+<!--<script data-pace-options='{"ajax":{"trackWebSockets": false}}' src="assets/js/pace.min.js"></script>-->
+
+
+<script>
+    
+var initDestroyTimeOutPace = function() {
+    var counter = 0;
+
+    var refreshIntervalId = setInterval( function(){
+        var progress; 
+
+        if( typeof $( '.pace-progress' ).attr( 'data-progress-text' ) !== 'undefined' ) {
+            progress = Number( $( '.pace-progress' ).attr( 'data-progress-text' ).replace("%" ,'') );
+        }
+
+        if( progress === 99 ) {
+            counter++;
+        }
+
+        if( counter > 50 ) {
+            clearInterval(refreshIntervalId);
+            Pace.stop();
+        }
+    }, 100);
+}
+initDestroyTimeOutPace();    
+
+    </script>
+
+
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-11329699-4"></script>
 <script>
@@ -168,7 +251,7 @@ var lsow_settings = {"mobile_width":"780","custom_css":""};
 
   gtag('config', 'UA-11329699-4');
 </script>
-
+    </div>
 </body>
 </html>
 
