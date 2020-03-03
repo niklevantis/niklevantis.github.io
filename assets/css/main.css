@@ -506,6 +506,8 @@ top: 10px;cursor: pointer;display: inline-block;border: none;
 
 .tmblr-full img{width:800px;max-width:100%;height:auto;padding-top:40px}
 .tmblr-embed{padding-top:40px;padding-bottom: 40px}
+.tumblr_body{padding-bottom:40px;border-bottom: 1px dotted black}
+.tumblr_post.tumblr_text_post {padding-top:40px}
 
 img {max-width: 100%}
 
