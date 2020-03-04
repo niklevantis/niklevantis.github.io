@@ -14,7 +14,7 @@
 	pointer-events: none;
 }
 
-.logo {font-size:30px;margin: auto;display: block;position: fixed; text-align: center;width: 100%;bottom: 0}
+.logo {font-size:20px;margin: auto;display: block;position: fixed; text-align: center;width: 100%;bottom: 0}
 
 /* Stack */
 .stack ul {
@@ -31,8 +31,8 @@
 }
 
 ul.stack__images {
-	width: 500px;
-	height: 500px;
+	width: 350px;
+	height: 350px;
 	z-index: 10;
 	-webkit-perspective: 1200px;
 	-webkit-perspective-origin: 50% -50%;
@@ -87,11 +87,11 @@ ul.stack__images {
 	display: block;
 	padding: 0;
 	overflow: hidden;
-	width: 186px;
-	height: 196px;
+	width:100%;
+	height:80%;
 margin: 0 auto;
 	font-size: 40px;
-	position: relative;
+	position: fixed;
 	cursor: pointer;
 	color: #000;
     

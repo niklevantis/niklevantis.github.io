@@ -1,4 +1,10 @@
-@import url('https://fonts.googleapis.com/css?family=Work+Sans:400,700');
+@font-face {
+    font-family: 'Neue Haas Grotesk';
+    src: url("../fonts/NHaasGroteskDSPro-55Rg.ttf") format("woff");
+    font-style: normal;
+    font-weight: normal
+}
+
 
 
 
@@ -21,7 +27,7 @@ article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{
 }
 body{
     line-height:1.2;
-    font-family: 'Work Sans', sans-serif;
+     font-family:  "Neue Haas Grotesk", sans-serif;
 }
 ol,ul{
     list-style:none

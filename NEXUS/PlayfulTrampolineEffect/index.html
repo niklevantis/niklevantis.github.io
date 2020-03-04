@@ -4,13 +4,12 @@
 		<meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>Playful Trampoline Effect | Demo: Default Version</title>
+		<title>Nick Levantis | Music and artwork</title>
 		<meta name="description" content="A content navigation effect that reminds of jumping on a trampoline" />
 		<meta name="keywords" content="svg, animation, trampoline, effect, images, navigation" />
-		<meta name="author" content="Codrops" />
-		<link rel="shortcut icon" href="../favicon.ico">
+		<meta name="author" content="Nick Levantis" />
+		<link rel="shortcut icon" href="favicon.ico">
 		<link rel="stylesheet" type="text/css" href="css/normalize.css" />
-		<link rel="stylesheet" type="text/css" href="css/vicons-font.css" />
 		<link rel="stylesheet" type="text/css" href="css/base.css" />
 		<link rel="stylesheet" type="text/css" href="css/component.css" />
 		<script src="js/snap.svg-min.js"></script>
@@ -36,36 +35,48 @@ C301,229.646,301,301,301,301z" />
 		<div class="main">
            
 			<div class="container">
-			
+		
 				<div class="stack">
+                    	<br><br><br><br>
                     <button id="stack-next" class="stack__next">
 
-↓<span></span></button>
+<!--↓--> </button>
+                    
 					<ul id="elasticstack" class="stack__images">
 						<li><img src="img/broken.gif" alt="01"/></li>
 						<li><img src="img/nowhere.gif" alt="02"/></li>
-					
+                        <li><img src="img/romance.jpg" alt="03"/></li>
+					   <li><img src="img/eye.gif" alt="03"/></li>
 					</ul>
 					
 					<ul id="stack-titles" class="stack__titles">
 						<li class="current">
-							<blockquote><br><br>
-							 <span class=listen-node data-src=https://nicklevantis.com/audio/broken.mp3 data-start=0 data-end=236>Broken</span>
+							<blockquote><br>
+							 <span class=listen-node data-src=https://nicklevantis.com/audio/broken.mp3 data-start=0 data-end=236></span>
 							</blockquote>
 						</li>
 						<li>
-							<blockquote><br><br>
-							  <span class=listen-node data-src=https://nicklevantis.com/audio/nowhere.mp3 data-start=0 data-end=236>Nowhere</span>
+							<blockquote><br>
+							  <span class=listen-node data-src=https://nicklevantis.com/audio/nowhere.mp3 data-start=0 data-end=236></span>
 							</blockquote>
 						</li>
-					
+						<li>
+							<blockquote><br>
+							  <span class=listen-node data-src=https://nicklevantis.com/audio/romance.mp3 data-start=0 data-end=236></span>
+							</blockquote>
+						</li>
+                        	<li>
+							<blockquote><br>
+							  <span class=listen-node data-src=https://nicklevantis.com/audio/dystopia.mp3 data-start=0 data-end=236></span>
+							</blockquote>
+						</li>
 					</ul>
 				</div><!-- /stack -->
 			</div><!-- /container -->
 
 		</div><!-- /main-->
         
-                    <button id="modal-btn">nicklevantis</button>
+                    <button id="modal-btn">NICKLEVANTIS</button>
 <div class="modal"> 
   <div class="modal-content">
     <span class="close-btn">&times;</span>
@@ -181,7 +192,7 @@ text.reveal(8000, 800);
 			window.onload = function() {
 				var b, c, d, e = document.getElementsByClassName(a),
 					f = document.createElement("style");
-				f.type = "text/css", f.innerHTML = ".listen-node {display: inline-block; background:rgb(255, 255, 255); cursor: pointer;} .listen-node i {font-size: 0.7em; border: 0.5em solid transparent; border-left: 0.75em solid; display: inline-block; margin-left: 5px;} .listen-node .playing { border: 0; border-left: 0.75em double; border-right: 0.5em solid transparent; height: 1em;}", document.getElementsByTagName("head")[0].appendChild(f);
+				f.type = "text/css", f.innerHTML = ".listen-node {display: inline-block; background:rgb(255, 255, 255); cursor: pointer;} .listen-node i {font-size: 1.7em; border: 0.5em solid transparent; border-left: 0.75em solid; display: inline-block; margin-left: 5px;} .listen-node .playing { border: 0; border-left: 0.75em double; border-right: 0.5em solid transparent; height: 1em;}", document.getElementsByTagName("head")[0].appendChild(f);
 				for(var g = 0; c = e[g]; ++g) b = document.createElement("audio"), d = document.createElement("i"), b.src = c.getAttribute("data-src"), b.setAttribute("data-playing", "false"), c.id = a + "-" + g, c.insertBefore(d, c.firstChild), c.appendChild(b)
 			}, document.addEventListener("click", function(d) {
 				var e, f, g;
