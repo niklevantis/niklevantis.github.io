@@ -38,6 +38,7 @@ ul.stack__images {
 	-webkit-perspective-origin: 50% -50%;
 	perspective: 1200px;
 	perspective-origin: 50% -50%;
+     transform-style: preserve-3d;
 }
 
 @media screen and (max-height: 530px), screen and (max-width: 400px) {
@@ -88,7 +89,7 @@ ul.stack__images {
 	padding: 0;
 	overflow: hidden;
 	width:100%;
-	height:80%;
+	height:100%;
 margin: 0 auto;
 	font-size: 40px;
 	position: fixed;

@@ -184,7 +184,7 @@ text.reveal(8000, 800);
         <script>
   $(document).ready(function(){
     // Target your .container, .wrapper, .post, etc.
-    $(".tumblr_video_post, .tmblr-embed").fitVids();
+    $(".tumblr_video_post, .tmblr-embed ").fitVids();
   });
 </script>
         <script>
@@ -195,7 +195,17 @@ text.reveal(8000, 800);
         
         </script>
 
-        <script>var t=document.getElementsByTagName('body')[0];document.documentElement.onmousemove=function(e){t.style.webkitTransform=t.style.transform='rotate3d(10, 180, -6, '+e.pageX/-18+'deg)';};</script>        
+        <script>
+            
+//            var t=document.getElementsByTagName('body')[0];document.documentElement.onmousemove=function(e){t.style.webkitTransform=t.style.transform='rotate3d(10, 180, -6, '+e.pageX/-18+'deg)';};
+        var card = $(".stack__images, img, .tumblr_video_post,  .tmblr-embed ");
+
+$(document).on("mousemove",function(e) {  
+  var ax = -($(window).innerWidth()/2- e.pageX)/20;
+  var ay = ($(window).innerHeight()/2- e.pageY)/10;
+  card.attr("style", "transform: rotateY("+ax+"deg) rotateX("+ay+"deg);-webkit-transform: rotateY("+ax+"deg) rotateX("+ay+"deg);-moz-transform: rotateY("+ax+"deg) rotateX("+ay+"deg)");
+});
+        </script>        
     
 	</body>
 </html>

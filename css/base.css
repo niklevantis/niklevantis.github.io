@@ -39,7 +39,7 @@ body {
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	overflow: hidden;
-
+ 
 }
 
 a {
@@ -78,6 +78,7 @@ a:focus {
 	-moz-flex-direction: column;
 	-ms-flex-direction: column;
 	flex-direction: column;
+   
 }
 
 
