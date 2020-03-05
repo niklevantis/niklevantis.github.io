@@ -1,0 +1,183 @@
+
+
+html, body {
+	margin:0;
+	padding:0;
+    height:100%;
+    font-family: sans-serif;
+    font-size:3vw;
+    line-height:3vw;
+    cursor:ew-resize;
+}
+
+html, body {
+	overflow-x:hidden;
+}
+
+a {	
+	display:inline-block;
+	text-decoration: none;
+	-webkit-transition: transform 0.2s; /* Safari */
+    transition: transform 0.2s;
+}
+
+.a a > span {
+	border-bottom:1px solid black;
+}
+
+.b a > span {
+	border-bottom:1px solid white;
+}
+
+a.hovered {
+	-webkit-transform: skew(30deg, 0) !important;
+	transform: skew(30deg, 0) !important;
+}
+
+a.backoffice {
+	-webkit-transform: skew(-30deg, 0);
+	transform: skew(-30deg, 0);
+}
+em {
+	display:inline-block;
+	-webkit-transform: skew(-30deg, 0);
+	transform: skew(-30deg, 0);
+}
+
+.a{
+	position:absolute;
+	top:0px;
+	left:0px;
+	width:100%;
+	min-height:100vh;
+	overflow-x:hidden;	
+	z-index:1;
+	background-color:white;
+}
+
+.b {
+	position:absolute;
+	top:0px;
+	right:0px;
+	min-height:100vh;
+	overflow-x:hidden;
+	z-index:2;
+	color:white;
+	background-color:black;
+	pointer-events: none;
+}
+
+.a a {
+	color:black;
+}
+
+.b a {
+	color:white;
+}
+
+.contenu {
+	position:relative;
+	margin:20px;
+}
+
+.text {
+	width:60vw;
+}
+
+/*@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+} 
+*/
+
+.slash {
+	margin-left:10vw;
+	height: 1em;
+	width: 2px;
+	-webkit-transform: skew(-30deg, 0);
+	transform: skew(-30deg, 0);
+	/*animation: rotate 1s infinite linear;*/
+	background-color:black;
+}
+
+.b .slash {
+	background-color:white;
+}
+
+
+
+
+.logo {
+	width:45vw;
+	text-align: center;
+	margin-bottom:2em;
+}
+
+
+
+.contact {
+	position:absolute;
+	top:20px;
+	right:0px;
+	width:35vw;
+}
+
+.contact > div > div {
+	float:left;
+}
+
+.contact > div {
+	float:left;
+	clear:both;
+	margin-bottom:1em;
+}
+
+.contact_type {
+	width:6vw;
+}
+
+a.facebook {
+	display:block;
+	margin-left:6vw;
+}
+
+
+.contact_content > a,
+.contact_content > span {
+	display:block;
+}
+
+.espace_fine {
+	font-size:0.5em;
+	line-height: 1px;
+}
+
+
+::selection {
+	background: transparent; /* WebKit/Blink Browsers */
+}
+
+::-moz-selection {;
+	background: transparent; /* WebKit/Blink Browsers */
+}
+
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; 
+
+
+
+
+
+
+
+
+
+

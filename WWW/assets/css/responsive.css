@@ -1,0 +1,38 @@
+@media only screen and (max-device-width : 600px) and (orientation : portrait) {
+	.contact {
+		position: relative;
+		margin-left:20px;
+	}
+
+	.a,
+	.b {
+		overflow:hidden;
+		padding-bottom:15vh;
+	}
+
+	.text {
+		width:90vw;
+	}
+
+	.slash {
+		margin-left:20vw;
+		height: 15px;
+	}
+
+	.contact {
+		width:90vw;
+	}
+
+	.logo {
+		width:90vw;
+	}
+
+	body, html {
+		overflow-x:hidden;
+		font-size:4.5vw;
+    	line-height:4.5vw;
+    	overflow:auto;
+    	-webkit-overflow-scrolling: touch
+    	max-height:2000px;
+	}
+}
