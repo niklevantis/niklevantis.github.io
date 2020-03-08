@@ -177,7 +177,7 @@ right: 40px;
 }
 
 #modal-btn{font-size:1em;float: right;position: fixed;right: 3vw;
-top: 40px;cursor: pointer;display: inline-block;border: none;text-transform: uppercase;
+top: 36px;cursor: pointer;display: inline-block;border: none;text-transform: uppercase;
     background: none;
 }
 
@@ -286,3 +286,43 @@ ol {list-style-type: none}
 .iframe-controls-container.iframe-controls-container--unified{display: none!important;}
 
 .iframe-controls-container.iframe-controls-container--levantis.iframe-controls-container--stroked-buttons .tx-icon-button, .iframe-controls-container.iframe-controls-container--levantis.iframe-controls-container--stroked-buttons .tx-icon-button:active, .iframe-controls-container.iframe-controls-container--levantis.iframe-controls-container--stroked-buttons .tx-icon-button:focus{ display: none!important;}
+
+@media only screen and (max-width: 768px)
+
+{
+    .bio {  padding-left: 10px;
+    padding-right: 10px;}
+    
+
+.head-text {
+ 
+  font-size: 11vw;
+  letter-spacing: 1px;
+ 
+}
+    
+    .tumblr {
+   
+    font-size:30px;
+    padding-right: 5px
+}
+    
+    
+    .tumblr_posts {padding-left: 10px;}
+    
+    #modal-btn{font-size:60px;position: fixed;left: 0;
+top: 10px;cursor: pointer;display: inline-block;border: none;
+    background: none;width: 100%;
+}
+    
+
+.modal-content {
+    font-size: 30px;
+    font-family: "Neue Haas Grotesk", sans-serif;
+    line-height: 1.3;
+   
+}
+    
+}
+
+
