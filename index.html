@@ -1,87 +1,120 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, minimum-scale=1, width=device-width, height=device-height">
-        <meta name="apple-mobile-web-app-capable" content="yes">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+<html lang="en-US">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" >
+<meta charset="UTF-8">
+<link rel="profile" href="http://gmpg.org/xfn/11">
+<meta name="description" content="Nick Levantis music and artwork">
+<meta property="og:title" content="Nick Levantis music and artwork">
+<meta property="og:type" content="website">
+<meta property="og:image" content="assets/n.jpg">
+<meta property="og:description" content="Nick Levantis music and artwork">
+<meta property="og:site_name" content="Nick Levantis">
+<title>Nick Levantis</title>	
+  <link rel="icon" href="assets/icons/favicon.png">
+<link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"/>
+<link rel="stylesheet" type="text/css" media="all" href="assets/css/style.css" />
+<script src="assets/js/pace.min.js"></script>    
+<script type='text/javascript' src='https://code.jquery.com/jquery-2.1.3.min.js'></script>
+<script type='text/javascript' src='http://d3js.org/d3.v3.min.js'></script>
+<script type='text/javascript' src='assets/js/scripts.js'></script>
+  <script src="assets/js/jquery.fitvids.js"></script>    
 
-        <title>Nick Levantis | Music and artwork</title>
-         <meta name="description" content="Nick Levantis music and artwork">
-        <meta property="og:title" content="Nick Levantis music and artwork">
-        <meta property="og:type" content="website">
-        <meta property="og:description" content="Nick Levantis music and artwork">
-        <meta property="og:site_name" content="Nick Levantis">
-        <link rel="icon" href="assets/icons/favicon.png">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
-        <link rel="stylesheet" href="assets/css/style.css">
-    <script src="assets/js/scripts.js"></script></head>
-    <body>
-        <canvas id="canvas"></canvas>
-     
-        <div id="ui">
+</head>
+	<body>
+        <div class="logo">NICK LEVANTIS</div>
+		<div id="wrapper">
+		
+		    
+		    <div id="audio">
+				<audio id="audioElement"> 
+					<source src="assets/mp3/broken.mp3" type="audio/mp3" />
+				
+				</audio>
+              
+                
+		    </div>
         
-
-            <div id="menu">
-                  <h5 id="trippy">❍</h5>
-                <h1 id="record"></h1>
-                <br><br><br>
-                <ul>
-                    <li class="song" data-id="0">Broken</li><br>
-                    <li class="song" data-id="1">Nowhere</li><br>
-                    <li class="song" data-id="2">Romance</li><br>
-                    <li class="song" data-id="3">Annoying</li><br>
-                    <li class="song" data-id="4">Dystopia</li><br>
-                    <li class="song" data-id="5">Volunteer</li><br>
-                </ul>
-         
-            </div>
-
-            <p id="hide">Press H to toggle the UI</p>
-        </div>
-                 <button id="modal-btn"><span class="logo">NICK LEVANTIS</span><span class="about"></span></button>
+		</div>
+        
+         	
+		<span class="title"> Broken</span>		<span class="startstop"></span>
+	<button id="modal-btn">About + Blog</button>
 <div class="modal"> 
   <div class="modal-content">
     <span class="close-btn">&times;</span>
-      
-       <br>
+     <h2>About</h2>
       <p class="bio"> Nick grew up in a fertile cultural and musical period in the early eighties. Programming and synths helped him to step deeper into the world of electronic music and computer art. Over three decades he has formed bands and collaborated with many other musicians experimenting through different styles. Today is creating pieces of music and is trying to differentiate by surpassing the limits of specific genres. Recent activities include the creation of visuals and music for theatre.</p>
-     <ul>
-<li><a href="http://www.twitter.com/nicklevantis" target="_blank">Twitter</a></li>
-<li><a href="http://youtube.com/nicklevantis" target="_blank">Youtube</a></li>
-
-
-<li><a href="http://soundcloud.com/nicklevantis" target="_blank">Soundcloud</a></li>
-
-
-<li><a href="http://nicklevantis.svbtle.com/" target="_blank">Svbtle blog</a></li>
-
- 
-      </ul>
+    
       
-  </div>
+        <div class="tumblr">
+            <h2>News</h2>
+            
+    <p>
+<script type="text/javascript" src="https://levantis.tumblr.com/js?num=10"></script>
 
+	
+			<a href="https://levantis.tumblr.com/" title="News" target="_blank">More news</a>
+			</p>
+			
+			</div>
+
+  </div>
+ 
 
 </div>
-        <script src="assets/js/index.js"></script>
-                <script>let modalBtn = document.getElementById("modal-btn");
-let modal = document.querySelector(".modal");
-let closeBtn = document.querySelector(".close-btn");
-
-modalBtn.onclick = function () {
-  modal.style.display = "block";
-};
-
-closeBtn.onclick = function () {
-  modal.style.display = "none";
-};
-
-window.onclick = function (e) {
-  if (e.target == modal) {
-    modal.style.display = "none";
+<script>
+    let modalBtn = document.getElementById("modal-btn")
+let modal = document.querySelector(".modal")
+let closeBtn = document.querySelector(".close-btn")
+modalBtn.onclick = function(){
+  modal.style.display = "block"
+}
+closeBtn.onclick = function(){
+  modal.style.display = "none"
+}
+window.onclick = function(e){
+  if(e.target == modal){
+    modal.style.display = "none"
   }
-};</script>
+}</script>
+ <script>
+  $(document).ready(function(){
+    // Target your .container, .wrapper, .post, etc.
+    $(".tumblr_video_post, .tmblr-embed").fitVids();
+  });
+</script>
+   <script>
         
+        $(document).ready(function () {
+    $('head').append('<style type="text/css">.modal .modal-content {max-height: ' + ($('body').height() * 1) + 'px;overflow-y: auto;}.modal-content .modal{overflow-y: hidden !important;}</style>');
+});
+        
+        </script>
 
-    </body>
+        <script>
+            
+//            var t=document.getElementsByTagName('body')[0];document.documentElement.onmousemove=function(e){t.style.webkitTransform=t.style.transform='rotate3d(10, 180, -6, '+e.pageX/-18+'deg)';};
+        var card = $(".stack__images, img, .tumblr_video_post,  .tmblr-embed,  .title , .startstop ");
+
+$(document).on("mousemove",function(e) {  
+  var ax = -($(window).innerWidth()/2- e.pageX)/80;
+  var ay = ($(window).innerHeight()/2- e.pageY)/40;
+  card.attr("style", "transform: rotateY("+ax+"deg) rotateX("+ay+"deg);-webkit-transform: rotateY("+ax+"deg) rotateX("+ay+"deg);-moz-transform: rotateY("+ax+"deg) rotateX("+ay+"deg)");
+});
+        </script>   
+<script src="https://cdn.jsdelivr.net/npm/baffle@0.3.6/dist/baffle.min.js"></script>
+        <script>
+const text =  baffle(".title");
+text.set({
+  characters: 'L2355675667897OVX NTYSQZ+-•~!=*',
+        speed: 60
+});
+
+text.start(9000);
+text.reveal(8000, 1000);
+
+</script>
+	   
+	</body>
 </html>
