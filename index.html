@@ -38,7 +38,7 @@
 		</div>
         
          	
-		<span class="title"> Broken</span>		<span class="startstop"></span>
+		<div class="title"> Broken</div>		<span class="startstop"></span>
 	<button id="modal-btn">About + Blog</button>
 <div class="modal"> 
   <div class="modal-content">
@@ -92,17 +92,7 @@ window.onclick = function(e){
         
         </script>
 
-        <script>
-            
-//            var t=document.getElementsByTagName('body')[0];document.documentElement.onmousemove=function(e){t.style.webkitTransform=t.style.transform='rotate3d(10, 180, -6, '+e.pageX/-18+'deg)';};
-        var card = $(".stack__images, img, .tumblr_video_post,  .tmblr-embed,  .title , .startstop ");
-
-$(document).on("mousemove",function(e) {  
-  var ax = -($(window).innerWidth()/2- e.pageX)/80;
-  var ay = ($(window).innerHeight()/2- e.pageY)/40;
-  card.attr("style", "transform: rotateY("+ax+"deg) rotateX("+ay+"deg);-webkit-transform: rotateY("+ax+"deg) rotateX("+ay+"deg);-moz-transform: rotateY("+ax+"deg) rotateX("+ay+"deg)");
-});
-        </script>   
+ 
 <script src="https://cdn.jsdelivr.net/npm/baffle@0.3.6/dist/baffle.min.js"></script>
         <script>
 const text =  baffle(".title");

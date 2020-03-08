@@ -146,7 +146,7 @@ button:hover {
   color: black; 
   font-size: 54px; padding: 40px; 
   font-weight: bold;
-top: -38px;
+top: 0;
 right: 40px;
     cursor: pointer;
     position: fixed
@@ -176,8 +176,8 @@ right: 40px;
   to {top:0; opacity:1}
 }
 
-#modal-btn{font-size:1em;float: right;position: fixed;right: 3vw;
-top: 38px;cursor: pointer;display: inline-block;border: none;text-transform: uppercase;
+#modal-btn{font-size:1em;float: right;position: fixed;right: 3vw;line-height: 1;
+top: 40px;cursor: pointer;display: inline-block;border: none;text-transform: uppercase;
     background: none;
 }
 
@@ -319,8 +319,8 @@ ol {list-style-type: none}
   color: black; 
   font-size: 54px; padding: 40px; 
   font-weight: bold;
-top: 20px;
-right: 10px;
+top: -38px;
+right: 40px;
     cursor: pointer;
     position: fixed
 }
