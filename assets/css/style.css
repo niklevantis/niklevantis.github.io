@@ -43,7 +43,7 @@ body {
 
 .startstop::before {
 	content: "\f04b";
-	color: #00;
+	color: #000;
 	font-family: FontAwesome;
 }
 
