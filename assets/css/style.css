@@ -294,30 +294,21 @@ ol {list-style-type: none}
     padding-right: 10px;}
     
 
-.head-text {
- 
-  font-size: 11vw;
-  letter-spacing: 1px;
- 
-}
-    
+
     .tumblr {
    
-    font-size:30px;
+    font-size:26px;
     padding-right: 5px
 }
     
     
     .tumblr_posts {padding-left: 10px;}
     
-    #modal-btn{font-size:60px;position: fixed;left: 0;
-top: 10px;cursor: pointer;display: inline-block;border: none;
-    background: none;width: 100%;
-}
+
     
 
 .modal-content {
-    font-size: 30px;
+    font-size: 26px;
     font-family: "Neue Haas Grotesk", sans-serif;
     line-height: 1.3;
    
