@@ -282,3 +282,7 @@ ol {list-style-type: none}
     text-align: right;
     color: #000!important;
 }
+
+.iframe-controls-container.iframe-controls-container--unified{display: none!important;}
+
+.iframe-controls-container.iframe-controls-container--levantis.iframe-controls-container--stroked-buttons .tx-icon-button, .iframe-controls-container.iframe-controls-container--levantis.iframe-controls-container--stroked-buttons .tx-icon-button:active, .iframe-controls-container.iframe-controls-container--levantis.iframe-controls-container--stroked-buttons .tx-icon-button:focus{ display: none!important;}
