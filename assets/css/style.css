@@ -40,11 +40,11 @@ body {
             position: fixed;
             height: 100%;
             width: 100%;
-            padding: 25%;
+            padding: 18% 25%;
             font-family: "Neue Haas Grotesk", sans-serif;
      top: 0;
     left: 0;
-    transform: translate(-20% -10%);
+    transform: translate(-30% -10%);
         }
 .modal {
   display: none;
