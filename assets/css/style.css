@@ -44,7 +44,7 @@ body {
             font-family: "Neue Haas Grotesk", sans-serif;
      top: 0;
     left: 0;
-    transform: translate(-10% -10%);
+    transform: translate(-20% -10%);
         }
 .modal {
   display: none;
