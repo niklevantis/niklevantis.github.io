@@ -1,4 +1,11 @@
-@charset "UTF-8";
+@font-face {
+    font-family: 'Neue Haas Grotesk';
+    src: url("../fonts/NHaasGroteskDSPro-55Rg.ttf") format("woff");
+    font-style: normal;
+    font-weight: normal
+}
+
+
 * {
   margin: 0;
   padding: 0;
@@ -7,14 +14,16 @@ html, body {
   color: #222;
   margin: 0;
   height: 100%;
+  overflow: hidden;
 }
 body {
-  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+ font-family:  "Neue Haas Grotesk", sans-serif;
   font-size: 18px;
   -webkit-font-smoothing: antialiased;
   margin: 0;
   padding: 0;
   background-color: #000;
+  color:#fff
 }
 img,
 canvas {
@@ -56,21 +65,20 @@ canvas {
   padding:20px;
 }
 #songname {
- 
+  left:4vw;
   font-weight: 300;
-  font-size: 6vw;
-  line-height: 32px;
+  font-size: 4vw;
+  line-height:1;
   color: #fff;
   position: fixed;
-  bottom: 6vw
+  bottom: 4vw
 }
 #songtime {
   font-weight: 300;
-  font-size: 6vw;
-  line-height: 20px;
-  margin-top: 40px;
-  bottom: 6vw;
-  right:2vw;
+  font-size: 4vw;
+  line-height:1;
+  bottom: 4vw;
+  right:4vw;
    color: #fff;
 position: fixed;
 }
@@ -100,43 +108,45 @@ position: fixed;
 }
 .controls {
   position: fixed;
- bottom: 4vw;
- left:45vw
+ bottom: 2.9vw;
+ left:41vw
 }
 .controls .ctrlbttns {
   overflow: auto;
-  width:180px;
+  width:18vw;
   margin:0 ;
+  border:none;
+outline:none;
 }
 .controls .ctrlbttns button {
   cursor: pointer;
   border: none;
-  width: 60px;
-  height: 60px;
+  width: 6vw;
+  height: 6vw;
   display: block;
     background: black;
   background-repeat: no-repeat;
   background-position: center;
   float: left;
-   
+   outline: none;
 }
 .controls button#play {
-  background-image: url('../img/small-play.png');
+  background-image: url('../../assets/img/small-play.png');
   background-size: 17px 24px;
   outline: none;
 }
 .controls button#pause {
-  background-image: url('../img/small-pause.png');
+  background-image: url('../../img/../assets/img/small-pause.png');
   background-size: 18px 24px;
   outline: none;
 }
 .controls button#prev {
-  background-image: url('../img/small-previous.png');
+  background-image: url('../../assets/img/small-previous.png');
   background-size: 15px 17px;
   outline: none;
 }
 .controls button#next {
-  background-image: url('../img/small-next.png');
+  background-image: url('../../assets/img/small-next.png');
   background-size: 15px 17px;
   outline: none;
 }
@@ -215,3 +225,96 @@ progress#progressBar[aria-valuenow]:before  {
     font-size: 25px;
   }
 }
+
+.logo{font-size:16px;position:fixed;z-index: 1;left:3vw;letter-spacing: 2px;top:40px}
+
+
+#p5_loading {
+            background-color: #000;
+            font-size: 14vw;
+            color: white;
+            box-sizing: border-box;
+            display: block;
+            position: fixed;
+            height: 100%;
+            width: 100%;
+            padding: 18% 25%;
+            font-family: "Neue Haas Grotesk", sans-serif;
+     top: 0;
+    left: 0;
+    transform: translate(-30% -10%);
+        }
+.modal {
+  display: none;
+  position: fixed; 
+  left: 0; 
+  top: 0;
+  width: 100%;
+  height: 100%; 
+ background: linear-gradient(rgba(2, 2, 2, 0.4), black);
+  overflow: auto;
+}
+
+.modal-content {
+    padding-top: 10vh;
+    font-size: 6vw;
+    font-family: "Neue Haas Grotesk", sans-serif;
+    line-height: 1;
+   
+}
+
+.bio {padding:0 40px 0 40px;max-width: 100%;}
+
+.modal-content {
+  position: relative; 
+  padding-right: 6vw;
+  margin: auto; 
+  width: 100%;  
+  -webkit-animation-name: animatetop;
+  -webkit-animation-duration: 0.4s;
+  animation-name: animatetop;
+  animation-duration: 0.4s
+}
+.close-btn {
+  float: right; 
+  color: #fff; 
+  font-size: 54px; padding: 40px; 
+  font-weight: bold;
+top: 18px;
+right: 1vw;
+    cursor: pointer;
+    position: fixed;
+          background-color:black;
+    padding: 0 4vw
+}
+
+
+.close-btn:hover {
+  color: red;
+  text-decoration: none;
+   text-decoration-color: red;
+      transition: color 0.25s ease-out; 
+  	-webkit-transition: color 0.25s ease-out; 
+  	-moz-transition: color 0.25s ease-out; 
+  	-o-transition: color 0.25s ease-out;	
+  	 transition: 1s;
+  	 -webkit-transition: color 1s; 
+  	 -moz-transition:  1s; 
+  
+}
+
+
+@-webkit-keyframes animatetop {
+  from {top:-300px; opacity:0} 
+  to {top:0; opacity:1}
+}
+@keyframes animatetop {
+  from {top:-300px; opacity:0}
+  to {top:0; opacity:1}
+}
+
+#modal-btn{font-size:16px;;float: right;position: fixed;right: 3vw;line-height: 1;color:#fff;
+top: 40px;cursor: pointer;display: inline-block;border: none;text-transform: uppercase;
+    background: none;outline: none;
+}
+

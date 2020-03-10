@@ -5,32 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <meta name="description" content="P5js Music Player">
-    <meta name="keywords" content="P5js Music Player">
-    <meta name="author" content="Joep Dooper">
+    <meta name="description" content="Nick Levantis">
+    <meta name="keywords" content="Nick Levantis">
+    <meta name="author" content="Nick Levantis">
     <meta name="robots" content="index, follow">
     <meta name="revisit-after" content="3 days">
-    <meta property="og:title" content="P5js Music Player">
-    <meta property="og:site_name" content="P5js Music Player">
-    <meta property="og:url" content="https://github.com/joepdooper/p5js-music-player">
-    <meta property="og:description" content="P5js Music Player">
+    <meta property="og:title" content="Nick Levantis">
+    <meta property="og:site_name" content="Nick Levantis">
+    <meta property="og:url" content="https://nicklevantis.com">
+    <meta property="og:description" content="Nick Levantis">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="en_EN" />
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="P5js Music Player">
-    <meta name="twitter:description" content="P5js Music Player">
+    <meta name="twitter:title" content="Nick Levantis">
+    <meta name="twitter:description" content="Nick Levantis">
     <title>P5js Player</title>
     <!-- CSS -->
-    <link rel="stylesheet" type="text/css" href="css/normalize.css"/>
-    <link rel="stylesheet" type="text/css" href="css/player.css"/>
+    <link rel="stylesheet" type="text/css" href="assets/css/normalize.css"/>
+    <link rel="stylesheet" type="text/css" href="assets/css/player.css"/>
     <!-- SCRIPT -->
     <script defer src="https://polyfill.io/v3/polyfill.min.js?features=performance.now"></script>
-    <script src="js/unmute.min.js"></script>
+    <script src="assets/js/unmute.min.js"></script>
     <script defer src="https://cdn.JsDelivr.net/npm/p5"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/p5/lib/addons/p5.sound.min.js"></script>
   </head>
   <body>
-
+   <div class="logo">NICK LEVANTIS</div>
     <div class="outer">
       <div class="middle">
         <div class="inner">
@@ -59,8 +59,37 @@
         </div>
       </div>
     </div>
+  <button id="modal-btn">About</button>
+<div class="modal"> 
+  <div class="modal-content">
+    <span class="close-btn">&times;</span>
+       <img src="/assets/img/eye.webp" alt="eye" >
+      <p class="bio"> Nick grew up in a fertile cultural and musical period in the early eighties. Programming and synths helped him to step deeper into the world of electronic music and computer art. Over three decades he has formed bands and collaborated with many other musicians experimenting through different styles. Today is creating pieces of music and is trying to differentiate by surpassing the limits of specific genres. Recent activities include the creation of visuals and music for theatre.</p>
+    
+      
+       
 
+  </div>
+ 
+
+</div>
+<script>
+    let modalBtn = document.getElementById("modal-btn")
+let modal = document.querySelector(".modal")
+let closeBtn = document.querySelector(".close-btn")
+modalBtn.onclick = function(){
+  modal.style.display = "block"
+}
+closeBtn.onclick = function(){
+  modal.style.display = "none"
+}
+window.onclick = function(e){
+  if(e.target == modal){
+    modal.style.display = "none"
+  }
+}</script>
+    
     <script src="https://connect.soundcloud.com/sdk/sdk-3.3.2.js"></script>
-    <script src="js/sketch.js"></script>
+    <script src="assets/js/sketch.js"></script>
   </body>
 </html>

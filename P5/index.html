@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" >
+<meta charset="UTF-8">
+<meta name="description" content="Nick Levantis music and artwork">
+<meta property="og:title" content="Nick Levantis music and artwork">
+<meta property="og:type" content="website">
+<meta property="og:image" content="assets/n.jpg">
+<meta property="og:description" content="Nick Levantis music and artwork">
+<meta property="og:site_name" content="Nick Levantis">
+<title>Nick Levantis</title>	
+  <link rel="icon" href="assets/icons/favicon.png">
+  <link rel="stylesheet" href="assets/css/style.css">
+
+</head>
+<body>
+<div class="logo">NICK LEVANTIS </div>
+    <div class="title">Romance </div>
+    <button id="modal-btn">About</button>
+<div class="modal"> 
+  <div class="modal-content">
+    <span class="close-btn">&times;</span>
+    
+      <p class="bio"> Nick grew up in a fertile cultural and musical period in the early eighties. Programming and synths helped him to step deeper into the world of electronic music and computer art. Over three decades he has formed bands and collaborated with many other musicians experimenting through different styles. Today is creating pieces of music and is trying to differentiate by surpassing the limits of specific genres. Recent activities include the creation of visuals and music for theatre.</p>
+    
+      
+       
+
+  </div>
+ 
+
+</div>
+
+<!-- partial -->
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.5/p5.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.5/addons/p5.sound.min.js'></script><script  src="assets/js/script.js"></script>
+<script>
+    let modalBtn = document.getElementById("modal-btn")
+let modal = document.querySelector(".modal")
+let closeBtn = document.querySelector(".close-btn")
+modalBtn.onclick = function(){
+  modal.style.display = "block"
+}
+closeBtn.onclick = function(){
+  modal.style.display = "none"
+}
+window.onclick = function(e){
+  if(e.target == modal){
+    modal.style.display = "none"
+  }
+}</script>
+    
+ 
+</body>
+</html>
