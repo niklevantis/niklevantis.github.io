@@ -83,11 +83,11 @@ body {
   font-size: 54px; padding: 40px; 
   font-weight: bold;
 top: 18px;
-right: 35px;
+right: 1vw;
     cursor: pointer;
     position: fixed;
           background-color:black;
-    padding: 0 30px
+    padding: 0 4vw
 }
 
 
