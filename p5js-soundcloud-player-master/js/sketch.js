@@ -17,7 +17,7 @@ var end = false;
 var seconds, minutes, bass, mid, treble, list, ntgr;
 
 //SoundCloud
-var CLIENT_ID = '95f22ed54a5c297b1c41f72d713623ef';
+var CLIENT_ID = '5f7f4a798a91b1284605745de2a103ff';
 var PLAYLIST_URL = 'https://soundcloud.com/nicklevantis/sets/songs-1';
 SC.initialize({
   client_id: CLIENT_ID
