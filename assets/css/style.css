@@ -53,7 +53,7 @@ body {
   top: 0;
   width: 100%;
   height: 100%; 
-  background-color: #000;
+ background: linear-gradient(rgba(2, 2, 2, 0), black);
   overflow: auto;
 }
 
@@ -69,7 +69,6 @@ body {
 
 .modal-content {
   position: relative; 
-  background-color: black;
   padding-right: 6vw;
   margin: auto; 
   width: 100%;  
