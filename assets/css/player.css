@@ -11,45 +11,75 @@
   padding: 0;
 }
 html, body {
-  color: #222;
+  color: #fff;
   margin: 0;
   height: 100%;
   overflow: hidden;
 }
 body {
- font-family:  "Neue Haas Grotesk", sans-serif;
+ font-family: 'VT323', monospace, "Neue Haas Grotesk", sans-serif;
   font-size: 18px;
   -webkit-font-smoothing: antialiased;
   margin: 0;
   padding: 0;
   background-color: #000;
-  color:#fff
+
+
+  
 }
-img,
+
+
+     
+    
+}
+
 canvas {
+    
   display:block;
   border: 0;
+
 }
+
+img {
+      display:block;
+     top:-40%;
+     position: fixed;
+ width:100%;
+  -webkit-filter: invert(1);
+   filter: invert(1);
+    z-index: -1;
+    opacity: .1
+}
+
 .outer {
     display: table;
-    position: absolute;
+    position: fixed;
+    top:0;
+    left:0;
     height: 100%;
     width: 100%;
     border-collapse:collapse;
+    background-image: url("../../assets/img/noise.gif");
+  background-repeat: repeat;
+    opacity: .15
 }
 .middle {
     display: table-cell;
     vertical-align: middle;
+    
 }
 .inner {
     margin-left: auto;
     margin-right: auto;
+    
 }
 #defaultCanvas0 {
   position: relative;
   pointer-events: none;
+  
 }
 #player {
+    
   position: relative;
   pointer-events: auto;
   max-width:100%;
@@ -61,25 +91,23 @@ canvas {
     max-width: 100%;
   background-color: none;
 }
-.songinfo {
-  padding:20px;
-}
+
 #songname {
-  left:4vw;
+  left:3vw;
   font-weight: 300;
-  font-size: 4vw;
+  font-size: 2vw;
   line-height:1;
-  color: #fff;
   position: fixed;
-  bottom: 4vw
+  bottom:3vw;
+    opacity:0.5
 }
 #songtime {
   font-weight: 300;
-  font-size: 4vw;
+  font-size: 2vw;
   line-height:1;
-  bottom: 4vw;
-  right:4vw;
-   color: #fff;
+  bottom: 3vw;
+  right:3vw;
+    opacity:0.5;
 position: fixed;
 }
 #p5_loading img,
@@ -97,8 +125,6 @@ position: fixed;
 #selectSound ul li {
   cursor: pointer;
   padding: 10px;
-  background-color: #000;
-  color: #fff;
   font-size: 20px;
   line-height: 1;
  
@@ -108,8 +134,10 @@ position: fixed;
 }
 .controls {
   position: fixed;
- bottom: 2.9vw;
- left:41vw
+ bottom: 1.1vw;
+ left:41vw;
+    opacity:0.5
+    
 }
 .controls .ctrlbttns {
   overflow: auto;
@@ -117,6 +145,7 @@ position: fixed;
   margin:0 ;
   border:none;
 outline:none;
+  
 }
 .controls .ctrlbttns button {
   cursor: pointer;
@@ -124,32 +153,99 @@ outline:none;
   width: 6vw;
   height: 6vw;
   display: block;
-    background: black;
   background-repeat: no-repeat;
   background-position: center;
   float: left;
    outline: none;
+      font-size:2vw;
+  
 }
+/*
 .controls button#play {
   background-image: url('../../assets/img/small-play.png');
   background-size: 17px 24px;
   outline: none;
+    background-color: inherit;
 }
 .controls button#pause {
   background-image: url('../../img/../assets/img/small-pause.png');
   background-size: 18px 24px;
+     background-color: inherit;
   outline: none;
 }
 .controls button#prev {
   background-image: url('../../assets/img/small-previous.png');
   background-size: 15px 17px;
   outline: none;
+     background-color: inherit;
 }
 .controls button#next {
   background-image: url('../../assets/img/small-next.png');
   background-size: 15px 17px;
   outline: none;
+     background-color: inherit;
 }
+*/
+
+.controls button#play {
+  color:#fff;
+  background-size: 17px 30px;
+  outline: none;
+    background-color: inherit;
+
+}
+.controls button#play:after {
+  color:#fff;
+  background-size: 17px 30px;
+  outline: none;
+    background-color: inherit;
+    content: "PLAY"
+
+}
+
+.controls button#pause {
+color:#fff;
+  background-size: 18px 30px;
+     background-color: inherit;
+  outline: none;
+}
+
+.controls button#pause:after {
+color:#fff;
+  background-size: 18px 30px;
+     background-color: inherit;
+  outline: none;
+    content: "STOP";
+  
+}
+.controls button#prev {
+  background-size: 15px 30px;
+  outline: none;
+     background-color: inherit;
+}
+
+.controls button#prev:after {
+  background-size: 15px 30px;
+  outline: none;
+     background-color: inherit;
+    content:"PREV";
+        color:#fff;
+}
+.controls button#next {
+  background-size: 15px 17px;
+  outline: none;
+     background-color: inherit;
+}
+
+.controls button#next:after {
+  background-size: 15px 17px;
+  outline: none;
+     background-color: inherit;
+     content:"NEXT";
+        color:#fff;
+}
+
+
 progress,
 progress[role] {
   -webkit-appearance: none;
@@ -226,12 +322,12 @@ progress#progressBar[aria-valuenow]:before  {
   }
 }
 
-.logo{font-size:16px;position:fixed;z-index: 1;left:3vw;letter-spacing: 2px;top:40px}
+.logo{ font-size: 2vw;position:fixed;z-index: 1;left:3vw;letter-spacing: 1px;top:40px;opacity:0.5}
 
 
 #p5_loading {
-            background-color: #000;
-            font-size: 14vw;
+            background-color: #fff;
+            font-size: 12vw;
             color: white;
             box-sizing: border-box;
             display: block;
@@ -251,43 +347,53 @@ progress#progressBar[aria-valuenow]:before  {
   top: 0;
   width: 100%;
   height: 100%; 
- background: linear-gradient(rgba(2, 2, 2, 0.4), black);
+ 
   overflow: auto;
 }
 
 .modal-content {
-    padding-top: 10vh;
-    font-size: 6vw;
-    font-family: "Neue Haas Grotesk", sans-serif;
-    line-height: 1;
-   
+    padding-top: 30vh;
+    font-size: 30px;
+    font-family: 'VT323', monospace,"Neue Haas Grotesk", sans-serif;
+    line-height: .78;
+   background: none;
+
 }
 
-.bio {padding:0 40px 0 40px;max-width: 100%;}
+.bio {padding:0 40px 0 40px;max-width: 100%;opacity:0.5}
 
 .modal-content {
   position: relative; 
-  padding-right: 6vw;
-  margin: auto; 
-  width: 100%;  
+
+  margin: 0 auto; 
+  width: 600px; 
+    max-width: 100%;
   -webkit-animation-name: animatetop;
   -webkit-animation-duration: 0.4s;
   animation-name: animatetop;
-  animation-duration: 0.4s
+  animation-duration: 0.4s;
+    color:#fff;
+    
 }
 .close-btn {
   float: right; 
-  color: #fff; 
-  font-size: 54px; padding: 40px; 
+  font-size: 30px; padding: 40px 26px;
   font-weight: bold;
-top: 18px;
-right: 1vw;
+   z-index: 1;
+    right:2.7vw;
     cursor: pointer;
     position: fixed;
-          background-color:black;
-    padding: 0 4vw
+    border-radius: 180px;
+    color:#fff;
+    top:10px;
+    background-color: rgba(0, 0, 0, 0.93)
+    
 }
 
+.close-btn:after {
+    content:"CLOSE"
+    
+}
 
 .close-btn:hover {
   color: red;
@@ -300,7 +406,7 @@ right: 1vw;
   	 transition: 1s;
   	 -webkit-transition: color 1s; 
   	 -moz-transition:  1s; 
-  
+     z-index: 1
 }
 
 
@@ -313,8 +419,11 @@ right: 1vw;
   to {top:0; opacity:1}
 }
 
-#modal-btn{font-size:16px;;float: right;position: fixed;right: 3vw;line-height: 1;color:#fff;
-top: 40px;cursor: pointer;display: inline-block;border: none;text-transform: uppercase;
-    background: none;outline: none;
+#modal-btn{font-size:2vw;;float: right;position: fixed;right: 3vw;line-height: 1;
+top: 40px;cursor: pointer;display: inline-block;border: none;
+    background: none;outline: none;color: #fff;opacity:0.5
 }
+
+
+
 

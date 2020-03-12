@@ -21,8 +21,10 @@
     <meta name="twitter:description" content="Nick Levantis">
     <title>Nick Levantis</title>
     <!-- CSS -->
+      <link href="https://fonts.googleapis.com/css?family=VT323&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="assets/css/normalize.css"/>
     <link rel="stylesheet" type="text/css" href="assets/css/player.css"/>
+      
     <!-- SCRIPT -->
     <script defer src="https://polyfill.io/v3/polyfill.min.js?features=performance.now"></script>
     <script src="assets/js/unmute.min.js"></script>
@@ -30,40 +32,45 @@
     <script defer src="https://cdn.jsdelivr.net/npm/p5/lib/addons/p5.sound.min.js"></script>
   </head>
   <body>
+    
    <div class="logo">NICK LEVANTIS</div>
-    <div class="outer">
-      <div class="middle">
-        <div class="inner">
-
-          <div id="player">
-            <div id="canvaswrapper"></div>
-            <div class="songinfo">
+       <div class="songinfo">
               <div id="songname"></div>
               <div id="songtime"></div>
             </div>
+    
+    <div class="outer">
+        
+     
+
+          <div id="player">
+              
+            <div id="canvaswrapper"></div>
+            
+           
             <div class="progress">
               <progress id="loadingBar" value="0" max="100"></progress>
               <progress id="progressBar" value="0" max="100"></progress>
             </div>
             <div id="p5_loading" class="loadingclass"></div>
-            <div class="controls">
+            
+            <nav id="selectSound"></nav>
+          </div>
+
+        </div>
+     <div class="controls">
               <div class="ctrlbttns">
                 <button type="button" id="prev"></button>
                 <button type="button" id="play"></button>
                 <button type="button" id="next"></button>
               </div>
             </div>
-            <nav id="selectSound"></nav>
-          </div>
-
-        </div>
-      </div>
-    </div>
-  <button id="modal-btn">About</button>
+  <button id="modal-btn" class="about">ABOUT</button>
 <div class="modal"> 
+     <span class="close-btn"></span>
   <div class="modal-content">
-    <span class="close-btn">&times;</span>
-       <img src="/assets/img/eye.webp" alt="eye" >
+   
+      
       <p class="bio"> Nick grew up in a fertile cultural and musical period in the early eighties. Programming and synths helped him to step deeper into the world of electronic music and computer art. Over three decades he has formed bands and collaborated with many other musicians experimenting through different styles. Today is creating pieces of music and is trying to differentiate by surpassing the limits of specific genres. Recent activities include the creation of visuals and music for theatre.</p>
     
       

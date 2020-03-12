@@ -140,7 +140,8 @@ function draw() {
   let waveform = fft.waveform();
   noFill();
   beginShape();
-  stroke(255);
+  stroke(90);
+    strokeWeight(2);
   for (let i = 0; i < waveform.length; i++){
     let x = map(i, 0, waveform.length, 0, width);
     let y = map( waveform[i], -1, 1, 0, height);
