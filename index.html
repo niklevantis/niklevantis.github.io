@@ -1,82 +1,63 @@
-<!DOCTYPE html>
-<html lang="en" prefix="og: http://ogp.me/ns#">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <meta name="description" content="Nick Levantis">
-    <meta name="keywords" content="Nick Levantis">
-    <meta name="author" content="Nick Levantis">
-    <meta name="robots" content="index, follow">
-    <meta name="revisit-after" content="3 days">
-    <meta property="og:title" content="Nick Levantis">
-    <meta property="og:site_name" content="Nick Levantis">
-    <meta property="og:url" content="https://nicklevantis.com">
-    <meta property="og:description" content="Nick Levantis">
-    <meta property="og:type" content="website">
-    <meta property="og:locale" content="en_EN" />
-    <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="Nick Levantis">
-    <meta name="twitter:description" content="Nick Levantis">
-    <title>Nick Levantis</title>
-    <!-- CSS -->
-      <link href="https://fonts.googleapis.com/css?family=VT323&display=swap" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="assets/css/normalize.css"/>
-    <link rel="stylesheet" type="text/css" href="assets/css/player.css"/>
-      
-    <!-- SCRIPT -->
-    <script defer src="https://polyfill.io/v3/polyfill.min.js?features=performance.now"></script>
-    <script src="assets/js/unmute.min.js"></script>
-    <script defer src="https://cdn.JsDelivr.net/npm/p5"></script>
-    <script defer src="https://cdn.jsdelivr.net/npm/p5/lib/addons/p5.sound.min.js"></script>
-  </head>
-  <body>
-    
-   <div class="logo">NICK LEVANTIS</div>
-       <div class="songinfo">
-              <div id="songname"></div>
-              <div id="songtime"></div>
-            </div>
-    
-    <div class="outer">
-        
-     
+<html lang="en-US">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" >
+<meta charset="UTF-8">
+<link rel="profile" href="http://gmpg.org/xfn/11">
+<meta name="description" content="Nick Levantis music and artwork">
+<meta property="og:title" content="Nick Levantis music and artwork">
+<meta property="og:type" content="website">
+<meta property="og:image" content="assets/n.jpg">
+<meta property="og:description" content="Nick Levantis music and artwork">
+<meta property="og:site_name" content="Nick Levantis">
+<title>Nick Levantis</title>	
+  <link rel="icon" href="assets/icons/favicon.png">
+<link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"/>
+<link rel="stylesheet" type="text/css" media="all" href="assets/css/style.css" />
+<script src="assets/js/pace.min.js"></script>    
+<script type='text/javascript' src='https://code.jquery.com/jquery-2.1.3.min.js'></script>
+<script type='text/javascript' src='http://d3js.org/d3.v3.min.js'></script>
+<script type='text/javascript' src='assets/js/scripts.js'></script>
+  <script src="assets/js/jquery.fitvids.js"></script>    
 
-          <div id="player">
+</head>
+	<body>
+        <div class="logo">NICK LEVANTIS</div>
+		<div id="wrapper">
+		
+		    
+		    <div id="audio">
+				<audio id="audioElement"> 
+					<source src="assets/mp3/broken.mp3" type="audio/mp3" />
+				
+				</audio>
               
-            <div id="canvaswrapper"></div>
-            
-           
-            <div class="progress">
-              <progress id="loadingBar" value="0" max="100"></progress>
-              <progress id="progressBar" value="0" max="100"></progress>
-            </div>
-            <div id="p5_loading" class="loadingclass"></div>
-            
-            <nav id="selectSound"></nav>
-          </div>
-
-        </div>
-     <div class="controls">
-              <div class="ctrlbttns">
-                <button type="button" id="prev"></button>
-                <button type="button" id="play"></button>
-                <button type="button" id="next"></button>
-              </div>
-            </div>
-  <button id="modal-btn" class="about">ABOUT</button>
+                
+		    </div>
+        
+		</div>
+        
+         	
+		<div class="title"> Broken</div>		<span class="startstop"></span>
+	<button id="modal-btn">About + Blog</button>
 <div class="modal"> 
-     <span class="close-btn"></span>
   <div class="modal-content">
-   
+    <span class="close-btn">&times;</span>
+     <h2>About</h2>
+      <p class="bio"> Nick grew up in a fertile cultural and musical period in the early eighties. Programming and synths helped him to step deeper into the world of electronic music and computer art. Over three decades he has formed bands and collaborated with many other musicians experimenting through different styles. Today is creating pieces of music and is trying to differentiate by surpassing the limits of specific genres. Recent activities include the creation of visuals and music for theatre.</p>
+    
       
-      <p class="bio"> Nick grew up in a fertile cultural and musical period in the early eighties. Programming and synths helped him to step deeper into the world of electronic music and computer art. Over three decades he has formed bands and collaborated with many other musicians experimenting through different styles. Today is creating pieces of music and is trying to differentiate by surpassing the limits of specific genres. Recent activities include the creation of visuals and music for theatre. <a class="soundcloud" href="https://soundcloud.com/nicklevantis/"> Soundcloud</a>
-						<a class="youtube" href="https://youtube.com/nicklevantis">Youtube</a>
-						<a class="svbtle" href="https://nicklevantis/svbtle.com/">Svbtle</a>
-      </p>
-      	
-       
+        <div class="tumblr">
+            <h2>News</h2>
+            
+    <p>
+<script type="text/javascript" src="https://levantis.tumblr.com/js?num=10"></script>
+
+	
+			<a href="https://levantis.tumblr.com/" title="News" target="_blank">More news</a>
+			</p>
+			
+			</div>
 
   </div>
  
@@ -97,8 +78,33 @@ window.onclick = function(e){
     modal.style.display = "none"
   }
 }</script>
-    
-    <script src="https://connect.soundcloud.com/sdk/sdk-3.3.2.js"></script>
-    <script src="assets/js/sketch.js"></script>
-  </body>
+ <script>
+  $(document).ready(function(){
+    // Target your .container, .wrapper, .post, etc.
+    $(".tumblr_video_post, .tmblr-embed").fitVids();
+  });
+</script>
+   <script>
+        
+        $(document).ready(function () {
+    $('head').append('<style type="text/css">.modal .modal-content {max-height: ' + ($('body').height() * 1) + 'px;overflow-y: auto;}.modal-content .modal{overflow-y: hidden !important;}</style>');
+});
+        
+        </script>
+
+ 
+<script src="https://cdn.jsdelivr.net/npm/baffle@0.3.6/dist/baffle.min.js"></script>
+        <script>
+const text =  baffle(".title");
+text.set({
+  characters: 'L2355675667897OVX NTYSQZ+-•~!=*',
+        speed: 60
+});
+
+text.start(9000);
+text.reveal(8000, 1000);
+
+</script>
+	   
+	</body>
 </html>
