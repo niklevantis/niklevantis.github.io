@@ -146,10 +146,10 @@ button:hover {
   color: black; 
   font-size: 54px; padding: 40px; 
   font-weight: bold;
-top: 0;
+top:-25px;
 right: 40px;
-    cursor: pointer;
-    position: fixed
+cursor: pointer;
+position: fixed
 }
 
 
