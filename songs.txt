@@ -1,0 +1,24 @@
+
+
+*Latest Songs
+
+
+<pre>
+<span class="listen-node" data-src="https:/nicklevantis.com/audio/nowhere.mp3" data-start="0" data-end="71">Nowhere</span>
+</pre>
+<pre>
+<span class="listen-node" data-src="https:/nicklevantis.com/audio/romance.mp3" data-start="0" data-end="71">Romance</span>
+</pre>
+<pre>
+<span class="listen-node" data-src="https:/nicklevantis.com/audio/broken.mp3" data-start="0" data-end="71">Broken</span>
+</pre>
+
+
+
+
+
+
+
+<script>
+!function(){"use strict";var d="listen-node";function s(e,t){e.pause(),e.setAttribute("data-playing","false"),t.classList.remove("playing")}window.onload=function(){var e,t,r,n=document.getElementsByClassName(d),a=document.createElement("style");a.type="text/css",a.innerHTML=".listen-node {display: inline-block; background:rgba(0, 0, 0, 0.05); padding: 1px 5px; border-radius:4px; cursor: pointer;} .listen-node i {font-size: 0.7em; border: 0.5em solid transparent; border-left: 0.75em solid; display: inline-block; margin-left: 5px;} .listen-node .playing { border: 0; border-left: 0.75em double; border-right: 0.5em solid transparent; height: 1em;}",document.getElementsByTagName("head")[0].appendChild(a);for(var i=0;t=n[i];++i)e=document.createElement("audio"),r=document.createElement("i"),e.src=t.getAttribute("data-src"),e.setAttribute("data-playing","false"),t.id=d+"-"+i,t.insertBefore(r,t.firstChild),t.appendChild(e)},document.addEventListener("click",function(e){var n,a,i,t,r;e.target.className===d?(n=e.target.children[1],a=e.target,i=e.target.children[0]):e.target.parentElement&&e.target.parentElement.className===d&&(n=e.target.parentElement.children[1],a=e.target.parentElement,i=e.target),n&&a&&i&&(n.srt=parseInt(a.getAttribute("data-start"))||0,n.end=parseInt(a.getAttribute("data-end"))||n.duration,n&&"false"===n.getAttribute("data-playing")?((n.srt>n.currentTime||n.end<n.currentTime)&&(n.currentTime=n.srt),r=i,(t=n).play(),t.setAttribute("data-playing","true"),r.classList.add("playing")):s(n,i),function e(){var t=requestAnimationFrame(e),r=100*(n.currentTime-n.srt)/(n.end-n.srt);r=r<100?r:100,a.style.background="linear-gradient(to right, rgba(0, 0, 0, 0.1)"+r+"%, rgba(0, 0, 0, 0.05)"+r+"%)",n.end<n.currentTime&&(s(n,i),cancelAnimationFrame(t))}())})}();
+</script>
