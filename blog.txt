@@ -1,10 +1,14 @@
-BLOG                            
-                                                       
-RSS Feed available here:                            
-                                                       
-https://nicklevantis.com/blog/blog.xml              
-                                                       
--------------------------------------->                                                      
+BLOG
+
+RSS Feed available here:
+
+https://nicklevantis.com/blog/blog.xml
+
+- <a href=/blog/20200505a>05/05/2020: </a>
+- <a href=/blog/20200504a>04/05/2020: </a>
+- <a href=/blog/20200504a>04/05/2020: </a>
+- <a href=/blog/20200504a>04/05/2020: </a>
+-------------------------------------->
 
 - <a href=/blog/20200401a>01/04/2020: Orca</a>
 
