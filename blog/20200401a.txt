@@ -8,8 +8,6 @@ title:"Orca"
 <a href="../images/orca.jpg">
     <img src="../images/orca.jpg" alt="orca">
 </a>
-
-
 -My new favorite music sequencer is Orca. Designed
 by Devine Lu Linvega (Hundred Rabbits) and is a
 ingenious approach that really takes every

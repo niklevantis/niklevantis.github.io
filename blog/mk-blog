@@ -13,7 +13,7 @@ done
 cat > "$date.txt" <<EOF
 ---
 
-date: "$date2"
+date: "$date3"
 
 title:"$1"
 
