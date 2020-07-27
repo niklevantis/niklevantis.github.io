@@ -82,7 +82,7 @@ var startup = (function () {
         document.getElementById(divId).appendChild(renderer.domElement);
 
         var camera = new THREE.OrthographicCamera(width / - cameraZoom, width / cameraZoom, height / cameraZoom, height / - cameraZoom, 1, 1000);
-        camera.position.set(0, -100, -300);
+        camera.position.set(0, -100, -400);
         camera.lookAt(new THREE.Vector3(0, 0, 0));
 
         var scene = new THREE.Scene();

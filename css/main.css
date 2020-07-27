@@ -5,6 +5,9 @@ body, html {
     padding: 0;
     overflow: hidden;
     font-family: monospace;
+    color: #009b64;
+    font-size:2vw;
+    font-weight: 700;
 }
 
 .anchor:focus {
@@ -14,7 +17,7 @@ body, html {
 a {
 color: #009b64;
 text-decoration: none;
-font-size:2vw;
+font-size:1.5vw;
 font-weight: 700;
 }
 
@@ -42,10 +45,10 @@ font-weight: 700;
     font-family: monospace;
     color: #009b64;
     font-weight: 700;
-    font-size: 2vw;
+    font-size: 1.8vw;
     z-index: 9999;
     position: absolute;
-    top: 25%;
+    top: 20%;
     left: 50%;
     -webkit-transform: translate(-50%, -50%);
     -moz-transform: translate(-50%, -50%);
@@ -55,18 +58,13 @@ font-weight: 700;
 }
 
 @media only screen and (max-width: 720px) {
-    #images img {
-        width: 32;
-        height: 32;
-        margin: 16px 16px;
-    }
+ 
     #name {
-        font-size: 7vw;
+        font-size: 6vw;
+    }
+
+    a {
+        font-size: 4vw;
     }
 }
 
-@media only screen and (min-width: 720px) {
-    #images img:hover {
-        opacity: 0.5;
-    }
-}
