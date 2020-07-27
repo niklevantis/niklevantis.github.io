@@ -7,7 +7,7 @@ body, html {
     font-family: monospace;
     color: #009b64;
     font-size:2vw;
-    font-weight: 700;
+    font-weight: 500;
 }
 
 .anchor:focus {
@@ -18,7 +18,7 @@ a {
 color: #009b64;
 text-decoration: none;
 font-size:1.5vw;
-font-weight: 700;
+
 }
 
 #links {
@@ -42,9 +42,7 @@ font-weight: 700;
     -ms-user-select: none;
     cursor: default;
     user-select: none;
-    font-family: monospace;
     color: #009b64;
-    font-weight: 700;
     font-size: 1.8vw;
     z-index: 9999;
     position: absolute;
