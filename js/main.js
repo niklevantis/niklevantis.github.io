@@ -1,6 +1,6 @@
 "use strict";
 
-var isUserPT = navigator.language.toUpperCase().indexOf("PT") !== -1;
+var isUserGR = navigator.language.toUpperCase().indexOf("GR") !== -1;
 
 (function () {
     var location = window.location;
@@ -9,6 +9,6 @@ var isUserPT = navigator.language.toUpperCase().indexOf("PT") !== -1;
     } else {
         location.href.replace("http:", "https:");
     }
-    window.language = isUserPT ? "pt" : "en";
-    document.getElementsByTagName("html")[0].setAttribute("lang", isUserPT ? "pt" : "en");
+    window.language = isUserPT ? "gr" : "en";
+    document.getElementsByTagName("html")[0].setAttribute("lang", isUserPT ? "gr" : "en");
 })();
