@@ -1,10 +1,9 @@
 
-                        BLOG
+BLOG
 
- * RSS Feed available here:
+* RSS Feed available here:
+- <a href=/blog/20200809a>09/08/2020: Isolation</a>
+- https://nicklevantis.com/blog/blog.xml
 
- - https://nicklevantis.com/blog/blog.xml
-
-------------------------------------------------------
 
 - <a href=/blog/20200401a>01/04/2020: Orca</a>

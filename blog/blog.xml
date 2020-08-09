@@ -7,6 +7,13 @@
 <ttl>1800</ttl>
 <atom:link href="https://nicklevantis.com/blog/blog.xml" rel="self" type="application/rss+xml" />
 <item>
+<title>09/08/2020: Isolation</title>
+<description></description>
+<link>https://nicklevantis.com/blog/20200809a</link>
+<guid isPermaLink="true">nicklevantis.com/blog/20200809a/</guid>
+<pubDate>Sun, 09 Aug 2020 00:00:00 +0000</pubDate>
+</item>
+<item>
 <title>01/04/2020: Orca</title>
 <description></description>
 <link>https://nicklevantis.com/blog/20200401a</link>
