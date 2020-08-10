@@ -1,18 +1,21 @@
-<html>
-<head>
-<title>Blog</title>
-<meta charset="utf-8"/>
-<link rel='stylesheet' type='text/css' href='style.css'>
-</head>
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/css" href="rss.css" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 
-<body>
-<h1>Blog</h1>
-
+<channel>
+<title>Your RSS Feed Title</title>
+<description>A brief description of your RSS feed.</description>
+<language>en-us</language>
+<link>http://yourwebsite.com/rss.xml</link>
+<atom:link href="http://yourwebsite.com/rss.xml" rel="self" type="application/rss+xml" />
 
 <!-- LB -->
-<div class='entry'>
-<h2 id='slave-song'>Slave Song</h2>
-<small>[<a href='#slave-song'>link</a>&mdash;<a href='blog/slave-song.html'>standalone</a>]</small>
+
+<item>
+<title>Slave Song</title>
+<guid>https://nicklevantis.com/2020.html#slave-song</guid>
+<pubDate>Tue, 11 Aug 2020 00:31:43 +0300</pubDate>
+<description><![CDATA[
 A few years ago I wrote a song about slaves .. Observing the current situation in societies I have the feeling that this song will remain relevant forever ..
 
 <iframe width="100%" height="166" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/49160732&color=%23151515&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"></iframe><div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;"><a href="https://soundcloud.com/nicklevantis" title="Nick Levantis" target="_blank" style="color: #cccccc; text-decoration: none;">Nick Levantis</a> · <a href="https://soundcloud.com/nicklevantis/slave" title="SLAVE" target="_blank" style="color: #cccccc; text-decoration: none;">SLAVE</a></div>
@@ -28,11 +31,15 @@ some people took your hope
 wake up and break your chains
 true love just kill their brain
 </p>
-<small>Tue, 11 Aug 2020 00:31:43 +0300</small>
-</div>
-<div class='entry'>
-<h2 id='social-loneliness'>Social Loneliness</h2>
-<small>[<a href='#social-loneliness'>link</a>&mdash;<a href='blog/social-loneliness.html'>standalone</a>]</small>
+]]></description>
+</item>
+
+
+<item>
+<title>Social Loneliness</title>
+<guid>https://nicklevantis.com/2020.html#social-loneliness</guid>
+<pubDate>Mon, 10 Aug 2020 22:42:05 +0300</pubDate>
+<description><![CDATA[
 <strong>Some of them they taught us about good and evil. And some others they put in our lives innumerable “musts” by limiting our time so to have falsely limited the need for “why” for an actual esoteric search.</strong>
 <p>Strong justifications are: you must be a “social person” and you must follow the path of virtue of discipline … and also the production processes, profit, wealth for the benefit of course of the few.</p>
 
@@ -49,11 +56,15 @@ true love just kill their brain
 <p>We have forgotten in these societies fundamental and basic things that would make us more people so that we are truly close to each other. We built economic and social systems to help us and serve us but eventually we were trapped and served by sacrificing our mental health, our time, our feelings. We are essentially more alone than ever …</p>
 
 <p>It is probably the time to understand and reconcile (and not just compromise) first of all with ourselves so that we never feel alone. The time has come that we have to respect the uniqueness and diversity around us more than we have learned …</p>
-<small>Mon, 10 Aug 2020 22:57:05 +0300</small>
-</div>
-<div class='entry'>
-<h2 id='your-post-is-too-short'>Your post is too short</h2>
-<small>[<a href='#your-post-is-too-short'>link</a>&mdash;<a href='blog/your-post-is-too-short.html'>standalone</a>]</small>
+]]></description>
+</item>
+
+
+<item>
+<title>Your post is too short</title>
+<guid>https://nicklevantis.com/2020.html#your-post-is-too-short</guid>
+<pubDate>Thu, 10 Jan 2019 12:20:43 +0300</pubDate>
+<description><![CDATA[
 <p>In a world that observes the following is reasonable that everything around us is programmed according to ..<p/>
  	<ul>
 	<li>Passive acceptance and coexistence</li>
@@ -67,10 +78,26 @@ true love just kill their brain
 	<li>Compromise …</li>
 	<li>Vanity..</li>
 	</ul>
-<small>Mon, 10 Aug 2020 22:55:23 +0300</small>
-</div>
+]]></description>
+</item>
 
 
 
-</body>
-</html>
+
+
+
+<item>
+<title>This is what a post looks like</title>
+<guid>https://lukesmith.xyz/2018.html#this-is-what-a-post-looks-like</guid>
+<pubDate>Wed, 16 May 2018 14:38:38 -0700</pubDate>
+<description><![CDATA[
+<h2 id='this-is-what-a-post-looks-like'>This is what a post looks like</h2><small>[<a aria-hidden="true" href="2018.html#this-is-what-a-post-looks-like">link</a>&mdash;<a href="blog/this-is-what-a-post-looks-like.html">standalone</a>]</small>
+
+<p>This is autogenerated by the blog. As you can see, an equivalent RSS feed entry and standalone blog post is generated after you finalize the post.</p>
+]]></description>
+</item>
+
+
+</channel>
+</rss>
+
