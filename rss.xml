@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <?xml-stylesheet type="text/css" href="rss.css" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-
 <channel>
 <title>Nick Levantis News</title>
 <description>RSS feed.</description>
 <language>en-us</language>
 <link>https://nicklevantis.com/rss.xml</link>
 <atom:link href="https://nicklevantis.com/rss.xml" rel="self" type="application/rss+xml" />
-
+<body>
 <!-- LB -->
 
 <item>
@@ -216,53 +215,6 @@ This situation would not be happening for a long time yet. The social explosion 
 
 <footer>by <strong><a href='https://nicklevantis.com/'>Nick Levantis</a></strong></footer>
 </body>
-
-</html>
-]]></description>
-</item>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 </channel>
 </rss>
