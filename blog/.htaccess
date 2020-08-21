@@ -1,11 +1,10 @@
-Options +Indexes
-AddDescription "Your post is too short" "your-post-is-too-short.html" #Thu, 10 Jan 2019 12:20:43 +0300
-AddDescription "Social Loneliness" "social-loneliness.html" #Mon, 10 Aug 2020 22:42:05 +0300
-AddDescription "Slave Song" "slave-song.html" #Tue, 11 Aug 2020 00:31:43 +0300
-AddDescription "Orca" "orca.html" #Tue, 11 Aug 2020 00:47:59 +0300
-AddDescription "Overthrow and zeroing" "overthrow-and-zeroing.html" #Tue, 11 Aug 2020 00:58:41 +0300
-AddDescription "Music.. ??" "music.html" #Tue, 11 Aug 2020 01:05:01 +0300
-AddDescription "Greece a country of tolerance" "greece-a-country-of-tolerance.html" #Tue, 11 Aug 2020 01:12:18 +0300
-AddDescription "Music experiments with TidalCycles" "music-experiments-with-tidalcycles.html" #Tue, 11 Aug 2020 01:19:47 +0300
-AddDescription "Nowhere Song" "nowhere-song.html" #Tue, 11 Aug 2020 01:26:47 +0300
-AddDescription "Linux again!!" "linux-again.html" #Tue, 11 Aug 2020 01:47:21 +0300
+AddDescription "Greece a Country of tolerance" "greece-a-country-of-tolerance.html" #Fri, 02 Mar 2017 00:19:39 +0300
+AddDescription "Social Loneliness" "social-loneliness.html" #Fri, 22 Sep 2017 00:22:53 +0300
+AddDescription "Overthrow and zeroing" "overthrow-and-zeroing.html" #Sun, 28 Jan 2018 00:32:30 +0300
+AddDescription "Your post is to short" "your-post-is-to-short.html" #Thu, 14 Jun 2018 00:30:19 +0300
+AddDescription "Music" "music.html" #Fri, 11 Jun 2019 00:36:08 +0300
+AddDescription "Nowhere song" "nowhere-song.html" #Fri, 26 Apr 2019 00:37:09 +0300
+AddDescription "Orca" "orca.html" #Sun, 17 Nov 2019 00:38:24 +0300
+AddDescription "Slave" "slave.html" #Wed, 11 Mar 2020 00:41:31 +0300
+AddDescription "Experiments with Tidalcycles" "experiments-with-tidalcycles.html" #Mon, 18 May 2020 00:43:04 +0300
+AddDescription "Linux again" "linux-again.html" #Sat, 22 Aug 2020 00:45:07 +0300

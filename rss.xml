@@ -3,104 +3,83 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 
 <channel>
-<title>Your RSS Feed Title</title>
-<description>A brief description of your RSS feed.</description>
+<title>Nick Levantis News</title>
+<description>RSS feed.</description>
 <language>en-us</language>
-<link>http://yourwebsite.com/rss.xml</link>
-<atom:link href="http://yourwebsite.com/rss.xml" rel="self" type="application/rss+xml" />
+<link>https://nicklevantis.com/rss.xml</link>
+<atom:link href="https://nicklevantis.com/rss.xml" rel="self" type="application/rss+xml" />
 
 <!-- LB -->
 
 <item>
-<title>Linux again!!</title>
+<title>Linux again</title>
 <guid>https://nicklevantis.com/2020.html#linux-again</guid>
-<pubDate>Tue, 11 Aug 2020 01:47:21 +0300</pubDate>
+<pubDate>Sat, 22 Aug 2020 00:45:07 +0300</pubDate>
 <description><![CDATA[
-<pre style="font-size:7px;line-height:1.38;">
-                 .88888888:.
-                88888888.88888.
-              .8888888888888888.
-              888888888888888888
-              88' _`88'_  `88888
-              88 88 88 88  88888
-              88_88_::_88_:88888
-              88:::,::,:::::8888
-              88`:::::::::'`8888
-             .88  `::::'    8:88.
-            8888            `8:888.
-          .8888'             `888888.
-         .8888:..  .::.  ...:'8888888:.
-        .8888.'     :'     `'::`88:88888
-       .8888        '         `.888:8888.
-      888:8         .           888:88888
-    .888:88        .:           888:88888:
-    8888888.       ::           88:888888
-    `.::.888.      ::          .88888888
-   .::::::.888.    ::         :::`8888'.:.
-  ::::::::::.888   '         .::::::::::::
-  ::::::::::::.8    '      .:8::::::::::::.
- .::::::::::::::.        .:888:::::::::::::
- :::::::::::::::88:.__..:88888:::::::::::'
-  `'.:::::::::::88888888888.88:::::::::'
-        `':::_:' -- '' -'-' `':_::::'`
-
-</pre>
-
-
-
-
-
-
 <p>
 
 After many years of using OSX and macs and spending thousands of euros to buy them ..I came up with the operating system that I happened to put experimentally on my computer 25 years ago (ret hat linux at that time). So Linux again in combination with a custom environment created with the dwm window manager .. everything is now easily controlled via keyboard shortcuts, my computer is 2 times faster than with OSX. I use many open source applications which of course I try to learn with the sole exception of my favorite music tracker renoise ..
-]]></description>
-</item>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<item>
-<title>Nowhere Song</title>
-<guid>https://nicklevantis.com/2020.html#nowhere-song</guid>
-<pubDate>Tue, 11 Aug 2020 01:26:47 +0300</pubDate>
-<description><![CDATA[
-</br>
-
-<div class="video-container">
-
-<iframe width="940" height="529" src="https://www.youtube.com/embed/_aDEUADhDSU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-</div>
+</p>
 ]]></description>
 </item>
 
 
 <item>
-<title>Music experiments with TidalCycles</title>
-<guid>https://nicklevantis.com/2020.html#music-experiments-with-tidalcycles</guid>
-<pubDate>Tue, 11 Aug 2020 01:19:47 +0300</pubDate>
+<title>Experiments with Tidalcycles</title>
+<guid>https://nicklevantis.com/2020.html#experiments-with-tidalcycles</guid>
+<pubDate>Sat, 22 Aug 2020 00:43:04 +0300</pubDate>
 <description><![CDATA[
+
 <p>TidalCycles  a live coding environment  for musical improvisation and composition. In particular, it is a domain-specific language embedded in Haskell, focused on the generation and manipulation of audible or visual patterns. And some experiments With TidalCycle and Veda visual live coding  ...
 </p>
 <div class="video-container">
 
 <iframe width="940" height="529" src="https://www.youtube.com/embed/nJLt75Jd8mw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+]]></description>
+</item>
 
+
+<item>
+<title>Slave</title>
+<guid>https://nicklevantis.com/2020.html#slave</guid>
+<pubDate>Sat, 22 Aug 2020 00:41:31 +0300</pubDate>
+<description><![CDATA[
+
+<h3>A few years ago I wrote a song about slaves .. Observing the current situation in societies I have the feeling that this song will remain relevant forever ..</h3>
+
+<iframe width="100%" height="166" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/49160732&color=%23151515&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"></iframe><div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;"><a href="https://soundcloud.com/nicklevantis" title="Nick Levantis" target="_blank" style="color: #cccccc; text-decoration: none;">Nick Levantis</a> · <a href="https://soundcloud.com/nicklevantis/slave" title="SLAVE" target="_blank" style="color: #cccccc; text-decoration: none;">SLAVE</a></div>
+
+<pre>
+our world is out control
+the puppets kill your thoughts
+they give you a second chance
+obey you are just a slave
+
+their money rule this world
+some people took your hope
+wake up and break your chains
+true love just kill their brain
+</p>
+]]></description>
+</item>
+
+
+<item>
+<title>Orca</title>
+<guid>https://nicklevantis.com/2020.html#orca</guid>
+<pubDate>Sat, 22 Aug 2020 00:38:24 +0300</pubDate>
+<description><![CDATA[
+
+<p>My new favorite music sequencer is Orca. Designed by Devine Lu Linvega (Hundred Rabbits) and is a ingenious approach that really takes every musical idea to another level.
+</p>
+<p>Orca is an esoteric programming language, designed to create procedural sequencers in which each letter of the alphabet is an operation, where lowercase letters operate on bang, uppercase letters operate on each frame.
+</p>
+<p>The application is not a synthesizer, but a flexible livecoding environment capable of sending MIDI, OSC & UDP to your audio interface, like Ableton, Renoise, VCV Rack or SuperCollider. You can also use Pilot, a companion application to ORCA. Find Orca here: https://100r.co/site/orca.html/ & more videos on my youtube channel.
+</p>
+
+
+<div class="video-container">
+<iframe width="940" height="514" src="https://www.youtube.com/embed/niUe0M8fZnw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
 ]]></description>
 </item>
@@ -109,15 +88,103 @@ After many years of using OSX and macs and spending thousands of euros to buy th
 
 
 <item>
-<title>Greece a country of tolerance</title>
-<guid>https://nicklevantis.com/2020.html#greece-a-country-of-tolerance</guid>
-<pubDate>Tue, 11 Aug 2020 01:12:18 +0300</pubDate>
+<title>Nowhere song</title>
+<guid>https://nicklevantis.com/2020.html#nowhere-song</guid>
+<pubDate>Sat, 22 Aug 2020 00:37:09 +0300</pubDate>
 <description><![CDATA[
-<p>->Old article for the situation of Greece that remains the same for 10 years<- </p>
 
-<h1>
-	There are two ways to conquer and enslave a nation. One is by sword. The other is by debt. – John Adams
-</h1>
+<div class="video-container">
+
+<iframe width="940" height="529" src="https://www.youtube.com/embed/_aDEUADhDSU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+]]></description>
+</item>
+
+
+<item>
+<title>Music</title>
+<guid>https://nicklevantis.com/2020.html#music</guid>
+<pubDate>Sat, 22 Aug 2020 00:36:08 +0300</pubDate>
+<description><![CDATA[
+<h3>Who thinks it’s easy to create nice and unique music? Obviously not .. In addition to music studies, we need images and feelings and, moreover, a daily life full of questions about what exactly surrounds us.</h3>
+
+<p>
+Unfortunately, we live in the age of social networking and our precious time is spent in front of screens .. I know musicians who spend more than half a day in front of the computer .. not to write music but to communicate in the facebook with the hope that they will become known and successful …..
+
+Ιt is at least ridiculous and vain to hunt for success without having any serious esoteric reason to do so. Without dreams, fantasy and creative life, there is no real art other than repetition and recycling.</p>
+]]></description>
+</item>
+
+
+<item>
+<title>Your post is to short</title>
+<guid>https://nicklevantis.com/2020.html#your-post-is-to-short</guid>
+<pubDate>Sat, 22 Aug 2020 00:30:19 +0300</pubDate>
+<description><![CDATA[
+
+<p>In a world that observes the following is reasonable that everything around us is programmed according to ..<p/>
+ 	<ul>
+	<li>Passive acceptance and coexistence</li>
+	<li>Poor aesthetics and life goals</li>
+	<li>Opinions built on common and safe recruits</li>
+	<li>Consumerism and Discrimination</li>
+	<li>Success without a strong philosophy of life</li>
+	<li>Understanding only that we perceive it as safe for us</li>
+	<li>Lack of judgment and perception of diversity</li>
+	<li>Lifestyle that fits only the views we have learn & adopted</li>
+	<li>Compromise …</li>
+	<li>Vanity..</li>
+	</ul>
+]]></description>
+</item>
+
+
+
+
+<item>
+<title>Overthrow and zeroing</title>
+<guid>https://nicklevantis.com/2020.html#overthrow-and-zeroing</guid>
+<pubDate>Sat, 22 Aug 2020 00:32:30 +0300</pubDate>
+<description><![CDATA[
+<h3>We do what we learn with mapped consciousness and mode of operation. Always with fixed obligations that determine our existence on this planet.</h3>
+	<p>Undoubtedly we stand and act hypocritically against our nature and towards our creator who “inadvertently” placed us somewhere in this universe. Being destructive, greedy and rude, with an overly selfish disrespecting to our surrounding area, we want to save and exalt our souls. Religions, philosophies good and evil be born from us to us in order to soften the uncertainty of our problematic nature. The “must” on our everyday life eventually awakens “anarchist instincts” into our subconscious. And that’s where everything starts. The notions of good and evil no longer have any distinct boundaries … And our brain can not be persuaded of everything that has implanted us, Destabilizing so overthrow and zeroing …</p>
+<
+]]></description>
+</item>
+
+
+
+
+<item>
+<title>Social Loneliness</title>
+<guid>https://nicklevantis.com/2020.html#social-loneliness</guid>
+<pubDate>Sat, 22 Aug 2020 00:22:53 +0300</pubDate>
+<description><![CDATA[
+<h3>Some of them they taught us about good and evil. And some others they put in our lives innumerable “musts” by limiting our time so to have falsely limited the need for “why” for an actual esoteric search.</h3>
+<p>Strong justifications are: you must be a “social person” and you must follow the path of virtue of discipline … and also the production processes, profit, wealth for the benefit of course of the few.</p>
+
+<p>Today, all societies are based mostly on failed economic systems and they give us the potential to build a powerful materialistic and extrovert “ego” with great doses of vanity. This is also what current social media means are speculative … But basically we are alone … far from our real self and away from real communication with those around us.</p>
+
+<p>The choices are many … offering us the illusion that all that we choose is based on our own judgment … But very few are wondering if their judgment relies on guided models, so their choices are in fact predetermined.</p>
+
+<P>Serving lifestyles for recognition and social acceptance … and usually endless inner loneliness within our delimited and ensconced soul. Many times we manage and intercept the physical course of our thoughts and feelings using psychologists, drugs, drugs, alcohol. These are unfortunately some of today’s “practices” to understand and find our real self or even to avoid disturbing us …</p>
+<p>We avoid experiencing anything positive and negative that comes out of us effortlessly. We believe that we can feel real happiness, true love, real communication, acting selectively and filtering the feelings that exist within us. We have separated the soul from matter by reaching distortion where pleasure is not born through us but by the ego.</p>
+
+<p>We face with suspicion and selfishness that we are surrounded by our “blind” belief that we are the focus of this world and that we must remain unaffected unscathed and perfectly classified.</p>
+<p>Lift your head some night and see the stars …. A truly shocking image of zillion stars in the universe. It is the magic of the harmonious anarchy that we should normally allow both our soul and those around us.</p>
+
+<p>We have forgotten in these societies fundamental and basic things that would make us more people so that we are truly close to each other. We built economic and social systems to help us and serve us but eventually we were trapped and served by sacrificing our mental health, our time, our feelings. We are essentially more alone than ever …</p>
+
+<p>It is probably the time to understand and reconcile (and not just compromise) first of all with ourselves so that we never feel alone. The time has come that we have to respect the uniqueness and diversity around us more than we have learned …</p>
+]]></description>
+</item>
+
+
+<item>
+<title>Greece a Country of tolerance</title>
+<guid>https://nicklevantis.com/2020.html#greece-a-country-of-tolerance</guid>
+<pubDate>Sat, 22 Aug 2020 00:19:39 +0300</pubDate>
+<description><![CDATA[
+
 <p>
 Hidden behind the gray shades of the current financial and political situation in Greece, the words that marks today and tomorrow is the confusion and disorientation. In May 2010, when Greece’s first bailout was approved and the austerity antisocial measures started, the unemployment rate was at twelve percent. That rate has since climbed almost to twentyseven percent, and the youth unemployment rate for ages up to 25 years old has surpassed the seventy percent mark.</p>
 
@@ -143,46 +210,14 @@ This situation would not be happening for a long time yet. The social explosion 
 </item>
 
 
-<item>
-<title>Music.. ??</title>
-<guid>https://nicklevantis.com/2020.html#music</guid>
-<pubDate>Tue, 11 Aug 2020 01:05:01 +0300</pubDate>
-<description><![CDATA[
-<h2>Who thinks it’s easy to create nice and unique music? Obviously not .. In addition to music studies, we need images and feelings and, moreover, a daily life full of questions about what exactly surrounds us.</h2>
-
-<p>
-Unfortunately, we live in the age of social networking and our precious time is spent in front of screens .. I know musicians who spend more than half a day in front of the computer .. not to write music but to communicate in the facebook with the hope that they will become known and successful …..
-
-Ιt is at least ridiculous and vain to hunt for success without having any serious esoteric reason to do so. Without dreams, fantasy and creative life, there is no real art other than repetition and recycling.</p>
-]]></description>
-</item>
 
 
-<item>
-<title>Overthrow and zeroing</title>
-<guid>https://nicklevantis.com/2020.html#overthrow-and-zeroing</guid>
-<pubDate>Tue, 11 Aug 2020 00:58:41 +0300</pubDate>
-<description><![CDATA[
-<h2>We do what we learn with mapped consciousness and mode of operation. Always with fixed obligations that determine our existence on this planet.</h2>
-	<p>Undoubtedly we stand and act hypocritically against our nature and towards our creator who “inadvertently” placed us somewhere in this universe. Being destructive, greedy and rude, with an overly selfish disrespecting to our surrounding area, we want to save and exalt our souls. Religions, philosophies good and evil be born from us to us in order to soften the uncertainty of our problematic nature. The “must” on our everyday life eventually awakens “anarchist instincts” into our subconscious. And that’s where everything starts. The notions of good and evil no longer have any distinct boundaries … And our brain can not be persuaded of everything that has implanted us, Destabilizing so overthrow and zeroing …</p>
-]]></description>
-</item>
 
 
-<item>
-<title>Orca</title>
-<guid>https://nicklevantis.com/2020.html#orca</guid>
-<pubDate>Tue, 11 Aug 2020 00:47:59 +0300</pubDate>
-<description><![CDATA[
-<p>My new favorite music sequencer is Orca. Designed by Devine Lu Linvega (Hundred Rabbits) and is a ingenious approach that really takes every musical idea to another level.
-</p>
-<p>Orca is an esoteric programming language, designed to create procedural sequencers in which each letter of the alphabet is an operation, where lowercase letters operate on bang, uppercase letters operate on each frame.
-</p>
-<p>The application is not a synthesizer, but a flexible livecoding environment capable of sending MIDI, OSC & UDP to your audio interface, like Ableton, Renoise, VCV Rack or SuperCollider. You can also use Pilot, a companion application to ORCA. Find Orca here: https://100r.co/site/orca.html/ & more videos on my youtube channel.
-</p>
-<div class="video-container">
-<iframe width="940" height="514" src="https://www.youtube.com/embed/niUe0M8fZnw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-</div>
+<footer>by <strong><a href='https://nicklevantis.com/'>Nick Levantis</a></strong></footer>
+</body>
+
+</html>
 ]]></description>
 </item>
 
@@ -191,74 +226,43 @@ Unfortunately, we live in the age of social networking and our precious time is 
 
 
 
-<item>
-<title>Slave Song</title>
-<guid>https://nicklevantis.com/2020.html#slave-song</guid>
-<pubDate>Tue, 11 Aug 2020 00:31:43 +0300</pubDate>
-<description><![CDATA[
-A few years ago I wrote a song about slaves .. Observing the current situation in societies I have the feeling that this song will remain relevant forever ..
-
-<iframe width="100%" height="166" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/49160732&color=%23151515&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"></iframe><div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;"><a href="https://soundcloud.com/nicklevantis" title="Nick Levantis" target="_blank" style="color: #cccccc; text-decoration: none;">Nick Levantis</a> · <a href="https://soundcloud.com/nicklevantis/slave" title="SLAVE" target="_blank" style="color: #cccccc; text-decoration: none;">SLAVE</a></div>
-
-<pre>
-our world is out control
-the puppets kill your thoughts
-they give you a second chance
-obey you are just a slave
-
-their money rule this world
-some people took your hope
-wake up and break your chains
-true love just kill their brain
-</p>
-]]></description>
-</item>
 
 
-<item>
-<title>Social Loneliness</title>
-<guid>https://nicklevantis.com/2020.html#social-loneliness</guid>
-<pubDate>Mon, 10 Aug 2020 22:42:05 +0300</pubDate>
-<description><![CDATA[
-<strong>Some of them they taught us about good and evil. And some others they put in our lives innumerable “musts” by limiting our time so to have falsely limited the need for “why” for an actual esoteric search.</strong>
-<p>Strong justifications are: you must be a “social person” and you must follow the path of virtue of discipline … and also the production processes, profit, wealth for the benefit of course of the few.</p>
-
-<p>Today, all societies are based mostly on failed economic systems and they give us the potential to build a powerful materialistic and extrovert “ego” with great doses of vanity. This is also what current social media means are speculative … But basically we are alone … far from our real self and away from real communication with those around us.</p>
-
-<p>The choices are many … offering us the illusion that all that we choose is based on our own judgment … But very few are wondering if their judgment relies on guided models, so their choices are in fact predetermined.</p>>
-
-<P>Serving lifestyles for recognition and social acceptance … and usually endless inner loneliness within our delimited and ensconced soul. Many times we manage and intercept the physical course of our thoughts and feelings using psychologists, drugs, drugs, alcohol. These are unfortunately some of today’s “practices” to understand and find our real self or even to avoid disturbing us …</p>
-<p>We avoid experiencing anything positive and negative that comes out of us effortlessly. We believe that we can feel real happiness, true love, real communication, acting selectively and filtering the feelings that exist within us. We have separated the soul from matter by reaching distortion where pleasure is not born through us but by the ego.</p>
-
-<p>We face with suspicion and selfishness that we are surrounded by our “blind” belief that we are the focus of this world and that we must remain unaffected unscathed and perfectly classified.</p>
-<p>Lift your head some night and see the stars …. A truly shocking image of zillion stars in the universe. It is the magic of the harmonious anarchy that we should normally allow both our soul and those around us.</p>
-
-<p>We have forgotten in these societies fundamental and basic things that would make us more people so that we are truly close to each other. We built economic and social systems to help us and serve us but eventually we were trapped and served by sacrificing our mental health, our time, our feelings. We are essentially more alone than ever …</p>
-
-<p>It is probably the time to understand and reconcile (and not just compromise) first of all with ourselves so that we never feel alone. The time has come that we have to respect the uniqueness and diversity around us more than we have learned …</p>
-]]></description>
-</item>
 
 
-<item>
-<title>Your post is too short</title>
-<guid>https://nicklevantis.com/2020.html#your-post-is-too-short</guid>
-<pubDate>Thu, 10 Jan 2019 12:20:43 +0300</pubDate>
-<description><![CDATA[
-<p>In a world that observes the following is reasonable that everything around us is programmed according to ..<p/>
- 	<ul>
-	<li>Passive acceptance and coexistence</li>
-	<li>Poor aesthetics and life goals</li>
-	<li>Opinions built on common and safe recruits</li>
-	<li>Consumerism and Discrimination<li>
-	<li>Success without a strong philosophy of life</li>
-	<li>Understanding only that we perceive it as safe for us</li>
-	<li>Lack of judgment and perception of diversity<li>
-	<li>Lifestyle that fits only the views we have learn & adopted</li>
-	<li>Compromise …</li>
-	<li>Vanity..</li>
-	</ul>
-]]></description>
-</item>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </channel>
 </rss>
