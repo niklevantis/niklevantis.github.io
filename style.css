@@ -3,7 +3,7 @@
 @font-face { font-family: 'alte_haas_grotesk_bold' ; src: url('alte_haas_grotesk_bold.ttf') format('truetype'); font-weight:normal;font-style:normal }
 
 
-body{text-align:center;margin-left: auto;margin-right: auto;width:34em;overflow-y:scroll;font-family: "alte_haas_grotesk_regular", Helvetica, Arial; font:calc(0.55em + 1vmin) }pre pre{text-align:left;display:inline-block}img{max-width:57ch;display:block;height:auto;width:100%}a{text-align:center;text-decoration:none;color:#777}a:hover{color:blue;text-decoration:underline;}p{text-align:center}strong{font-size:1.1em;}ul {display:block;padding-left:10%;text-align:left;list-style-type: none;}p{text-align:left}h3{font-size:1em;font-weight:400}
+body{text-align:center;margin-left: auto;margin-right: auto;width:34em;overflow-y:scroll;font-family: "alte_haas_grotesk_regular", Helvetica, Arial;line-height:1.2em;font:calc(0.55em + 1vmin) }pre pre{text-align:left;display:inline-block}img{max-width:57ch;display:block;height:auto;width:100%}a{text-align:center;text-decoration:none;color:#777}a:hover{color:blue;text-decoration:underline;}p{text-align:center}strong{font-size:1.1em;}ul {display:block;padding-left:20%;text-align:left;list-style-type: none;}p{text-align:left}h3{font-size:1em;font-weight:400}
 
 .video-container {
     overflow: hidden;
