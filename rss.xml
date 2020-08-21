@@ -1,14 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <?xml-stylesheet type="text/css" href="rss.css" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+
 <channel>
 <title>Nick Levantis News</title>
 <description>RSS feed.</description>
 <language>en-us</language>
 <link>https://nicklevantis.com/rss.xml</link>
 <atom:link href="https://nicklevantis.com/rss.xml" rel="self" type="application/rss+xml" />
-<body>
+
 <!-- LB -->
+
+<item>
+<title>Experiments with Tidalcycles</title>
+<guid>https://nicklevantis.com/2020.html#experiments-with-tidalcycles</guid>
+<pubDate>Mon, 18 May 2020 00:43:04 +0300</pubDate>
+<description><![CDATA[
+
+<p>TidalCycles  a live coding environment  for musical improvisation and composition. In particular, it is a domain-specific language embedded in Haskell, focused on the generation and manipulation of audible or visual patterns. And some experiments With TidalCycle and Veda visual live coding  ...
+</p>
+<div class="video-container">
+
+	<iframe width="940" height="529" src="https://www.youtube.com/embed/nJLt75Jd8mw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+]]></description>
+</item>
+
 
 <item>
 <title>Linux again</title>
@@ -23,19 +39,6 @@ After many years of using OSX and macs and spending thousands of euros to buy th
 </item>
 
 
-<item>
-<title>Experiments with Tidalcycles</title>
-<guid>https://nicklevantis.com/2020.html#experiments-with-tidalcycles</guid>
-<pubDate>Sat, 22 Aug 2020 00:43:04 +0300</pubDate>
-<description><![CDATA[
-
-<p>TidalCycles  a live coding environment  for musical improvisation and composition. In particular, it is a domain-specific language embedded in Haskell, focused on the generation and manipulation of audible or visual patterns. And some experiments With TidalCycle and Veda visual live coding  ...
-</p>
-<div class="video-container">
-
-<iframe width="940" height="529" src="https://www.youtube.com/embed/nJLt75Jd8mw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-]]></description>
-</item>
 
 
 <item>
@@ -215,6 +218,9 @@ This situation would not be happening for a long time yet. The social explosion 
 
 <footer>by <strong><a href='https://nicklevantis.com/'>Nick Levantis</a></strong></footer>
 </body>
+
+
+
 
 </channel>
 </rss>
