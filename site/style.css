@@ -1,5 +1,5 @@
 body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,button,textarea,p,blockquote,th,td{margin:0;padding:0;}table{border-collapse:collapse;border-spacing:0;}fieldset,img{border:0;}address,caption,cite,code,dfn,em,strong,th,var,optgroup{font-style:inherit;font-weight:inherit;}del,ins{text-decoration:none;}li{list-style:none;}caption,th{text-align:left;}h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal;}q:before,q:after{content:'';}abbr,acronym{border:0;font-variant:normal;}sup{vertical-align:baseline;}sub{vertical-align:baseline;}legend{color:#000;}input,button,textarea,select,optgroup,option{font-family:inherit;font-size:inherit;font-style:inherit;font-weight:inherit;}input,button,textarea,select{*font-size:100%;}a,a:active,a:focus {outline: none;}
-body { font: normal 12px/19px "Consolas"; font-family: "Consolas", "Andale Mono", "Lucida Console", "Lucida Sans Typewriter", "Monaco", "Courier New", "monospace"; color: #999; position: relative; }
+body { font: normal 13px/19px "Consolas"; font-family: "Consolas", "Andale Mono", "Lucida Console", "Lucida Sans Typewriter", "Monaco", "Courier New", "monospace"; color: #999; position: relative; }
 .fake_link,
 a { color: #999; text-decoration: none; outline: none; }
 p a { color: #484848; }
@@ -20,12 +20,12 @@ h1{font-size: 15px;color:#000;padding-bottom:20px}
 #logo { position: absolute; top: 20px; left: 0px; z-index: 100; }
 #menu { margin-top: 5px; }
 #menu a { padding: 6px 0px 0px 5px; text-transform: uppercase; display: block; }
-.submenu-link { font-size: 14px; margin-right: 20px; text-transform: capitalize; }
+.submenu-link { font-size: 16px; margin-right: 20px; text-transform: capitalize; }
 ul li { cursor: pointer; }
 .li { position: relative; margin-right: 0px; }
-.level-two { font-size: 12px; overflow: hidden; }
+.level-two { font-size: 14px; overflow: hidden; }
 .level-two li { display: block; padding: 0px 0px 0px 0px; }
-#menu .level-two li a { font-size: 10px; line-height: 14px; }
+#menu .level-two li a { font-size: 12px; line-height: 14px; }
 .li ul { display: block; background: #fff; width: 130px; opacity: .9; padding: 0px 0px 10px 0px; }
 .photo_wraper { position: absolute; margin: 0px 0px 0px 0px; }
 .wraps { float: left; position: relative; margin: 20px 0px 20px 0px; }
@@ -47,11 +47,11 @@ ul li { cursor: pointer; }
 .lightbox { position: absolute; z-index: 900; background: #fff; top: -9000px; }
 .description { margin-top: -3px; max-width:500px;}
 .post {max-width: 100%; width: 1020px; position: absolute; top: 0px; }
-.post.Text { font-size: 12px;}
+.post.Text { font-size: 14px;}
 .post img { max-width: 100%; }
 .posts { margin: 55px 20px 20px 0px; float: right; position: relative; overflow: hidden; height: 650px; width: 1020px;max-width:100%; }
 #menu li.li:first-of-type { display: none; }
-.explination { font-size: 12px; font-weight: normal; margin: 1px 0px 0px 10px; float: left; }
+.explination { font-size: 14px; font-weight: normal; margin: 1px 0px 0px 10px; float: left; }
 strong {
 	color: #000;
 }
