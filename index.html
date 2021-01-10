@@ -81,33 +81,7 @@
     z-index: -1;
   }
 
-  .flash {
-    color:#fff;
-    font-size:40px;
-    -webkit-animation: flash linear 1.7s infinite;
-    animation: flash linear 1.7s infinite;
-  }
 
-  @-webkit-keyframes flash {
-    0% { opacity:  0; color:#222;}
-    80% { opacity: 1; color:#444; }
-    83% { opacity: 0; color:#444; }
-    86% { opacity: 1; color:#444;}
-    89% { opacity: 0; color:#444;}
-    92% { opacity: 1; color:#444;}
-    95% { opacity: 0; color:#555;}
-    100% { opacity: 1; color:#333;}
-  }
-  @keyframes flash {
-    0% { opacity:  0; color:#222;}
-    80% { opacity: 1; color:#333; }
-    83% { opacity: 0; color:#333; }
-    86% { opacity: 1; color:#333;}
-    89% { opacity: 0; color:#444;}
-    92% { opacity: 1; color:#444;}
-    95% { opacity: 0; color:#444;}
-    100% { opacity: 1; color:#444;}
-  }
 
 
   </style>
@@ -134,12 +108,11 @@
 
   <div id="gen_algorithm">
 
-  <div id="about">about ==> <span>Nick is creating pieces of music. More on <a href="https:soundcloud.com/nicklevantis" target="_blank">soundcloud</a> & <a href="https:youtube.com/nicklevantis" target="_blank">youtube</a></span></br>
+  <div id="about">about ==> <span>Nick is creating pieces of music. More on <a href="https://soundcloud.com/nicklevantis" target="_blank">soundcloud</a>,<a href="https://youtube.com/nicklevantis" target="_blank">youtube</a>&<a href="https://nicklevantis.svbtle.com" target="_blank">svbtle</a></span></br>
   </div>
 </br></br></br></br>
-  <div id="code">algo code ==> </div></br></br>
-  <div id="about">  <span class="flash">click ::</span> <== <span>Based on <a href="https://github.com/pd3v/fluX.js" target="_blank">fluX</a> generative jscript. </span></br>
-  </div>
+  <div id="code">click gen code ==> </div></br></br>
+
 
 
   </div>
@@ -181,7 +154,7 @@ var ac = new AudioContext();
 var scope = ac.createAnalyser();
 var bufferLength = scope.frequencyBinCount;
 var dataArray = new Uint8Array(bufferLength);
-var fps = 40;
+var fps = 60;
 
 scope.fftSize = 2048;
 scope.getByteTimeDomainData(dataArray);
@@ -194,7 +167,7 @@ function drawWave() {
 
   scope.getByteTimeDomainData(dataArray);
 
-  ctx.lineWidth = 0.5;
+  ctx.lineWidth = 0.2;
   ctx.strokeStyle = '#999999';
   ctx.stroke();
 

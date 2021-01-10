@@ -13,7 +13,7 @@ let f = _ => {
   if (ascending) {
     return {note:countTo(scaleLength-1), vel:countTo(scaleLength-1)>=2 && countTo(scaleLength-1)<=4? 60: 59, oct:3};
   } else {
-    return {note:countFrom(scaleLength-1), vel:countFrom(scaleLength-1)>=1 && countFrom(scaleLength-1)<=4? 15: 1, oct:8};
+    return {note:countFrom(scaleLength-1), vel:countFrom(scaleLength-1)>=1 && countFrom(scaleLength-1)<=4? 40: 1, oct:(rand(4,4.01))};
   }
 }
 
