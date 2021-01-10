@@ -1,130 +1,226 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-  <title>Nick Levantis</title>
-	<link href='http://fonts.googleapis.com/css?family=Average' rel='stylesheet' type='text/css'>
-	<link href="site/style.css" rel='stylesheet' type="text/css" />
-    <link rel="icon" type="image/png" href="favicon.png" sizes="16x16">
-    <link rel="icon" type="image/png" href="favicon-32.png" sizes="32x32">
 
-	<meta property="og:title" content="Nick Levantis">
-	<meta property="og:description" content="">
-	<meta property="og:locale" content="en_US">
-	<meta property="og:image" content="http://nicklevatis.com//open_graph_logo.png">
-	<meta property="og:type" content="website">
-	<meta property="og:site_name" content="Nick Levantis">
+  <style>
+  body {
+    width:  100%;
+    height: 100%;
+    margin: 0px;
+  }
+  a {
+    color: #fffffffa;
+    opacity: 0.5;
+    padding: 2px;
+    text-decoration: none;
+  }
+  a:hover {
+    color: black;
+    padding: 2px;
+    background-color: white;
+    opacity: 0.4;
+  }
+  a:visited {
+    text-decoration: none;
+  }
+  #top_bar {
+    margin: 0px;
+  }
+  #gen_algorithm {
+    overflow-y: auto;
+    display: block;
+    width: 35%;
+    margin-top: 20px;
+    padding: 5px;
+    font-family: "menlo", "helvetica", sans-serif;
+    float: right;
+    z-index: -2;
+
+  }
+
+
+  #code {
+    color: #ffffff7a;
+    font-size: 14px;
+  }
+  #code span {
+    color: #ffffff4a;
+    font-size: 12px;
+
+  }
+
+  #about {
+    color: #ffffff7a;
+    font-size: 15px;}
+
+  #about span {
+      color: #ffffff4a;
+      font-size: 12px;
+    }
+
+
+  #title {
+    font-family: "menlo", "helvetica", sans-serif;
+    font-size: 13px;
+    color: #777777;
+    margin-left: 15px;
+    line-height: 62px;
+    float: left;
+    letter-spacing: 1px
+  }
+  #link {
+    font-family: "menlo", "helvetica", sans-serif;
+    font-size: 15px;
+    color: #fff;
+    opacity: 0.8;
+    line-height: 40px;
+    float: left;
+  }
+  canvas {
+    position: absolute;
+    z-index: -1;
+  }
+
+  .flash {
+    color:#fff;
+    font-size:40px;
+    -webkit-animation: flash linear 1.7s infinite;
+    animation: flash linear 1.7s infinite;
+  }
+
+  @-webkit-keyframes flash {
+    0% { opacity:  0; color:#222;}
+    80% { opacity: 1; color:#444; }
+    83% { opacity: 0; color:#444; }
+    86% { opacity: 1; color:#444;}
+    89% { opacity: 0; color:#444;}
+    92% { opacity: 1; color:#444;}
+    95% { opacity: 0; color:#555;}
+    100% { opacity: 1; color:#333;}
+  }
+  @keyframes flash {
+    0% { opacity:  0; color:#222;}
+    80% { opacity: 1; color:#333; }
+    83% { opacity: 0; color:#333; }
+    86% { opacity: 1; color:#333;}
+    89% { opacity: 0; color:#444;}
+    92% { opacity: 1; color:#444;}
+    95% { opacity: 0; color:#444;}
+    100% { opacity: 1; color:#444;}
+  }
+
+
+  </style>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>Nick Levantis</title>
+<meta property="og:title" content="Nick Levantis">
+<meta property="og:description" content="">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Nick Levantis">
+<meta property="og:locale" content="en_US">
 </head>
-<body id="body">
-	<div id="global" class="global">
-		<div class="pad">
-			<div id="header">
-				<a href="index.html" class="h1">Nick Levantis</a>
-				<div class="navigations">
-					<ul id="menu">
+<body>
+  <script type="text/javascript" src="js/midiout.js"></script>
+  <script type="text/javascript" src="js/synth.js"></script>
+  <script type="text/javascript" src="js/generator.js"></script>
+  <script type="text/javascript" src="js/sequencer.js"></script>
+  <script type="text/javascript" src="js/helpers.js"></script>
+  <canvas id="colorCanvas"></canvas>
+  <div id="top_bar">
 
-							<li class="li">
-								<a class="" href="#">Home Page</a>
-								<div class="level-two" style="height: 0px; ">
-									<ul>
-
-									</ul>
-								</div>
-							</li>
-
-							<li class="li">
-								<a class="" href="subs/about.html">About</a>
-								<div class="level-two" style="height: 0px; ">
-									<ul>
-
-									</ul>
-								</div>
-							</li>
+    <div id="title">NICK LEVANTIS</div>
+  </div>
 
 
-							<li class="li">
-								<a class="" href="subs/news.html">News</a>
-								<div class="level-two" style="height: 0px; ">
-									<ul>
+  <div id="gen_algorithm">
 
-									</ul>
-								</div>
-							</li>
-
-
-
-							<li class="li">
-								<a class="" href="#">Works</a>
-								<div class="level-two" style="height: 0px; ">
-									<ul>
+  <div id="about">about ==> <span>Nick is creating pieces of music. More on <a href="https:soundcloud.com/nicklevantis" target="_blank">soundcloud</a> & <a href="https:youtube.com/nicklevantis" target="_blank">youtube</a></span></br>
+  </div>
+</br></br></br></br>
+  <div id="code">algo code ==> </div></br></br>
+  <div id="about">  <span class="flash">click ::</span> <== <span>Based on <a href="https://github.com/pd3v/fluX.js" target="_blank">fluX</a> generative jscript. </span></br>
+  </div>
 
 
-											<li><a class="check" href="subs/songs.html">Songs</a></li>
-
-											<li><a class="check" href="subs/videos.html">Video</a></li>
-
-										   <li><a class="check" href="subs/photos.html">Photography</a></li>
-
-									</ul>
-								</div>
-							</li>
-
-
-
-					</ul>
-				</br></br></br></br>
-					<!--<iframe width="20" height="20" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/101395292&amp;color=%23000000&amp;auto_play=false&amp;hide_related=false&amp;show_comments=false&amp;show_user=false&amp;show_reposts=false&amp;show_teaser=false"></iframe>-->
-				</div>
-			</div>
-      <div class="thumbs"></div>
-			<div class="arrows navtools">
-      	<div class="fake_link left_arrow"></div>
-      	<div class="count"></div>
-      	<div class="fake_link right_arrow"></div>
-      	<div class="explination">&larr; use keystrokes to navigate &rarr;</div>
-      </div>
-			<div class="thumbnails">
-
-      </div>
-			<div class="posts hidden ">
-  			<div class="post Image">
-
-  								<img source="images/eye.gif" ow="320" oh="320" />
-  								<div class="meta">
-  									<div class="name"> </div>
-  									<div class="description">
-
-  									</div>
-
-  								</div>
-
-  						</div>
-
-			</div>
-
-		</div>
-	</div>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
-	<script src="site/scripts.js" type="text/javascript"></script>
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-11329699-4', 'nicklevantis.com');
-  ga('send', 'pageview');
-
-</script>
-<script type="text/javascript">
-    $(document).ready(function() {
-        /*! Fades in page on load */
-        $('body').css('display', 'none');
-        $('body').fadeIn(800);
-    });
-</script>
-
+  </div>
 
 </body>
+
+<script>
+const NUMBER_OF_ALGORITHMS = 1;
+
+var GenerativeAlgorithm = {
+  load: function(src, callback) {
+    var script = document.createElement('script'),loaded;
+    script.setAttribute('src', src);
+    if (callback) {
+      script.onreadystatechange = script.onload = function() {
+        if (!loaded) {
+          callback();
+        }
+        loaded = true;
+      };
+    }
+    document.head.appendChild(script);
+  }
+}
+
+GenerativeAlgorithm.load('genalgorithms/gen' + ((NUMBER_OF_ALGORITHMS-1)*Math.random()+1).toFixed(0) + '.js', function() {
+  document.getElementById("code").innerHTML += '<span>'+f+'</span>';
+});
+
+// Page layout
+var canvas = document.getElementById("colorCanvas");
+var ctx = canvas.getContext("2d");
+ctx.canvas.width  = window.innerWidth;
+ctx.canvas.height = window.innerHeight;
+
+var AudioContext = window.AudioContext || window.webkitAudioContext;
+var ac = new AudioContext();
+
+var scope = ac.createAnalyser();
+var bufferLength = scope.frequencyBinCount;
+var dataArray = new Uint8Array(bufferLength);
+var fps = 40;
+
+scope.fftSize = 2048;
+scope.getByteTimeDomainData(dataArray);
+
+drawWave();
+
+function drawWave() {
+  var sliceWidth = ctx.canvas.width * 1.1 / bufferLength;
+  var x = 0;
+
+  scope.getByteTimeDomainData(dataArray);
+
+  ctx.lineWidth = 0.5;
+  ctx.strokeStyle = '#999999';
+  ctx.stroke();
+
+  setTimeout(function() {
+       requestAnimationFrame(drawWave);
+
+       ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+       ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+       ctx.beginPath();
+
+       for(var i = 0; i < bufferLength; i++) {
+         var v = dataArray[i] / 128.0;
+         var y = v * ctx.canvas.height/2;
+
+         if(i === 0) {
+           ctx.moveTo(x, y);
+         } else {
+           ctx.lineTo(x, y);
+         }
+         x += sliceWidth;
+       }
+   }, 1000 / fps);
+
+  ctx.lineTo(ctx.canvas.width, ctx.canvas.height);
+  ctx.stroke();
+};
+</script>
+
 </html>
-<!-- Localized -->
