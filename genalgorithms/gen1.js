@@ -18,4 +18,4 @@ let f = _ => {
 }
 
 
-Sequencer.generator(mystic, f).synth('Synth',{a:0,d:0,r:1}).start(ac,round(rand(60,60)), beat);
+Sequencer.generator(mystic, f).synth('Synth',{a:0,d:0,r:0.7}).start(ac,round(rand(60,60)), beat);

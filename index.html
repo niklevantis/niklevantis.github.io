@@ -200,9 +200,9 @@ var ac = new AudioContext();
 var scope = ac.createAnalyser();
 var bufferLength = scope.frequencyBinCount;
 var dataArray = new Uint8Array(bufferLength);
-var fps = 60;
+var fps = 20;
 
-scope.fftSize = 2048;
+scope.fftSize = 1024;
 scope.getByteTimeDomainData(dataArray);
 
 drawWave();
