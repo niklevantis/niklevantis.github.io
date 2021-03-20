@@ -1,318 +1,113 @@
-<!DOCTYPE html>
-<html>
+<html lang="en-US">
 <head>
-
-  <style>
-  body {
-    width:  100%;
-    height: 100%;
-    margin: 0px;
-
-  }
-  a {
-    color: #000111;
-    opacity: 0.9;
-    padding: 2px;
-
-  }
-  a:hover {
-    color: white;
-    padding: 2px;
-    background-color: black;
-    opacity: 0.9;
-  }
-  a:visited {
-    text-decoration: none;
-  }
-  #top_bar {
-    margin: 0px;
-  }
-  #gen_algorithm {
-    overflow-y: auto;
-    display: block;
-    width: 35%;
-    margin-top: 20px;
-    padding: 5px;
-    font-family: "courier","menlo", "helvetica", sans-serif;
-    float: right;
-    z-index: -2;
-  }
-
-
-  #code {
-    color: #000;
-    font-size: 16px;
-    position: fixed;
-    bottom: 25px;
-  }
-  #code span {
-    color: #777;
-    font-size: 14px;
-
-  }
-
-  #about {
-    color: #000;
-    font-size: 16px;}
-
-  #about span {
-      color: #666;
-      font-size: 14px;
-    }
-
-
-
-
-  #title {
-    font-family: "menlo", "helvetica", sans-serif;
-    font-size: 14px;
-    color: #000;
-    margin-left: 15px;
-    line-height: 62px;
-    float: left;
-    letter-spacing: 1px
-  }
-  #link {
-    font-family:"courier", "menlo", "helvetica", sans-serif;
-    font-size: 15px;
-    color: #000;
-    opacity: 0.8;
-    line-height: 40px;
-    float: left;
-  }
-  canvas {
-    position: absolute;
-    z-index: -1;
-
-  }
-
-
-  .var-highlight {
-    color: #C0AD60;
-  }
-
-  .string-highlight {
-    color: rgba(253, 149, 90, 0.8);
-  }
-
-  #typewriter {
-    margin: 0;
-  }
-  #typewriter:after {
-    content: "_";
-    font-size: 18px;
-    -webkit-animation: blink 400ms linear infinite alternate;
-            animation: blink 400ms linear infinite alternate;
-  }
-
-  @-webkit-keyframes blink {
-    0% {
-      opacity: 0;
-    }
-    100% {
-      opacity: 1;
-    }
-  }
-  @keyframes blink {
-    0% {
-      opacity: 0;
-    }
-    100% {
-      opacity: 1;
-    }
-  }
-
-
-  </style>
-  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-<link href='data:image/gif;base64,R0lGODlhIAAgAPQAAAAAAAYGBggICA4ODhERERUVFRkZGR4eHiMjIyUlJSkpKSwsLDExMTQ0NDs7Ozw8PEBAQEZGRklJSU9PT1BQUFRUVFpaWlxcXGBgYGZmZmtra3BwcHV1dQAAAAAAAAAAACH/C05FVFNDQVBFMi4wAwEAAAAh/wtJbWFnZU1hZ2ljaw5nYW1tYT0wLjQ1NDU0NQAh+QQAFAD/ACwAAAAAIAAgAAAFqiAgjmRpnmiqrmzrvnAsz3Rt33iA7+0gmITaQOH4iXQAwaEgKzAoCdGmcQE4AIwHAulySDLME3VieCUmF84B5chYGINWgHrRXE8PiwWiCBpRBAoTGhsUfyMFExYXWgUDDFwmQxAZGhoSJQJ5FBQNA59lKgUNEhiWFKGjnBEMWy9OEBUXGBUQDxERDq1xMQEGCgwMtAsLCASRMwIDBQIByDzQ0dLT1NXW19AhADs=' rel=icon>  
-<title>Nick Levantis</title>
-<meta property="og:title" content="Nick Levantis">
-<meta property="og:description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" >
+<meta charset="UTF-8">
+<link rel="profile" href="http://gmpg.org/xfn/11">
+<meta name="description" content="Nick Levantis music and artwork">
+<meta property="og:title" content="Nick Levantis music and artwork">
 <meta property="og:type" content="website">
+<meta property="og:image" content="assets/n.jpg">
+<meta property="og:description" content="Nick Levantis music and artwork">
 <meta property="og:site_name" content="Nick Levantis">
-<meta property="og:locale" content="en_US">
+<title>Nick Levantis</title>	
+  <link rel="icon" href="assets/icons/favicon.png">
+<link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"/>
+<link rel="stylesheet" type="text/css" media="all" href="assets/css/style.css" />
+<script src="assets/js/pace.min.js"></script>    
+<script type='text/javascript' src='https://code.jquery.com/jquery-2.1.3.min.js'></script>
+<script type='text/javascript' src='http://d3js.org/d3.v3.min.js'></script>
+<script type='text/javascript' src='assets/js/scripts.js'></script>
+  <script src="assets/js/jquery.fitvids.js"></script>    
+
 </head>
-<body>
-  <script type="text/javascript" src="js/midiout.js"></script>
-  <script type="text/javascript" src="js/synth.js"></script>
-  <script type="text/javascript" src="js/generator.js"></script>
-  <script type="text/javascript" src="js/sequencer.js"></script>
-  <script type="text/javascript" src="js/helpers.js"></script>
-  <canvas id="colorCanvas"></canvas>
-  <div id="top_bar">
+	<body>
+       
+        <div class="logo">NICK LEVANTIS</div>
+		<div id="wrapper">
+		
+		    
+		    <div id="audio">
+				<audio id="audioElement"> 
+					<source src="assets/mp3/broken.mp3" type="audio/mp3" />
+				
+				</audio>
+              
+                
+		    </div>
+        
+		</div>
+        <nav class="menu menu--line">
+        <a class="soundcloud rotate" href="https://soundcloud.com/nicklevantis/" target="_blank"> SC.</a>
+            <a class="youtube rotate" href="https://youtube.com/nicklevantis" target="_blank">YT.</a></nav>
+         	
+		<div class="title"> Broken</div>		<span class="startstop"></span>
+	<button id="modal-btn">About + Blog</button>
+<div class="modal"> 
+  <div class="modal-content">
+    <span class="close-btn">&times;</span>
+     <h2>About</h2>
+      <p class="bio"> Nick grew up in a fertile cultural and musical period in the early eighties. Programming and synths helped him to step deeper into the world of electronic music and computer art. Over three decades he has formed bands and collaborated with many other musicians experimenting through different styles. Today is creating pieces of music and is trying to differentiate by surpassing the limits of specific genres. Recent activities include the creation of visuals and music for theatre.</p>
+    
+      
+        <div class="tumblr">
+            <h2>News</h2>
+            
+    <p>
+<script type="text/javascript" src="https://levantis.tumblr.com/js?num=10"></script>
 
-    <div id="title">NICK_LEVANTIS
+	
+			<a href="https://levantis.tumblr.com/" title="News" target="_blank">More news</a>
+			</p>
+			
+			</div>
+
+  </div>
+ 
+
 </div>
-
-  </div>
-
-
-  <div id="gen_algorithm">
-
-  <div id="about">about:<span id="typewriter">
-  Nick experiments with coding and creates
-  pieces of electronic music and visuals.
-  More on <a href="https://soundcloud.com/nicklevantis" target="_blank">soundcloud</a>,<a href="https://youtube.com/nicklevantis" target="_blank">youtube</a> and <a href="https://nicklevantis.svbtle.com" target="_blank">svbtle</a>. Click anywhere to start generative music.</span></br>
-  </div>
-</br></br></br></br>
-  <div id="code">generative code: </div></br></br>
-
-
-
-  </div>
-
-</body>
 <script>
-function setupTypewriter(t) {
-      var HTML = t.innerHTML;
-
-      t.innerHTML = "";
-
-      var cursorPosition = 0,
-          tag = "",
-          writingTag = false,
-          tagOpen = false,
-          typeSpeed = 100,
-        tempTypeSpeed = 0;
-
-      var type = function() {
-
-          if (writingTag === true) {
-              tag += HTML[cursorPosition];
-          }
-
-          if (HTML[cursorPosition] === "<") {
-              tempTypeSpeed = 0;
-              if (tagOpen) {
-                  tagOpen = false;
-                  writingTag = true;
-              } else {
-                  tag = "";
-                  tagOpen = true;
-                  writingTag = true;
-                  tag += HTML[cursorPosition];
-              }
-          }
-          if (!writingTag && tagOpen) {
-              tag.innerHTML += HTML[cursorPosition];
-          }
-          if (!writingTag && !tagOpen) {
-              if (HTML[cursorPosition] === " ") {
-                  tempTypeSpeed = 0;
-              }
-              else {
-                  tempTypeSpeed = (Math.random() * typeSpeed) + 50;
-              }
-              t.innerHTML += HTML[cursorPosition];
-          }
-          if (writingTag === true && HTML[cursorPosition] === ">") {
-              tempTypeSpeed = (Math.random() * typeSpeed) + 50;
-              writingTag = false;
-              if (tagOpen) {
-                  var newSpan = document.createElement("span");
-                  t.appendChild(newSpan);
-                  newSpan.innerHTML = tag;
-                  tag = newSpan.firstChild;
-              }
-          }
-
-          cursorPosition += 1;
-          if (cursorPosition < HTML.length - 1) {
-              setTimeout(type, tempTypeSpeed);
-          }
-
-      };
-
-      return {
-          type: type
-      };
-  }
-
-  var typer = document.getElementById('typewriter');
-
-  typewriter = setupTypewriter(typewriter);
-
-  typewriter.type();
-  </script>
-
-<script>
-const NUMBER_OF_ALGORITHMS = 1;
-
-var GenerativeAlgorithm = {
-  load: function(src, callback) {
-    var script = document.createElement('script'),loaded;
-    script.setAttribute('src', src);
-    if (callback) {
-      script.onreadystatechange = script.onload = function() {
-        if (!loaded) {
-          callback();
-        }
-        loaded = true;
-      };
-    }
-    document.head.appendChild(script);
-  }
+    let modalBtn = document.getElementById("modal-btn")
+let modal = document.querySelector(".modal")
+let closeBtn = document.querySelector(".close-btn")
+modalBtn.onclick = function(){
+  modal.style.display = "block"
 }
+closeBtn.onclick = function(){
+  modal.style.display = "none"
+}
+window.onclick = function(e){
+  if(e.target == modal){
+    modal.style.display = "none"
+  }
+}</script>
+ <script>
+  $(document).ready(function(){
+    // Target your .container, .wrapper, .post, etc.
+    $(".tumblr_video_post, .tmblr-embed").fitVids();
+  });
+</script>
+   <script>
+        
+        $(document).ready(function () {
+    $('head').append('<style type="text/css">.modal .modal-content {max-height: ' + ($('body').height() * 1) + 'px;overflow-y: auto;}.modal-content .modal{overflow-y: hidden !important;}</style>');
+});
+        
+        </script>
 
-GenerativeAlgorithm.load('genalgorithms/gen' + ((NUMBER_OF_ALGORITHMS-1)*Math.random()+1).toFixed(0) + '.js', function() {
-  document.getElementById("code").innerHTML += '<span >'+f+'</span>';
+ 
+<script src="https://cdn.jsdelivr.net/npm/baffle@0.3.6/dist/baffle.min.js"></script>
+        <script>
+const text =  baffle(".title");
+text.set({
+  characters: 'L2355675667897OVX NTYSQZ+-•~!=*',
+        speed: 60
 });
 
-// Page layout
-var canvas = document.getElementById("colorCanvas");
-var ctx = canvas.getContext("2d");
+text.start(9000);
+text.reveal(8000, 1000);
 
-
-ctx.canvas.width  = window.innerWidth;
-ctx.canvas.height = window.innerHeight;
-
-var AudioContext = window.AudioContext || window.webkitAudioContext;
-var ac = new AudioContext();
-
-var scope = ac.createAnalyser();
-var bufferLength = scope.frequencyBinCount;
-var dataArray = new Uint8Array(bufferLength);
-var fps = 20;
-
-scope.fftSize = 1024;
-scope.getByteTimeDomainData(dataArray);
-
-drawWave();
-
-function drawWave() {
-  var sliceWidth = ctx.canvas.width * 1.1 / bufferLength;
-  var x = 0;
-
-  scope.getByteTimeDomainData(dataArray);
-
-  ctx.lineWidth = 0.5;
-  ctx.strokeStyle = '#000000';
-  ctx.stroke();
-  ctx.fillStyle = "white";
-  setTimeout(function() {
-       requestAnimationFrame(drawWave);
-
-       ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-       ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-       ctx.beginPath();
-
-       for(var i = 0; i < bufferLength; i++) {
-         var v = dataArray[i] / 128.0;
-         var y = v * ctx.canvas.height/2;
-
-         if(i === 0) {
-           ctx.moveTo(x, y);
-         } else {
-           ctx.lineTo(x, y);
-         }
-         x += sliceWidth;
-       }
-   }, 1000 / fps);
-
-  ctx.lineTo(ctx.canvas.width, ctx.canvas.height);
-  ctx.stroke();
-};
 </script>
-
+	   
+	</body>
 </html>
