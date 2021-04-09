@@ -155,7 +155,7 @@ body {
 }
 
 body.blackBackground {
-	background: #0a0a0a
+	background: #FF0000;
 }
 
 body.blackBackground .siteNotice {
@@ -168,15 +168,15 @@ body.blackBackground .siteNotice:hover {
 }
 
 body.blackBackground #captionToggle {
-	background: #0a0a0a;
+	background: #282828;
 	border: 1px solid #787878;
-	color: #787878
+	color: #fff
 }
 
 body.blackBackground #logo {
-	background: #0a0a0a;
+	background: #282828;
 	border: 1px solid #787878;
-	color: #787878
+	color: #fff
 }
 
 body.blackBackground 	#backgroundTextDesktop {
@@ -193,7 +193,7 @@ body.blackBackground #captionToggle.on {
 
 body.blackBackground #captionContainer {
 	color: #fff;
-	background: #0a0a0a
+	background: #FF0000;
 }
 
 body.yellowBackground {
