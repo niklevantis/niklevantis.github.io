@@ -37,15 +37,13 @@ html, body {
     border: 0px;
     overflow: hidden;
     font-family: "C64 Pro Mono",Monospace;
-    background-color: #000;
+    background-color: none;
+    -webkit-appearance: none;
+-moz-appearance: none;
+appearance: none;
 
 }
-.scanlines {
-  background-image: linear-gradient(90deg,
-  	#223 25%, #450 25%, #410 50%,
-  	#230 50%, #210 75%, #200 75%, #190);
-  background-size:6px 6px;
-}
+
 
 a:link, a:visited {
   color: #84948a;
@@ -62,7 +60,6 @@ a:link, a:visited {
     width: 100%;
     height: 100%;
     background-color: #000;
-filter:  invert( 75%) hue-rotate(165deg) grayscale(84%) saturate(180%) blur(0.9px)    ;
 }
 #foreground {
     position: absolute;
@@ -71,7 +68,9 @@ filter:  invert( 75%) hue-rotate(165deg) grayscale(84%) saturate(180%) blur(0.9p
     width: 100%;
     height: 100%;
     z-index: 2;
-
+    -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
 }
 #visualization {
     position:absolute;
@@ -79,42 +78,54 @@ filter:  invert( 75%) hue-rotate(165deg) grayscale(84%) saturate(180%) blur(0.9p
     width: 100%;
     height: 60%;
     bottom:10%;
-    animation: flicker 0.05s infinite;
-    background-color: none;
-    filter:  blur(0.9px)   saturate(1000%)   ;
+    background-color: transparent;
     opacity:1;
     color:#84948a;
-
+    filter: hue-rotate(290deg) grayscale(97%) brightness(330%) blur(0.8px);
 }
 #controls {
     position: absolute;
     left: 25px;
     bottom: 5px;
     background-color: transparent;
+    -webkit-appearance: none;
+-moz-appearance: none;
+appearance: none;
 }
 #code {
     position: absolute;
     left: 25px;
     top:25px!important;
     padding: 12px;
-
     border: none;
     border-radius: 5px;
-    color: #84948a  ;
+    color: #aaa ;
     background-color: transparent;
     font-family: "C64 Pro Mono";
-    font-size: 18px;
+    font-size: 14px;
     line-height: 30px;
     font-weight: 300;
-filter:  invert(100%) hue-rotate(190deg) saturate(100%) grayscale(30%) blur(0.1px)   ;
+    -webkit-appearance: none;
+-moz-appearance: none;
+appearance: none;
 }
 
 
 #code:hover {
     background-color:rgba(0, 0, 0, 0);
+    -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+textarea{
+  -webkit-appearance: none;
+-moz-appearance: none;
+appearance: none;
 }
 
 textarea:focus {
+
     outline: 0; /* this removes browser-side outline */
 }
 
@@ -123,7 +134,7 @@ button, select, .buttonstyle {
     border: none;
     border-radius: 0px;
     margin-right: 0px;
-    color: #84948a;
+    color: #aaa;
     background-color: transparent;
     opacity: 1;
     font-family: "C64 Pro Mono",Monospace;
@@ -134,10 +145,12 @@ button, select, .buttonstyle {
 -moz-appearance: none;
 appearance: none;
 outline: none;
-filter:  invert(60%) hue-rotate(190deg) saturate(100%) grayscale(100%) blur(0.7px)   ;
 }
 button:hover, select:hover, .buttonstyle:select {
     opacity: 1;
+    -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
 }
 
 
@@ -155,10 +168,16 @@ option {
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0);
+  -webkit-appearance: none;
+-moz-appearance: none;
+appearance: none;
 }
 #savecontainer {
   display: table-cell;
   vertical-align: middle;
+  -webkit-appearance: none;
+-moz-appearance: none;
+appearance: none;
 }
 #saveform {
   margin: auto;
@@ -167,10 +186,16 @@ option {
   background-color: #000;
   padding: 20px;
   border-radius: 5px;
+  -webkit-appearance: none;
+-moz-appearance: none;
+appearance: none;
 }
 #saveform .settings {
   margin-top: 1em;
   margin-bottom: 1em;
+  -webkit-appearance: none;
+-moz-appearance: none;
+appearance: none;
 }
 input {
    background: #444;
@@ -188,6 +213,9 @@ input {
   background-color: rgba(0, 0, 0, 0);
   text-align: center;
   vertical-align: middle;
+  -webkit-appearance: none;
+-moz-appearance: none;
+appearance: none;
 }
 #startButton {
   color: white;
@@ -195,6 +223,9 @@ input {
   background-color: blue;
   border: 0.2em solid blue;
   border-radius: 0.2em;
+  -webkit-appearance: none;
+-moz-appearance: none;
+appearance: none;
 }
 
 @keyframes flicker {
@@ -2051,8 +2082,8 @@ NullVisualizer.prototype.render = function() {
 </script>
 </head>
 <body>
-<div id="background" >
-  <canvas id="visualization" class=crt ></cavnas>
+<div id="background" class="crt">
+  <canvas id="visualization" class="crt" ></cavnas>
 </div>
 <div id="foreground" class=crt >
 <div id="controls" class=crt>
