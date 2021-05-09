@@ -37,6 +37,8 @@ t=0&e=0&s=8000&bb=5d0000010064000000000000000017e134924362d05579f2d5d4c59c2ae69c
  best (sin>>4+2/t|(pow(1,8/t))*(t/1*t>>12<<2/t)%-64|t>>4%12>>64|t>>3/t|t>>128*(t>>128))<<2+128/t
 
 (0*(h=t/11.025))|1*(6300/(h%2000/2)*28/4)^2*(h%(1*2/t)<(2*1.2)?(h*-2):h-12/t)^(sin>>4+2/t|(pow(1,8/t))*(t/4*t>>12<<2/t)%64|t>>256%120/2>>64|t>>3/t|t>>12*(t>>12))<<2
+
+n=t/2^(t&64?63:0),n=n>>n,n/(1+(n>>7))&t/32|(t>>11)%256*8%25*t&25
 -->
 <meta charset="utf-8">
 <title>Nick Levantis</title>
@@ -626,7 +628,7 @@ function main() {
     var hash = window.location.hash.substr(1);
     readURL(hash);
   } else {
-    readURL('t=0&e=0&s=8000&bb=5d000001008b0000000000000000178a8024df360ce382102c322d0fa36ab8c05d043169b1c6f6b1f315b645a427973c710423bab8d19bb2d98e291e41cae6d76297deb0ec43c17c5a938e3f87ee27914893b235ce40ca379fa4191558ab552352d9f61e13fc495531688fdca9e834099cf31082e34db592262e027400baee4d6bfef44f1000');
+    readURL('t=0&e=0&s=8000&bb=5d00000100950000000000000000178a8024df360ce382102c322d0fa36ab8c05d043169b1c6f6b1f315b645a427973c710423bab8d19bb2d98e291e41cad784595884d662d1dd5c0ba0505bbb0b8f62a1d2479406e768b9fdfabe547a47cde646eabf09c3c5f6c9ef17d8fccfe28c6c20cacada8cba6212a8a0288bb41e82da8eaf200effffee0d4000');
   }
 
   onWindowResize();
