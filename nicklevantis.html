@@ -76,7 +76,7 @@ appearance: none;
 
 
 a:link, a:visited {
-  color: #84948a;
+  color: #aaa;
   text-decoration: none;
   font-size: 12px;
 }
@@ -111,7 +111,7 @@ a:link, a:visited {
     background-color: transparent;
     opacity:1;
     color:#84948a;
-    filter: hue-rotate(290deg) grayscale(97%) brightness(330%) blur(0.8px);
+    filter: hue-rotate(290deg) grayscale(100%) brightness(330%) blur(0.8px);
 }
 #controls {
     position: absolute;
@@ -2112,14 +2112,14 @@ NullVisualizer.prototype.render = function() {
 </script>
 </head>
 <body>
-<div id="background" class="crt">
-  <canvas id="visualization" class="crt" ></cavnas>
+<div id="background" >
+  <canvas id="visualization"  ></cavnas>
 </div>
-<div id="foreground" class=crt >
-<div id="controls" class=crt>
+<div id="foreground"  >
+<div id="controls" >
 </div>
   <!-- ((((t >> 10) & 42) * t) & 255) / 127 - 1 -->
-<textarea id="code" class=crt></textarea>
+<textarea id="code" ></textarea>
 </div>
  <!-- <div id="savedialog ">
   <div id="savecontainer">
@@ -2127,7 +2127,7 @@ NullVisualizer.prototype.render = function() {
       <div>
         <img id="screenshot" />
       </div> -->
-      <div class="settings" class=crt>
+      <div class="settings" >
         <div > seconds: <input id="seconds" type="number" value="30" min="0" max="10000" ></div>
       </div>
       <!-- <div><button id="save">save</button><button id="cancel">cancel</button></div> -->
