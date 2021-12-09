@@ -1,218 +1,318 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html>
 <head>
-  <meta charset="utf-8">
-  <title>Nick Levantis</title>
-  <script>(function(d) {var config = {kitId: 'adr8pqo',scriptTimeout: 1000,async: true},h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='https://use.typekit.net/'+config.kitId+'.js';tk.async=true;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)})(document);</script>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="shortcut icon" href="https://lightning.svbtle.com/cargo/favicon-47a63730c3bddd89a0ce261ad3fd5d6e29da1c6dfb91af5cbc1747a4343dc9d5.ico">
-  <link rel="icon" sizes="196x196" href="https://lightning.svbtle.com/cargo/apple-touch-icon-f25a8d2a15f09ca67f89014a6aae39b1640048a31c9a1bc3ad6693684e9902f6.png">
-  <link rel="mask-icon" href="https://lightning.svbtle.com/cargo/default-51e38fe53d0c40faf0d7ca170d62629b5111884baddb204ba6bbaaff972a8da7.svg" color="black">
-  <meta name="generator" content="Svbtle.com" />
-  <meta name="description" content="Nick Levantis | Music and multimedia art experimenter "/>
-  <link rel="canonical" href="index.html" />
-  <meta name="description" content="Nick Levantis music and artwork" />
-  <meta property="og:title" content="Nick Levantis music and artwork" />
-  <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="Nick Levantis" />
-  <meta property="og:url" content="index.html" />
-  <meta property="twitter:site" content="@svbtle" />
-  <meta property="twitter:title" content="Nick Levantis" />
-  <meta property="twitter:description" content="Written on Svbtle" />
-  <meta property="twitter:creator" content="@nicklevantis" />
-  <meta name="twitter:card" content="summary" />
-  <meta name="twitter:image" content="https://svbtleusercontent.com/veyCrHyXYWgzhxqZSeRE8c41350xsuap_large.png" />
-  <meta property="twitter:domain" content="index.html" />
-  <meta property="og:title" content="Nick Levantis on Svbtle" />
-  <meta property="og:type" content="website" />
-  <meta property="og:description" content="Nick Levantis | Music and multimedia art experimenter " />
-  <meta property="og:image" content="https://svbtleusercontent.com/veyCrHyXYWgzhxqZSeRE8c41350xsuap_large.png" />
-  <meta property="og:site_name" content="Nick Levantis on Svbtle" />
-  <meta property="fb:app_id" content="346346195413177" />
-  <link rel="alternate" type="application/rss+xml" href="feed" />
-  <link rel="stylesheet" media="all" href="https://lightning.svbtle.com/cargo/legacy/build.blog-42cf7285354eb36443042b98835298ea9af51edae9143096f51ac0a1fc88d09b.css" data-turbolinks-track="reload" />
-  <script src="https://lightning.svbtle.com/cargo/build.blog-120ec501af03ef1be0ea9e44ba1cabedd6ddfd2afb4e4092a62484c914c504d7.js" data-turbolinks-track="reload"></script>
- <script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-  ga('create', 'UA-41994323-1');
-  ga('send', 'pageview');
-  // Create a new tracker for the user on analytics.js and send the pageview
-  ga('create', 'UA-11329699-4', {'name': 'userTracker'});
-  ga('userTracker.send', 'pageview');
-  // Backwards compatibility--create an old ga.js for the user
-  var _gaq = _gaq || [];
-  _gaq.push( ['_setAccount', 'UA-41994323-1'],['_setDomainName', 'none'],['_setAllowLinker', true],['_trackPageview'],['b._setAccount', 'UA-11329699-4'],['b._setDomainName', 'svbtle.com'],['b._setAllowLinker', true],['b._trackPageview']);
-  (function() { var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js'; var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);})();
-  </script>
-  <script src="https://lightning.svbtle.com/cargo/share_buttons-1f4950e4ac6e135016eac03e0e36071ff59c02f28a9d864a7f5e7511d9501a62.js" data-turbolinks-track="true"></script>
-  <script src="https://platform.twitter.com/widgets.js" async></script>
+
+  <style>
+  body {
+    width:  100%;
+    height: 100%;
+    margin: 0px;
+
+  }
+  a {
+    color: #000111;
+    opacity: 0.9;
+    padding: 2px;
+
+  }
+  a:hover {
+    color: white;
+    padding: 2px;
+    background-color: black;
+    opacity: 0.9;
+  }
+  a:visited {
+    text-decoration: none;
+  }
+  #top_bar {
+    margin: 0px;
+  }
+  #gen_algorithm {
+    overflow-y: auto;
+    display: block;
+    width: 35%;
+    margin-top: 20px;
+    padding: 5px;
+    font-family: "courier","menlo", "helvetica", sans-serif;
+    float: right;
+    z-index: -2;
+  }
+
+
+  #code {
+    color: #000;
+    font-size: 16px;
+    position: fixed;
+    bottom: 25px;
+  }
+  #code span {
+    color: #777;
+    font-size: 14px;
+
+  }
+
+  #about {
+    color: #000;
+    font-size: 16px;}
+
+  #about span {
+      color: #666;
+      font-size: 14px;
+    }
+
+
+
+
+  #title {
+    font-family: "menlo", "helvetica", sans-serif;
+    font-size: 14px;
+    color: #000;
+    margin-left: 15px;
+    line-height: 62px;
+    float: left;
+    letter-spacing: 1px
+  }
+  #link {
+    font-family:"courier", "menlo", "helvetica", sans-serif;
+    font-size: 15px;
+    color: #000;
+    opacity: 0.8;
+    line-height: 40px;
+    float: left;
+  }
+  canvas {
+    position: absolute;
+    z-index: -1;
+
+  }
+
+
+  .var-highlight {
+    color: #C0AD60;
+  }
+
+  .string-highlight {
+    color: rgba(253, 149, 90, 0.8);
+  }
+
+  #typewriter {
+    margin: 0;
+  }
+  #typewriter:after {
+    content: "_";
+    font-size: 18px;
+    -webkit-animation: blink 400ms linear infinite alternate;
+            animation: blink 400ms linear infinite alternate;
+  }
+
+  @-webkit-keyframes blink {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  @keyframes blink {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+
+  </style>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<link href='data:image/gif;base64,R0lGODlhIAAgAPQAAAAAAAYGBggICA4ODhERERUVFRkZGR4eHiMjIyUlJSkpKSwsLDExMTQ0NDs7Ozw8PEBAQEZGRklJSU9PT1BQUFRUVFpaWlxcXGBgYGZmZmtra3BwcHV1dQAAAAAAAAAAACH/C05FVFNDQVBFMi4wAwEAAAAh/wtJbWFnZU1hZ2ljaw5nYW1tYT0wLjQ1NDU0NQAh+QQAFAD/ACwAAAAAIAAgAAAFqiAgjmRpnmiqrmzrvnAsz3Rt33iA7+0gmITaQOH4iXQAwaEgKzAoCdGmcQE4AIwHAulySDLME3VieCUmF84B5chYGINWgHrRXE8PiwWiCBpRBAoTGhsUfyMFExYXWgUDDFwmQxAZGhoSJQJ5FBQNA59lKgUNEhiWFKGjnBEMWy9OEBUXGBUQDxERDq1xMQEGCgwMtAsLCASRMwIDBQIByDzQ0dLT1NXW19AhADs=' rel=icon>  
+<title>Nick Levantis</title>
+<meta property="og:title" content="Nick Levantis">
+<meta property="og:description" content="">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Nick Levantis">
+<meta property="og:locale" content="en_US">
 </head>
-<body class="overlord blog">
-<style scoped>figure.avatar a,
-figure#user_logo a,
-figure#user_foot a,
-nav#overlord.user_top figure#logo_top a,
-figure.kudo.complete div.filling {
-  background-image: url('https://svbtleusercontent.com/oFduKkHFp7VUvLznLzTbDc17220xsbap_medium.jpg')
-}
+<body>
+  <script type="text/javascript" src="js/midiout.js"></script>
+  <script type="text/javascript" src="js/synth.js"></script>
+  <script type="text/javascript" src="js/generator.js"></script>
+  <script type="text/javascript" src="js/sequencer.js"></script>
+  <script type="text/javascript" src="js/helpers.js"></script>
+  <canvas id="colorCanvas"></canvas>
+  <div id="top_bar">
 
-figure.kudo.activated div.filling,
-figure.kudo.complete div.filling {
-  background-color: #011921;
-}
+    <div id="title">NICK_LEVANTIS
+</div>
 
-figure.kudo.activated a,
-figure.kudo.complete a {
-  border-color: #011921;
-}
-
-blockquote,
-a blockquote,
-div#readnext:hover span.flank_title,
-div#foot_more:hover a,
-div#foot_userbar a#bottom_tagline span:hover,
-article.linked h1.article_title a:hover,
-a.continue_button:hover,
-article p a:hover,
-ul#lightning_drop,
-figure#user_foot,
-ul#user_links li a:hover,
-ul#foot_links li a:hover,
-a.buttonize:hover,
-button.buttonize:hover,
-a.buttonize.outline:hover,
-button.buttonize.outline:hover,
-nav.pagination span.next a:hover,
-nav.pagination span.prev a:hover,
-section#readnext:hover p span,
-nav#overlord.user_top figure#logo_top {
-  border-color: #011921;
-}
-/*figure#user_logo,*/
-
-figure.avatar,
-nav#overlord.user_top figure#logo_top a,
-ul#user_links li a:hover,
-ul#foot_links li a:hover,
-a.buttonize:hover,
-button.buttonize:hover,
-a.buttonize.outline:hover,
-button.buttonize.outline:hover,
-nav.pagination span.next a:hover,
-nav.pagination span.prev a:hover,
-figure#user_logo a,
-figure#user_foot a  {
-	background-color: #011921;
-}
-
-h6.separator_title.read_first,
-header#user_top h2 a,
-footer#blog_foot h5 a,
-article.post h1 a:hover,
-div.preview strong,
-nav#overlord h2#nav_title.user_top a,
-section#readnext:hover h3,
-section#readnext:hover p span {
-  color: #011921;
-}
-
-@keyframes titlePulse
-  {
-  0% {
-    color: #000000;
-  }
-  50% {
-    color: #011921;
-  }
-  100% {
-    color: #000000;
-  }
-}
-
-@-moz-keyframes titlePulse
-  {
-  0% {
-    color: #000000;
-  }
-  50% {
-    color: #011921;
-  }
-  100% {
-    color: #000000;
-  }
-}
-
-@-webkit-keyframes titlePulse
-  {
-  0% {
-    color: #000000;
-  }
-  50% {
-    color: #011921;
-  }
-  100% {
-    color: #000000;
-  }
-}
-
-section#container article h1.article_title a {
-  font-family: 'myriad-pro', 'freight-sans-pro', 'proxima-nova', 'helvetica', sans-serif;
-  font-weight: 800;
-  font-size: 40px;
-}
-</style>
-
-<figure id="loading">&nbsp;</figure>
-<nav id="overlord" class="">
-  <div id="lockup" class="">
-    <figure id="logo_top" class=" ">
-      <a href="index.html">Svbtle</a>
-    </figure>
   </div>
-  <figure id="hamburger">
-    <a href="#menu" id="hamburger_button">Menu</a>
-  </figure>
-  <ul id="dropdown" class="onblog">
-    <li class="dropdown_message">
-     <a href="https://svbtle.com">Nick Levantis is writing on the <span class="logoize">Svbtle</span> network.</a>
-    </li>
-      <li><a href="https://nicklevantis.com/index.html" class="home">home</a></li>
-    <li><a href="https://nicklevantis.com"  target="_blank">blog</a></li>
-    <li><a href="https://nicklevantis.com/about.html" class="about">about</a></li>
-    <li><a href="https://soundcloud.com/nicklevantis" class="soundcloud" target="_blank">soundcloud</a></li>
-    <li><a href="https://youtube.com/nicklevantis" target="_blank">youtube</a></li>
-    <li><a href="feed">rss feed</a></li>
-
-  </ul>
-</nav>
-<div id="whiteout"></div>
-
-<header id="user_top" class="cf ">
-  <figure id="user_logo"><a href="index.html">Nick Levantis</a></figure>
-  <h2><a href="index.html">Nick Levantis</a></h2>
-  <h3>Music and multimedia art experimenter
-</h3>
-<ul id="user_links">
-    <li><a href="https://nicklevantis.com/index.html" class="home">home</a></li>
-    <li><a href="https://nicklevantis.svbtle.com" class="blog">blog</a></li>
-  <li><a href="https://nicklevantis.com/about.html" class="about">about</a></li>
-</ul></br>
-  <ul id="user_links">
-    <li><a href="https://soundcloud.com/nicklevantis" class="soundcloud">soundcloud</a></li>
-    <li><a href="https://youtube.com/nicklevantis" class="youtube" >youtube</a></li>
-    <li><a href="https://instagr.am/nicklevantis" class="instagram">nicklevantis</a></li>
-</br></br>
-<li><a href="https://nicklevantis.com/404.html" class="about">?</a></li>
-  </ul>
-</header>
-<section id="container" class="blog user_home">
 
 
-</section>
+  <div id="gen_algorithm">
 
-<div id="lights">&nbsp;</div>
+  <div id="about">about:<span id="typewriter">
+  Nick experiments with coding and creates
+  pieces of electronic music and visuals.
+  More on <a href="https://soundcloud.com/nicklevantis" target="_blank">soundcloud</a>,<a href="https://youtube.com/nicklevantis" target="_blank">youtube</a> and <a href="https://nicklevantis.svbtle.com" target="_blank">svbtle</a>. Click anywhere to start generative music.</span></br>
+  </div>
+</br></br></br></br>
+  <div id="code">generative code: </div></br></br>
+
+
+
+  </div>
+
 </body>
+<script>
+function setupTypewriter(t) {
+      var HTML = t.innerHTML;
+
+      t.innerHTML = "";
+
+      var cursorPosition = 0,
+          tag = "",
+          writingTag = false,
+          tagOpen = false,
+          typeSpeed = 100,
+        tempTypeSpeed = 0;
+
+      var type = function() {
+
+          if (writingTag === true) {
+              tag += HTML[cursorPosition];
+          }
+
+          if (HTML[cursorPosition] === "<") {
+              tempTypeSpeed = 0;
+              if (tagOpen) {
+                  tagOpen = false;
+                  writingTag = true;
+              } else {
+                  tag = "";
+                  tagOpen = true;
+                  writingTag = true;
+                  tag += HTML[cursorPosition];
+              }
+          }
+          if (!writingTag && tagOpen) {
+              tag.innerHTML += HTML[cursorPosition];
+          }
+          if (!writingTag && !tagOpen) {
+              if (HTML[cursorPosition] === " ") {
+                  tempTypeSpeed = 0;
+              }
+              else {
+                  tempTypeSpeed = (Math.random() * typeSpeed) + 50;
+              }
+              t.innerHTML += HTML[cursorPosition];
+          }
+          if (writingTag === true && HTML[cursorPosition] === ">") {
+              tempTypeSpeed = (Math.random() * typeSpeed) + 50;
+              writingTag = false;
+              if (tagOpen) {
+                  var newSpan = document.createElement("span");
+                  t.appendChild(newSpan);
+                  newSpan.innerHTML = tag;
+                  tag = newSpan.firstChild;
+              }
+          }
+
+          cursorPosition += 1;
+          if (cursorPosition < HTML.length - 1) {
+              setTimeout(type, tempTypeSpeed);
+          }
+
+      };
+
+      return {
+          type: type
+      };
+  }
+
+  var typer = document.getElementById('typewriter');
+
+  typewriter = setupTypewriter(typewriter);
+
+  typewriter.type();
+  </script>
+
+<script>
+const NUMBER_OF_ALGORITHMS = 1;
+
+var GenerativeAlgorithm = {
+  load: function(src, callback) {
+    var script = document.createElement('script'),loaded;
+    script.setAttribute('src', src);
+    if (callback) {
+      script.onreadystatechange = script.onload = function() {
+        if (!loaded) {
+          callback();
+        }
+        loaded = true;
+      };
+    }
+    document.head.appendChild(script);
+  }
+}
+
+GenerativeAlgorithm.load('genalgorithms/gen' + ((NUMBER_OF_ALGORITHMS-1)*Math.random()+1).toFixed(0) + '.js', function() {
+  document.getElementById("code").innerHTML += '<span >'+f+'</span>';
+});
+
+// Page layout
+var canvas = document.getElementById("colorCanvas");
+var ctx = canvas.getContext("2d");
+
+
+ctx.canvas.width  = window.innerWidth;
+ctx.canvas.height = window.innerHeight;
+
+var AudioContext = window.AudioContext || window.webkitAudioContext;
+var ac = new AudioContext();
+
+var scope = ac.createAnalyser();
+var bufferLength = scope.frequencyBinCount;
+var dataArray = new Uint8Array(bufferLength);
+var fps = 20;
+
+scope.fftSize = 1024;
+scope.getByteTimeDomainData(dataArray);
+
+drawWave();
+
+function drawWave() {
+  var sliceWidth = ctx.canvas.width * 1.1 / bufferLength;
+  var x = 0;
+
+  scope.getByteTimeDomainData(dataArray);
+
+  ctx.lineWidth = 0.5;
+  ctx.strokeStyle = '#000000';
+  ctx.stroke();
+  ctx.fillStyle = "white";
+  setTimeout(function() {
+       requestAnimationFrame(drawWave);
+
+       ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+       ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+       ctx.beginPath();
+
+       for(var i = 0; i < bufferLength; i++) {
+         var v = dataArray[i] / 128.0;
+         var y = v * ctx.canvas.height/2;
+
+         if(i === 0) {
+           ctx.moveTo(x, y);
+         } else {
+           ctx.lineTo(x, y);
+         }
+         x += sliceWidth;
+       }
+   }, 1000 / fps);
+
+  ctx.lineTo(ctx.canvas.width, ctx.canvas.height);
+  ctx.stroke();
+};
+</script>
+
 </html>
