@@ -166,6 +166,8 @@ a:focus-visible {
 .content__title--centered {
 	text-align: center;
 	justify-self: center;
+	background-color: #000;
+	padding: 5px 10px;
 }
 
 .content__title--style-1 {
@@ -213,6 +215,9 @@ a:focus-visible {
 	.frame__title-wrap {
 		grid-area: title;
 		display: flex;
+		background-color: #000;
+		padding: 5px 10px;
+		width: 190px;
 	}
 	.frame__title {
 		margin: 0;
