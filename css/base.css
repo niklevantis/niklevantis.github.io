@@ -81,6 +81,7 @@ a {
 	text-decoration: none;
 	color: var(--color-link);
 	outline: none;
+	background-color: #000000;
 }
 
 a:hover {
@@ -146,7 +147,7 @@ a:focus-visible {
 
 .links {
 	margin: 1rem 0;
-        background-color: #000000;
+      
 }
 
 .frame__demo--current,
