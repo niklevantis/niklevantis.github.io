@@ -144,8 +144,9 @@ a:focus-visible {
 	margin-right: 1rem;
 }
 
-.frame__demos {
+.links {
 	margin: 1rem 0;
+        background-color: #000000;
 }
 
 .frame__demo--current,
