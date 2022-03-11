@@ -21,24 +21,9 @@ body {
 	-moz-osx-font-smoothing: grayscale;
 }
 
-.demo-2 {
-	--color-link: #b95e5d;
-}
-
-.demo-3 {
-	--color-link: #f7bcac;
-}
-
-.demo-4 {
-	--color-link: #bf8b5b;
-}
 
 .lil-gui {
 	visibility: hidden;
-}
-
-.demo-4 .lil-gui {
-	visibility: visible;
 }
 
 /* Page Loader */
@@ -82,6 +67,7 @@ a {
 	color: var(--color-link);
 	outline: none;
 	background-color: #000000;
+	padding: 5px 10px;
 }
 
 a:hover {
