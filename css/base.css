@@ -154,11 +154,13 @@ a:focus-visible {
 	font-size: 13vw;
 	line-height: 1;
 	color: #fff;
-	max-width: 50vw;
+	max-width: 20vw;
 	font-weight: 400;
 	margin: 0;
 	align-self: center;
 	pointer-events: none;
+	background-color: #000;
+	padding: 5px 10px;
 }
 
 .content__title--centered {
