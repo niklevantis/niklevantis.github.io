@@ -21,24 +21,9 @@ body {
 	-moz-osx-font-smoothing: grayscale;
 }
 
-.demo-2 {
-	--color-link: #b95e5d;
-}
-
-.demo-3 {
-	--color-link: #f7bcac;
-}
-
-.demo-4 {
-	--color-link: #bf8b5b;
-}
 
 .lil-gui {
 	visibility: hidden;
-}
-
-.demo-4 .lil-gui {
-	visibility: visible;
 }
 
 /* Page Loader */
@@ -82,6 +67,7 @@ a {
 	color: var(--color-link);
 	outline: none;
 	background-color: #000000;
+	padding: 5px 10px;
 }
 
 a:hover {
@@ -134,6 +120,8 @@ a:focus-visible {
 	font-size: 1rem;
 	margin: 0 0 1rem;
 	font-weight: normal;
+	background-color: #000;
+	padding: 5px 10px;
 }
 
 .frame__links {
@@ -168,7 +156,7 @@ a:focus-visible {
 	font-size: 13vw;
 	line-height: 1;
 	color: #fff;
-	max-width: 50vw;
+	max-width: 20vw;
 	font-weight: 400;
 	margin: 0;
 	align-self: center;
@@ -225,6 +213,9 @@ a:focus-visible {
 	.frame__title-wrap {
 		grid-area: title;
 		display: flex;
+		background-color: #000;
+		padding: 5px 10px;
+		width: 190px;
 	}
 	.frame__title {
 		margin: 0;
