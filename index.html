@@ -14,10 +14,15 @@
 <link rel="image_src" href="https://nicklevantis.com/images/nick.jpg">
 <link rel="shortcut icon" href="https://nicklevantis.com/images/icon.png">
 <style>
+@font-face {
+  font-family: C64 Pro Mono;
+  src: url(fonts/C64_Pro_Mono-STYLE.woff);
+  font-weight: normal;
+}
 @import url('https://fonts.googleapis.com/css?family=Source+Code+Pro');
 * { margin: 0; padding: 0; }
 body { background-color: #eee; color: #555; }
-pre { font-family: 'Source Code Pro', monospace; width: 45ch; margin: 4em auto; padding: .5em; line-height: 0; counter-reset: line; }
+pre { font-family: 'C64 Pro Mono', monospace; width: 45ch; margin: 4em auto; padding: .5em; line-height: 1.1; counter-reset: line; }
 a {color:#000;text-decoration:none;}a:hover{color:#FF0000;text-decoration: underline; text-decoration-color: #000;}
 pre span { display: block; line-height: 1.15rem; }
 pre span:before { counter-increment: line; content: counter(line); display: inline-block; border-right: 1px solid #ddd; width: 3ch; padding: 0 .5em; margin-right: .5em; color: #888; text-align: right; }
@@ -36,13 +41,6 @@ pre a { cursor: pointer; }
 <pre>
 <span></span>
 <span>Nick Levantis</span>
-<span></span>
-<span></span>
-<span></span>
-<span></span>
-<span></span>
-<span></span>
-<span></span>
 <span></span>
 <span></span>
 <span></span>
