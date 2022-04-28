@@ -1,71 +1,62 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-
-<head>
-
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<title>Nick Levantis</title>
-	<meta name="viewport" content="width=device-width">
-	<meta name="description" content="Nick Levantis">
-	<link href="assets/main.css" rel="stylesheet" type="text/css" />
-	<link href="data:image/gif;base64,R0lGODlhIAAgAPQAAAAAAAYGBggICA4ODhERERUVFRkZGR4eHiMjIyUlJSkpKSwsLDExMTQ0NDs7Ozw8PEBAQEZGRklJSU9PT1BQUFRUVFpaWlxcXGBgYGZmZmtra3BwcHV1dQAAAAAAAAAAACH/C05FVFNDQVBFMi4wAwEAAAAh/wtJbWFnZU1hZ2ljaw5nYW1tYT0wLjQ1NDU0NQAh+QQAFAD/ACwAAAAAIAAgAAAFqiAgjmRpnmiqrmzrvnAsz3Rt33iA7+0gmITaQOH4iXQAwaEgKzAoCdGmcQE4AIwHAulySDLME3VieCUmF84B5chYGINWgHrRXE8PiwWiCBpRBAoTGhsUfyMFExYXWgUDDFwmQxAZGhoSJQJ5FBQNA59lKgUNEhiWFKGjnBEMWy9OEBUXGBUQDxERDq1xMQEGCgwMtAsLCASRMwIDBQIByDzQ0dLT1NXW19AhADs=" rel="icon"/>
-
-	<!--Facebook Open Graph-->
-	<meta property="og:url" content="http://nicklevantis.com" />
-	<meta property="og:type" content="website" />
-	<meta property="og:title" content="Nick Levantis" />
-	<meta property="og:image" content="https://nicklevantis.com/images/nick.jpg" />
-	<meta property="og:description" content="Nick Levantis" />
-
-	<!--Twitter Card-->
-	<meta name="twitter:card" content="summary_large_image" />
-	<meta name="twitter:title" content="Nick Levantis" />
-	<meta name="twitter:description" content="Nick Levantis Music" />
-	<meta name="twitter:image" content="https://nicklevantis.com/images/nick.jpg" />
-
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width">
+<title> Nick Levantis | music </title>
+<meta name="description" content="Nick Levantis music">
+<meta name="author" content="Nick Levantis">
+<meta property="og:url" content="https://nickevantis.com/">
+<meta property="og:image" content="https://nicklevantis.com/images/nick.jpg">
+<meta property="og:description" content="Nick Levantis music and artwork">
+<meta property="og:title" content="Nick Levantis music and artwork">
+<link rel="canonical" href="https://nicklevantis.com/">
+<link rel="image_src" href="https://nicklevantis.com/images/nick.jpg">
+<link rel="shortcut icon" href="https://nicklevantis.com/images/icon.png">
+<style>
+@import url('https://fonts.googleapis.com/css?family=Source+Code+Pro');
+* { margin: 0; padding: 0; }
+body { background-color: #eee; color: #555; }
+pre { font-family: 'Source Code Pro', monospace; width: 45ch; margin: 4em auto; padding: .5em; line-height: 0; counter-reset: line; }
+a {color:#000;text-decoration:none;}a:hover{color:#FF0000;text-decoration: underline; text-decoration-color: #000;}
+pre span { display: block; line-height: 1.15rem; }
+pre span:before { counter-increment: line; content: counter(line); display: inline-block; border-right: 1px solid #ddd; width: 3ch; padding: 0 .5em; margin-right: .5em; color: #888; text-align: right; }
+pre a { cursor: pointer; }
+#no_1 { animation: music 2s infinite cubic-bezier(1,0,1,0); }
+#no_2 { animation: videos 2s infinite cubic-bezier(1,0,1,0); }
+#no_3 { animation: thoughts 2s infinite cubic-bezier(1,0,1,0); }
+#coil { animation: nick 2s infinite cubic-bezier(1,0,1,0); }
+@keyframes music { 0% { background-color: #eee; } 20% { background-color: #555; } 40% { background-color: #eee; } 60% { background-color: #eee; } 80% { background-color: #555; } }
+@keyframes videos { 0% { background-color: #eee; } 20% { background-color: #eee; } 40% { background-color: #555; } 60% { background-color: #eee; } 80% { background-color: #555; } }
+@keyframes thoughts { 0% { background-color: #eee; } 20% { background-color: #eee; } 40% { background-color: #eee; } 60% { background-color: #555; } 80% { background-color: #555; } }
+@keyframes nick { 0% { background-color: #eee; } 20% { background-color: #555; } 40% { background-color: #555; } 60% { background-color: #555; } 80% { background-color: #555; } }
+</style>
 </head>
-
-<body class="loading">
-
-	<div id="whiteLoadingScreen">
-	</div><!--whiteLoadingScreen-->
-
-	<div id="siteNoticeContainer">
-		<a class="siteNotice" href="https://soundcloud.com/nicklevantis" target="_blank">Soundcloud</a><!--siteNotice-->
-		<a class="siteNotice" href="https://youtube.com/nicklevantis" target="_blank">Youtube</a><!--siteNotice-->
-	</div><!--sitesNoticeContainer-->
-<div id="logo">	<a href="https://nicklevantis.com" >Nick Levantis</a></div><!--captionContainer-->
-	<div id="captionToggle">About</div><!--captionToggle-->
-	<div id="captionContainer"></div><!--captionContainer-->
-
-	<div id="fullscreenContainer">
-
-		<div id="monologueContainer">
-		</div><!--monologueContainer-->
-
-		<div id="backgroundTextContainer">
-			<div id="backgroundText">
-				<span id="backgroundTextDesktop">Broken</span>
-				<span id="backgroundTextMobile">Broken</span>
-			</div><!--backgroundText-->
-		</div><!--backgroundTextContainer-->
-
-	</div><!--fullscreenContainer-->
-
-
-	<div id="cursor" class="play">
-		<div id="cursorWrapper">
-			<img src="assets/img/cursor/cursor-play.svg">
-			<img src="assets/img/cursor/cursor-pause.svg">
-			<img src="assets/img/cursor/cursor-reload.svg">
-		</div><!--cursorWrapper-->
-	</div><!--cursor-->
-
-
-
-
-	<script async src="assets/app.js"></script>
-
+<body>
+<pre>
+<span></span>
+<span>Nick Levantis</span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span>      <a href="https://soundcloud.com/nicklevantis">MUSIC</a>                      <a href="https://nicklevantis.com/404.html">?</a></span>
+<span>---+---|<a id="no_1"> </a>|---+------------------(<a id="coil"> </a>)</span>
+<span>   |          |</span>
+<span>   |  <a href="https://youtube.com/nicklevantis" class="youtube" >VIDEOS</a>  |</span>
+<span>   +---|<a id="no_2"> </a>|---+</span>
+<span>   |          |</span>
+<span>   | <a href="https://nicklevantis.svbtle.com" class="blog">THOUGHTS</a> |</span>
+<span>   +---|<a id="no_3"> </a>|---+</span>
+<span></span>
+<span></span>
+<span></span>
+</pre>
 </body>
-
 </html>
