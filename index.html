@@ -14,30 +14,25 @@
 <link rel="image_src" href="https://nicklevantis.com/images/nick.jpg">
 <link rel="shortcut icon" href="https://nicklevantis.com/images/icon.png">
 <style>
-@font-face {
-  font-family: C64 Pro Mono;
-  src: url(fonts/C64_Pro_Mono-STYLE.woff);
-  font-weight: normal;
-}
+
 @import url('https://fonts.googleapis.com/css?family=Source+Code+Pro');
 * { margin: 0; padding: 0; }
-body {background-color: #483aaa; color: #867ade;  border-left: 40px solid #867ade; border-right: 40px solid #867ade;  margin: 0; padding: 0;   }
-body:before, body:after { content: " ";position: fixed;background: #867ade;left: 0;right: 0;height: 40px;}
+body { margin: 0; padding: 0;   }
 body:before {top: 0;}
 body:after {bottom: 0;}
-pre { font-family: 'C64 Pro Mono', monospace; width: 45ch; padding:4em 1em; line-height: 1.15rem; counter-reset: line; }
-a {color:#867ade;text-decoration:none;}a:hover{color:#FF0000;text-decoration: underline; text-decoration-color: #000;}
+pre { font-family: 'Source Code Pro', monospace; width: 45ch; padding:4em 1em; line-height: 1.15rem; counter-reset: line; }
+a {color:#000;text-decoration:none;}a:hover{color:#FF0000;text-decoration: underline; text-decoration-color: #000;}
 pre span { display: block; line-height: 1.15rem; }
-pre span:before { counter-increment: line; content: counter(line); display: inline-block; border-right: 1px solid #867ade; width: 3ch; padding: 0 .5em; margin-right: .5em; color: #867ade; text-align: right; }
+pre span:before { counter-increment: line; content: counter(line); display: inline-block; border-right: 1px solid #000; width: 3ch; padding: 0 .5em; margin-right: .5em; color: #333333; text-align: right; }
 pre a { cursor: pointer; }
 #no_1 { animation: music 2s infinite cubic-bezier(1,0,1,0); }
 #no_2 { animation: videos 2s infinite cubic-bezier(1,0,1,0); }
 #no_3 { animation: thoughts 2s infinite cubic-bezier(1,0,1,0); }
 #coil { animation: nick 2s infinite cubic-bezier(1,0,1,0); }
-@keyframes music { 0% { background-color: #867ade; } 20% { background-color: #483aaa; } 40% { background-color: #867ade; } 60% { background-color: #867ade; } 80% { background-color: #483aaa; } }
-@keyframes videos { 0% { background-color: #867ade; } 20% { background-color: #867ade; } 40% { background-color: #483aaa; } 60% { background-color: #867ade; } 80% { background-color: #483aaa; } }
-@keyframes thoughts { 0% { background-color: #867ade; } 20% { background-color: #867ade; } 40% { background-color: #867ade; } 60% { background-color: #483aaa; } 80% { background-color: #483aaa; } }
-@keyframes nick { 0% { background-color: #867ade; } 20% { background-color: #483aaa; } 40% { background-color: #483aaa; } 60% { background-color: #483aaa; } 80% { background-color: #483aaa; } }
+@keyframes music { 0% { background-color: #000; } 20% { background-color: #333; } 40% { background-color: #000; } 60% { background-color: #000; } 80% { background-color: #000; } }
+@keyframes videos { 0% { background-color: #000; } 20% { background-color: #333; } 40% { background-color: #333; } 60% { background-color: #000; } 80% { background-color: #444444; } }
+@keyframes thoughts { 0% { background-color: #000; } 20% { background-color: #333; } 40% { background-color: #333; } 60% { background-color: #444444; } 80% { background-color: #444444; } }
+@keyframes nick { 0% { background-color: #000; } 20% { background-color: #333; } 40% { background-color: #333; } 60% { background-color: #666666; } 80% { background-color: #444444; } }
 </style>
 </head>
 <body>
