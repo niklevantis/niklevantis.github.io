@@ -1,113 +1,62 @@
-<html lang="en-US">
-<head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" >
-<meta charset="UTF-8">
-<link rel="profile" href="http://gmpg.org/xfn/11">
-<meta name="description" content="Nick Levantis music and artwork">
-<meta property="og:title" content="Nick Levantis music and artwork">
-<meta property="og:type" content="website">
-<meta property="og:image" content="assets/n.jpg">
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width">
+<title> Nick Levantis | music </title>
+<meta name="description" content="Nick Levantis music">
+<meta name="author" content="Nick Levantis">
+<meta property="og:url" content="https://nickevantis.com/">
+<meta property="og:image" content="https://nicklevantis.com/images/nick.jpg">
 <meta property="og:description" content="Nick Levantis music and artwork">
-<meta property="og:site_name" content="Nick Levantis">
-<title>Nick Levantis</title>	
-  <link rel="icon" href="assets/icons/favicon.png">
-<link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"/>
-<link rel="stylesheet" type="text/css" media="all" href="assets/css/style.css" />
-<script src="assets/js/pace.min.js"></script>    
-<script type='text/javascript' src='https://code.jquery.com/jquery-2.1.3.min.js'></script>
-<script type='text/javascript' src='http://d3js.org/d3.v3.min.js'></script>
-<script type='text/javascript' src='assets/js/scripts.js'></script>
-  <script src="assets/js/jquery.fitvids.js"></script>    
-
+<meta property="og:title" content="Nick Levantis music and artwork">
+<link rel="canonical" href="https://nicklevantis.com/">
+<link rel="image_src" href="https://nicklevantis.com/images/nick.jpg">
+<link rel="shortcut icon" href="https://nicklevantis.com/images/icon.png">
+<style>
+@import url('https://fonts.googleapis.com/css?family=Source+Code+Pro');
+* { margin: 0; padding: 0; }
+body { background-color: #eee; color: #555; }
+pre { font-family: 'Source Code Pro', monospace; width: 45ch; margin: 4em auto; padding: .5em; line-height: 0; counter-reset: line; }
+a {color:#000;text-decoration:none;}a:hover{color:#FF0000;text-decoration: underline; text-decoration-color: #000;}
+pre span { display: block; line-height: 1.15rem; }
+pre span:before { counter-increment: line; content: counter(line); display: inline-block; border-right: 1px solid #ddd; width: 3ch; padding: 0 .5em; margin-right: .5em; color: #888; text-align: right; }
+pre a { cursor: pointer; }
+#no_1 { animation: music 2s infinite cubic-bezier(1,0,1,0); }
+#no_2 { animation: videos 2s infinite cubic-bezier(1,0,1,0); }
+#no_3 { animation: thoughts 2s infinite cubic-bezier(1,0,1,0); }
+#coil { animation: nick 2s infinite cubic-bezier(1,0,1,0); }
+@keyframes music { 0% { background-color: #eee; } 20% { background-color: #555; } 40% { background-color: #eee; } 60% { background-color: #eee; } 80% { background-color: #555; } }
+@keyframes videos { 0% { background-color: #eee; } 20% { background-color: #eee; } 40% { background-color: #555; } 60% { background-color: #eee; } 80% { background-color: #555; } }
+@keyframes thoughts { 0% { background-color: #eee; } 20% { background-color: #eee; } 40% { background-color: #eee; } 60% { background-color: #555; } 80% { background-color: #555; } }
+@keyframes nick { 0% { background-color: #eee; } 20% { background-color: #555; } 40% { background-color: #555; } 60% { background-color: #555; } 80% { background-color: #555; } }
+</style>
 </head>
-	<body>
-       
-        <div class="logo">NICK LEVANTIS</div>
-		<div id="wrapper">
-		
-		    
-		    <div id="audio">
-				<audio id="audioElement"> 
-					<source src="assets/mp3/broken.mp3" type="audio/mp3" />
-				
-				</audio>
-              
-                
-		    </div>
-        
-		</div>
-        <nav class="menu menu--line">
-        <a class="soundcloud rotate" href="https://soundcloud.com/nicklevantis/" target="_blank"> SC.</a>
-            <a class="youtube rotate" href="https://youtube.com/nicklevantis" target="_blank">YT.</a></nav>
-         	
-		<div class="title"> Broken</div>		<span class="startstop"></span>
-	<button id="modal-btn">About + Blog</button>
-<div class="modal"> 
-  <div class="modal-content">
-    <span class="close-btn">&times;</span>
-     <h2>About</h2>
-      <p class="bio"> Nick grew up in a fertile cultural and musical period in the early eighties. Programming and synths helped him to step deeper into the world of electronic music and computer art. Over three decades he has formed bands and collaborated with many other musicians experimenting through different styles. Today is creating pieces of music and is trying to differentiate by surpassing the limits of specific genres. Recent activities include the creation of visuals and music for theatre.</p>
-    
-      
-        <div class="tumblr">
-            <h2>News</h2>
-            
-    <p>
-<script type="text/javascript" src="https://levantis.tumblr.com/js?num=10"></script>
-
-	
-			<a href="https://levantis.tumblr.com/" title="News" target="_blank">More news</a>
-			</p>
-			
-			</div>
-
-  </div>
- 
-
-</div>
-<script>
-    let modalBtn = document.getElementById("modal-btn")
-let modal = document.querySelector(".modal")
-let closeBtn = document.querySelector(".close-btn")
-modalBtn.onclick = function(){
-  modal.style.display = "block"
-}
-closeBtn.onclick = function(){
-  modal.style.display = "none"
-}
-window.onclick = function(e){
-  if(e.target == modal){
-    modal.style.display = "none"
-  }
-}</script>
- <script>
-  $(document).ready(function(){
-    // Target your .container, .wrapper, .post, etc.
-    $(".tumblr_video_post, .tmblr-embed").fitVids();
-  });
-</script>
-   <script>
-        
-        $(document).ready(function () {
-    $('head').append('<style type="text/css">.modal .modal-content {max-height: ' + ($('body').height() * 1) + 'px;overflow-y: auto;}.modal-content .modal{overflow-y: hidden !important;}</style>');
-});
-        
-        </script>
-
- 
-<script src="https://cdn.jsdelivr.net/npm/baffle@0.3.6/dist/baffle.min.js"></script>
-        <script>
-const text =  baffle(".title");
-text.set({
-  characters: 'L2355675667897OVX NTYSQZ+-•~!=*',
-        speed: 60
-});
-
-text.start(9000);
-text.reveal(8000, 1000);
-
-</script>
-	   
-	</body>
+<body>
+<pre>
+<span></span>
+<span>Nick Levantis</span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span>      <a href="https://soundcloud.com/nicklevantis">MUSIC</a>                      <a href="https://nicklevantis.com/404.html">?</a></span>
+<span>---+---|<a id="no_1"> </a>|---+------------------(<a id="?"> </a>)</span>
+<span>   |          |</span>
+<span>   |  <a href="https://youtube.com/nicklevantis" class="youtube" >VIDEOS</a>  |</span>
+<span>   +---|<a id="no_2"> </a>|---+</span>
+<span>   |          |</span>
+<span>   | <a href="https://nicklevantis.svbtle.com" class="blog">THOUGHTS</a> |</span>
+<span>   +---|<a id="no_3"> </a>|---+</span>
+<span></span>
+<span></span>
+<span></span>
+</pre>
+</body>
 </html>
