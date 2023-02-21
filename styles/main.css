@@ -355,7 +355,7 @@ p.path span+span {
 }
 
 .error {
-    color: #ff402e;
+    color: #7fff77;
 }
 
 p.response {
@@ -398,7 +398,7 @@ input:focus {
 }
 
 .icone.error {
-    color: #ff402e;
+    color: #7ffd77;
 }
 
 .lsall {
