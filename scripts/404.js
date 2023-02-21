@@ -31,7 +31,7 @@ function new_line(){
   p.setAttribute("class", "path")
   p.textContent = "guest";
   span1.textContent = "@";
-  span2.textContent = "whoisYoges.eu.org";
+  span2.textContent = "nicklevantis.com";
   p.appendChild(span1);
   p.appendChild(span2);
   app.appendChild(p);
