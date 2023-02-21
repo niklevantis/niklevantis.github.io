@@ -59,7 +59,7 @@ animation-play-state: running;
   <span></span>
   <span></span>
   <span></span>
-  <span>      <a href="https://soundcloud.com/nicklevantis" >MUSIC</a>                      <a href="https://nicklevantis.com/404.html" ></a></span>
+  <span>      <a href="https://soundcloud.com/nicklevantis" >MUSIC</a>                      <a></a></span>
   <span>---+---|<a id="no_1"> </a>|----+---------------(<a id="coil"> </a>)</span>
   <span>   |          |</span>
   <span>   |  <a href="https://youtube.com/nicklevantis" class="videos" >VIDEOS</a>  |</span>
@@ -74,8 +74,8 @@ animation-play-state: running;
   <span>Over four decades i collaborated</span>
   <span>with other artists experimenting</span>
   <span>through different  music styles.  </span>
-  <span>Today i continue to <div class="listen-node" data-src="https://nicklevantis.com/audio/annoyingsthings.mp3" data-start="0" data-end="247">experiment</div>  </span>
-  <span>with <div class="listen-node" data-src="https//nicklevantis.com/audio/nowhere.mp3" data-start="0" data-end="236"> music</div>  and  visuals. You  </span>
+  <span>Today i continue to <dn class="listen-node" data-src="audio/annoying-things.mp3" data-start="0" data-end="247">experiment</dn>  </span>
+  <span>with <dn class="listen-node" data-src="audio/nowhere.mp3" data-start="0" data-end="236">  music </dn> and visuals. You  </span>
   <span>will  find  more information  in</span>
   <span>the above links.<a id ="coil"> </a> </span>
   <span></span>
@@ -84,7 +84,7 @@ animation-play-state: running;
   </pre>
   <script>
     !function(){"use strict";function b(a,b){a.play(),a.setAttribute("data-playing","true"),b.classList.add("playing")}function c(a,b){a.pause(),a.setAttribute("data-playing","false"),b.classList.remove("playing")}var a="listen-node";window.onload=function(){var b,c,d,e=document.getElementsByClassName(a),f=document.createElement("style");f.type="text/css",f.innerHTML=".listen-node {display: inline-block; background: rgba(0, 20, 199, 0.044); padding: 0 2px; border-radius:1px; cursor: pointer;} .listen-node i {font-size: 0.7em; border: 0.5em solid transparent; border-left: 0.75em solid; display: inline-block; margin-left: 5px;} .listen-node .playing { border: 0; border-left: 0.75em double; border-right: 0.5em solid transparent; height: 1em;}",document.getElementsByTagName("head")[0].appendChild(f);for(var g=0;c=e[g];++g)b=document.createElement("audio"),d=document.createElement("i"),b.src=c.getAttribute("data-src"),b.setAttribute("data-playing","false"),c.id=a+"-"+g,c.insertBefore(d,c.firstChild),c.appendChild(b)},document.addEventListener("click",function(d){var e,f,g;d.target.className===a?(e=d.target.children[1],f=d.target,g=d.target.children[0]):d.target.parentElement&&d.target.parentElement.className===a&&(e=d.target.parentElement.children[1],f=d.target.parentElement,g=d.target),e&&f&&g&&(e.srt=parseInt(f.getAttribute("data-start"))||0,e.end=parseInt(f.getAttribute("data-end"))||e.duration,e&&"false"===e.getAttribute("data-playing")?((e.srt>e.currentTime||e.end<e.currentTime)&&(e.currentTime=e.srt),b(e,g)):c(e,g),function a(){var b=requestAnimationFrame(a),d=100*(e.currentTime-e.srt)/(e.end-e.srt);d=d<100?d:100,f.style.background="linear-gradient(to right, rgba(0, 20, 199, 0.1)"+d+"%, rgba(0, 20, 199, 0.05)"+d+"%)",e.end<e.currentTime&&(c(e,g),cancelAnimationFrame(b))}())})}(); </script>
-  <script>
+ 
 
 
 </body>
