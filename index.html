@@ -34,8 +34,8 @@ body::before {
 body {
     display:flex;
     flex-direction:column;
-    background-color: rgba(0, 34, 34, 0.532);
-    background-image: radial-gradient(rgba(0.1, 43, 0.1, 0.75), #000 80%);
+    background-color: rgba(0, 14, 14, 1);
+    background-image: radial-gradient(rgba(0.1, 33, 0.1, 0.75), #000 80%);
     font-family: "courier","menlo", "helvetica", sans-serif;
     font-size:18px;
     min-height: 100vh;
@@ -346,14 +346,10 @@ animation-play-state: running;
 
 
   </style>
-<script type="text/javascript" src="js/midiout.js"></script>
-<script type="text/javascript" src="js/synth.js"></script>
-<script type="text/javascript" src="js/generator.js"></script>
-<script type="text/javascript" src="js/sequencer.js"></script>
-<script type="text/javascript" src="js/helpers.js"></script>
 </head>
 <body>
- <canvas id="colorCanvas"></canvas>
+<div class="refresh"> </div>
+    <canvas id="colorCanvas"></canvas>
 <div id="top_bar">
 <div id="title">NICK_LEVANTIS
 </div>
@@ -368,7 +364,7 @@ More on <a href="https://soundcloud.com/nicklevantis" target="_blank">soundcloud
 <div id="code">generative code: </div></br></br>
 </div>
 </body>
-<div class="refresh"> </div>
+
 <script>
 function setupTypewriter(t) {
       var HTML = t.innerHTML;
@@ -480,19 +476,19 @@ var bufferLength = scope.frequencyBinCount;
 var dataArray = new Uint8Array(bufferLength);
 var fps = 20;
 
-scope.fftSize = 1024;
+scope.fftSize = 2048;
 scope.getByteTimeDomainData(dataArray);
 
 drawWave();
 
 function drawWave() {
-  var sliceWidth = ctx.canvas.width * 1 / bufferLength;
-  var x = 1;
+  var sliceWidth = ctx.canvas.width * 4 / bufferLength;
+  var x = 0;
 
   scope.getByteTimeDomainData(dataArray);
 
   ctx.lineWidth = 1.5;
-  ctx.strokeStyle = 'rgba(196, 255, 235, 1)';
+  ctx.strokeStyle = 'rgba(60, 190, 190, 1)';
   ctx.stroke();
   ctx.fillStyle = "transparent";
   setTimeout(function() {
@@ -513,10 +509,16 @@ function drawWave() {
          }
          x += sliceWidth;
        }
-   }, 1000 / fps);
+   }, 100 / fps);
 
   ctx.lineTo(ctx.canvas.width, ctx.canvas.height);
   ctx.stroke();
 };
 </script>
+<script type="text/javascript" src="js/midiout.js"></script>
+<script type="text/javascript" src="js/synth.js"></script>
+<script type="text/javascript" src="js/generator.js"></script>
+<script type="text/javascript" src="js/sequencer.js"></script>
+<script type="text/javascript" src="js/helpers.js"></script>
+
 </html>
