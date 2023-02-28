@@ -209,8 +209,8 @@ right: 40px;
   to {top:0; opacity:1}
 }
 
-#modal-btn{font-size:1em;float: right;position: fixed;right: 3vw;line-height: 1;color:#7fffd4;
-top: 39px;cursor: pointer;display: inline-block;border: none;text-transform: uppercase;
+#modal-btn{font-size:1em;float: right;position: fixed;right: 3vw;line-height: 1;color:#7fffFF;
+top: 40px;cursor: pointer;display: inline-block;border: none;text-transform: uppercase;
     background: none;font-family:swiss, sans-serif
 }
 
