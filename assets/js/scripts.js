@@ -69,7 +69,7 @@ $(document).ready(function() {
 	        })
 	        
 	        .attr('stroke', function(d) {
-	           return 'rgba(' + 127 + ', ' + 255 + ', ' + 212 + ', 1)';
+	           return 'rgba(' + 255 + ', ' + 255 + ', ' + 255 + ', 1)';
 	        })
 	        
 	        .attr('stroke-width', function(d) {

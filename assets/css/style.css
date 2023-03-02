@@ -15,8 +15,8 @@
 
 
 body {
-	background: #ffffff;
-	color: #000;
+	background: #000;
+	color: #ffffff;
     font-family:  "Neue Haas Grotesk", sans-serif;
     
 }
@@ -51,13 +51,13 @@ body {
 
 .startstop::before {
 	content: "\f04b";
-	color: #7fffd4;
+	color: #ffffff;
 	font-family: FontAwesome;
 }
 
 .startstop.pause::before {
 	content: "\f04c" !important;
-         color: #7fffd4;
+         color: #ffffff;
 	font-family: FontAwesome;
 }
 
@@ -92,7 +92,7 @@ body {
 	min-width: 100%;
 	min-height: 100%;
 	z-index: 10;
-  color: #7fffd4;
+  color: #ffffff;
 }
 
 .svg-containter {
@@ -113,7 +113,7 @@ body {
     -moz-transform: translateX(-50%) translateY(-50%);
     -webkit-transform: translateX(-50%) translateY(-50%);
     transform: translateX(-50%) translateY(-50%);
-    color: #7fffd4;
+    color: #ffffff;
 }
 
 
@@ -145,12 +145,11 @@ button:hover {
 .modal {
   display: none;
   position: fixed; 
-
   left: 0; 
   top: 0;
   width: 100%;
   height: 100%; 
-  background-color: #022;
+  background-color: #000;
     overflow: auto;
 }
 
@@ -166,7 +165,7 @@ button:hover {
 
 .modal-content {
   position: relative; 
-  background-color: #022;
+  background-color: #000;
   margin: auto; 
   width: 100%;  
   -webkit-animation-name: animatetop;
@@ -176,7 +175,7 @@ button:hover {
 }
 .close-btn {
   float: right; 
-  color: #7fffd4; 
+  color: #ffffff; 
   font-size: 54px; padding: 40px; 
   font-weight: bold;
 top: -30px;
@@ -187,7 +186,7 @@ right: 40px;
 
 
 .close-btn:hover {
-  color: #fff;
+  color: #767676;
   text-decoration: none;
    text-decoration-color: red;
       transition: color 0.25s ease-out; 
@@ -209,7 +208,7 @@ right: 40px;
   to {top:0; opacity:1}
 }
 
-#modal-btn{font-size:1em;float: right;position: fixed;right: 3vw;line-height: 1;color:#7fffFF;
+#modal-btn{font-size:1em;float:right;position: fixed;right: 3vw;line-height: 1;color:#ffffff;
 top: 40px;cursor: pointer;display: inline-block;border: none;text-transform: uppercase;
     background: none;font-family:swiss, sans-serif
 }
@@ -245,7 +244,7 @@ h2{padding-left: 40px;}
 img {margin: 0 auto;}
 
 a {
-  color: #7fffF4;
+  color: #fff;
 font-weight: 700;
 	text-decoration: none;
 	transition: color 0.25s ease-out; 
@@ -270,8 +269,8 @@ a:hover {
 }
 
 
- .soundcloud {font-size: 16px;color:#7fffd4;position:fixed;right:17.5px;bottom:45%;text-decoration: none;margin:0;padding: 0;line-height: 0;letter-spacing: 1px}
-        .youtube {font-size: 16px;color:#7fffd4;position:fixed;right:20px;bottom:55%;text-decoration: none;margin:0;padding: 0;line-height: 0;letter-spacing: 1px}
+ .soundcloud {font-size: 16px;color:#ffffff;position:fixed;right:17.5px;bottom:45%;text-decoration: none;margin:0;padding: 0;line-height: 0;letter-spacing: 1px}
+        .youtube {font-size: 16px;color:#ffffff;position:fixed;right:20px;bottom:55%;text-decoration: none;margin:0;padding: 0;line-height: 0;letter-spacing: 1px}
      
 
         .soundcloud:hover {color:orange;;text-align: center}
@@ -323,7 +322,7 @@ ol {list-style-type: none}
     font-size: 6vw;
     line-height: 1;
     text-align: right;
-    color: #7fffd4!important;
+    color: #ffffff!important;
 }
 
 .iframe-controls-container.iframe-controls-container--unified{display: none!important;}
@@ -360,7 +359,7 @@ ol {list-style-type: none}
     
  .close-btn {
   float: right; 
-  color: #7fffd4; 
+  color: #ffffff; 
   font-size: 54px; padding:50px 20px; 
   font-weight: bold;
 top: -38px;
@@ -374,23 +373,3 @@ right: 2px;
     .tumblr{padding: 0}
 }
 
-@keyframes refresh{0%{bottom:100%}70%{bottom:100%}100%{bottom:0px}}
-.refresh {
-float: left;
-width: 200%;
-height: 100px;
-z-index: 8;
-background: linear-gradient(0deg,rgba(0,0,0,0) 0,rgba(255,255,255,.4) 10%,rgba(0,0,0,.1) 100%);
-opacity: .1;
-position: fixed;
-bottom: 0;
-animation: refresh 8s linear infinite;
-animation-name: refresh;
-animation-duration: 8s;
-animation-timing-function: linear;
-animation-delay: 0s;
-animation-iteration-count: infinite;
-animation-direction: normal;
-animation-fill-mode: none;
-animation-play-state: running;
-}
