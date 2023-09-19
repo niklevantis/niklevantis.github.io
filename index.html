@@ -1,108 +1,335 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="assets/css/stylesheet.css" type="text/css">
-  <title>Nick Levantis - Music and Artwork</title>
+	<head>
+		<title>Nick Levantis</title>
+		<meta charset="UTF-8">
+		<meta name="description" content="Nick Levantis">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="icon" type="image/ico" href="favicon.ico">
+		<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">
+		<link rel="stylesheet" type="text/css" href="style.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
 
-</head>
+		<script>
+$(document).ready( function() {
+    
+    // Get Slide Count Functions
+    function nlev_current_slide() {
+        return parseInt( $('.slick-current').attr("data-image-index") );
+    }
+
+    function nlev_slick_current_slide() {
+        return parseInt( $('.slick-current').attr("data-slick-index") );
+    }
+    
+    function nlev_slide_count() {
+        return $('.gallery .section-wrap:not(.slick-cloned)').length;
+    }
+    
+    // Navigation Functions
+    function nlev_move(dir) {
+        if (dir == 'right') {
+            if ( ( nlev_slick_current_slide() + 1 ) == nlev_slide_count() ) {
+                $gallery.slick('slickGoTo', 0);
+            } else {
+                $gallery.slick('slickGoTo', parseInt($gallery.slick('slickCurrentSlide'))+1);
+            }
+        } else {
+            if ( nlev_slick_current_slide() == 0 ) {
+                $gallery.slick('slickGoTo', nlev_slide_count() - 1);
+            } else {
+                $gallery.slick('slickGoTo', parseInt($gallery.slick('slickCurrentSlide'))-1);
+            }
+        }
+    }
+    
+    // Set image length
+    $('.oo').text(nlev_slide_count());
+   
+    // Slick
+    $gallery = $('.gallery').slick({
+        arrows: false,
+        dots: false,
+        infinite: true,
+        speed: 600,
+        responsive: [
+            {
+              breakpoint: 820,
+              settings: {
+                speed: 300
+              }
+            },
+        ]
+    });
+   
+    // Click Navigation
+    $('.overlay-left').click( function() {
+        nlev_move('left');
+    });
+    $('.overlay-right').click( function() {
+        nlev_move('right');
+    });
+    
+    // Key Navigation
+    $(document).keydown( function(e){
+		if (e.keyCode == 37) {
+			nlev_move('left');
+			return false;
+		}
+		if (e.keyCode == 39) {
+			nlev_move('right');
+			return false;
+		}
+	});
+   
+    // Update slide position
+    $('.gallery').on('afterChange', function() {
+        $('.curr').text(nlev_current_slide()+1);
+    });
+
+    $('.curr').text(nlev_current_slide()+1);
+    
+});
+
+		</script>
+
+<script>var t=document.getElementsByTagName('*')[0];document.documentElement.onmousemove=function(e){t.style.webkitTransform=t.style.transform='rotate3d(10, 180, -6, '+e.pageX/-20+'deg)';};</script>
 
 
-<body>
 
-  <div class="layers">
-    <div class="layer layer-1">
-      <div class="layer-content">
-        Nick Levantis<br/>
-      
-      </div>
-    </div>
-    <div class="layer layer-2">
-      <div class="layer-content">
-       
-      </div>
-    </div>
-    <div class="layer layer-3">
-      <div class="layer-content">
-        <br/>
-        <a href="https://youtube.com/nicklevantis" target="_blank">Youtube videos</a>
- <br/> <br/>
-        <a href="https://soundcloud.com/nicklevantis" target="_blank">Soundcloud songs</a>
- <br/>  <br/>
-       <a href="http://nicklevantis.svbtle.com/" target="_blank">Svbtle blog</a>
-       
-      </div>
-    </div>
-    <div class="layer layer-4">
-      <div class="layer-content">
-       
-      </div>
-    </div>
-  </div>
 
-  <div class="mobileitem">
-    <video autoplay muted loop preload playsinline class="video">
-      <source data-src="assets/videos/faces.mp4" type="video/mp4">
-    </video>
-  </div>
+<style type="text/css">
 
-  <div class="items">
-    <div class="item item-1">
-      <video autoplay muted loop preload class="video">
-        <source data-src="assets/videos/faces.mp4" type="video/mp4">
-      </video>
-    </div>
-    <div class="item item-2">
-      <video autoplay muted loop preload class="video">
-        <source data-src="assets/videos/nowhere.mp4" type="video/mp4">
-      </video>
-    </div>
-    <div class="item item-3">
-      <video autoplay muted loop preload class="video">
-        <source data-src="assets/videos/broken.mp4" type="video/mp4">
-      </video>
-    </div>
-    <div class="item item-4">
-      <video autoplay muted loop preload class="video">
-        <source data-src="assets/videos/redsun.mp4" type="video/mp4">
-      </video>
-    </div>
+*{position:relative}@-webkit-keyframes swing{0%{-webkit-transform:translate3d(0,0,100px);transform:translate3d(0,0,100px)}100%{-webkit-transform:translate3d(15px,0,100px);transform:translate3d(15px,0,100px)}}@keyframes swing{0%{-webkit-transform:translate3d(0,0,100px);-ms-transform:translate3d(0,0,100px);transform:translate3d(0,0,100px)}100%{-webkit-transform:translate3d(15px,0,100px);transform:translate3d(15px,0,100px)}}.swing{-webkit-animation-name:swing;animation-name:swing;-webkit-animation-duration:.3s;animation-duration:.3s;-webkit-animation-direction:alternate-reverse;animation-direction:alternate-reverse;-webkit-animation-timing-function:ease-in-out;animation-timing-function:ease-in-out;-webkit-animation-iteration-count:infinite;animation-iteration-count:infinite}body{padding:20px}body,h1,h2{font-family:Courier,monospace;font-size:16px;font-weight:400}h1{left:0}strong{font-weight:700}ul{list-style:none;padding:0}main{border:1px solid #000;padding:0 15px;-webkit-transform-style:preserve-3d;transform-style:preserve-3d}p,h2,ul,summary{line-height:1.5;-webkit-transform:translateZ(100px);transform:translateZ(100px)}.unreleased{opacity:0.5;filter:blur(2px)}@media only screen and (min-width:45em){body{padding-bottom:10em;}main{width:550px;position:absolute;top:5em;left:25%}}
 
-    <div class="item item-1">
-      <video autoplay muted loop preload class="video">
-        <source data-src="assets/videos/faces.mp4" type="video/mp4">
-      </video>
-    </div>
-    <div class="item item-2">
-      <video autoplay muted loop preload class="video">
-        <source data-src="assets/videos/nowhere.mp4" type="video/mp4">
-      </video>
-    </div>
-    <div class="item item-3">
-      <video autoplay muted loop preload class="video">
-        <source data-src="assets/videos/broken.mp4" type="video/mp4">
-      </video>
-    </div>
-    <div class="item item-4">
-      <video autoplay muted loop preload class="video">
-        <source data-src="assets/videos/redsun.mp4" type="video/mp4">
-      </video>
-    </div>
 
-    <div class="item item-1">
-      <video autoplay muted loop preload class="video">
-        <source data-src="assets/videos/faces.mp4" type="video/mp4">
-      </video>
-    </div>
-    <divr class="item item-2">
-      <video autoplay muted loop preload class="video">
-        <source data-src="assets/videos/redsun.mp4" type="video/mp4">
-      </video>
-    </div>
 
-  </div>
+	
 
-  <script src="assets/js/application.js"></script>
-</body>
+	*{font-family: "Arial";
+	font-size:10pt;
+	line-height:12pt;
+	margin:0;
+	padding:0;
+}
+a {
+	color:#000;
+	text-decoration:none;
+}
+a:hover, 
+a.selected {
+	text-decoration: underline;
+}
+
+
+
+/* Header */
+
+#header {
+	left: 20px;
+	position: absolute;
+	text-shadow: 1px 1px #fff;
+	top: 20px;
+	z-index: 4;
+}
+
+#header .nav {
+    margin: 1.3em 0 1.3em;
+}
+
+#header .nav a {
+    display: table;
+	
+}
+
+#header .nav a.current {
+    text-decoration: underline;
+}
+
+#header #number {
+    margin: 1.3em 0 1.3em;
+	color:#999;
+}
+
+#header .email {
+    display: table;
+    margin-top: 2.3em;
+}
+
+@media (max-width: 820px) {
+	#header {
+	    align-items: center;
+	    display: flex;
+	    justify-content: space-between;
+		left: auto;
+		padding: 20px;
+		position: relative;
+		top: auto;
+	}
+	
+	#header .nav,
+	#header .email {
+	    margin: 0;
+	}
+	
+	#header .nav a {
+	    display: inline-block;
+	    margin-right: 10px;
+	}
+	
+	#header #number {
+	    display: none;
+	}
+}
+
+
+
+/* Gallery */
+
+.gallery {
+    bottom: 20px;
+    left: 20px;
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    z-index: 1;
+}
+
+.gallery .section-wrap {
+    height: 100%;
+    position: relative;
+    width: 100%;
+}
+
+.gallery .section {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: calc(100vh - 40px);
+    margin: 0 auto;
+    max-width: 800px;
+    position: relative;
+    width: 80vw;
+}
+
+.overlay-left,
+.overlay-right {
+    bottom: 0;
+    cursor: url("./photos/larr.png"), w-resize;
+    left: 0;
+    position: absolute; 
+    top: 0;
+    width: 50vw;
+    z-index: 2;
+}
+
+.overlay-right {
+    cursor: url("./photos/rarr.png"), e-resize;
+    left: auto;
+    right: 0;
+}
+
+@media (max-width: 820px) {
+    .overlay-left,
+    .overlay-right {
+        display: none;
+    }
+    .gallery {
+        bottom: auto;
+        height: calc(100vh - 140px - 1em);
+        left: auto;
+        padding: 0 20px 20px;
+        position: absolute;
+        right: auto;
+        top: auto;
+        width: 100%;
+    }
+    .gallery .section {
+        height: calc(100vh - 180px - 1em);
+        width: 100%;
+    }
+}
+
+
+
+/* Text */
+
+.text {
+    margin: 20px 20px 20px 150px;
+    max-width: 500px;
+    width: calc(100% - 200px);
+}
+
+.text .essay {
+    margin-bottom: 50px;
+}
+
+.text .essay:last-of-type {
+    margin-bottom: 0;
+}
+
+.text h2 {
+    font-size: 1em;
+    font-weight: 400;
+    margin-bottom: 1.5em;
+}
+
+.text ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.text li {
+    display: flex;
+    margin: 0 0 1em;
+    padding: 0;
+}
+
+.text li span {
+    min-width: 80px;
+}
+
+.text .indent {
+    padding-left: 50px;
+}
+
+@media (max-width: 820px) {
+    .text {
+        margin: 20px;
+        width: calc(100% - 40px);
+    }
+}
+
+
+		</style>
+	</head>
+	<body>
+	    <div id="header">
+<p>NICK LEVANTIS</p>	
+<div id="number"><span class="curr">1</span>/<span class="oo"></span></div>
+<div class="nav">
+<a href="https://youtube.com/nicklevantis" target="_blank">VIDEOS</a>
+<br/> <br/>
+<a href="https://soundcloud.com/nicklevantis" target="_blank">SONGS</a>
+<br/> <br/>
+<a href="http://nicklevantis.svbtle.com/" target="_blank">BLOG</a>
+<br/> <br/>
+<iframe width="20" height="20" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/777630328&color=%23131313&auto_play=false&hide_related=true&show_comments=true&show_user=false&show_reposts=false&show_teaser=false"></iframe>
+</div>	
+		 
+	</div>		
+    		<div class="gallery">
+				<div class="section-wrap" data-image-index="0"><div class="section" style="background-image:url(photos/01.jpg?q=1)"></div></div>
+				<div class="section-wrap" data-image-index="1"><div class="section" style="background-image:url(photos/02.jpg?q=1)"></div></div>
+				<div class="section-wrap" data-image-index="2"><div class="section" style="background-image:url(photos/03.jpg?q=1)"></div></div>
+				
+			</div>
+    		
+    		<div class="overlay-left"></div>
+    		<div class="overlay-right"></div>
+    
+		
+	</body>
 </html>
