@@ -19,148 +19,66 @@
 	<link rel="shortcut icon" href="assets/icons/favicon.ico">
 	<meta name="msapplication-TileColor" content="#000000">
 	<meta name="theme-color" content="#ffffff">
-	<link rel="stylesheet" href="assets/css/styles.css">
-    	<script src="assets/js/pace.min.js"></script>
-	<script src="assets/js/jquery.js"></script>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+ 
 
 </head>
 
-<body class="body-template--home">
-	<div id="pagecontent">
-		<header class="header">
-			
-				<a href="index.html">
-					<div class="logo"><h1>NICKLEVANTIS</h1></div> </a>
-			
-			<nav class="menu">
-				<div class="menu__item is-active"> <a href="/">
-							Home
-													</a> </div>
-				<div class="menu__item "> <a href="about">
-							About
-                    </a> </div>
-					<div class="menu__item "> <a href="news">
-							News
-													</a> </div>
-			</nav>
-		</header>
-		<div class="logo-home-nick">
-			<a href="index.html">
-                <div class="logo"><h1>NICKLEVANTIS</h1></div>
-                
-				 </a>
-		</div>
-		<main class="main">
-			<div class="news-wrapper">
-				<div class="news__item   ">
-					<div class="news__item__media">
-						<video src="content/faded.mp4" autoplay muted loop playsinline class="news__item__media__image"></video>
-					</div>
-					<div class="news__item__text">
-						<div class="news__item__text__line"> <span class=listen-node data-src=https://nicklevantis.com/audio/faded.mp3 data-start=0 data-end=236>Faded</span></div>
+ <style>
+    body {
+        font-family: "Poppins", sans-serif;
+  	font-optical-sizing: auto;
+  	font-weight: 500;
+  	font-style: normal;
+      	margin: 20px;
+        background-color: #A9D2DC;
+	background: linear-gradient(135deg, #8eabb355 25%, transparent 25%) -16px 0/ 32px 32px, linear-gradient(225deg, #8eabb3 25%, transparent 25%) -16px 0/ 32px 32px, linear-gradient(315deg, #8eabb355 25%, transparent 25%) 0px 0/ 32px 32px, linear-gradient(45deg, #8eabb3 25%, #A9D2DC 25%) 0px 0/ 32px 32px;
+    
+    }
 
-					
-					</div>
-					<div class="news__item__prev-next-button prev"></div>
-					<div class="news__item__prev-next-button next"></div>
-				</div>
-				<div class="news__item   ">
 
-					<div class="news__item__media">
-						<video src="content/faces.mp4" autoplay muted loop playsinline class="news__item__media__image"></video>
-					</div>
-					<div class="news__item__text">
-						<div class="news__item__text__line"> <span class=listen-node data-src=https://nicklevantis.com/audio/faces.mp3 data-start=0 data-end=236>Faces</span> </div>
-					
-					</div>
-					<div class="news__item__prev-next-button prev"></div>
-					<div class="news__item__prev-next-button next"></div>
-				</div>
-				<div class="news__item  news__item--two_blocks news__item--two_blocks--one ">
-					<div class="news__item__media">
-						<video src="content/romance.mp4" autoplay muted loop playsinline class="news__item__media__image"></video>
-					</div>
-					<div class="news__item__text">
-						<div class="news__item__text__line"> <span class=listen-node data-src=https://nicklevantis.com/audio/romance.mp3 data-start=0 data-end=236>Romance</span> </div>
-					</div>
-					<div class="news__item__prev-next-button prev"></div>
-					<div class="news__item__prev-next-button next"></div>
-				</div>
-				<div class="news__item news__item--two_blocks news__item--two_blocks--two">
-					<div class="news__item__media">
-						<video src="content/citizen.mp4" autoplay muted loop playsinline class="news__item__media__image"></video>
-					</div>
-					<div class="news__item__text">
-						<div class="news__item__text__line"> <span class=listen-node data-src=https://nicklevantis.com/audio/citizen_of_pain.mp3 data-start=0 data-end=236>Citizen of pain</span> </div>
-					</div>
-					<div class="news__item__prev-next-button next"></div>
-				</div>
-				<div class="news__item   ">
-					<div class="news__item__media">
-						<video src="content/nowhere.mp4" autoplay muted loop playsinline class="news__item__media__image"></video>
-					</div>
-					
-					<div class="news__item__text">
-						<div class="news__item__text__line"> <span class=listen-node data-src=https://nicklevantis.com/audio/nowhere.mp3 data-start=0 data-end=236></span> </div>
-						
-					</div>
-					<div class="news__item__prev-next-button prev"></div>
-					<div class="news__item__prev-next-button next"></div>
-				</div>
-				<div class="news__item   ">
-					<div class="news__item__media">
-						<video src="content/broken.mp4" autoplay muted loop playsinline class="news__item__media__image"></video>
-					</div>
-					<div class="news__item__text">
-						<div class="news__item__text__line"> <span class=listen-node data-src=https://nicklevantis.com/audio/broken.mp3 data-start=0 data-end=236></span> </div>
-					</div>
-					<div class="news__item__prev-next-button prev"></div>
-					<div class="news__item__prev-next-button next"></div>
-				</div>
-			</div>
-		</main>
-        <script src="https://cdn.jsdelivr.net/npm/baffle@0.3.6/dist/baffle.min.js"></script>
 
-<script>
-const text =  baffle(".logo");
-text.set({
-  characters: 'L27OVX NTYSQZ+-•~!=*',
-        speed: 60
-});
+   P {
+	font-size: 20pt;
+        max-width: 700px;
+        background-color: #A9D2DC;
+	padding: 10px;
+	letter-spacing=-1px;
+	}
 
-text.start(9000);
-text.reveal(8000, 600);
+    h1 {
+	font-size: 30pt;
+        max-width: 200px;
+        background-color: #A9D2DC;
+        padding: 10px;
+        text-align: left;
+        color: #333;
+    }
 
-</script>
-		<script src="assets/js/scripts.js"></script>
-		<script type="text/javascript">
-		! function() {
-			"use strict";
+   a {
+	color: #000000;
+        text-decoration: none;
+        font-size: 22pt;
+	max-width: 200px;
+	background-color: #A9D2DC;
+        padding:10px;
+}
 
-			function b(a, b) {
-				a.play(), a.setAttribute("data-playing", "true"), b.classList.add("playing")
-			}
 
-			function c(a, b) {
-				a.pause(), a.setAttribute("data-playing", "false"), b.classList.remove("playing")
-			}
-			var a = "listen-node";
-			window.onload = function() {
-				var b, c, d, e = document.getElementsByClassName(a),
-					f = document.createElement("style");
-				f.type = "text/css", f.innerHTML = ".listen-node {display: inline-block; background:rgb(255, 255, 255); cursor: pointer;} .listen-node i {font-size: 0.7em; border: 0.5em solid transparent; border-left: 0.75em solid; display: inline-block; margin-left: 5px;} .listen-node .playing { border: 0; border-left: 0.75em double; border-right: 0.5em solid transparent; height: 1em;}", document.getElementsByTagName("head")[0].appendChild(f);
-				for(var g = 0; c = e[g]; ++g) b = document.createElement("audio"), d = document.createElement("i"), b.src = c.getAttribute("data-src"), b.setAttribute("data-playing", "false"), c.id = a + "-" + g, c.insertBefore(d, c.firstChild), c.appendChild(b)
-			}, document.addEventListener("click", function(d) {
-				var e, f, g;
-				d.target.className === a ? (e = d.target.children[1], f = d.target, g = d.target.children[0]) : d.target.parentElement && d.target.parentElement.className === a && (e = d.target.parentElement.children[1], f = d.target.parentElement, g = d.target), e && f && g && (e.srt = parseInt(f.getAttribute("data-start")) || 0, e.end = parseInt(f.getAttribute("data-end")) || e.duration, e && "false" === e.getAttribute("data-playing") ? ((e.srt > e.currentTime || e.end < e.currentTime) && (e.currentTime = e.srt), b(e, g)) : c(e, g), function a() {
-					var b = requestAnimationFrame(a),
-						d = 100 * (e.currentTime - e.srt) / (e.end - e.srt);
-					d = d < 100 ? d : 100, f.style.background = "linear-gradient(to right, #ffffff" + d + "%, rgb(255, 255, 255)" + d + "%)", e.end < e.currentTime && (c(e, g), cancelAnimationFrame(b))
-				}())
-			})
-		}();
-		</script>
-		</div>
-</body>
+  </style>
+</head>
+<body>
+  <h1>nick levantis</h1>
+</br></br></br></br>
+  <p> Sometimes simplicity can be a creative way to convey complex messages and ideas. And that's what i really try to do through the sounds and music..</p><p>I hope the following  links become the occasion for a different journey through art.. </p>
+  	<a href="https://soundcloud.com/nicklevantis">Soundcloud</a> </br>
+	<a href="https://youtube.com/nicklevantis">Youtube</a> </br>
+	<a href="https://nicklevantis.svbtle.com">Svbtle</a> </br> 
 
+</body></html>
 </html>
