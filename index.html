@@ -1,309 +1,431 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="el">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nick Levantis</title>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><circle cx='12' cy='12' r='6' fill='%23000'/><circle cx='12' cy='12' r='10' fill='none' stroke='%23000' stroke-width='2'/></svg>">
-    <style>
-        :root {
-            --red: #ff0000;
-            --transition: 0.3s ease;
-        }
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Nick Levantis</title>
+<style>
+:root {
+  --bg: #000;
+  --accent: #fff;
+  --muted: #555;
+  --playing-color: #fff;
+  --pulse-color: rgba(255,255,255,0.18);
+}
+html,body{height:100%;margin:0;background:var(--bg);color:var(--accent);font-family:Inter,system-ui,Arial,Helvetica,sans-serif;-webkit-font-smoothing:antialiased}
+*{box-sizing:border-box}
+.stage{position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden}
 
-        body {
-            margin: 0;
-            height: 100vh;
-            background: white;
-            font-family: 'Open Sans', sans-serif;
-            overflow: hidden;
-        }
+.card{position:relative;z-index:10;max-width:1100px;width:92%;display:grid;grid-template-columns:1fr 360px;gap:28px;padding:34px;border-radius:14px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,0.04)}
+.left{padding:10px 8px}
+h1{font-size:44px;margin:0 0 6px;letter-spacing:0.02em}
+.subtitle{color:var(--muted);margin:0 0 18px}
 
-        /* Header */
-        header {
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            right: 20px;
-            display: flex;
-            justify-content: space-between;
-            z-index: 100;
-        }
+/* Track list */
+.tracks{display:flex;flex-direction:column;gap:10px}
+.track{display:flex;align-items:center;justify-content:space-between;padding:12px;border-radius:8px;background:linear-gradient(90deg, rgba(255,255,255,0.01), rgba(255,255,255,0.00));border:1px solid rgba(255,255,255,0.04);cursor:pointer;transition:all 0.3s ease}
+.track:hover{background:linear-gradient(90deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.08)}
+.track.active{background:linear-gradient(90deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));border:1px solid rgba(255,255,255,0.12)}
+.track .meta{display:flex;flex-direction:column}
+.track .meta .title{font-size:18px;font-weight:600}
+.track .meta .small{font-size:14px;color:var(--muted)}
+.track .ctrl-btn{width:60px;height:60px;display:grid;place-items:center;border-radius:50%;border:1px solid rgba(255,255,255,0.2);background:transparent;cursor:pointer;fill:#fff;color:#fff;transition:all 0.3s ease}
+.track .ctrl-btn:hover{border:1px solid rgba(255,255,255,0.4)}
+.track .ctrl-btn svg{width:28px;height:28px;fill:#fff}
 
-        .name {
-            font-size: 0.9rem;
-            letter-spacing: 0.5px;
-            color: black;
-        }
+/* Player */
+.player{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;padding:12px}
+.big-play{width:160px;height:160px;border-radius:50%;display:grid;place-items:center;background:radial-gradient(circle at 30% 30%, rgba(255,255,255,0.14), rgba(255,255,255,0.06));border:2px solid rgba(255,255,255,0.18);cursor:pointer;box-shadow:0 10px 30px rgba(255,255,255,0.04);transition:all 0.4s ease;position:relative}
+.big-play svg{width:72px;height:72px;fill:var(--accent);transition:transform .18s ease}
+.big-play.playing{transform:scale(0.98);box-shadow:0 6px 20px rgba(255,255,255,0.06);border:2px solid var(--playing-color);background:radial-gradient(circle at 30% 30%, rgba(255,255,255,0.20), rgba(255,255,255,0.08))}
+.big-play.playing .pulse{animation:pulse 2.6s infinite}
+.pulse{position:absolute;inset:0;border-radius:50%;pointer-events:none;animation:pulse 2.6s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 var(--pulse-color)}50%{box-shadow:0 0 0 24px rgba(255,255,255,0.02)}100%{box-shadow:0 0 0 0 rgba(255,255,255,0.00)}}
 
-        /* Disk Player */
-        .player-container {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: min(400px, 80vw);
-            aspect-ratio: 1;
-        }
+.player .title{font-weight:700;font-size:18px;transition:color 0.3s ease}
+.player .title.playing{color:var(--playing-color)}
+.controls{display:flex;gap:10px;align-items:center}
+.ctrl-btn{width:42px;height:42px;border-radius:8px;border:1px solid rgba(255,255,255,0.08);display:grid;place-items:center;background:transparent;cursor:pointer;color:var(--accent);transition:all 0.3s ease}
+.ctrl-btn:hover{border:1px solid rgba(255,255,255,0.2);background:rgba(255,255,255,0.05)}
 
-        .disk {
-            width: 100%;
-            height: 100%;
-            border: 4px solid black;
-            border-radius: 50%;
-            background: rgb(0, 0, 0);
-            position: relative;
-            animation: spin 8s linear infinite paused;
-        }
+/* Name button - borderless */
+.name-btn{position:fixed;top:24px;left:24px;z-index:20;background:transparent;color:#fff;padding:8px 0;font-size:16px;cursor:pointer;backdrop-filter:blur(6px);transition: all 0.3s ease;font-weight:700;letter-spacing:0.05em;text-transform:uppercase}
+.name-btn:hover{color:rgba(255,255,255,0.8);transform:translateX(4px)}
 
-        .center-hole {
-            position: absolute;
-            width: 2%;
-            aspect-ratio: 1;
-            background: rgb(0, 0, 0);
-            border: 3px solid rgb(0, 0, 0);
-            border-radius: 50%;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-        }
+/* About button - completely borderless */
+.about-btn{position:fixed;top:24px;right:24px;z-index:20;background:transparent;color:#fff;padding:8px 0;font-size:14px;cursor:pointer;backdrop-filter:blur(6px);transition: all 0.3s ease;font-weight:500;border:none}
+.about-btn:hover{color:rgba(255,255,255,0.8);transform:translateX(-4px)}
 
-        .label {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 40%;
-            height: 40%;
-            border-radius: 50%;
-            background: rgb(255, 255, 255);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+.about-popup{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.95);opacity:0;pointer-events:none;transition:opacity 0.4s ease;z-index:50;cursor:pointer}
+.about-popup.active{opacity:1;pointer-events:auto}
+.about-content{width:100%;max-width:600px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;transform:translateY(40px);opacity:0;transition:transform 0.4s ease, opacity 0.4s ease;color:#fff;padding:40px;cursor:default}
+.about-popup.active .about-content{transform:translateY(0);opacity:1}
+.close-btn{border:none;background:rgba(255,255,255,0.1);color:#fff;border-radius:6px;padding:8px 16px;font-size:14px;cursor:pointer;margin-top:20px;transition:all 0.3s ease}
+.close-btn:hover{background:rgba(255,255,255,0.2)}
 
-        .label-text {
-            display: block;
-            color: rgb(111, 111, 111);
-            font-size: 1.4rem;
-            text-transform: uppercase;
-            letter-spacing: 10px;
-            transform: rotate(-12deg);
-        }
+/* Social links - borderless */
+.social-links{position:fixed;bottom:30px;left:0;right:0;z-index:10;display:flex;justify-content:center;gap:32px;backdrop-filter:blur(6px)}
+.social-link{color:var(--accent);text-decoration:none;font-size:14px;padding:8px 0;transition:all 0.3s ease;background:transparent;position:relative;font-weight:500}
+.social-link:hover{color:rgba(255,255,255,0.8);transform:translateY(-2px)}
+.social-link::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1px;background:currentColor;transition:width 0.3s ease}
+.social-link:hover::after{width:100%}
 
-        /* Controls */
-        .controls {
-            position: fixed;
-            bottom: 20vh;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 20px;
-        }
+.info{color:var(--muted);font-size:13px}
 
-        .controls button {
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 0;
-        }
+canvas.bg{position:fixed;inset:0;z-index:0}
+canvas.txt{position:fixed;inset:0;z-index:1;pointer-events:none}
 
-        .controls svg {
-            width: 32px;
-            height: 32px;
-            fill: black;
-            transition: fill var(--transition);
-        }
+@media(max-width:980px){
+  .card{grid-template-columns:1fr;align-items:center}
+  .player{order:-1}
+  .big-play{width:130px;height:130px}
+  .big-play svg{width:56px;height:56px}
+  .track .ctrl-btn{width:50px;height:50px}
+  .track .ctrl-btn svg{width:24px;height:24px}
+  .track .meta .title{font-size:16px}
+  .social-links{gap:24px;bottom:20px}
+}
 
-        .controls button:hover svg,
-        .controls button:active svg,
-        .controls button.active svg {
-            fill: var(--red);
-        }
-
-        /* Links */
-        .links {
-            position: fixed;
-            bottom: 5vh;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 30px;
-        }
-
-        .link {
-            color: black;
-            text-decoration: none;
-            font-size: 0.9rem;
-            position: relative;
-        }
-
-        .link::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 1px;
-            background: var(--red);
-            bottom: -2px;
-            left: 0;
-            transition: width var(--transition);
-        }
-
-        .link:hover::after {
-            width: 100%;
-        }
-
-        /* About Popup */
-        .about-popup {
-            position: fixed;
-            inset: 0;
-            background: white;
-            z-index: 1000;
-            padding: 40px;
-            visibility: hidden;
-            opacity: 0;
-            transition: var(--transition);
-        }
-
-        .about-popup.visible {
-            visibility: visible;
-            opacity: 1;
-        }
-
-        .about-content {
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            font-size: 2rem;
-            line-height: 1.4;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .close-icon {
-            position: absolute;
-            top: 30px;
-            right: 30px;
-            cursor: pointer;
-            width: 32px;
-            height: 32px;
-        }
-
-        .close-icon svg {
-            width: 100%;
-            height: 100%;
-            fill: black;
-            transition: fill var(--transition);
-        }
-
-        .close-icon:hover svg {
-            fill: var(--red);
-        }
-
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-    </style>
-
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-91NQ6H9GNK"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-91NQ6H9GNK');
-</script>
+@media(max-width:480px){
+  .social-links{gap:20px}
+  .social-link{font-size:13px}
+  .name-btn, .about-btn{top:20px}
+  .name-btn{left:20px;font-size:15px}
+  .about-btn{right:20px}
+}
+</style>
 </head>
 <body>
-    <!-- Header -->
-    <header>
-        <div class="name">Nick Levantis</div>
-        <a href="#" class="link" id="aboutLink">About</a>
-    </header>
+<canvas id="bg" class="bg"></canvas>
+<canvas id="textCanvas" class="txt"></canvas>
 
-    <!-- Disk Player -->
-    <div class="player-container">
-        <div class="disk" id="disk">
-           
-            <div class="label">
-                <div class="center-hole"></div>
-                <div class="label-text">VOLUNTEER</div>
-            </div>
-        </div>
+<!-- Name and About buttons -->
+<div class="name-btn">Nick Levantis</div>
+<button class="about-btn" id="aboutBtn">About</button>
+
+<div class="about-popup" id="aboutPopup">
+  <div class="about-content">
+    <h1 style="font-size:3em;margin-bottom:20px">Nick Levantis</h1>
+    <p style="font-size:1.2em;line-height:1.6;margin-bottom:30px">Avant-garde sound artist from Piraeus exploring electronic textures, live coding, and minimal sonic forms.</p>
+    <button class="close-btn" id="closeAbout">Close</button>
+  </div>
+</div>
+
+<div class="stage">
+  <div class="card" role="application">
+    <div class="left">
+      <h1>Laniakea Sessions</h1>
+      <div class="subtitle">Avant-garde textures, drifting galaxies & minimal interfaces.</div>
+      <div class="tracks" id="trackList"></div>
+      <div style="margin-top:18px" class="info">Click a track to select and play it automatically.</div>
     </div>
 
-    <!-- Controls -->
-    <div class="controls">
-        <button id="playBtn">
-            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-        </button>
-        <button id="pauseBtn">
-            <svg viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
-        </button>
-        <button id="stopBtn">
-            <svg viewBox="0 0 24 24"><path d="M6 6h12v12H6z"/></svg>
-        </button>
+    <div class="player">
+      <div id="bigPlay" class="big-play" aria-label="Play/Pause" role="button">
+        <div class="pulse"></div>
+        <svg id="bigIcon" viewBox="0 0 24 24">
+          <path id="bigIconPath" d="M8 5v14l11-7z"/>
+        </svg>
+      </div>
+      <div class="title" id="nowTitle">Selected: —</div>
+      <div class="controls">
+        <button id="prevBtn" class="ctrl-btn" title="Previous"><svg viewBox="0 0 24 24" width="18" height="18"><path d="M6 6v12l8.5-6zM16 6h2v12h-2z" fill="currentColor"/></svg></button>
+        <button id="nextBtn" class="ctrl-btn" title="Next"><svg viewBox="0 0 24 24" width="18" height="18"><path d="M4 6h2v12H4zM8.5 6l8.5 6-8.5 6z" fill="currentColor"/></svg></button>
+      </div>
+      <iframe id="scWidget" title="sc" style="width:1px;height:1px;opacity:0;position:absolute;left:-9999px;"></iframe>
     </div>
+  </div>
+</div>
 
-    <!-- Social Links -->
-    <div class="links">
-        <a href="https://youtube.com/nicklevantis" target="_blank" class="link">YouTube</a>
-        <a href="https://soundcloud.com/nicklevantis" target="_blank" class="link">SoundCloud</a>
-        <a href="http://nicklevantis.svbtle.com" target="_blank" class="link">Svbtle</a>
-    </div>
+<!-- Social Links -->
+<div class="social-links">
+  <a href="https://soundcloud.com/nicklevantis" class="social-link" target="_blank">SoundCloud</a>
+  <a href="https://youtube.com/@nicklevantis" class="social-link" target="_blank">YouTube</a>
+  <a href="https://nicklevantis.svbtle.com" class="social-link" target="_blank">Svbtle</a>
+</div>
 
-    <!-- Audio -->
-    <audio id="audio" src="audio/volunteer.mp3"></audio>
+<script src="https://w.soundcloud.com/player/api.js"></script>
+<script>
+// ---------- Track list ----------
+const TRACKS=[{slug:'broken',title:'Broken'},{slug:'nowhere',title:'Nowhere'},{slug:'fragments',title:'Fragments'}];
+const base='https://soundcloud.com/nicklevantis/';
 
-    <!-- About Popup -->
-    <div class="about-popup" id="aboutPopup">
-        <div class="about-content">
-            <p>Experimental musician and sound artist exploring the boundaries of electronic composition</p>
-            <div class="close-icon" id="closeBtn">
-                <svg viewBox="0 0 24 24">
-                    <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
-                </svg>
-            </div>
-        </div>
-    </div>
+(function(){
+  const ul=document.getElementById('trackList');
+  TRACKS.forEach((t,i)=>{
+    const el=document.createElement('div'); 
+    el.className='track';
+    el.onclick=()=>selectTrack(i);
+    
+    const meta=document.createElement('div'); meta.className='meta';
+    const title=document.createElement('div'); title.className='title'; title.textContent=(i+1)+'. '+t.title;
+    const small=document.createElement('div'); small.className='small'; small.textContent='soundcloud';
+    meta.appendChild(title); meta.appendChild(small);
+    
+    const right=document.createElement('div');
+    const btn=document.createElement('button'); 
+    btn.className='ctrl-btn'; 
+    btn.innerHTML='<svg viewBox="0 0 24 24"><path class="track-icon" d="M8 5v14l11-7z"/></svg>';
+    btn.onclick=(e)=>{
+      e.stopPropagation(); 
+      if(currentIndex === i && isPlaying) {
+        controlPlay(); // Toggle play/pause if clicking current track
+      } else {
+        selectTrack(i);
+      }
+    };
+    
+    right.appendChild(btn);
+    el.appendChild(meta); el.appendChild(right);
+    ul.appendChild(el);
+  });
+})();
 
-    <script>
-        const audio = document.getElementById('audio');
-        const disk = document.getElementById('disk');
-        const playBtn = document.getElementById('playBtn');
-        const aboutPopup = document.getElementById('aboutPopup');
-        
-        // Audio controls
-        audio.addEventListener('play', () => {
-            playBtn.classList.add('active');
-            disk.style.animationPlayState = 'running';
-        });
+// ---------- SoundCloud widget ----------
+let scWidget=null,currentIndex=0,isPlaying=false;
+const iframe=document.getElementById('scWidget');
 
-        audio.addEventListener('pause', () => {
-            playBtn.classList.remove('active');
-            disk.style.animationPlayState = 'paused';
-        });
+function buildWidgetForIndex(i){
+  const url=encodeURIComponent(base+TRACKS[i].slug);
+  iframe.src=`https://w.soundcloud.com/player/?url=${url}&color=%23ffffff&auto_play=true&visual=false&show_artwork=false`;
+  
+  if(!scWidget){
+    scWidget=SC.Widget(iframe);
+    scWidget.bind(SC.Widget.Events.READY, () => {
+      scWidget.play();
+      isPlaying = true;
+      updateAllUI();
+    });
+    scWidget.bind(SC.Widget.Events.PLAY,()=>{
+      isPlaying=true;
+      updateAllUI();
+    });
+    scWidget.bind(SC.Widget.Events.PAUSE,()=>{
+      isPlaying=false;
+      updateAllUI();
+    });
+    scWidget.bind(SC.Widget.Events.FINISH,()=>{
+      isPlaying=false;
+      updateAllUI();
+    });
+  } else {
+    setTimeout(() => {
+      isPlaying = true;
+      updateAllUI();
+    }, 300);
+  }
+}
 
-        document.getElementById('playBtn').addEventListener('click', () => audio.play());
-        document.getElementById('pauseBtn').addEventListener('click', () => audio.pause());
-        document.getElementById('stopBtn').addEventListener('click', () => {
-            audio.pause();
-            audio.currentTime = 0;
-        });
+function selectTrack(i){
+  const tracks = document.querySelectorAll('.track');
+  tracks.forEach(track => track.classList.remove('active'));
+  tracks[i].classList.add('active');
+  
+  currentIndex = i;
+  buildWidgetForIndex(i);
+}
 
-        // Popup controls
-        document.getElementById('aboutLink').addEventListener('click', (e) => {
-            e.preventDefault();
-            aboutPopup.classList.add('visible');
-        });
+function updateAllUI() {
+  updateBigPlayButton();
+  updateTrackListButtons();
+  updateTitle();
+}
 
-        document.getElementById('closeBtn').addEventListener('click', () => {
-            aboutPopup.classList.remove('visible');
-        });
-    </script>
+function updateBigPlayButton() {
+  const bigPlay = document.getElementById('bigPlay');
+  const bigIconPath = document.getElementById('bigIconPath');
+  
+  if (isPlaying) {
+    bigPlay.classList.add('playing');
+    bigIconPath.setAttribute('d','M6 5h4v14H6zM14 5h4v14h-4z');
+  } else {
+    bigPlay.classList.remove('playing');
+    bigIconPath.setAttribute('d','M8 5v14l11-7z');
+  }
+}
+
+function updateTrackListButtons() {
+  const tracks = document.querySelectorAll('.track');
+  tracks.forEach((track, index) => {
+    const icon = track.querySelector('.track-icon');
+    if (index === currentIndex && isPlaying) {
+      icon.setAttribute('d','M6 5h4v14H6zM14 5h4v14h-4z');
+    } else {
+      icon.setAttribute('d','M8 5v14l11-7z');
+    }
+  });
+}
+
+function updateTitle(){
+  const title=document.getElementById('nowTitle');
+  
+  if (isPlaying) {
+    title.textContent='Now Playing: '+(TRACKS[currentIndex]?.title||'—');
+    title.classList.add('playing');
+  } else {
+    title.textContent='Selected: '+(TRACKS[currentIndex]?.title||'—');
+    title.classList.remove('playing');
+  }
+}
+
+document.getElementById('prevBtn').onclick=()=>{
+  currentIndex=(currentIndex-1+TRACKS.length)%TRACKS.length;
+  selectTrack(currentIndex);
+}
+
+document.getElementById('nextBtn').onclick=()=>{
+  currentIndex=(currentIndex+1)%TRACKS.length;
+  selectTrack(currentIndex);
+}
+
+document.getElementById('bigPlay').onclick=()=>{
+  if(!scWidget){
+    buildWidgetForIndex(currentIndex);
+  } else {
+    controlPlay();
+  }
+}
+
+function controlPlay(){
+  if(!scWidget) return;
+  if(!isPlaying) {
+    scWidget.play();
+  } else {
+    scWidget.pause();
+  }
+}
+
+// Initialize
+selectTrack(0);
+
+// ---------- About popup ----------
+const aboutBtn=document.getElementById('aboutBtn');
+const aboutPopup=document.getElementById('aboutPopup');
+const closeBtn=document.getElementById('closeAbout');
+
+aboutBtn.onclick=()=>aboutPopup.classList.add('active');
+closeBtn.onclick=()=>aboutPopup.classList.remove('active');
+
+aboutPopup.onclick=(e)=>{
+  if(e.target===aboutPopup) aboutPopup.classList.remove('active');
+};
+
+document.addEventListener('keydown',(e)=>{
+  if(e.key==='Escape') aboutPopup.classList.remove('active');
+});
+
+// ---------- Original Laniakea WebGL Background ----------
+(function(){
+  const canvas=document.getElementById('bg');
+  const gl=canvas.getContext('webgl');
+  if(!gl){console.warn('WebGL not available');return;}
+  
+  function resize(){
+    canvas.width=innerWidth;
+    canvas.height=innerHeight;
+    gl.viewport(0,0,canvas.width,canvas.height);
+  }
+  window.addEventListener('resize',resize);
+  resize();
+  
+  const vs=`
+    attribute vec2 a;
+    void main(){
+      gl_Position=vec4(a,0.,1.);
+    }
+  `;
+  
+  const fs=`
+    precision mediump float;
+    uniform vec2 res;
+    uniform float t;
+    
+    float hash(vec2 p){
+      return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453123);
+    }
+    
+    float noise(vec2 p){
+      vec2 i=floor(p);
+      vec2 f=fract(p);
+      vec2 u=f*f*(3.0-2.0*f);
+      return mix(mix(hash(i+vec2(0.0,0.0)),hash(i+vec2(1.0,0.0)),u.x),
+             mix(hash(i+vec2(0.0,1.0)),hash(i+vec2(1.0,1.0)),u.x),u.y);
+    }
+    
+    void main(){
+      vec2 uv=(gl_FragCoord.xy*2.0-res)/min(res.x,res.y);
+      float r=length(uv);
+      float a=atan(uv.y,uv.x);
+      float n=noise(uv*3.0 + t*0.07);
+      float swirl = sin(6.0*r - a*4.0 + t*1.2 + n*2.0);
+      float core = exp(-r*4.0);
+      float rings = smoothstep(0.35,0.05,abs(swirl))*core;
+      vec3 base = vec3(0.0);
+      vec3 col = mix(vec3(0.02,0.01,0.005), vec3(1.0,1.0,1.0), pow(rings,0.7));
+      col *= 0.8 + 0.6*core;
+      gl_FragColor=vec4(col,clamp(rings+core*0.25,0.0,1.0));
+    }
+  `;
+  
+  function compile(src,type){
+    const s=gl.createShader(type);
+    gl.shaderSource(s,src);
+    gl.compileShader(s);
+    if(!gl.getShaderParameter(s,gl.COMPILE_STATUS))console.error(gl.getShaderInfoLog(s));
+    return s;
+  }
+  
+  const prog=gl.createProgram();
+  gl.attachShader(prog,compile(vs,gl.VERTEX_SHADER));
+  gl.attachShader(prog,compile(fs,gl.FRAGMENT_SHADER));
+  gl.linkProgram(prog);
+  gl.useProgram(prog);
+  
+  const aLoc=gl.getAttribLocation(prog,'a');
+  const buf=gl.createBuffer();
+  gl.bindBuffer(gl.ARRAY_BUFFER,buf);
+  gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,1,-1,-1,1,1,1]),gl.STATIC_DRAW);
+  gl.enableVertexAttribArray(aLoc);
+  gl.vertexAttribPointer(aLoc,2,gl.FLOAT,false,0,0);
+  
+  const resLoc=gl.getUniformLocation(prog,'res');
+  const tLoc=gl.getUniformLocation(prog,'t');
+  let start=performance.now();
+  
+  (function anim(){
+    gl.uniform2f(resLoc,canvas.width,canvas.height);
+    gl.uniform1f(tLoc,(performance.now()-start)/1000);
+    gl.drawArrays(gl.TRIANGLE_STRIP,0,4);
+    requestAnimationFrame(anim);
+  })();
+})();
+
+// ---------- Text canvas ----------
+(function(){
+  const tCan=document.getElementById('textCanvas');
+  function resize(){
+    tCan.width=innerWidth;
+    tCan.height=innerHeight;
+  }
+  window.addEventListener('resize',resize);
+  resize();
+  
+  const ctx=tCan.getContext('2d');
+  function drawText(){
+    ctx.clearRect(0,0,tCan.width,tCan.height);
+    ctx.save();
+    ctx.globalAlpha=0.08;
+    ctx.fillStyle='#fff';
+    const size=Math.min(tCan.width,tCan.height)/12;
+    ctx.font=`700 ${size}px Helvetica, Arial, sans-serif`;
+    ctx.textAlign='center';
+    ctx.textBaseline='middle';
+    ctx.fillText('N I C K  L E V A N T I S',tCan.width/2,tCan.height/2);
+    ctx.restore();
+  }
+  drawText();
+  setInterval(drawText,2200);
+})();
+</script>
 </body>
 </html>
