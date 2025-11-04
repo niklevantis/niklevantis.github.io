@@ -1,431 +1,1000 @@
-<!doctype html>
-<html lang="el">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Nick Levantis</title>
-<style>
-:root {
-  --bg: #000;
-  --accent: #fff;
-  --muted: #555;
-  --playing-color: #fff;
-  --pulse-color: rgba(255,255,255,0.18);
-}
-html,body{height:100%;margin:0;background:var(--bg);color:var(--accent);font-family:Inter,system-ui,Arial,Helvetica,sans-serif;-webkit-font-smoothing:antialiased}
-*{box-sizing:border-box}
-.stage{position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nick Levantis | Music</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-.card{position:relative;z-index:10;max-width:1100px;width:92%;display:grid;grid-template-columns:1fr 360px;gap:28px;padding:34px;border-radius:14px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,0.04)}
-.left{padding:10px 8px}
-h1{font-size:44px;margin:0 0 6px;letter-spacing:0.02em}
-.subtitle{color:var(--muted);margin:0 0 18px}
+        body {
+            background-color: #000000;
+            color: #ffffff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow-x: hidden;
+            min-height: 100vh;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
 
-/* Track list */
-.tracks{display:flex;flex-direction:column;gap:10px}
-.track{display:flex;align-items:center;justify-content:space-between;padding:12px;border-radius:8px;background:linear-gradient(90deg, rgba(255,255,255,0.01), rgba(255,255,255,0.00));border:1px solid rgba(255,255,255,0.04);cursor:pointer;transition:all 0.3s ease}
-.track:hover{background:linear-gradient(90deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.08)}
-.track.active{background:linear-gradient(90deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));border:1px solid rgba(255,255,255,0.12)}
-.track .meta{display:flex;flex-direction:column}
-.track .meta .title{font-size:18px;font-weight:600}
-.track .meta .small{font-size:14px;color:var(--muted)}
-.track .ctrl-btn{width:60px;height:60px;display:grid;place-items:center;border-radius:50%;border:1px solid rgba(255,255,255,0.2);background:transparent;cursor:pointer;fill:#fff;color:#fff;transition:all 0.3s ease}
-.track .ctrl-btn:hover{border:1px solid rgba(255,255,255,0.4)}
-.track .ctrl-btn svg{width:28px;height:28px;fill:#fff}
+        #background-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
 
-/* Player */
-.player{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;padding:12px}
-.big-play{width:160px;height:160px;border-radius:50%;display:grid;place-items:center;background:radial-gradient(circle at 30% 30%, rgba(255,255,255,0.14), rgba(255,255,255,0.06));border:2px solid rgba(255,255,255,0.18);cursor:pointer;box-shadow:0 10px 30px rgba(255,255,255,0.04);transition:all 0.4s ease;position:relative}
-.big-play svg{width:72px;height:72px;fill:var(--accent);transition:transform .18s ease}
-.big-play.playing{transform:scale(0.98);box-shadow:0 6px 20px rgba(255,255,255,0.06);border:2px solid var(--playing-color);background:radial-gradient(circle at 30% 30%, rgba(255,255,255,0.20), rgba(255,255,255,0.08))}
-.big-play.playing .pulse{animation:pulse 2.6s infinite}
-.pulse{position:absolute;inset:0;border-radius:50%;pointer-events:none;animation:pulse 2.6s infinite}
-@keyframes pulse{0%{box-shadow:0 0 0 0 var(--pulse-color)}50%{box-shadow:0 0 0 24px rgba(255,255,255,0.02)}100%{box-shadow:0 0 0 0 rgba(255,255,255,0.00)}}
+        #text-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            pointer-events: none;
+        }
 
-.player .title{font-weight:700;font-size:18px;transition:color 0.3s ease}
-.player .title.playing{color:var(--playing-color)}
-.controls{display:flex;gap:10px;align-items:center}
-.ctrl-btn{width:42px;height:42px;border-radius:8px;border:1px solid rgba(255,255,255,0.08);display:grid;place-items:center;background:transparent;cursor:pointer;color:var(--accent);transition:all 0.3s ease}
-.ctrl-btn:hover{border:1px solid rgba(255,255,255,0.2);background:rgba(255,255,255,0.05)}
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            position: relative;
+            z-index: 2;
+            flex: 1;
+        }
 
-/* Name button - borderless */
-.name-btn{position:fixed;top:24px;left:24px;z-index:20;background:transparent;color:#fff;padding:8px 0;font-size:16px;cursor:pointer;backdrop-filter:blur(6px);transition: all 0.3s ease;font-weight:700;letter-spacing:0.05em;text-transform:uppercase}
-.name-btn:hover{color:rgba(255,255,255,0.8);transform:translateX(4px)}
+        header {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding-top: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-/* About button - completely borderless */
-.about-btn{position:fixed;top:24px;right:24px;z-index:20;background:transparent;color:#fff;padding:8px 0;font-size:14px;cursor:pointer;backdrop-filter:blur(6px);transition: all 0.3s ease;font-weight:500;border:none}
-.about-btn:hover{color:rgba(255,255,255,0.8);transform:translateX(-4px)}
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 300;
+            letter-spacing: 8px;
+            text-transform: uppercase;
+            color: #fff;
+            flex: 1;
+            text-align: center;
+        }
 
-.about-popup{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.95);opacity:0;pointer-events:none;transition:opacity 0.4s ease;z-index:50;cursor:pointer}
-.about-popup.active{opacity:1;pointer-events:auto}
-.about-content{width:100%;max-width:600px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;transform:translateY(40px);opacity:0;transition:transform 0.4s ease, opacity 0.4s ease;color:#fff;padding:40px;cursor:default}
-.about-popup.active .about-content{transform:translateY(0);opacity:1}
-.close-btn{border:none;background:rgba(255,255,255,0.1);color:#fff;border-radius:6px;padding:8px 16px;font-size:14px;cursor:pointer;margin-top:20px;transition:all 0.3s ease}
-.close-btn:hover{background:rgba(255,255,255,0.2)}
+        .about-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.2rem;
+        }
 
-/* Social links - borderless */
-.social-links{position:fixed;bottom:30px;left:0;right:0;z-index:10;display:flex;justify-content:center;gap:32px;backdrop-filter:blur(6px)}
-.social-link{color:var(--accent);text-decoration:none;font-size:14px;padding:8px 0;transition:all 0.3s ease;background:transparent;position:relative;font-weight:500}
-.social-link:hover{color:rgba(255,255,255,0.8);transform:translateY(-2px)}
-.social-link::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1px;background:currentColor;transition:width 0.3s ease}
-.social-link:hover::after{width:100%}
+        .about-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: scale(1.05);
+        }
 
-.info{color:var(--muted);font-size:13px}
+        .subtitle {
+            font-size: 1.2rem;
+            font-weight: 300;
+            letter-spacing: 3px;
+            color: #aaa;
+            text-align: center;
+            width: 100%;
+            margin-top: 0.5rem;
+        }
 
-canvas.bg{position:fixed;inset:0;z-index:0}
-canvas.txt{position:fixed;inset:0;z-index:1;pointer-events:none}
+        .player-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2rem;
+            margin-top: 5rem;
+        }
 
-@media(max-width:980px){
-  .card{grid-template-columns:1fr;align-items:center}
-  .player{order:-1}
-  .big-play{width:130px;height:130px}
-  .big-play svg{width:56px;height:56px}
-  .track .ctrl-btn{width:50px;height:50px}
-  .track .ctrl-btn svg{width:24px;height:24px}
-  .track .meta .title{font-size:16px}
-  .social-links{gap:24px;bottom:20px}
-}
+        .track-player {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            border-radius: 50%;
+            padding: 2.5rem;
+            width: 400px;
+            height: 400px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
 
-@media(max-width:480px){
-  .social-links{gap:20px}
-  .social-link{font-size:13px}
-  .name-btn, .about-btn{top:20px}
-  .name-btn{left:20px;font-size:15px}
-  .about-btn{right:20px}
-}
-</style>
+        .track-info {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .track-title {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+            font-weight: 300;
+            transition: color 0.2s ease;
+        }
+
+        .track-description {
+            font-size: 0.9rem;
+            transition: color 0.2s ease;
+        }
+
+        .audio-controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2.5rem;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .control-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.2rem;
+        }
+
+        .control-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: scale(1.05);
+        }
+
+        .play-btn {
+            width: 70px;
+            height: 70px;
+            background: rgba(255, 255, 255, 0.08);
+            font-size: 1.6rem;
+            transition: all 0.3s ease;
+            border: none !important;
+            box-shadow: none !important;
+        }
+
+        .play-btn:hover {
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .progress-container {
+            width: 250px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 2px;
+            margin-bottom: 0.5rem;
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+
+        .progress-bar {
+            height: 100%;
+            border-radius: 2px;
+            width: 0%;
+            transition: width 0.1s, background 0.2s ease;
+        }
+
+        .time-display {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            width: 250px;
+            transition: color 0.2s ease;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem 0;
+            color: #666;
+            font-size: 0.9rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            margin-top: auto;
+            width: 100%;
+        }
+
+        footer a {
+            color: #aaa;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        footer a:hover {
+            color: #fff;
+        }
+
+        /* About Popup Styles */
+        .about-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7); /* More transparent */
+            backdrop-filter: blur(5px); /* Less blur to see effects */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.5s ease;
+        }
+
+        .about-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .about-content {
+            background: rgba(255, 255, 255, 0.01); /* More transparent */
+            backdrop-filter: blur(15px);
+            border-radius: 50%; /* Circular shape */
+            padding: 3rem;
+            width: 500px; /* Fixed size for circle */
+            height: 500px; /* Fixed size for circle */
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transform: scale(0.8) translateY(50px);
+            opacity: 0;
+            transition: all 0.5s ease 0.2s;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .about-overlay.active .about-content {
+            transform: scale(1) translateY(0);
+            opacity: 1;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 25px;
+            right: 25px;
+            background: rgba(255, 255, 255, 0.95);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.2rem;
+            z-index: 10;
+        }
+
+        .close-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: scale(1.05);
+        }
+
+        .about-title {
+            font-size: 2rem;
+            font-weight: 300;
+            margin-bottom: 1.5rem;
+            color: #fff;
+        }
+
+        .about-text {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #ccc;
+            margin-bottom: 2rem;
+            max-width: 350px;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-link {
+            background: rgba(255, 255, 255, 0.05);
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 1.2rem;
+        }
+
+        .social-link:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-3px);
+        }
+
+        .creative-divider {
+            width: 80px;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.2);
+            margin: 1.5rem auto;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.2rem;
+                letter-spacing: 4px;
+            }
+
+            .container {
+                padding: 1rem;
+            }
+
+            .track-player {
+                width: 320px;
+                height: 320px;
+                padding: 2rem;
+            }
+
+            .progress-container, .time-display {
+                width: 220px;
+            }
+
+            .track-title {
+                font-size: 1.5rem;
+            }
+
+            .about-content {
+                width: 380px;
+                height: 380px;
+                padding: 2.5rem;
+            }
+
+            .about-title {
+                font-size: 1.8rem;
+            }
+
+            .about-text {
+                font-size: 0.95rem;
+                max-width: 300px;
+            }
+
+            .audio-controls {
+                gap: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .track-player {
+                width: 280px;
+                height: 280px;
+                padding: 1.5rem;
+            }
+
+            .progress-container, .time-display {
+                width: 200px;
+            }
+
+            .about-content {
+                width: 320px;
+                height: 320px;
+                padding: 2rem;
+            }
+
+            .about-title {
+                font-size: 1.6rem;
+            }
+
+            .about-text {
+                font-size: 0.9rem;
+                max-width: 260px;
+            }
+
+            .audio-controls {
+                gap: 1.5rem;
+            }
+        }
+    </style>
 </head>
 <body>
-<canvas id="bg" class="bg"></canvas>
-<canvas id="textCanvas" class="txt"></canvas>
-
-<!-- Name and About buttons -->
-<div class="name-btn">Nick Levantis</div>
-<button class="about-btn" id="aboutBtn">About</button>
-
-<div class="about-popup" id="aboutPopup">
-  <div class="about-content">
-    <h1 style="font-size:3em;margin-bottom:20px">Nick Levantis</h1>
-    <p style="font-size:1.2em;line-height:1.6;margin-bottom:30px">Sound artist from Piraeus exploring electronic textures, live coding, and minimal sonic forms.</p>
-    <button class="close-btn" id="closeAbout">Close</button>
-  </div>
-</div>
-
-<div class="stage">
-  <div class="card" role="application">
-    <div class="left">
-      <h1>laniakea sessions</h1>
-      <div class="subtitle">Avant-garde textures, drifting galaxies & minimal interfaces.</div>
-      <div class="tracks" id="trackList"></div>
-      <div style="margin-top:18px" class="info">Click a track to select and play it automatically.</div>
+    <canvas id="background-canvas"></canvas>
+    <canvas id="text-canvas"></canvas>
+    
+    <div class="container">
+        <header>
+            <div></div> <!-- Empty div for spacing -->
+            <h1>NICK LEVANTIS</h1>
+            <button class="about-btn" id="about-btn">
+                <i class="fas fa-info"></i>
+            </button>
+        </header>
+        <p class="subtitle">LANIAKEA SESSIONS</p>
+        
+        <section class="player-section">
+            <div class="track-player">
+                <div class="track-info">
+                    <h2 class="track-title" id="current-track-title">Select a track</h2>
+                    <p class="track-description" id="current-track-description">Use the player controls to navigate</p>
+                </div>
+                
+                <div class="audio-controls">
+                    <button class="control-btn" id="prev-btn">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button class="control-btn play-btn" id="play-btn">
+                        <i class="fas fa-play"></i>
+                    </button>
+                    <button class="control-btn" id="next-btn">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+                
+                <div class="progress-container" id="progress-container">
+                    <div class="progress-bar" id="progress-bar"></div>
+                </div>
+                
+                <div class="time-display">
+                    <span id="current-time">0:00</span>
+                    <span id="duration">0:00</span>
+                </div>
+            </div>
+        </section>
     </div>
 
-    <div class="player">
-      <div id="bigPlay" class="big-play" aria-label="Play/Pause" role="button">
-        <div class="pulse"></div>
-        <svg id="bigIcon" viewBox="0 0 24 24">
-          <path id="bigIconPath" d="M8 5v14l11-7z"/>
-        </svg>
-      </div>
-      <div class="title" id="nowTitle">Selected: —</div>
-      <div class="controls">
-        <button id="prevBtn" class="ctrl-btn" title="Previous"><svg viewBox="0 0 24 24" width="18" height="18"><path d="M6 6v12l8.5-6zM16 6h2v12h-2z" fill="currentColor"/></svg></button>
-        <button id="nextBtn" class="ctrl-btn" title="Next"><svg viewBox="0 0 24 24" width="18" height="18"><path d="M4 6h2v12H4zM8.5 6l8.5 6-8.5 6z" fill="currentColor"/></svg></button>
-      </div>
-      <iframe id="scWidget" title="sc" style="width:1px;height:1px;opacity:0;position:absolute;left:-9999px;"></iframe>
+    <footer>
+        <p>© Music and Web Design by Nick Levantis | <a href="https://nicklevantis.com" target="_blank">2025</a></p>
+    </footer>
+
+    <!-- About Popup -->
+    <div class="about-overlay" id="about-overlay">
+        <div class="about-content">
+            <button class="close-btn" id="close-btn">
+                <i class="fas fa-times"></i>
+            </button>
+         
+            <div class="about-text">
+                <h2>Sound artist from Piraeus exploring electronic textures, live coding, and experimental minimal sonic forms.</h2>
+               
+            </div>
+            <div class="social-links">
+                <a href="https://soundcloud.com/nicklevantis" class="social-link" target="_blank"><i class="fab fa-soundcloud"></i></a>
+                <a href="https://youtube.com/nicklevantis" class="social-link" target="_blank"><i class="fab fa-youtube"></i></a>
+                <a href="https://nicklevantis.svbtle.com" class="social-link" target="_blank"><i class="fas fa-pen-nib"></i></a>
+            </div>
+        </div>
     </div>
-  </div>
-</div>
 
-<!-- Social Links -->
-<div class="social-links">
-  <a href="https://soundcloud.com/nicklevantis" class="social-link" target="_blank">SoundCloud</a>
-  <a href="https://youtube.com/@nicklevantis" class="social-link" target="_blank">YouTube</a>
-  <a href="https://nicklevantis.svbtle.com" class="social-link" target="_blank">Svbtle</a>
-</div>
-
-<script src="https://w.soundcloud.com/player/api.js"></script>
-<script>
-// ---------- Track list ----------
-const TRACKS=[{slug:'broken',title:'Broken'},{slug:'nowhere',title:'Nowhere'},{slug:'fragments',title:'Fragments'}];
-const base='https://soundcloud.com/nicklevantis/';
-
-(function(){
-  const ul=document.getElementById('trackList');
-  TRACKS.forEach((t,i)=>{
-    const el=document.createElement('div'); 
-    el.className='track';
-    el.onclick=()=>selectTrack(i);
-    
-    const meta=document.createElement('div'); meta.className='meta';
-    const title=document.createElement('div'); title.className='title'; title.textContent=(i+1)+'. '+t.title;
-    const small=document.createElement('div'); small.className='small'; small.textContent='soundcloud';
-    meta.appendChild(title); meta.appendChild(small);
-    
-    const right=document.createElement('div');
-    const btn=document.createElement('button'); 
-    btn.className='ctrl-btn'; 
-    btn.innerHTML='<svg viewBox="0 0 24 24"><path class="track-icon" d="M8 5v14l11-7z"/></svg>';
-    btn.onclick=(e)=>{
-      e.stopPropagation(); 
-      if(currentIndex === i && isPlaying) {
-        controlPlay(); // Toggle play/pause if clicking current track
-      } else {
-        selectTrack(i);
-      }
-    };
-    
-    right.appendChild(btn);
-    el.appendChild(meta); el.appendChild(right);
-    ul.appendChild(el);
-  });
-})();
-
-// ---------- SoundCloud widget ----------
-let scWidget=null,currentIndex=0,isPlaying=false;
-const iframe=document.getElementById('scWidget');
-
-function buildWidgetForIndex(i){
-  const url=encodeURIComponent(base+TRACKS[i].slug);
-  iframe.src=`https://w.soundcloud.com/player/?url=${url}&color=%23ffffff&auto_play=true&visual=false&show_artwork=false`;
-  
-  if(!scWidget){
-    scWidget=SC.Widget(iframe);
-    scWidget.bind(SC.Widget.Events.READY, () => {
-      scWidget.play();
-      isPlaying = true;
-      updateAllUI();
-    });
-    scWidget.bind(SC.Widget.Events.PLAY,()=>{
-      isPlaying=true;
-      updateAllUI();
-    });
-    scWidget.bind(SC.Widget.Events.PAUSE,()=>{
-      isPlaying=false;
-      updateAllUI();
-    });
-    scWidget.bind(SC.Widget.Events.FINISH,()=>{
-      isPlaying=false;
-      updateAllUI();
-    });
-  } else {
-    setTimeout(() => {
-      isPlaying = true;
-      updateAllUI();
-    }, 300);
-  }
-}
-
-function selectTrack(i){
-  const tracks = document.querySelectorAll('.track');
-  tracks.forEach(track => track.classList.remove('active'));
-  tracks[i].classList.add('active');
-  
-  currentIndex = i;
-  buildWidgetForIndex(i);
-}
-
-function updateAllUI() {
-  updateBigPlayButton();
-  updateTrackListButtons();
-  updateTitle();
-}
-
-function updateBigPlayButton() {
-  const bigPlay = document.getElementById('bigPlay');
-  const bigIconPath = document.getElementById('bigIconPath');
-  
-  if (isPlaying) {
-    bigPlay.classList.add('playing');
-    bigIconPath.setAttribute('d','M6 5h4v14H6zM14 5h4v14h-4z');
-  } else {
-    bigPlay.classList.remove('playing');
-    bigIconPath.setAttribute('d','M8 5v14l11-7z');
-  }
-}
-
-function updateTrackListButtons() {
-  const tracks = document.querySelectorAll('.track');
-  tracks.forEach((track, index) => {
-    const icon = track.querySelector('.track-icon');
-    if (index === currentIndex && isPlaying) {
-      icon.setAttribute('d','M6 5h4v14H6zM14 5h4v14h-4z');
-    } else {
-      icon.setAttribute('d','M8 5v14l11-7z');
-    }
-  });
-}
-
-function updateTitle(){
-  const title=document.getElementById('nowTitle');
-  
-  if (isPlaying) {
-    title.textContent='Now Playing: '+(TRACKS[currentIndex]?.title||'—');
-    title.classList.add('playing');
-  } else {
-    title.textContent='Selected: '+(TRACKS[currentIndex]?.title||'—');
-    title.classList.remove('playing');
-  }
-}
-
-document.getElementById('prevBtn').onclick=()=>{
-  currentIndex=(currentIndex-1+TRACKS.length)%TRACKS.length;
-  selectTrack(currentIndex);
-}
-
-document.getElementById('nextBtn').onclick=()=>{
-  currentIndex=(currentIndex+1)%TRACKS.length;
-  selectTrack(currentIndex);
-}
-
-document.getElementById('bigPlay').onclick=()=>{
-  if(!scWidget){
-    buildWidgetForIndex(currentIndex);
-  } else {
-    controlPlay();
-  }
-}
-
-function controlPlay(){
-  if(!scWidget) return;
-  if(!isPlaying) {
-    scWidget.play();
-  } else {
-    scWidget.pause();
-  }
-}
-
-// Initialize
-selectTrack(0);
-
-// ---------- About popup ----------
-const aboutBtn=document.getElementById('aboutBtn');
-const aboutPopup=document.getElementById('aboutPopup');
-const closeBtn=document.getElementById('closeAbout');
-
-aboutBtn.onclick=()=>aboutPopup.classList.add('active');
-closeBtn.onclick=()=>aboutPopup.classList.remove('active');
-
-aboutPopup.onclick=(e)=>{
-  if(e.target===aboutPopup) aboutPopup.classList.remove('active');
-};
-
-document.addEventListener('keydown',(e)=>{
-  if(e.key==='Escape') aboutPopup.classList.remove('active');
-});
-
-// ---------- Original Laniakea WebGL Background ----------
-(function(){
-  const canvas=document.getElementById('bg');
-  const gl=canvas.getContext('webgl');
-  if(!gl){console.warn('WebGL not available');return;}
-  
-  function resize(){
-    canvas.width=innerWidth;
-    canvas.height=innerHeight;
-    gl.viewport(0,0,canvas.width,canvas.height);
-  }
-  window.addEventListener('resize',resize);
-  resize();
-  
-  const vs=`
-    attribute vec2 a;
-    void main(){
-      gl_Position=vec4(a,0.,1.);
-    }
-  `;
-  
-  const fs=`
-    precision mediump float;
-    uniform vec2 res;
-    uniform float t;
-    
-    float hash(vec2 p){
-      return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453123);
-    }
-    
-    float noise(vec2 p){
-      vec2 i=floor(p);
-      vec2 f=fract(p);
-      vec2 u=f*f*(3.0-2.0*f);
-      return mix(mix(hash(i+vec2(0.0,0.0)),hash(i+vec2(1.0,0.0)),u.x),
-             mix(hash(i+vec2(0.0,1.0)),hash(i+vec2(1.0,1.0)),u.x),u.y);
-    }
-    
-    void main(){
-      vec2 uv=(gl_FragCoord.xy*2.0-res)/min(res.x,res.y);
-      float r=length(uv);
-      float a=atan(uv.y,uv.x);
-      float n=noise(uv*3.0 + t*0.07);
-      float swirl = sin(6.0*r - a*4.0 + t*1.2 + n*2.0);
-      float core = exp(-r*4.0);
-      float rings = smoothstep(0.35,0.05,abs(swirl))*core;
-      vec3 base = vec3(0.0);
-      vec3 col = mix(vec3(0.02,0.01,0.005), vec3(1.0,1.0,1.0), pow(rings,0.7));
-      col *= 0.8 + 0.6*core;
-      gl_FragColor=vec4(col,clamp(rings+core*0.25,0.0,1.0));
-    }
-  `;
-  
-  function compile(src,type){
-    const s=gl.createShader(type);
-    gl.shaderSource(s,src);
-    gl.compileShader(s);
-    if(!gl.getShaderParameter(s,gl.COMPILE_STATUS))console.error(gl.getShaderInfoLog(s));
-    return s;
-  }
-  
-  const prog=gl.createProgram();
-  gl.attachShader(prog,compile(vs,gl.VERTEX_SHADER));
-  gl.attachShader(prog,compile(fs,gl.FRAGMENT_SHADER));
-  gl.linkProgram(prog);
-  gl.useProgram(prog);
-  
-  const aLoc=gl.getAttribLocation(prog,'a');
-  const buf=gl.createBuffer();
-  gl.bindBuffer(gl.ARRAY_BUFFER,buf);
-  gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,1,-1,-1,1,1,1]),gl.STATIC_DRAW);
-  gl.enableVertexAttribArray(aLoc);
-  gl.vertexAttribPointer(aLoc,2,gl.FLOAT,false,0,0);
-  
-  const resLoc=gl.getUniformLocation(prog,'res');
-  const tLoc=gl.getUniformLocation(prog,'t');
-  let start=performance.now();
-  
-  (function anim(){
-    gl.uniform2f(resLoc,canvas.width,canvas.height);
-    gl.uniform1f(tLoc,(performance.now()-start)/1000);
-    gl.drawArrays(gl.TRIANGLE_STRIP,0,4);
-    requestAnimationFrame(anim);
-  })();
-})();
-
-// ---------- Text canvas ----------
-(function(){
-  const tCan=document.getElementById('textCanvas');
-  function resize(){
-    tCan.width=innerWidth;
-    tCan.height=innerHeight;
-  }
-  window.addEventListener('resize',resize);
-  resize();
-  
-  const ctx=tCan.getContext('2d');
-  function drawText(){
-    ctx.clearRect(0,0,tCan.width,tCan.height);
-    ctx.save();
-    ctx.globalAlpha=0.08;
-    ctx.fillStyle='#fff';
-    const size=Math.min(tCan.width,tCan.height)/12;
-    ctx.font=`700 ${size}px Helvetica, Arial, sans-serif`;
-    ctx.textAlign='center';
-    ctx.textBaseline='middle';
-    ctx.fillText('N I C K  L E V A N T I S',tCan.width/2,tCan.height/2);
-    ctx.restore();
-  }
-  drawText();
-  setInterval(drawText,2200);
-})();
-</script>
+    <script>
+        // Audio context and elements
+        let audioContext;
+        let audioElement;
+        let analyser;
+        let source;
+        let isPlaying = false;
+        let currentTrack = null;
+        let audioData = new Uint8Array(256);
+        let audioIntensity = 0;
+        
+        // Track data
+        const tracks = [
+            {
+                id: 1,
+                title: "Fragments",
+                description: "Experimental melodic fragments",
+                url: "https://nicklevantis.com/audio/fragments.mp3",
+                duration: 180
+            },
+            {
+                id: 2,
+                title: "Nowhere",
+                description: "Dystopian noisy soundscape",
+                url: "https://nicklevantis.com/audio/nowhere.mp3",
+                duration: 240
+            },
+            {
+                id: 3,
+                title: "Broken",
+                description: "Live coding exploration",
+                url: "https://nicklevantis.com/audio/broken.mp3",
+                duration: 210
+            },
+            {
+                id: 4,
+                title: "Romance",
+                description: "Sounds from the past",
+                url: "https://nicklevantis.com/audio/romance.mp3",
+                duration: 195
+            }
+        ];
+        
+        // Set canvas dimensions
+        function resizeCanvas() {
+            const bgCanvas = document.getElementById('background-canvas');
+            const textCanvas = document.getElementById('text-canvas');
+            
+            bgCanvas.width = window.innerWidth;
+            bgCanvas.height = window.innerHeight;
+            textCanvas.width = window.innerWidth;
+            textCanvas.height = window.innerHeight;
+        }
+        
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+        
+        // Initialize audio context
+        function initAudio() {
+            if (audioContext) return;
+            
+            try {
+                audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                audioElement = new Audio();
+                audioElement.crossOrigin = "anonymous";
+                
+                // Create analyser node
+                analyser = audioContext.createAnalyser();
+                analyser.fftSize = 512;
+                analyser.smoothingTimeConstant = 0.8;
+                
+                // Connect audio element to analyser
+                source = audioContext.createMediaElementSource(audioElement);
+                source.connect(analyser);
+                analyser.connect(audioContext.destination);
+                
+                // Set up progress bar
+                audioElement.addEventListener('timeupdate', updateProgressBar);
+                audioElement.addEventListener('ended', handleTrackEnd);
+                
+                console.log("Audio initialized successfully");
+            } catch (error) {
+                console.error("Error initializing audio:", error);
+            }
+        }
+        
+        // Update reactive text colors based on audio intensity
+        function updateReactiveColors(intensity) {
+            // More aggressive color transition - more black, less gray
+            // White (255,255,255) -> Black (0,0,0) with faster transition
+            const colorValue = Math.floor(255 * Math.pow((1 - intensity), 2));
+            
+            // Apply to text elements
+            const trackTitle = document.getElementById('current-track-title');
+            const trackDesc = document.getElementById('current-track-description');
+            const timeDisplay = document.querySelectorAll('.time-display span');
+            const controlBtns = document.querySelectorAll('.control-btn');
+            const playBtn = document.getElementById('play-btn');
+            const progressBar = document.getElementById('progress-bar');
+            const progressContainer = document.getElementById('progress-container');
+            
+            if (trackTitle) trackTitle.style.color = `rgb(${colorValue}, ${colorValue}, ${colorValue})`;
+            if (trackDesc) trackDesc.style.color = `rgb(${colorValue}, ${colorValue}, ${colorValue})`;
+            
+            timeDisplay.forEach(el => {
+                el.style.color = `rgb(${colorValue}, ${colorValue}, ${colorValue})`;
+            });
+            
+            // Make play button reactive - change background based on intensity
+            if (playBtn) {
+                const bgValue = Math.floor(255 * (1 - intensity));
+                playBtn.style.background = `rgba(${bgValue}, ${bgValue}, ${bgValue}, ${0.1 + intensity * 0.2})`;
+                playBtn.style.color = `rgb(${colorValue}, ${colorValue}, ${colorValue})`;
+            }
+            
+            // Make progress bar reactive
+            if (progressBar) {
+                progressBar.style.background = `rgb(${colorValue}, ${colorValue}, ${colorValue})`;
+            }
+            
+            // Make progress container reactive
+            if (progressContainer) {
+                const containerBgValue = Math.floor(255 * (0.1 + intensity * 0.2));
+                progressContainer.style.background = `rgba(${containerBgValue}, ${containerBgValue}, ${containerBgValue}, 0.3)`;
+            }
+            
+            controlBtns.forEach(btn => {
+                if (btn.id !== 'play-btn') {
+                    btn.style.color = `rgb(${colorValue}, ${colorValue}, ${colorValue})`;
+                }
+            });
+        }
+        
+        // Play/pause track functionality
+        function toggleTrack(trackId) {
+            initAudio();
+            
+            // If audio context is suspended, resume it
+            if (audioContext && audioContext.state === 'suspended') {
+                audioContext.resume();
+            }
+            
+            // If a different track is selected
+            if (currentTrack !== trackId) {
+                // Stop current track
+                if (isPlaying) {
+                    audioElement.pause();
+                    updatePlayButton(false);
+                }
+                
+                // Load new track
+                const track = tracks.find(t => t.id === trackId);
+                audioElement.src = track.url;
+                currentTrack = trackId;
+                
+                // Update UI
+                document.getElementById('current-track-title').textContent = track.title;
+                document.getElementById('current-track-description').textContent = track.description;
+                document.getElementById('duration').textContent = formatTime(track.duration);
+                
+                // Play the track
+                audioElement.play()
+                    .then(() => {
+                        isPlaying = true;
+                        updatePlayButton(true);
+                    })
+                    .catch(error => {
+                        console.error("Error playing audio:", error);
+                    });
+            } else {
+                // Toggle play/pause for current track
+                if (isPlaying) {
+                    audioElement.pause();
+                    updatePlayButton(false);
+                } else {
+                    audioElement.play()
+                        .then(() => {
+                            isPlaying = true;
+                            updatePlayButton(true);
+                        })
+                        .catch(error => {
+                            console.error("Error playing audio:", error);
+                        });
+                }
+            }
+            
+            isPlaying = !isPlaying;
+        }
+        
+        // Update play button appearance
+        function updatePlayButton(playing) {
+            const mainPlayBtn = document.getElementById('play-btn');
+            
+            if (playing) {
+                mainPlayBtn.innerHTML = '<i class="fas fa-pause"></i>';
+            } else {
+                mainPlayBtn.innerHTML = '<i class="fas fa-play"></i>';
+            }
+        }
+        
+        // Update progress bar
+        function updateProgressBar() {
+            if (!audioElement || !currentTrack) return;
+            
+            const progress = (audioElement.currentTime / audioElement.duration) * 100;
+            const progressBar = document.getElementById('progress-bar');
+            if (progressBar) {
+                progressBar.style.width = `${progress}%`;
+            }
+            
+            // Update time display
+            const currentTimeEl = document.getElementById('current-time');
+            if (currentTimeEl) {
+                currentTimeEl.textContent = formatTime(audioElement.currentTime);
+            }
+        }
+        
+        // Format time in MM:SS
+        function formatTime(seconds) {
+            const mins = Math.floor(seconds / 60);
+            const secs = Math.floor(seconds % 60);
+            return `${mins}:${secs < 10 ? '0' : ''}${secs}`;
+        }
+        
+        // Handle track end
+        function handleTrackEnd() {
+            isPlaying = false;
+            updatePlayButton(false);
+            
+            // Auto-play next track
+            const currentIndex = tracks.findIndex(t => t.id === currentTrack);
+            const nextIndex = (currentIndex + 1) % tracks.length;
+            toggleTrack(tracks[nextIndex].id);
+        }
+        
+        // Set up event listeners
+        document.getElementById('play-btn').addEventListener('click', function() {
+            if (currentTrack) {
+                toggleTrack(currentTrack);
+            } else {
+                // If no track is selected, play the first one
+                toggleTrack(1);
+            }
+        });
+        
+        document.getElementById('prev-btn').addEventListener('click', function() {
+            if (currentTrack) {
+                const currentIndex = tracks.findIndex(t => t.id === currentTrack);
+                const prevIndex = (currentIndex - 1 + tracks.length) % tracks.length;
+                toggleTrack(tracks[prevIndex].id);
+            } else {
+                toggleTrack(1);
+            }
+        });
+        
+        document.getElementById('next-btn').addEventListener('click', function() {
+            if (currentTrack) {
+                const currentIndex = tracks.findIndex(t => t.id === currentTrack);
+                const nextIndex = (currentIndex + 1) % tracks.length;
+                toggleTrack(tracks[nextIndex].id);
+            } else {
+                toggleTrack(1);
+            }
+        });
+        
+        document.getElementById('progress-container').addEventListener('click', function(e) {
+            if (!currentTrack) return;
+            
+            const rect = this.getBoundingClientRect();
+            const clickX = e.clientX - rect.left;
+            const width = rect.width;
+            const percentage = clickX / width;
+            
+            audioElement.currentTime = percentage * audioElement.duration;
+        });
+        
+        // About popup functionality
+        const aboutBtn = document.getElementById('about-btn');
+        const aboutOverlay = document.getElementById('about-overlay');
+        const closeBtn = document.getElementById('close-btn');
+        
+        aboutBtn.addEventListener('click', function() {
+            aboutOverlay.classList.add('active');
+        });
+        
+        closeBtn.addEventListener('click', function() {
+            aboutOverlay.classList.remove('active');
+        });
+        
+        aboutOverlay.addEventListener('click', function(e) {
+            if (e.target === aboutOverlay) {
+                aboutOverlay.classList.remove('active');
+            }
+        });
+        
+        // Initialize visualization
+        initWebGLVisualization();
+        initTextCanvas();
+        
+        // Auto-select first track
+        toggleTrack(1);
+        
+        // Enhanced WebGL Visualization with more audio-reactive strands
+        function initWebGLVisualization() {
+            const canvas = document.getElementById('background-canvas');
+            const gl = canvas.getContext('webgl');
+            if (!gl) {
+                console.warn('WebGL not available');
+                return;
+            }
+            
+            function resize() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+                gl.viewport(0, 0, canvas.width, canvas.height);
+            }
+            
+            window.addEventListener('resize', resize);
+            resize();
+            
+            const vs = `
+                attribute vec2 a;
+                void main() {
+                    gl_Position = vec4(a, 0., 1.);
+                }
+            `;
+            
+            const fs = `
+                precision mediump float;
+                uniform vec2 res;
+                uniform float t;
+                uniform float audioIntensity;
+                uniform float bassIntensity;
+                uniform float midIntensity;
+                uniform float highIntensity;
+                
+                float hash(vec2 p) {
+                    return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453123);
+                }
+                
+                float noise(vec2 p) {
+                    vec2 i = floor(p);
+                    vec2 f = fract(p);
+                    vec2 u = f * f * (3.0 - 2.0 * f);
+                    return mix(mix(hash(i + vec2(0.0, 0.0)), hash(i + vec2(1.0, 0.0)), u.x),
+                           mix(hash(i + vec2(0.0, 1.0)), hash(i + vec2(1.0, 1.0)), u.x), u.y);
+                }
+                
+                void main() {
+                    vec2 uv = (gl_FragCoord.xy * 2.0 - res) / min(res.x, res.y);
+                    float r = length(uv);
+                    float a = atan(uv.y, uv.x);
+                    
+                    // Enhanced audio-reactive strands
+                    float n1 = noise(uv * 3.0 + t * 0.07);
+                    float n2 = noise(uv * 5.0 - t * 0.05);
+                    float n3 = noise(uv * 7.0 + t * 0.03);
+                    
+                    // Create multiple strands with different audio responses
+                    float strand1 = sin(6.0 * r - a * 4.0 + t * 1.2 + n1 * 2.0 + bassIntensity * 3.0);
+                    float strand2 = sin(8.0 * r + a * 3.0 - t * 0.8 + n2 * 2.5 + midIntensity * 2.5);
+                    float strand3 = sin(10.0 * r - a * 5.0 + t * 1.5 + n3 * 3.0 + highIntensity * 2.0);
+                    
+                    // Combine strands with different weights based on frequency bands
+                    float swirl = (strand1 * 0.4 + strand2 * 0.35 + strand3 * 0.25);
+                    
+                    float core = exp(-r * 4.0) * (1.0 + audioIntensity * 0.8);
+                    float rings = smoothstep(0.35, 0.05, abs(swirl)) * core;
+                    
+                    // Make strands more pronounced and reactive
+                    rings *= (1.0 + audioIntensity * 1.5);
+                    
+                    vec3 base = vec3(0.0);
+                    vec3 col = mix(vec3(0.02, 0.01, 0.005), vec3(1.0, 1.0, 1.0), pow(rings, 0.7));
+                    col *= 0.8 + 0.6 * core;
+                    
+                    // Enhanced audio reactivity with frequency separation
+                    float bassEffect = bassIntensity * 0.6;
+                    float midEffect = midIntensity * 0.4;
+                    float highEffect = highIntensity * 0.3;
+                    
+                    col += vec3(bassEffect * 0.5, midEffect * 0.3, highEffect * 0.7);
+                    col += vec3(bassEffect * 0.2, midEffect * 0.4, highEffect * 0.2);
+                    
+                    // Add pulsing effect based on audio intensity
+                    float pulse = sin(t * 2.0 + audioIntensity * 5.0) * 0.1 + 1.0;
+                    col *= pulse;
+                    
+                    gl_FragColor = vec4(col, clamp(rings + core * 0.25, 0.0, 1.0));
+                }
+            `;
+            
+            function compile(src, type) {
+                const s = gl.createShader(type);
+                gl.shaderSource(s, src);
+                gl.compileShader(s);
+                if (!gl.getShaderParameter(s, gl.COMPILE_STATUS)) console.error(gl.getShaderInfoLog(s));
+                return s;
+            }
+            
+            const prog = gl.createProgram();
+            gl.attachShader(prog, compile(vs, gl.VERTEX_SHADER));
+            gl.attachShader(prog, compile(fs, gl.FRAGMENT_SHADER));
+            gl.linkProgram(prog);
+            gl.useProgram(prog);
+            
+            const aLoc = gl.getAttribLocation(prog, 'a');
+            const buf = gl.createBuffer();
+            gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+            gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 1, -1, -1, 1, 1, 1]), gl.STATIC_DRAW);
+            gl.enableVertexAttribArray(aLoc);
+            gl.vertexAttribPointer(aLoc, 2, gl.FLOAT, false, 0, 0);
+            
+            const resLoc = gl.getUniformLocation(prog, 'res');
+            const tLoc = gl.getUniformLocation(prog, 't');
+            const audioIntensityLoc = gl.getUniformLocation(prog, 'audioIntensity');
+            const bassIntensityLoc = gl.getUniformLocation(prog, 'bassIntensity');
+            const midIntensityLoc = gl.getUniformLocation(prog, 'midIntensity');
+            const highIntensityLoc = gl.getUniformLocation(prog, 'highIntensity');
+            
+            let start = performance.now();
+            
+            function animate() {
+                // Get audio data if available
+                let avgLevel = 0;
+                let bassLevel = 0;
+                let midLevel = 0;
+                let highLevel = 0;
+                
+                if (analyser && isPlaying) {
+                    analyser.getByteFrequencyData(audioData);
+                    
+                    // Calculate different frequency bands
+                    const bassRange = Math.floor(audioData.length * 0.1); // 0-10%
+                    const midRange = Math.floor(audioData.length * 0.5); // 10-50%
+                    const highRange = Math.floor(audioData.length * 0.9); // 50-90%
+                    
+                    for (let i = 0; i < audioData.length; i++) {
+                        avgLevel += audioData[i];
+                        
+                        if (i < bassRange) {
+                            bassLevel += audioData[i];
+                        } else if (i < midRange) {
+                            midLevel += audioData[i];
+                        } else if (i < highRange) {
+                            highLevel += audioData[i];
+                        }
+                    }
+                    
+                    avgLevel /= audioData.length;
+                    bassLevel /= bassRange;
+                    midLevel /= (midRange - bassRange);
+                    highLevel /= (highRange - midRange);
+                } else {
+                    avgLevel = Math.max(0, avgLevel * 0.9 - 2);
+                    bassLevel = Math.max(0, bassLevel * 0.9 - 2);
+                    midLevel = Math.max(0, midLevel * 0.9 - 2);
+                    highLevel = Math.max(0, highLevel * 0.9 - 2);
+                }
+                
+                const normalizedAudio = avgLevel / 255;
+                const normalizedBass = bassLevel / 255;
+                const normalizedMid = midLevel / 255;
+                const normalizedHigh = highLevel / 255;
+                
+                // Update reactive colors
+                updateReactiveColors(normalizedAudio);
+                
+                gl.uniform2f(resLoc, canvas.width, canvas.height);
+                gl.uniform1f(tLoc, (performance.now() - start) / 1000);
+                gl.uniform1f(audioIntensityLoc, normalizedAudio);
+                gl.uniform1f(bassIntensityLoc, normalizedBass);
+                gl.uniform1f(midIntensityLoc, normalizedMid);
+                gl.uniform1f(highIntensityLoc, normalizedHigh);
+                gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+                requestAnimationFrame(animate);
+            }
+            
+            animate();
+        }
+        
+        // Text canvas from reference site - modified to not show text
+        function initTextCanvas() {
+            const tCan = document.getElementById('text-canvas');
+            
+            function resize() {
+                tCan.width = window.innerWidth;
+                tCan.height = window.innerHeight;
+            }
+            
+            window.addEventListener('resize', resize);
+            resize();
+            
+            const ctx = tCan.getContext('2d');
+            
+            function drawText() {
+                ctx.clearRect(0, 0, tCan.width, tCan.height);
+                // No text is drawn to keep the background clean
+            }
+            
+            drawText();
+            setInterval(drawText, 2200);
+        }
+    </script>
 </body>
 </html>
