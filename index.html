@@ -12,15 +12,42 @@
             box-sizing: border-box;
         }
 
+        :root {
+            --bg-color: #000000;
+            --text-color: #ffffff;
+            --accent-color: #ffffff;
+            --ui-bg: rgba(255, 255, 255, 0.05);
+            --ui-bg-hover: rgba(255, 255, 255, 0.1);
+            --progress-bg: rgba(255, 255, 255, 0.1);
+            --border-color: rgba(255, 255, 255, 0.05);
+            --overlay-bg: rgba(0, 0, 0, 0.7);
+            --footer-color: #666;
+            --social-bg: rgba(255, 255, 255, 0.05);
+        }
+
+        body.day-theme {
+            --bg-color: #ffffff;
+            --text-color: #000000;
+            --accent-color: #000000;
+            --ui-bg: rgba(0, 0, 0, 0.05);
+            --ui-bg-hover: rgba(0, 0, 0, 0.1);
+            --progress-bg: rgba(0, 0, 0, 0.1);
+            --border-color: rgba(0, 0, 0, 0.05);
+            --overlay-bg: rgba(255, 255, 255, 0.7);
+            --footer-color: #999;
+            --social-bg: rgba(0, 0, 0, 0.05);
+        }
+
         body {
-            background-color: #000000;
-            color: #ffffff;
+            background-color: var(--bg-color);
+            color: var(--text-color);
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             overflow-x: hidden;
             min-height: 100vh;
             position: relative;
             display: flex;
             flex-direction: column;
+            transition: background-color 0.5s ease, color 0.5s ease;
         }
 
         #background-canvas {
@@ -65,13 +92,15 @@
             font-weight: 300;
             letter-spacing: 8px;
             text-transform: uppercase;
-            color: #fff;
+            color: var(--text-color);
             flex: 1;
             text-align: center;
+            transition: color 0.5s ease;
+            margin: 0 20px; /* Equal spacing from buttons */
         }
 
-        .about-btn {
-            background: rgba(255, 255, 255, 0.05);
+        .theme-toggle {
+            background: var(--ui-bg);
             border: none;
             width: 50px;
             height: 50px;
@@ -79,14 +108,36 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            color: #fff;
+            color: var(--text-color);
             cursor: pointer;
             transition: all 0.3s ease;
             font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .theme-toggle:hover {
+            background: var(--ui-bg-hover);
+            transform: scale(1.05);
+        }
+
+        .about-btn {
+            background: var(--ui-bg);
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--text-color);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.2rem;
+            flex-shrink: 0;
         }
 
         .about-btn:hover {
-            background: rgba(255, 255, 255, 0.1);
+            background: var(--ui-bg-hover);
             transform: scale(1.05);
         }
 
@@ -94,10 +145,12 @@
             font-size: 1.2rem;
             font-weight: 300;
             letter-spacing: 3px;
-            color: #aaa;
+            color: var(--text-color);
+            opacity: 0.7;
             text-align: center;
             width: 100%;
             margin-top: 0.5rem;
+            transition: color 0.5s ease;
         }
 
         .player-section {
@@ -109,19 +162,20 @@
         }
 
         .track-player {
-            background: rgba(255, 255, 255, 0.03);
+            background: var(--ui-bg);
             backdrop-filter: blur(20px);
             border-radius: 50%;
             padding: 2.5rem;
             width: 400px;
             height: 400px;
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-color);
             position: relative;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
+            transition: all 0.5s ease;
         }
 
         .track-info {
@@ -134,11 +188,14 @@
             margin-bottom: 0.5rem;
             font-weight: 300;
             transition: color 0.2s ease;
+            color: var(--text-color);
         }
 
         .track-description {
             font-size: 0.9rem;
             transition: color 0.2s ease;
+            color: var(--text-color);
+            opacity: 0.8;
         }
 
         .audio-controls {
@@ -151,7 +208,7 @@
         }
 
         .control-btn {
-            background: rgba(255, 255, 255, 0.05);
+            background: var(--ui-bg);
             border: none;
             width: 50px;
             height: 50px;
@@ -162,31 +219,33 @@
             cursor: pointer;
             transition: all 0.3s ease;
             font-size: 1.2rem;
+            color: var(--text-color);
         }
 
         .control-btn:hover {
-            background: rgba(255, 255, 255, 0.1);
+            background: var(--ui-bg-hover);
             transform: scale(1.05);
         }
 
         .play-btn {
             width: 70px;
             height: 70px;
-            background: rgba(255, 255, 255, 0.08);
+            background: var(--ui-bg);
             font-size: 1.6rem;
             transition: all 0.3s ease;
             border: none !important;
             box-shadow: none !important;
+            color: var(--text-color);
         }
 
         .play-btn:hover {
-            background: rgba(255, 255, 255, 0.15);
+            background: var(--ui-bg-hover);
         }
 
         .progress-container {
             width: 250px;
             height: 4px;
-            background: rgba(255, 255, 255, 0.1);
+            background: var(--progress-bg);
             border-radius: 2px;
             margin-bottom: 0.5rem;
             cursor: pointer;
@@ -198,6 +257,7 @@
             border-radius: 2px;
             width: 0%;
             transition: width 0.1s, background 0.2s ease;
+            background: var(--text-color);
         }
 
         .time-display {
@@ -206,26 +266,28 @@
             font-size: 0.8rem;
             width: 250px;
             transition: color 0.2s ease;
+            color: var(--text-color);
         }
 
         footer {
             text-align: center;
             padding: 2rem 0;
-            color: #666;
-            font-size: 0.9rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            color: var(--footer-color);
+            font-size: 0.7rem;
+            border-top: 1px solid var(--border-color);
             margin-top: auto;
             width: 100%;
+            transition: all 0.5s ease;
         }
 
         footer a {
-            color: #aaa;
+            color: var(--footer-color);
             text-decoration: none;
             transition: color 0.3s;
         }
 
         footer a:hover {
-            color: #fff;
+            color: var(--text-color);
         }
 
         /* About Popup Styles */
@@ -235,8 +297,8 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.7); /* More transparent */
-            backdrop-filter: blur(5px); /* Less blur to see effects */
+            background: var(--overlay-bg);
+            backdrop-filter: blur(5px);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -252,13 +314,13 @@
         }
 
         .about-content {
-            background: rgba(255, 255, 255, 0.01); /* More transparent */
+            background: var(--ui-bg);
             backdrop-filter: blur(15px);
-            border-radius: 50%; /* Circular shape */
+            border-radius: 50%;
             padding: 3rem;
-            width: 500px; /* Fixed size for circle */
-            height: 500px; /* Fixed size for circle */
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            width: 500px;
+            height: 500px;
+            border: 1px solid var(--border-color);
             transform: scale(0.8) translateY(50px);
             opacity: 0;
             transition: all 0.5s ease 0.2s;
@@ -269,6 +331,7 @@
             align-items: center;
             text-align: center;
             overflow: hidden;
+            font-weight: 300;
         }
 
         .about-overlay.active .about-content {
@@ -280,7 +343,7 @@
             position: absolute;
             top: 25px;
             right: 25px;
-            background: rgba(255, 255, 255, 0.95);
+            background: var(--ui-bg);
             border: none;
             width: 40px;
             height: 40px;
@@ -288,7 +351,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            color: #fff;
+            color: var(--text-color);
             cursor: pointer;
             transition: all 0.3s ease;
             font-size: 1.2rem;
@@ -296,7 +359,7 @@
         }
 
         .close-btn:hover {
-            background: rgba(255, 255, 255, 0.1);
+            background: var(--ui-bg-hover);
             transform: scale(1.05);
         }
 
@@ -304,13 +367,14 @@
             font-size: 2rem;
             font-weight: 300;
             margin-bottom: 1.5rem;
-            color: #fff;
+            color: var(--text-color);
         }
 
         .about-text {
-            font-size: 1rem;
+            font-size: 1.5rem;
             line-height: 1.6;
-            color: #ccc;
+            color: var(--text-color);
+            opacity: 0.8;
             margin-bottom: 2rem;
             max-width: 350px;
         }
@@ -323,28 +387,28 @@
         }
 
         .social-link {
-            background: rgba(255, 255, 255, 0.05);
+            background: var(--social-bg);
             width: 45px;
             height: 45px;
             border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
-            color: #fff;
+            color: var(--text-color);
             text-decoration: none;
             transition: all 0.3s ease;
             font-size: 1.2rem;
         }
 
         .social-link:hover {
-            background: rgba(255, 255, 255, 0.1);
+            background: var(--ui-bg-hover);
             transform: translateY(-3px);
         }
 
         .creative-divider {
             width: 80px;
             height: 1px;
-            background: rgba(255, 255, 255, 0.2);
+            background: var(--border-color);
             margin: 1.5rem auto;
         }
 
@@ -430,7 +494,9 @@
     
     <div class="container">
         <header>
-            <div></div> <!-- Empty div for spacing -->
+            <button class="theme-toggle" id="theme-toggle">
+                <i class="fas fa-moon"></i>
+            </button>
             <h1>NICK LEVANTIS</h1>
             <button class="about-btn" id="about-btn">
                 <i class="fas fa-info"></i>
@@ -481,7 +547,7 @@
             </button>
          
             <div class="about-text">
-                <h2>Sound artist from Piraeus exploring electronic textures, live coding, and experimental minimal sonic forms.</h2>
+                <p>Sound artist from Piraeus exploring electronic textures, live coding, and experimental minimal sonic forms.</p>
                
             </div>
             <div class="social-links">
@@ -493,6 +559,75 @@
     </div>
 
     <script>
+        // Theme management
+        const themeToggle = document.getElementById('theme-toggle');
+        const themeIcon = themeToggle.querySelector('i');
+        const body = document.body;
+        
+        // Check if theme is stored in localStorage
+        const savedTheme = localStorage.getItem('theme');
+        
+        // Set initial theme based on saved preference or time of day
+        function setInitialTheme() {
+            if (savedTheme) {
+                if (savedTheme === 'day') {
+                    enableDayTheme();
+                } else {
+                    enableNightTheme();
+                }
+            } else {
+                // Set theme based on local time (day: 6am-6pm, night: otherwise)
+                const hour = new Date().getHours();
+                if (hour >= 6 && hour < 18) {
+                    enableDayTheme();
+                } else {
+                    enableNightTheme();
+                }
+            }
+        }
+        
+        function enableDayTheme() {
+            body.classList.add('day-theme');
+            themeIcon.classList.remove('fa-moon');
+            themeIcon.classList.add('fa-sun');
+            localStorage.setItem('theme', 'day');
+            
+            // Update WebGL visualization for day theme
+            if (window.dayThemeActive) {
+                window.dayThemeActive(true);
+            }
+            
+            // Reset reactive colors for day theme
+            updateReactiveColors(0);
+        }
+        
+        function enableNightTheme() {
+            body.classList.remove('day-theme');
+            themeIcon.classList.remove('fa-sun');
+            themeIcon.classList.add('fa-moon');
+            localStorage.setItem('theme', 'night');
+            
+            // Update WebGL visualization for night theme
+            if (window.dayThemeActive) {
+                window.dayThemeActive(false);
+            }
+            
+            // Reset reactive colors for night theme
+            updateReactiveColors(0);
+        }
+        
+        // Toggle theme on button click
+        themeToggle.addEventListener('click', function() {
+            if (body.classList.contains('day-theme')) {
+                enableNightTheme();
+            } else {
+                enableDayTheme();
+            }
+        });
+        
+        // Initialize theme
+        setInitialTheme();
+        
         // Audio context and elements
         let audioContext;
         let audioElement;
@@ -580,9 +715,18 @@
         
         // Update reactive text colors based on audio intensity
         function updateReactiveColors(intensity) {
-            // More aggressive color transition - more black, less gray
-            // White (255,255,255) -> Black (0,0,0) with faster transition
-            const colorValue = Math.floor(255 * Math.pow((1 - intensity), 2));
+            const isDay = body.classList.contains('day-theme');
+            
+            // For day theme, we want black text that gets slightly lighter with intensity
+            // For night theme, we want white text that gets slightly darker with intensity
+            let colorValue;
+            if (isDay) {
+                // Day theme: Start with black (0) and go slightly lighter
+                colorValue = Math.floor(255 * intensity * 0.3); // Max 76 (dark gray)
+            } else {
+                // Night theme: Start with white (255) and go slightly darker  
+                colorValue = Math.floor(255 * (1 - intensity * 0.3)); // Min 178 (light gray)
+            }
             
             // Apply to text elements
             const trackTitle = document.getElementById('current-track-title');
@@ -593,34 +737,51 @@
             const progressBar = document.getElementById('progress-bar');
             const progressContainer = document.getElementById('progress-container');
             
-            if (trackTitle) trackTitle.style.color = `rgb(${colorValue}, ${colorValue}, ${colorValue})`;
-            if (trackDesc) trackDesc.style.color = `rgb(${colorValue}, ${colorValue}, ${colorValue})`;
+            // For day theme, ensure text is always dark enough to be readable
+            const finalColorValue = isDay ? Math.max(colorValue, 30) : colorValue;
+            
+            if (trackTitle) trackTitle.style.color = `rgb(${finalColorValue}, ${finalColorValue}, ${finalColorValue})`;
+            if (trackDesc) trackDesc.style.color = `rgb(${finalColorValue}, ${finalColorValue}, ${finalColorValue})`;
             
             timeDisplay.forEach(el => {
-                el.style.color = `rgb(${colorValue}, ${colorValue}, ${colorValue})`;
+                el.style.color = `rgb(${finalColorValue}, ${finalColorValue}, ${finalColorValue})`;
             });
             
             // Make play button reactive - change background based on intensity
             if (playBtn) {
-                const bgValue = Math.floor(255 * (1 - intensity));
+                let bgValue;
+                if (isDay) {
+                    // Day theme: Light background that gets slightly darker
+                    bgValue = Math.floor(255 * (1 - intensity * 0.5));
+                } else {
+                    // Night theme: Dark background that gets slightly lighter
+                    bgValue = Math.floor(255 * intensity * 0.5);
+                }
                 playBtn.style.background = `rgba(${bgValue}, ${bgValue}, ${bgValue}, ${0.1 + intensity * 0.2})`;
-                playBtn.style.color = `rgb(${colorValue}, ${colorValue}, ${colorValue})`;
+                playBtn.style.color = `rgb(${finalColorValue}, ${finalColorValue}, ${finalColorValue})`;
             }
             
             // Make progress bar reactive
             if (progressBar) {
-                progressBar.style.background = `rgb(${colorValue}, ${colorValue}, ${colorValue})`;
+                progressBar.style.background = `rgb(${finalColorValue}, ${finalColorValue}, ${finalColorValue})`;
             }
             
             // Make progress container reactive
             if (progressContainer) {
-                const containerBgValue = Math.floor(255 * (0.1 + intensity * 0.2));
+                let containerBgValue;
+                if (isDay) {
+                    // Day theme: Light gray that gets slightly darker
+                    containerBgValue = Math.floor(255 * (0.7 - intensity * 0.2));
+                } else {
+                    // Night theme: Dark gray that gets slightly lighter
+                    containerBgValue = Math.floor(255 * (0.1 + intensity * 0.2));
+                }
                 progressContainer.style.background = `rgba(${containerBgValue}, ${containerBgValue}, ${containerBgValue}, 0.3)`;
             }
             
             controlBtns.forEach(btn => {
                 if (btn.id !== 'play-btn') {
-                    btn.style.color = `rgb(${colorValue}, ${colorValue}, ${colorValue})`;
+                    btn.style.color = `rgb(${finalColorValue}, ${finalColorValue}, ${finalColorValue})`;
                 }
             });
         }
@@ -794,7 +955,7 @@
         // Auto-select first track
         toggleTrack(1);
         
-        // Enhanced WebGL Visualization with more audio-reactive strands
+        // Enhanced WebGL Visualization with much darker day theme
         function initWebGLVisualization() {
             const canvas = document.getElementById('background-canvas');
             const gl = canvas.getContext('webgl');
@@ -827,6 +988,7 @@
                 uniform float bassIntensity;
                 uniform float midIntensity;
                 uniform float highIntensity;
+                uniform float isDayTheme;
                 
                 float hash(vec2 p) {
                     return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453123);
@@ -865,7 +1027,20 @@
                     rings *= (1.0 + audioIntensity * 1.5);
                     
                     vec3 base = vec3(0.0);
-                    vec3 col = mix(vec3(0.02, 0.01, 0.005), vec3(1.0, 1.0, 1.0), pow(rings, 0.7));
+                    vec3 col;
+                    
+                    if (isDayTheme > 0.5) {
+                        // Day theme - much darker colors for better visibility on white
+                        col = mix(vec3(0.0, 0.0, 0.0), vec3(0.08, 0.08, 0.1), pow(rings, 0.9));
+                        
+                        // Increase contrast for day theme
+                        rings *= 1.5;
+                        core *= 1.3;
+                    } else {
+                        // Night theme - original colors
+                        col = mix(vec3(0.02, 0.01, 0.005), vec3(1.0, 1.0, 1.0), pow(rings, 0.7));
+                    }
+                    
                     col *= 0.8 + 0.6 * core;
                     
                     // Enhanced audio reactivity with frequency separation
@@ -873,8 +1048,19 @@
                     float midEffect = midIntensity * 0.4;
                     float highEffect = highIntensity * 0.3;
                     
-                    col += vec3(bassEffect * 0.5, midEffect * 0.3, highEffect * 0.7);
-                    col += vec3(bassEffect * 0.2, midEffect * 0.4, highEffect * 0.2);
+                    // Adjust audio reactivity based on theme
+                    if (isDayTheme > 0.5) {
+                        // For day theme, use very subtle dark colors
+                        col += vec3(bassEffect * 0.05, midEffect * 0.03, highEffect * 0.08);
+                        col += vec3(bassEffect * 0.02, midEffect * 0.04, highEffect * 0.02);
+                        
+                        // Boost the effect slightly for visibility
+                        col *= 1.1;
+                    } else {
+                        // For night theme, original audio reactivity
+                        col += vec3(bassEffect * 0.5, midEffect * 0.3, highEffect * 0.7);
+                        col += vec3(bassEffect * 0.2, midEffect * 0.4, highEffect * 0.2);
+                    }
                     
                     // Add pulsing effect based on audio intensity
                     float pulse = sin(t * 2.0 + audioIntensity * 5.0) * 0.1 + 1.0;
@@ -911,8 +1097,15 @@
             const bassIntensityLoc = gl.getUniformLocation(prog, 'bassIntensity');
             const midIntensityLoc = gl.getUniformLocation(prog, 'midIntensity');
             const highIntensityLoc = gl.getUniformLocation(prog, 'highIntensity');
+            const isDayThemeLoc = gl.getUniformLocation(prog, 'isDayTheme');
             
             let start = performance.now();
+            
+            // Expose dayThemeActive function to update WebGL theme
+            window.dayThemeActive = function(isDay) {
+                gl.useProgram(prog);
+                gl.uniform1f(isDayThemeLoc, isDay ? 1.0 : 0.0);
+            };
             
             function animate() {
                 // Get audio data if available
@@ -966,6 +1159,7 @@
                 gl.uniform1f(bassIntensityLoc, normalizedBass);
                 gl.uniform1f(midIntensityLoc, normalizedMid);
                 gl.uniform1f(highIntensityLoc, normalizedHigh);
+                gl.uniform1f(isDayThemeLoc, body.classList.contains('day-theme') ? 1.0 : 0.0);
                 gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
                 requestAnimationFrame(animate);
             }
