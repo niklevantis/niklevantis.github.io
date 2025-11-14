@@ -1,4 +1,596 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Nick Levantis | Music</title><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"><script async src="https://www.googletagmanager.com/gtag/js?id=G-91NQ6H9GNK"></script><script>function gtag(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],gtag("js",new Date),gtag("config","G-91NQ6H9GNK")</script><style>*{margin:0;padding:0;box-sizing:border-box}:root{--bg-color:#0a0a0a;--text-color:#ffffff;--secondary-text:#aaaaaa;--accent-color:#ffffff;--ui-bg:rgba(255, 255, 255, 0.05);--ui-bg-hover:rgba(255, 255, 255, 0.1);--player-bg:rgba(255, 255, 255, 0.03);--player-border:rgba(255, 255, 255, 0.05);--progress-bg:rgba(255, 255, 255, 0.1);--overlay-bg:rgba(0, 0, 0, 0.7);--circle-bg:#000000;--strand-base:255,255,255}body.light-mode{--bg-color:#f5f5f5;--text-color:#000000;--secondary-text:#555555;--accent-color:#000000;--ui-bg:rgba(0, 0, 0, 0.05);--ui-bg-hover:rgba(0, 0, 0, 0.1);--player-bg:rgba(0, 0, 0, 0.03);--player-border:rgba(0, 0, 0, 0.05);--progress-bg:rgba(0, 0, 0, 0.1);--overlay-bg:rgba(255, 255, 255, 0.7);--circle-bg:#ffffff;--strand-base:0,0,0}body{background-color:var(--bg-color);color:var(--text-color);font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;overflow:hidden;min-height:100vh;position:relative;display:flex;flex-direction:column;transition:background-color .5s ease,color .5s ease}#glcanvas{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0}.container{max-width:100%;margin:0;padding:0;position:relative;z-index:2;flex:1;display:flex;flex-direction:column;height:100vh}header{display:flex;justify-content:space-between;align-items:center;width:100%;padding:25px 30px;position:absolute;top:0;left:0;z-index:20}.header-left{display:flex;flex-direction:column;align-items:flex-start}.site-title{font-size:1.1rem;font-weight:400;letter-spacing:4px;text-transform:uppercase;color:var(--text-color);transition:color .5s ease;line-height:1}.subtitle{font-size:.8rem;font-weight:300;letter-spacing:3px;color:var(--secondary-text);transition:color .5s ease;margin-top:5px;line-height:1}.header-controls{display:flex;gap:12px;align-items:center}.about-btn,.theme-toggle{background:0 0;border:none;width:42px;height:42px;display:flex;justify-content:center;align-items:center;color:var(--text-color);cursor:pointer;transition:all .3s ease;font-size:1.1rem}.about-btn:hover,.theme-toggle:hover{transform:scale(1.1)}.center-player{position:fixed;bottom:70px;left:50%;transform:translateX(-50%);z-index:10;display:flex;flex-direction:column;align-items:center;gap:5px}.player-controls{display:flex;align-items:center;gap:10px}.control-btn{background:0 0;border:none;width:50px;height:50px;display:flex;justify-content:center;align-items:center;color:var(--text-color);cursor:pointer;transition:all .3s ease;font-size:1.3rem}.control-btn:hover{transform:scale(1.1)}.play-btn{width:60px;height:60px;font-size:1.6rem}.player-info{display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center}.track-title{font-size:1.2rem;font-weight:500;color:var(--text-color);line-height:1}.track-description{font-size:.7rem;color:var(--secondary-text)}.progress-container{width:250px;height:2px;background:var(--progress-bg);cursor:pointer}.progress-bar{height:100%;width:0%;background:var(--text-color);transition:width .1s}.about-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:var(--overlay-bg);backdrop-filter:blur(5px);display:flex;justify-content:center;align-items:center;z-index:1000;opacity:0;visibility:hidden;transition:all .5s ease}.about-overlay.active{opacity:1;visibility:visible}.about-content{background:0 0;border:none;padding:3rem;width:450px;height:auto;transform:scale(.8) translateY(50px);opacity:0;transition:all .5s ease .2s;position:relative;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center}.about-overlay.active .about-content{transform:scale(1) translateY(0);opacity:1}.close-btn{position:absolute;top:20px;right:20px;background:0 0;border:none;width:40px;height:40px;display:flex;justify-content:center;align-items:center;color:var(--text-color);cursor:pointer;transition:all .3s ease;font-size:1.2rem;z-index:10}.close-btn:hover{transform:scale(1.1)}.about-title{font-size:1.8rem;font-weight:300;margin-bottom:1.5rem;color:var(--text-color)}.about-text{font-size:1rem;line-height:1.6;color:var(--text-color);margin-bottom:2rem;max-width:350px}.social-links{display:flex;justify-content:center;gap:1.5rem;margin-top:1.5rem}.social-link{background:0 0;border:none;width:45px;height:45px;display:flex;justify-content:center;align-items:center;color:var(--text-color);text-decoration:none;transition:all .3s ease;font-size:1.2rem}.social-link:hover{transform:translateY(-3px)}.theme-toggle i{transition:transform .5s ease}body.light-mode .theme-toggle .fa-moon{display:none}body.light-mode .theme-toggle .fa-sun{display:block}.theme-toggle .fa-sun{display:none}body.light-mode .theme-toggle .fa-sun{display:block}body.light-mode .theme-toggle .fa-moon{display:none}@media (max-width:768px){header{padding:20px 25px}.site-title{font-size:1rem;letter-spacing:3px}.subtitle{font-size:.8rem}.center-player{bottom:30px;gap:12px}.player-controls{gap:15px}.control-btn{width:45px;height:45px;font-size:1.1rem}.play-btn{width:55px;height:55px;font-size:1.4rem}.track-title{font-size:1.2rem}.progress-container{width:200px}.about-content{width:350px;padding:2.5rem}.about-title{font-size:1.6rem}.about-text{font-size:.95rem;max-width:280px}}@media (max-width:480px){header{padding:15px 20px}.header-left{align-items:center}.site-title{font-size:.9rem}.subtitle{font-size:.75rem;text-align:center}.center-player{bottom:25px;gap:10px}.player-controls{gap:12px}.control-btn{width:40px;height:40px;font-size:1rem}.play-btn{width:50px;height:50px;font-size:1.2rem}.track-title{font-size:1.1rem}.track-description{font-size:.8rem}.progress-container{width:180px}.about-content{width:300px;padding:2rem}.about-title{font-size:1.4rem}.about-text{font-size:.9rem;max-width:240px}}</style></head><body><canvas id="glcanvas"></canvas><div class="container"><header><div class="header-left"><div class="site-title">NICK LEVANTIS</div><div class="subtitle">LANIAKEA SESSIONS</div></div><div class="header-controls"><button class="theme-toggle" id="theme-toggle"><i class="fas fa-moon"></i><i class="fas fa-sun"></i></button><button class="about-btn" id="about-btn"><i class="fas fa-info"></i></button></div></header><div class="center-player"><div class="player-controls"><button class="control-btn" id="prev-btn"><i class="fas fa-step-backward"></i></button><button class="control-btn play-btn" id="play-btn"><i class="fas fa-play"></i></button><button class="control-btn" id="next-btn"><i class="fas fa-step-forward"></i></button></div><div class="player-info"><div class="track-title" id="current-track-title">Fragments</div><div class="track-description" id="current-track-description">Experimental melodic fragments</div><div class="progress-container" id="progress-container"><div class="progress-bar" id="progress-bar"></div></div></div></div></div><div class="about-overlay" id="about-overlay"><div class="about-content"><button class="close-btn" id="close-btn"><i class="fas fa-times"></i></button><div class="about-text"><p>Sound artist from Piraeus exploring electronic textures, live coding, and experimental minimal sonic forms.</p></div><div class="social-links"><a href="https://soundcloud.com/nicklevantis" class="social-link" target="_blank"><i class="fab fa-soundcloud"></i></a><a href="https://youtube.com/nicklevantis" class="social-link" target="_blank"><i class="fab fa-youtube"></i></a><a href="https://nicklevantis.svbtle.com" class="social-link" target="_blank"><i class="fas fa-pen-nib"></i></a></div></div></div><script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script><script>// Audio context and elements
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nick Levantis | Music</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <div id="loading-screen">
+  <div id="logo-container">
+    <div id="logo-text">NICK LEVANTIS</div>
+    <canvas id="logo-canvas"></canvas>
+  </div>
+</div>
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-91NQ6H9GNK"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-91NQ6H9GNK');
+</script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-color: #0a0a0a;
+            --text-color: #ffffff;
+            --secondary-text: #aaaaaa;
+            --accent-color: #ffffff;
+            --ui-bg: rgba(255, 255, 255, 0.05);
+            --ui-bg-hover: rgba(255, 255, 255, 0.1);
+            --player-bg: rgba(255, 255, 255, 0.03);
+            --player-border: rgba(255, 255, 255, 0.05);
+            --progress-bg: rgba(255, 255, 255, 0.1);
+            --overlay-bg: rgba(0, 0, 0, 0.7);
+            --circle-bg: #000000;
+            --strand-base: 255, 255, 255;
+        }
+
+        body.light-mode {
+            --bg-color: #f5f5f5;
+            --text-color: #000000;
+            --secondary-text: #555555;
+            --accent-color: #000000;
+            --ui-bg: rgba(0, 0, 0, 0.05);
+            --ui-bg-hover: rgba(0, 0, 0, 0.1);
+            --player-bg: rgba(0, 0, 0, 0.03);
+            --player-border: rgba(0, 0, 0, 0.05);
+            --progress-bg: rgba(0, 0, 0, 0.1);
+            --overlay-bg: rgba(255, 255, 255, 0.7);
+            --circle-bg: #ffffff;
+            --strand-base: 0, 0, 0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow: hidden;
+            min-height: 100vh;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            transition: background-color 0.5s ease, color 0.5s ease;
+        }
+
+        #glcanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+
+        .container {
+            max-width: 100%;
+            margin: 0;
+            padding: 0;
+            position: relative;
+            z-index: 2;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+
+        /* HEADER - Properly aligned horizontally */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            padding: 25px 30px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 20;
+        }
+
+        .header-left {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .site-title {
+            font-size: 1.1rem;
+            font-weight: 400;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--text-color);
+            transition: color 0.5s ease;
+            line-height: 1;
+        }
+
+        .subtitle {
+            font-size: 0.8rem;
+            font-weight: 300;
+            letter-spacing: 3px;
+            color: var(--secondary-text);
+            transition: color 0.5s ease;
+            margin-top: 5px;
+            line-height: 1;
+        }
+
+        .header-controls {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .theme-toggle, .about-btn {
+            background: transparent;
+            border: none;
+            width: 42px;
+            height: 42px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--text-color);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+        }
+
+        .theme-toggle:hover, .about-btn:hover {
+            transform: scale(1.1);
+        }
+
+        /* CENTER BOTTOM PLAYER - Reduced gaps */
+        .center-player {
+            position: fixed;
+            bottom: 70px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px; /* Reduced from 25px */
+        }
+
+        .player-controls {
+            display: flex;
+            align-items: center;
+            gap: 10px; /* Reduced from 25px */
+        }
+
+        .control-btn {
+            background: transparent;
+            border: none;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--text-color);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.3rem;
+        }
+
+        .control-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .play-btn {
+            width: 60px;
+            height: 60px;
+            font-size: 1.6rem;
+        }
+
+        .player-info {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px; /* Reduced from 15px */
+            text-align: center;
+        }
+
+        .track-title {
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: var(--text-color);
+            line-height: 1;
+        }
+
+        .track-description {
+            font-size: 0.7rem;
+            color: var(--secondary-text);
+        }
+
+        .progress-container {
+            width: 250px;
+            height: 2px;
+            background: var(--progress-bg);
+            cursor: pointer;
+        }
+
+        .progress-bar {
+            height: 100%;
+            width: 0%;
+            background: var(--text-color);
+            transition: width 0.1s;
+        }
+
+        /* About Popup Styles */
+        .about-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--overlay-bg);
+            backdrop-filter: blur(5px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.5s ease;
+        }
+
+        .about-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .about-content {
+            background: transparent;
+            border: none;
+            padding: 3rem;
+            width: 450px;
+            height: auto;
+            transform: scale(0.8) translateY(50px);
+            opacity: 0;
+            transition: all 0.5s ease 0.2s;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .about-overlay.active .about-content {
+            transform: scale(1) translateY(0);
+            opacity: 1;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: transparent;
+            border: none;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--text-color);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.2rem;
+            z-index: 10;
+        }
+
+        .close-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .about-title {
+            font-size: 1.8rem;
+            font-weight: 300;
+            margin-bottom: 1.5rem;
+            color: var(--text-color);
+        }
+
+        .about-text {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: var(--text-color);
+            margin-bottom: 2rem;
+            max-width: 350px;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-link {
+            background: transparent;
+            border: none;
+            width: 45px;
+            height: 45px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--text-color);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 1.2rem;
+        }
+
+        .social-link:hover {
+            transform: translateY(-3px);
+        }
+
+        /* Theme Toggle Animation */
+        .theme-toggle i {
+            transition: transform 0.5s ease;
+        }
+
+        body.light-mode .theme-toggle .fa-moon {
+            display: none;
+        }
+
+        body.light-mode .theme-toggle .fa-sun {
+            display: block;
+        }
+
+        .theme-toggle .fa-sun {
+            display: none;
+        }
+
+        body.light-mode .theme-toggle .fa-sun {
+            display: block;
+        }
+
+        body.light-mode .theme-toggle .fa-moon {
+            display: none;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header {
+                padding: 20px 25px;
+            }
+
+            .site-title {
+                font-size: 1rem;
+                letter-spacing: 3px;
+            }
+
+            .subtitle {
+                font-size: 0.8rem;
+            }
+
+            .center-player {
+                bottom: 30px;
+                gap: 12px;
+            }
+
+            .player-controls {
+                gap: 15px;
+            }
+
+            .control-btn {
+                width: 45px;
+                height: 45px;
+                font-size: 1.1rem;
+            }
+
+            .play-btn {
+                width: 55px;
+                height: 55px;
+                font-size: 1.4rem;
+            }
+
+            .track-title {
+                font-size: 1.2rem;
+            }
+
+            .progress-container {
+                width: 200px;
+            }
+
+            .about-content {
+                width: 350px;
+                padding: 2.5rem;
+            }
+
+            .about-title {
+                font-size: 1.6rem;
+            }
+
+            .about-text {
+                font-size: 0.95rem;
+                max-width: 280px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header {
+                padding: 15px 20px;
+            }
+
+            .header-left {
+                align-items: center;
+            }
+
+            .site-title {
+                font-size: 0.9rem;
+            }
+
+            .subtitle {
+                font-size: 0.75rem;
+                text-align: center;
+            }
+
+            .center-player {
+                bottom: 25px;
+                gap: 10px;
+            }
+
+            .player-controls {
+                gap: 12px;
+            }
+
+            .control-btn {
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
+            }
+
+            .play-btn {
+                width: 50px;
+                height: 50px;
+                font-size: 1.2rem;
+            }
+
+            .track-title {
+                font-size: 1.1rem;
+            }
+
+            .track-description {
+                font-size: 0.8rem;
+            }
+
+            .progress-container {
+                width: 180px;
+            }
+
+            .about-content {
+                width: 300px;
+                padding: 2rem;
+            }
+
+            .about-title {
+                font-size: 1.4rem;
+            }
+
+            .about-text {
+                font-size: 0.9rem;
+                max-width: 240px;
+            }
+        }
+
+         /* Loading screen full page */
+   #loading-screen {
+    position: fixed;
+    top:0; left:0; width:100%; height:100%;
+    background: var(--bg-color);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    z-index: 9999;
+    transition: opacity 0.8s ease;
+  }
+
+  #logo-container {
+    position: relative;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    width: 250px;
+    height: 100px;
+  }
+
+  #logo-text {
+    position: absolute;
+    font-size: 1.3rem;
+    font-weight: 300;
+    color: var(--text-color);
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    z-index: 2;
+  }
+
+  #logo-canvas {
+    position: absolute;
+    top:0; left:0;
+    width:100%; height:100%;
+    pointer-events: none;
+    z-index:1;
+  }
+    </style>
+</head>
+<body>
+    <canvas id="glcanvas"></canvas>
+    
+    <div class="container">
+        <header>
+            <div class="header-left">
+                <div class="site-title">NICK LEVANTIS</div>
+                <div class="subtitle">LANIAKEA SESSIONS</div>
+            </div>
+            <div class="header-controls">
+                <button class="theme-toggle" id="theme-toggle">
+                    <i class="fas fa-moon"></i>
+                    <i class="fas fa-sun"></i>
+                </button>
+                <button class="about-btn" id="about-btn">
+                    <i class="fas fa-info"></i>
+                </button>
+            </div>
+        </header>
+
+        <!-- Centered Bottom Player -->
+        <div class="center-player">
+            <div class="player-controls">
+                <button class="control-btn" id="prev-btn">
+                    <i class="fas fa-step-backward"></i>
+                </button>
+                <button class="control-btn play-btn" id="play-btn">
+                    <i class="fas fa-play"></i>
+                </button>
+                <button class="control-btn" id="next-btn">
+                    <i class="fas fa-step-forward"></i>
+                </button>
+            </div>
+            <div class="player-info">
+                <div class="track-title" id="current-track-title">Fragments</div>
+                <div class="track-description" id="current-track-description">Experimental melodic fragments</div>
+                <div class="progress-container" id="progress-container">
+                    <div class="progress-bar" id="progress-bar"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- About Popup -->
+    <div class="about-overlay" id="about-overlay">
+        <div class="about-content">
+            <button class="close-btn" id="close-btn">
+                <i class="fas fa-times"></i>
+            </button>
+         
+            <div class="about-text">
+                <p>Sound artist from Piraeus exploring electronic textures, live coding, and experimental minimal sonic forms.</p>
+            </div>
+            <div class="social-links">
+                <a href="https://soundcloud.com/nicklevantis" class="social-link" target="_blank"><i class="fab fa-soundcloud"></i></a>
+                <a href="https://youtube.com/nicklevantis" class="social-link" target="_blank"><i class="fab fa-youtube"></i></a>
+                <a href="https://nicklevantis.svbtle.com" class="social-link" target="_blank"><i class="fas fa-pen-nib"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    <script>
+        // Audio context and elements
         let audioContext;
         let audioElement;
         let analyser;
@@ -528,4 +1120,78 @@
                 t+=1;
             }
             draw();
-        }</script></body></html>
+        }
+    </script>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const loadingScreen = document.getElementById("loading-screen");
+  const canvas = document.getElementById("logo-canvas");
+  const ctx = canvas.getContext("2d");
+
+  let W = canvas.width = canvas.offsetWidth;
+  let H = canvas.height = canvas.offsetHeight;
+
+  window.addEventListener("resize", () => {
+    W = canvas.width = canvas.offsetWidth;
+    H = canvas.height = canvas.offsetHeight;
+  });
+
+  // Detect colors from root variables
+  const bgColor = getComputedStyle(document.body).getPropertyValue('--bg-color').trim();
+  const textColor = getComputedStyle(document.body).getPropertyValue('--text-color').trim();
+  const accentColor = getComputedStyle(document.body).getPropertyValue('--accent-color').trim();
+
+  // Particle setup
+  const N = 60;
+  const particles = [];
+  for(let i=0;i<N;i++){
+    particles.push({
+      x: Math.random()*W,
+      y: Math.random()*H,
+      vx: (Math.random()-0.5)*5.2,
+      vy: (Math.random()-0.5)*5.2,
+      size: Math.random()*2 + 0.5,
+      alpha: Math.random()*0.5 + 0.5,
+      color: Math.random() < 0.7 ? textColor : accentColor
+    });
+  }
+
+  function draw() {
+    ctx.clearRect(0,0,W,H);
+
+    particles.forEach(p => {
+      // Movement
+      p.x += p.vx;
+      p.y += p.vy;
+
+      // Attraction to center
+      const dx = W/2 - p.x;
+      const dy = H/2 - p.y;
+      p.vx += dx*0.0006;
+      p.vy += dy*0.0006;
+
+      // Slight damping
+      p.vx *= 0.98;
+      p.vy *= 0.98;
+
+      ctx.fillStyle = p.color.includes('rgb') ? p.color : p.color; // simple fallback
+      ctx.globalAlpha = p.alpha;
+      ctx.beginPath();
+      ctx.arc(p.x,p.y,p.size,0,Math.PI*2);
+      ctx.fill();
+    });
+
+    requestAnimationFrame(draw);
+  }
+
+  draw();
+
+  // Fade out after animation
+  setTimeout(() => {
+    loadingScreen.style.opacity = 0;
+    setTimeout(() => loadingScreen.remove(), 800);
+  }, 2000);
+});
+</script>
+</body>
+</html>
