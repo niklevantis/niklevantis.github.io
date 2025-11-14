@@ -1,644 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nick Levantis | Music</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --bg-color: #000000;
-            --text-color: #ffffff;
-            --accent-color: #ffffff;
-            --ui-bg: rgba(255, 255, 255, 0.05);
-            --ui-bg-hover: rgba(255, 255, 255, 0.1);
-            --progress-bg: rgba(255, 255, 255, 0.1);
-            --border-color: rgba(255, 255, 255, 0.05);
-            --overlay-bg: rgba(0, 0, 0, 0.7);
-            --footer-color: #666;
-            --social-bg: rgba(255, 255, 255, 0.05);
-        }
-
-        body.day-theme {
-            --bg-color: #ffffff;
-            --text-color: #000000;
-            --accent-color: #000000;
-            --ui-bg: rgba(0, 0, 0, 0.05);
-            --ui-bg-hover: rgba(0, 0, 0, 0.1);
-            --progress-bg: rgba(0, 0, 0, 0.1);
-            --border-color: rgba(0, 0, 0, 0.05);
-            --overlay-bg: rgba(255, 255, 255, 0.7);
-            --footer-color: #999;
-            --social-bg: rgba(0, 0, 0, 0.05);
-        }
-
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            overflow-x: hidden;
-            min-height: 100vh;
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            transition: background-color 0.5s ease, color 0.5s ease;
-        }
-
-        #background-canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0;
-        }
-
-        #text-canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 1;
-            pointer-events: none;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem;
-            position: relative;
-            z-index: 2;
-            flex: 1;
-        }
-
-        header {
-            text-align: center;
-            margin-bottom: 2rem;
-            padding-top: 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        h1 {
-            font-size: 2.5rem;
-            font-weight: 300;
-            letter-spacing: 8px;
-            text-transform: uppercase;
-            color: var(--text-color);
-            flex: 1;
-            text-align: center;
-            transition: color 0.5s ease;
-            margin: 0 20px; /* Equal spacing from buttons */
-        }
-
-        .theme-toggle {
-            background: var(--ui-bg);
-            border: none;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: var(--text-color);
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 1.2rem;
-            flex-shrink: 0;
-        }
-
-        .theme-toggle:hover {
-            background: var(--ui-bg-hover);
-            transform: scale(1.05);
-        }
-
-        .about-btn {
-            background: var(--ui-bg);
-            border: none;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: var(--text-color);
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 1.2rem;
-            flex-shrink: 0;
-        }
-
-        .about-btn:hover {
-            background: var(--ui-bg-hover);
-            transform: scale(1.05);
-        }
-
-        .subtitle {
-            font-size: 1.2rem;
-            font-weight: 300;
-            letter-spacing: 3px;
-            color: var(--text-color);
-            opacity: 0.7;
-            text-align: center;
-            width: 100%;
-            margin-top: 0.5rem;
-            transition: color 0.5s ease;
-        }
-
-        .player-section {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 2rem;
-            margin-top: 5rem;
-        }
-
-        .track-player {
-            background: var(--ui-bg);
-            backdrop-filter: blur(20px);
-            border-radius: 50%;
-            padding: 2.5rem;
-            width: 400px;
-            height: 400px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
-            border: 1px solid var(--border-color);
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            transition: all 0.5s ease;
-        }
-
-        .track-info {
-            text-align: center;
-            margin-bottom: 2rem;
-        }
-
-        .track-title {
-            font-size: 1.8rem;
-            margin-bottom: 0.5rem;
-            font-weight: 300;
-            transition: color 0.2s ease;
-            color: var(--text-color);
-        }
-
-        .track-description {
-            font-size: 0.9rem;
-            transition: color 0.2s ease;
-            color: var(--text-color);
-            opacity: 0.8;
-        }
-
-        .audio-controls {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 2.5rem;
-            margin-bottom: 2rem;
-            position: relative;
-        }
-
-        .control-btn {
-            background: var(--ui-bg);
-            border: none;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 1.2rem;
-            color: var(--text-color);
-        }
-
-        .control-btn:hover {
-            background: var(--ui-bg-hover);
-            transform: scale(1.05);
-        }
-
-        .play-btn {
-            width: 70px;
-            height: 70px;
-            background: var(--ui-bg);
-            font-size: 1.6rem;
-            transition: all 0.3s ease;
-            border: none !important;
-            box-shadow: none !important;
-            color: var(--text-color);
-        }
-
-        .play-btn:hover {
-            background: var(--ui-bg-hover);
-        }
-
-        .progress-container {
-            width: 250px;
-            height: 4px;
-            background: var(--progress-bg);
-            border-radius: 2px;
-            margin-bottom: 0.5rem;
-            cursor: pointer;
-            transition: background 0.2s ease;
-        }
-
-        .progress-bar {
-            height: 100%;
-            border-radius: 2px;
-            width: 0%;
-            transition: width 0.1s, background 0.2s ease;
-            background: var(--text-color);
-        }
-
-        .time-display {
-            display: flex;
-            justify-content: space-between;
-            font-size: 0.8rem;
-            width: 250px;
-            transition: color 0.2s ease;
-            color: var(--text-color);
-        }
-
-        footer {
-            text-align: center;
-            padding: 2rem 0;
-            color: var(--footer-color);
-            font-size: 0.7rem;
-            border-top: 1px solid var(--border-color);
-            margin-top: auto;
-            width: 100%;
-            transition: all 0.5s ease;
-        }
-
-        footer a {
-            color: var(--footer-color);
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        footer a:hover {
-            color: var(--text-color);
-        }
-
-        /* About Popup Styles */
-        .about-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--overlay-bg);
-            backdrop-filter: blur(5px);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.5s ease;
-        }
-
-        .about-overlay.active {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .about-content {
-            background: var(--ui-bg);
-            backdrop-filter: blur(15px);
-            border-radius: 50%;
-            padding: 3rem;
-            width: 500px;
-            height: 500px;
-            border: 1px solid var(--border-color);
-            transform: scale(0.8) translateY(50px);
-            opacity: 0;
-            transition: all 0.5s ease 0.2s;
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            overflow: hidden;
-            font-weight: 300;
-        }
-
-        .about-overlay.active .about-content {
-            transform: scale(1) translateY(0);
-            opacity: 1;
-        }
-
-        .close-btn {
-            position: absolute;
-            top: 25px;
-            right: 25px;
-            background: var(--ui-bg);
-            border: none;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: var(--text-color);
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 1.2rem;
-            z-index: 10;
-        }
-
-        .close-btn:hover {
-            background: var(--ui-bg-hover);
-            transform: scale(1.05);
-        }
-
-        .about-title {
-            font-size: 2rem;
-            font-weight: 300;
-            margin-bottom: 1.5rem;
-            color: var(--text-color);
-        }
-
-        .about-text {
-            font-size: 1.5rem;
-            line-height: 1.6;
-            color: var(--text-color);
-            opacity: 0.8;
-            margin-bottom: 2rem;
-            max-width: 350px;
-        }
-
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            margin-top: 1.5rem;
-        }
-
-        .social-link {
-            background: var(--social-bg);
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: var(--text-color);
-            text-decoration: none;
-            transition: all 0.3s ease;
-            font-size: 1.2rem;
-        }
-
-        .social-link:hover {
-            background: var(--ui-bg-hover);
-            transform: translateY(-3px);
-        }
-
-        .creative-divider {
-            width: 80px;
-            height: 1px;
-            background: var(--border-color);
-            margin: 1.5rem auto;
-        }
-
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 2.2rem;
-                letter-spacing: 4px;
-            }
-
-            .container {
-                padding: 1rem;
-            }
-
-            .track-player {
-                width: 320px;
-                height: 320px;
-                padding: 2rem;
-            }
-
-            .progress-container, .time-display {
-                width: 220px;
-            }
-
-            .track-title {
-                font-size: 1.5rem;
-            }
-
-            .about-content {
-                width: 380px;
-                height: 380px;
-                padding: 2.5rem;
-            }
-
-            .about-title {
-                font-size: 1.8rem;
-            }
-
-            .about-text {
-                font-size: 0.95rem;
-                max-width: 300px;
-            }
-
-            .audio-controls {
-                gap: 2rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .track-player {
-                width: 280px;
-                height: 280px;
-                padding: 1.5rem;
-            }
-
-            .progress-container, .time-display {
-                width: 200px;
-            }
-
-            .about-content {
-                width: 320px;
-                height: 320px;
-                padding: 2rem;
-            }
-
-            .about-title {
-                font-size: 1.6rem;
-            }
-
-            .about-text {
-                font-size: 0.9rem;
-                max-width: 260px;
-            }
-
-            .audio-controls {
-                gap: 1.5rem;
-            }
-        }
-    </style>
-</head>
-<body>
-    <canvas id="background-canvas"></canvas>
-    <canvas id="text-canvas"></canvas>
-    
-    <div class="container">
-        <header>
-            <button class="theme-toggle" id="theme-toggle">
-                <i class="fas fa-moon"></i>
-            </button>
-            <h1>NICK LEVANTIS</h1>
-            <button class="about-btn" id="about-btn">
-                <i class="fas fa-info"></i>
-            </button>
-        </header>
-        <p class="subtitle">LANIAKEA SESSIONS</p>
-        
-        <section class="player-section">
-            <div class="track-player">
-                <div class="track-info">
-                    <h2 class="track-title" id="current-track-title">Select a track</h2>
-                    <p class="track-description" id="current-track-description">Use the player controls to navigate</p>
-                </div>
-                
-                <div class="audio-controls">
-                    <button class="control-btn" id="prev-btn">
-                        <i class="fas fa-chevron-left"></i>
-                    </button>
-                    <button class="control-btn play-btn" id="play-btn">
-                        <i class="fas fa-play"></i>
-                    </button>
-                    <button class="control-btn" id="next-btn">
-                        <i class="fas fa-chevron-right"></i>
-                    </button>
-                </div>
-                
-                <div class="progress-container" id="progress-container">
-                    <div class="progress-bar" id="progress-bar"></div>
-                </div>
-                
-                <div class="time-display">
-                    <span id="current-time">0:00</span>
-                    <span id="duration">0:00</span>
-                </div>
-            </div>
-        </section>
-    </div>
-
-    <footer>
-        <p>© Music and Web Design by Nick Levantis | <a href="https://nicklevantis.com" target="_blank">2025</a></p>
-    </footer>
-
-    <!-- About Popup -->
-    <div class="about-overlay" id="about-overlay">
-        <div class="about-content">
-            <button class="close-btn" id="close-btn">
-                <i class="fas fa-times"></i>
-            </button>
-         
-            <div class="about-text">
-                <p>Sound artist from Piraeus exploring electronic textures, live coding, and experimental minimal sonic forms.</p>
-               
-            </div>
-            <div class="social-links">
-                <a href="https://soundcloud.com/nicklevantis" class="social-link" target="_blank"><i class="fab fa-soundcloud"></i></a>
-                <a href="https://youtube.com/nicklevantis" class="social-link" target="_blank"><i class="fab fa-youtube"></i></a>
-                <a href="https://nicklevantis.svbtle.com" class="social-link" target="_blank"><i class="fas fa-pen-nib"></i></a>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        // Theme management
-        const themeToggle = document.getElementById('theme-toggle');
-        const themeIcon = themeToggle.querySelector('i');
-        const body = document.body;
-        
-        // Check if theme is stored in localStorage
-        const savedTheme = localStorage.getItem('theme');
-        
-        // Set initial theme based on saved preference or time of day
-        function setInitialTheme() {
-            if (savedTheme) {
-                if (savedTheme === 'day') {
-                    enableDayTheme();
-                } else {
-                    enableNightTheme();
-                }
-            } else {
-                // Set theme based on local time (day: 6am-6pm, night: otherwise)
-                const hour = new Date().getHours();
-                if (hour >= 6 && hour < 18) {
-                    enableDayTheme();
-                } else {
-                    enableNightTheme();
-                }
-            }
-        }
-        
-        function enableDayTheme() {
-            body.classList.add('day-theme');
-            themeIcon.classList.remove('fa-moon');
-            themeIcon.classList.add('fa-sun');
-            localStorage.setItem('theme', 'day');
-            
-            // Update WebGL visualization for day theme
-            if (window.dayThemeActive) {
-                window.dayThemeActive(true);
-            }
-            
-            // Reset reactive colors for day theme
-            updateReactiveColors(0);
-        }
-        
-        function enableNightTheme() {
-            body.classList.remove('day-theme');
-            themeIcon.classList.remove('fa-sun');
-            themeIcon.classList.add('fa-moon');
-            localStorage.setItem('theme', 'night');
-            
-            // Update WebGL visualization for night theme
-            if (window.dayThemeActive) {
-                window.dayThemeActive(false);
-            }
-            
-            // Reset reactive colors for night theme
-            updateReactiveColors(0);
-        }
-        
-        // Toggle theme on button click
-        themeToggle.addEventListener('click', function() {
-            if (body.classList.contains('day-theme')) {
-                enableNightTheme();
-            } else {
-                enableDayTheme();
-            }
-        });
-        
-        // Initialize theme
-        setInitialTheme();
-        
-        // Audio context and elements
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Nick Levantis | Music</title><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"><script async src="https://www.googletagmanager.com/gtag/js?id=G-91NQ6H9GNK"></script><script>function gtag(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],gtag("js",new Date),gtag("config","G-91NQ6H9GNK")</script><style>*{margin:0;padding:0;box-sizing:border-box}:root{--bg-color:#0a0a0a;--text-color:#ffffff;--secondary-text:#aaaaaa;--accent-color:#ffffff;--ui-bg:rgba(255, 255, 255, 0.05);--ui-bg-hover:rgba(255, 255, 255, 0.1);--player-bg:rgba(255, 255, 255, 0.03);--player-border:rgba(255, 255, 255, 0.05);--progress-bg:rgba(255, 255, 255, 0.1);--overlay-bg:rgba(0, 0, 0, 0.7);--circle-bg:#000000;--strand-base:255,255,255}body.light-mode{--bg-color:#f5f5f5;--text-color:#000000;--secondary-text:#555555;--accent-color:#000000;--ui-bg:rgba(0, 0, 0, 0.05);--ui-bg-hover:rgba(0, 0, 0, 0.1);--player-bg:rgba(0, 0, 0, 0.03);--player-border:rgba(0, 0, 0, 0.05);--progress-bg:rgba(0, 0, 0, 0.1);--overlay-bg:rgba(255, 255, 255, 0.7);--circle-bg:#ffffff;--strand-base:0,0,0}body{background-color:var(--bg-color);color:var(--text-color);font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;overflow:hidden;min-height:100vh;position:relative;display:flex;flex-direction:column;transition:background-color .5s ease,color .5s ease}#glcanvas{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0}.container{max-width:100%;margin:0;padding:0;position:relative;z-index:2;flex:1;display:flex;flex-direction:column;height:100vh}header{display:flex;justify-content:space-between;align-items:center;width:100%;padding:25px 30px;position:absolute;top:0;left:0;z-index:20}.header-left{display:flex;flex-direction:column;align-items:flex-start}.site-title{font-size:1.1rem;font-weight:400;letter-spacing:4px;text-transform:uppercase;color:var(--text-color);transition:color .5s ease;line-height:1}.subtitle{font-size:.8rem;font-weight:300;letter-spacing:3px;color:var(--secondary-text);transition:color .5s ease;margin-top:5px;line-height:1}.header-controls{display:flex;gap:12px;align-items:center}.about-btn,.theme-toggle{background:0 0;border:none;width:42px;height:42px;display:flex;justify-content:center;align-items:center;color:var(--text-color);cursor:pointer;transition:all .3s ease;font-size:1.1rem}.about-btn:hover,.theme-toggle:hover{transform:scale(1.1)}.center-player{position:fixed;bottom:70px;left:50%;transform:translateX(-50%);z-index:10;display:flex;flex-direction:column;align-items:center;gap:5px}.player-controls{display:flex;align-items:center;gap:10px}.control-btn{background:0 0;border:none;width:50px;height:50px;display:flex;justify-content:center;align-items:center;color:var(--text-color);cursor:pointer;transition:all .3s ease;font-size:1.3rem}.control-btn:hover{transform:scale(1.1)}.play-btn{width:60px;height:60px;font-size:1.6rem}.player-info{display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center}.track-title{font-size:1.2rem;font-weight:500;color:var(--text-color);line-height:1}.track-description{font-size:.7rem;color:var(--secondary-text)}.progress-container{width:250px;height:2px;background:var(--progress-bg);cursor:pointer}.progress-bar{height:100%;width:0%;background:var(--text-color);transition:width .1s}.about-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:var(--overlay-bg);backdrop-filter:blur(5px);display:flex;justify-content:center;align-items:center;z-index:1000;opacity:0;visibility:hidden;transition:all .5s ease}.about-overlay.active{opacity:1;visibility:visible}.about-content{background:0 0;border:none;padding:3rem;width:450px;height:auto;transform:scale(.8) translateY(50px);opacity:0;transition:all .5s ease .2s;position:relative;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center}.about-overlay.active .about-content{transform:scale(1) translateY(0);opacity:1}.close-btn{position:absolute;top:20px;right:20px;background:0 0;border:none;width:40px;height:40px;display:flex;justify-content:center;align-items:center;color:var(--text-color);cursor:pointer;transition:all .3s ease;font-size:1.2rem;z-index:10}.close-btn:hover{transform:scale(1.1)}.about-title{font-size:1.8rem;font-weight:300;margin-bottom:1.5rem;color:var(--text-color)}.about-text{font-size:1rem;line-height:1.6;color:var(--text-color);margin-bottom:2rem;max-width:350px}.social-links{display:flex;justify-content:center;gap:1.5rem;margin-top:1.5rem}.social-link{background:0 0;border:none;width:45px;height:45px;display:flex;justify-content:center;align-items:center;color:var(--text-color);text-decoration:none;transition:all .3s ease;font-size:1.2rem}.social-link:hover{transform:translateY(-3px)}.theme-toggle i{transition:transform .5s ease}body.light-mode .theme-toggle .fa-moon{display:none}body.light-mode .theme-toggle .fa-sun{display:block}.theme-toggle .fa-sun{display:none}body.light-mode .theme-toggle .fa-sun{display:block}body.light-mode .theme-toggle .fa-moon{display:none}@media (max-width:768px){header{padding:20px 25px}.site-title{font-size:1rem;letter-spacing:3px}.subtitle{font-size:.8rem}.center-player{bottom:30px;gap:12px}.player-controls{gap:15px}.control-btn{width:45px;height:45px;font-size:1.1rem}.play-btn{width:55px;height:55px;font-size:1.4rem}.track-title{font-size:1.2rem}.progress-container{width:200px}.about-content{width:350px;padding:2.5rem}.about-title{font-size:1.6rem}.about-text{font-size:.95rem;max-width:280px}}@media (max-width:480px){header{padding:15px 20px}.header-left{align-items:center}.site-title{font-size:.9rem}.subtitle{font-size:.75rem;text-align:center}.center-player{bottom:25px;gap:10px}.player-controls{gap:12px}.control-btn{width:40px;height:40px;font-size:1rem}.play-btn{width:50px;height:50px;font-size:1.2rem}.track-title{font-size:1.1rem}.track-description{font-size:.8rem}.progress-container{width:180px}.about-content{width:300px;padding:2rem}.about-title{font-size:1.4rem}.about-text{font-size:.9rem;max-width:240px}}</style></head><body><canvas id="glcanvas"></canvas><div class="container"><header><div class="header-left"><div class="site-title">NICK LEVANTIS</div><div class="subtitle">LANIAKEA SESSIONS</div></div><div class="header-controls"><button class="theme-toggle" id="theme-toggle"><i class="fas fa-moon"></i><i class="fas fa-sun"></i></button><button class="about-btn" id="about-btn"><i class="fas fa-info"></i></button></div></header><div class="center-player"><div class="player-controls"><button class="control-btn" id="prev-btn"><i class="fas fa-step-backward"></i></button><button class="control-btn play-btn" id="play-btn"><i class="fas fa-play"></i></button><button class="control-btn" id="next-btn"><i class="fas fa-step-forward"></i></button></div><div class="player-info"><div class="track-title" id="current-track-title">Fragments</div><div class="track-description" id="current-track-description">Experimental melodic fragments</div><div class="progress-container" id="progress-container"><div class="progress-bar" id="progress-bar"></div></div></div></div></div><div class="about-overlay" id="about-overlay"><div class="about-content"><button class="close-btn" id="close-btn"><i class="fas fa-times"></i></button><div class="about-text"><p>Sound artist from Piraeus exploring electronic textures, live coding, and experimental minimal sonic forms.</p></div><div class="social-links"><a href="https://soundcloud.com/nicklevantis" class="social-link" target="_blank"><i class="fab fa-soundcloud"></i></a><a href="https://youtube.com/nicklevantis" class="social-link" target="_blank"><i class="fab fa-youtube"></i></a><a href="https://nicklevantis.svbtle.com" class="social-link" target="_blank"><i class="fas fa-pen-nib"></i></a></div></div></div><script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script><script>// Audio context and elements
         let audioContext;
         let audioElement;
         let analyser;
         let source;
         let isPlaying = false;
-        let currentTrack = null;
+        let currentTrackIndex = 0;
         let audioData = new Uint8Array(256);
-        let audioIntensity = 0;
+        let preloadedAudio = null; // For preloading next track
         
-        // Track data
+        // Track data with your audio URLs
         const tracks = [
             {
                 id: 1,
@@ -670,20 +40,6 @@
             }
         ];
         
-        // Set canvas dimensions
-        function resizeCanvas() {
-            const bgCanvas = document.getElementById('background-canvas');
-            const textCanvas = document.getElementById('text-canvas');
-            
-            bgCanvas.width = window.innerWidth;
-            bgCanvas.height = window.innerHeight;
-            textCanvas.width = window.innerWidth;
-            textCanvas.height = window.innerHeight;
-        }
-        
-        resizeCanvas();
-        window.addEventListener('resize', resizeCanvas);
-        
         // Initialize audio context
         function initAudio() {
             if (audioContext) return;
@@ -692,6 +48,7 @@
                 audioContext = new (window.AudioContext || window.webkitAudioContext)();
                 audioElement = new Audio();
                 audioElement.crossOrigin = "anonymous";
+                audioElement.volume = 0.7;
                 
                 // Create analyser node
                 analyser = audioContext.createAnalyser();
@@ -707,139 +64,144 @@
                 audioElement.addEventListener('timeupdate', updateProgressBar);
                 audioElement.addEventListener('ended', handleTrackEnd);
                 
+                // Load the first track
+                loadTrack(currentTrackIndex);
+                
                 console.log("Audio initialized successfully");
             } catch (error) {
                 console.error("Error initializing audio:", error);
             }
         }
         
+        // Load a track
+        function loadTrack(trackIndex) {
+            const track = tracks[trackIndex];
+            audioElement.src = track.url;
+            document.getElementById('current-track-title').textContent = track.title;
+            document.getElementById('current-track-description').textContent = track.description;
+            
+            // Reset progress bar
+            document.getElementById('progress-bar').style.width = '0%';
+            
+            // Preload the audio
+            audioElement.load();
+            
+            // Preload next track
+            preloadNextTrack(trackIndex);
+        }
+        
+        // Preload the next track for seamless playback
+        function preloadNextTrack(currentTrackIndex) {
+            const nextTrackIndex = (currentTrackIndex + 1) % tracks.length;
+            const nextTrack = tracks[nextTrackIndex];
+            
+            // If we already have a preloaded audio element, clean it up
+            if (preloadedAudio) {
+                preloadedAudio.src = '';
+                preloadedAudio = null;
+            }
+            
+            // Create and preload next track
+            preloadedAudio = new Audio();
+            preloadedAudio.src = nextTrack.url;
+            preloadedAudio.preload = 'auto';
+            preloadedAudio.load();
+            
+            console.log(`Preloaded next track: ${nextTrack.title}`);
+        }
+        
         // Update reactive text colors based on audio intensity
         function updateReactiveColors(intensity) {
-            const isDay = body.classList.contains('day-theme');
-            
-            // For day theme, we want black text that gets slightly lighter with intensity
-            // For night theme, we want white text that gets slightly darker with intensity
-            let colorValue;
-            if (isDay) {
-                // Day theme: Start with black (0) and go slightly lighter
-                colorValue = Math.floor(255 * intensity * 0.3); // Max 76 (dark gray)
-            } else {
-                // Night theme: Start with white (255) and go slightly darker  
-                colorValue = Math.floor(255 * (1 - intensity * 0.3)); // Min 178 (light gray)
-            }
+            const colorValue = Math.floor(255 * Math.pow((1 - intensity), 2));
             
             // Apply to text elements
             const trackTitle = document.getElementById('current-track-title');
             const trackDesc = document.getElementById('current-track-description');
-            const timeDisplay = document.querySelectorAll('.time-display span');
             const controlBtns = document.querySelectorAll('.control-btn');
-            const playBtn = document.getElementById('play-btn');
             const progressBar = document.getElementById('progress-bar');
             const progressContainer = document.getElementById('progress-container');
             
-            // For day theme, ensure text is always dark enough to be readable
-            const finalColorValue = isDay ? Math.max(colorValue, 30) : colorValue;
+            // For dark theme - lighter with more intensity, for light theme - darker with more intensity
+            const isLightMode = document.body.classList.contains('light-mode');
+            const invertedColorValue = isLightMode ? 255 - colorValue : colorValue;
             
-            if (trackTitle) trackTitle.style.color = `rgb(${finalColorValue}, ${finalColorValue}, ${finalColorValue})`;
-            if (trackDesc) trackDesc.style.color = `rgb(${finalColorValue}, ${finalColorValue}, ${finalColorValue})`;
+            if (trackTitle) trackTitle.style.color = `rgb(${invertedColorValue}, ${invertedColorValue}, ${invertedColorValue})`;
+            if (trackDesc) trackDesc.style.color = `rgb(${invertedColorValue}, ${invertedColorValue}, ${invertedColorValue})`;
             
-            timeDisplay.forEach(el => {
-                el.style.color = `rgb(${finalColorValue}, ${finalColorValue}, ${finalColorValue})`;
+            // Make control buttons reactive
+            controlBtns.forEach(btn => {
+                btn.style.color = `rgb(${invertedColorValue}, ${invertedColorValue}, ${invertedColorValue})`;
             });
-            
-            // Make play button reactive - change background based on intensity
-            if (playBtn) {
-                let bgValue;
-                if (isDay) {
-                    // Day theme: Light background that gets slightly darker
-                    bgValue = Math.floor(255 * (1 - intensity * 0.5));
-                } else {
-                    // Night theme: Dark background that gets slightly lighter
-                    bgValue = Math.floor(255 * intensity * 0.5);
-                }
-                playBtn.style.background = `rgba(${bgValue}, ${bgValue}, ${bgValue}, ${0.1 + intensity * 0.2})`;
-                playBtn.style.color = `rgb(${finalColorValue}, ${finalColorValue}, ${finalColorValue})`;
-            }
             
             // Make progress bar reactive
             if (progressBar) {
-                progressBar.style.background = `rgb(${finalColorValue}, ${finalColorValue}, ${finalColorValue})`;
+                progressBar.style.background = `rgb(${invertedColorValue}, ${invertedColorValue}, ${invertedColorValue})`;
             }
             
             // Make progress container reactive
             if (progressContainer) {
-                let containerBgValue;
-                if (isDay) {
-                    // Day theme: Light gray that gets slightly darker
-                    containerBgValue = Math.floor(255 * (0.7 - intensity * 0.2));
-                } else {
-                    // Night theme: Dark gray that gets slightly lighter
-                    containerBgValue = Math.floor(255 * (0.1 + intensity * 0.2));
-                }
-                progressContainer.style.background = `rgba(${containerBgValue}, ${containerBgValue}, ${containerBgValue}, 0.3)`;
+                progressContainer.style.background = `rgba(${invertedColorValue}, ${invertedColorValue}, ${invertedColorValue}, 0.2)`;
             }
-            
-            controlBtns.forEach(btn => {
-                if (btn.id !== 'play-btn') {
-                    btn.style.color = `rgb(${finalColorValue}, ${finalColorValue}, ${finalColorValue})`;
-                }
-            });
         }
         
         // Play/pause track functionality
-        function toggleTrack(trackId) {
+        async function togglePlay() {
+            // Initialize audio if not already done
             initAudio();
             
             // If audio context is suspended, resume it
-            if (audioContext && audioContext.state === 'suspended') {
-                audioContext.resume();
+            if (audioContext.state === 'suspended') {
+                await audioContext.resume();
             }
             
-            // If a different track is selected
-            if (currentTrack !== trackId) {
-                // Stop current track
-                if (isPlaying) {
-                    audioElement.pause();
-                    updatePlayButton(false);
-                }
-                
-                // Load new track
-                const track = tracks.find(t => t.id === trackId);
-                audioElement.src = track.url;
-                currentTrack = trackId;
-                
-                // Update UI
-                document.getElementById('current-track-title').textContent = track.title;
-                document.getElementById('current-track-description').textContent = track.description;
-                document.getElementById('duration').textContent = formatTime(track.duration);
-                
-                // Play the track
-                audioElement.play()
-                    .then(() => {
-                        isPlaying = true;
-                        updatePlayButton(true);
-                    })
-                    .catch(error => {
-                        console.error("Error playing audio:", error);
-                    });
+            // Toggle play/pause
+            if (isPlaying) {
+                audioElement.pause();
+                isPlaying = false;
+                updatePlayButton(false);
             } else {
-                // Toggle play/pause for current track
-                if (isPlaying) {
-                    audioElement.pause();
-                    updatePlayButton(false);
-                } else {
-                    audioElement.play()
-                        .then(() => {
-                            isPlaying = true;
-                            updatePlayButton(true);
-                        })
-                        .catch(error => {
-                            console.error("Error playing audio:", error);
-                        });
+                try {
+                    await audioElement.play();
+                    isPlaying = true;
+                    updatePlayButton(true);
+                    console.log("Audio playback started successfully");
+                } catch (error) {
+                    console.error("Error playing audio:", error);
                 }
             }
+        }
+        
+        // Change track functionality
+        async function changeTrack(direction) {
+            // Initialize audio if not already done
+            initAudio();
             
-            isPlaying = !isPlaying;
+            // Stop current track if playing
+            if (isPlaying) {
+                audioElement.pause();
+                isPlaying = false;
+            }
+            
+            // Calculate new track index
+            if (direction === 'next') {
+                currentTrackIndex = (currentTrackIndex + 1) % tracks.length;
+            } else {
+                currentTrackIndex = (currentTrackIndex - 1 + tracks.length) % tracks.length;
+            }
+            
+            // Load new track
+            loadTrack(currentTrackIndex);
+            
+            // Play the track if it was playing before
+            if (isPlaying) {
+                try {
+                    await audioElement.play();
+                    isPlaying = true;
+                    updatePlayButton(true);
+                } catch (error) {
+                    console.error("Error playing audio:", error);
+                }
+            }
         }
         
         // Update play button appearance
@@ -855,26 +217,13 @@
         
         // Update progress bar
         function updateProgressBar() {
-            if (!audioElement || !currentTrack) return;
+            if (!audioElement) return;
             
             const progress = (audioElement.currentTime / audioElement.duration) * 100;
             const progressBar = document.getElementById('progress-bar');
             if (progressBar) {
                 progressBar.style.width = `${progress}%`;
             }
-            
-            // Update time display
-            const currentTimeEl = document.getElementById('current-time');
-            if (currentTimeEl) {
-                currentTimeEl.textContent = formatTime(audioElement.currentTime);
-            }
-        }
-        
-        // Format time in MM:SS
-        function formatTime(seconds) {
-            const mins = Math.floor(seconds / 60);
-            const secs = Math.floor(seconds % 60);
-            return `${mins}:${secs < 10 ? '0' : ''}${secs}`;
         }
         
         // Handle track end
@@ -883,312 +232,300 @@
             updatePlayButton(false);
             
             // Auto-play next track
-            const currentIndex = tracks.findIndex(t => t.id === currentTrack);
-            const nextIndex = (currentIndex + 1) % tracks.length;
-            toggleTrack(tracks[nextIndex].id);
+            changeTrack('next');
+        }
+        
+        // Set theme based on local time
+        function setThemeByTime() {
+            const hour = new Date().getHours();
+            const isDayTime = hour >= 6 && hour < 18; // 6 AM to 6 PM is considered daytime
+            
+            // Check if user has a saved preference first
+            const savedTheme = localStorage.getItem('theme');
+            
+            if (!savedTheme) {
+                // Only set by time if no user preference is saved
+                if (isDayTime) {
+                    document.body.classList.add('light-mode');
+                } else {
+                    document.body.classList.remove('light-mode');
+                }
+            }
+        }
+        
+        // Toggle theme function
+        function toggleTheme() {
+            document.body.classList.toggle('light-mode');
+            
+            // Save preference to localStorage
+            const isLightMode = document.body.classList.contains('light-mode');
+            localStorage.setItem('theme', isLightMode ? 'light' : 'dark');
         }
         
         // Set up event listeners
-        document.getElementById('play-btn').addEventListener('click', function() {
-            if (currentTrack) {
-                toggleTrack(currentTrack);
-            } else {
-                // If no track is selected, play the first one
-                toggleTrack(1);
-            }
-        });
-        
-        document.getElementById('prev-btn').addEventListener('click', function() {
-            if (currentTrack) {
-                const currentIndex = tracks.findIndex(t => t.id === currentTrack);
-                const prevIndex = (currentIndex - 1 + tracks.length) % tracks.length;
-                toggleTrack(tracks[prevIndex].id);
-            } else {
-                toggleTrack(1);
-            }
-        });
-        
-        document.getElementById('next-btn').addEventListener('click', function() {
-            if (currentTrack) {
-                const currentIndex = tracks.findIndex(t => t.id === currentTrack);
-                const nextIndex = (currentIndex + 1) % tracks.length;
-                toggleTrack(tracks[nextIndex].id);
-            } else {
-                toggleTrack(1);
-            }
-        });
-        
-        document.getElementById('progress-container').addEventListener('click', function(e) {
-            if (!currentTrack) return;
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set theme based on time of day
+            setThemeByTime();
             
-            const rect = this.getBoundingClientRect();
-            const clickX = e.clientX - rect.left;
-            const width = rect.width;
-            const percentage = clickX / width;
+            // Initialize audio immediately
+            initAudio();
             
-            audioElement.currentTime = percentage * audioElement.duration;
-        });
-        
-        // About popup functionality
-        const aboutBtn = document.getElementById('about-btn');
-        const aboutOverlay = document.getElementById('about-overlay');
-        const closeBtn = document.getElementById('close-btn');
-        
-        aboutBtn.addEventListener('click', function() {
-            aboutOverlay.classList.add('active');
-        });
-        
-        closeBtn.addEventListener('click', function() {
-            aboutOverlay.classList.remove('active');
-        });
-        
-        aboutOverlay.addEventListener('click', function(e) {
-            if (e.target === aboutOverlay) {
+            // Check for saved theme preference
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'light') {
+                document.body.classList.add('light-mode');
+            }
+            
+            document.getElementById('play-btn').addEventListener('click', togglePlay);
+            
+            document.getElementById('prev-btn').addEventListener('click', function() {
+                changeTrack('prev');
+            });
+            
+            document.getElementById('next-btn').addEventListener('click', function() {
+                changeTrack('next');
+            });
+            
+            document.getElementById('progress-container').addEventListener('click', function(e) {
+                if (!audioElement) return;
+                
+                const rect = this.getBoundingClientRect();
+                const clickX = e.clientX - rect.left;
+                const width = rect.width;
+                const percentage = clickX / width;
+                
+                audioElement.currentTime = percentage * audioElement.duration;
+            });
+            
+            // Theme toggle functionality
+            document.getElementById('theme-toggle').addEventListener('click', toggleTheme);
+            
+            // About popup functionality
+            const aboutBtn = document.getElementById('about-btn');
+            const aboutOverlay = document.getElementById('about-overlay');
+            const closeBtn = document.getElementById('close-btn');
+            
+            aboutBtn.addEventListener('click', function() {
+                aboutOverlay.classList.add('active');
+            });
+            
+            closeBtn.addEventListener('click', function() {
                 aboutOverlay.classList.remove('active');
-            }
+            });
+            
+            aboutOverlay.addEventListener('click', function(e) {
+                if (e.target === aboutOverlay) {
+                    aboutOverlay.classList.remove('active');
+                }
+            });
+            
+            // Initialize WebGL visualization
+            initWebGLVisualization();
         });
         
-        // Initialize visualization
-        initWebGLVisualization();
-        initTextCanvas();
-        
-        // Auto-select first track
-        toggleTrack(1);
-        
-        // Enhanced WebGL Visualization with much darker day theme
+        /* ===== Audio Reactive WebGL Strands ===== */
         function initWebGLVisualization() {
-            const canvas = document.getElementById('background-canvas');
-            const gl = canvas.getContext('webgl');
-            if (!gl) {
-                console.warn('WebGL not available');
-                return;
+            const canvas = document.getElementById("glcanvas");
+            const gl = canvas.getContext("webgl2", {alpha:false});
+            let W=0,H=0;
+
+            function resize(){
+                W = canvas.width = window.innerWidth * window.devicePixelRatio;
+                H = canvas.height = window.innerHeight * window.devicePixelRatio;
+                gl.viewport(0,0,W,H);
             }
-            
-            function resize() {
-                canvas.width = window.innerWidth;
-                canvas.height = window.innerHeight;
-                gl.viewport(0, 0, canvas.width, canvas.height);
-            }
-            
-            window.addEventListener('resize', resize);
             resize();
-            
-            const vs = `
-                attribute vec2 a;
-                void main() {
-                    gl_Position = vec4(a, 0., 1.);
-                }
+            window.addEventListener("resize",resize);
+
+            const vs = `#version 300 es
+            in vec2 a;
+            in vec4 c;
+            out vec4 vc;
+            uniform vec2 r;
+            void main(){
+                vec2 p=a/r*2.0-1.0;
+                gl_Position=vec4(p.x,-p.y,0,1);
+                vc=c;
+            }`;
+            const fs = `#version 300 es
+            precision highp float;
+            in vec4 vc;
+            out vec4 o;
+            void main(){o=vc;}
             `;
-            
-            const fs = `
-                precision mediump float;
-                uniform vec2 res;
-                uniform float t;
-                uniform float audioIntensity;
-                uniform float bassIntensity;
-                uniform float midIntensity;
-                uniform float highIntensity;
-                uniform float isDayTheme;
-                
-                float hash(vec2 p) {
-                    return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453123);
-                }
-                
-                float noise(vec2 p) {
-                    vec2 i = floor(p);
-                    vec2 f = fract(p);
-                    vec2 u = f * f * (3.0 - 2.0 * f);
-                    return mix(mix(hash(i + vec2(0.0, 0.0)), hash(i + vec2(1.0, 0.0)), u.x),
-                           mix(hash(i + vec2(0.0, 1.0)), hash(i + vec2(1.0, 1.0)), u.x), u.y);
-                }
-                
-                void main() {
-                    vec2 uv = (gl_FragCoord.xy * 2.0 - res) / min(res.x, res.y);
-                    float r = length(uv);
-                    float a = atan(uv.y, uv.x);
-                    
-                    // Enhanced audio-reactive strands
-                    float n1 = noise(uv * 3.0 + t * 0.07);
-                    float n2 = noise(uv * 5.0 - t * 0.05);
-                    float n3 = noise(uv * 7.0 + t * 0.03);
-                    
-                    // Create multiple strands with different audio responses
-                    float strand1 = sin(6.0 * r - a * 4.0 + t * 1.2 + n1 * 2.0 + bassIntensity * 3.0);
-                    float strand2 = sin(8.0 * r + a * 3.0 - t * 0.8 + n2 * 2.5 + midIntensity * 2.5);
-                    float strand3 = sin(10.0 * r - a * 5.0 + t * 1.5 + n3 * 3.0 + highIntensity * 2.0);
-                    
-                    // Combine strands with different weights based on frequency bands
-                    float swirl = (strand1 * 0.4 + strand2 * 0.35 + strand3 * 0.25);
-                    
-                    float core = exp(-r * 4.0) * (1.0 + audioIntensity * 0.8);
-                    float rings = smoothstep(0.35, 0.05, abs(swirl)) * core;
-                    
-                    // Make strands more pronounced and reactive
-                    rings *= (1.0 + audioIntensity * 1.5);
-                    
-                    vec3 base = vec3(0.0);
-                    vec3 col;
-                    
-                    if (isDayTheme > 0.5) {
-                        // Day theme - much darker colors for better visibility on white
-                        col = mix(vec3(0.0, 0.0, 0.0), vec3(0.08, 0.08, 0.1), pow(rings, 0.9));
-                        
-                        // Increase contrast for day theme
-                        rings *= 1.5;
-                        core *= 1.3;
-                    } else {
-                        // Night theme - original colors
-                        col = mix(vec3(0.02, 0.01, 0.005), vec3(1.0, 1.0, 1.0), pow(rings, 0.7));
-                    }
-                    
-                    col *= 0.8 + 0.6 * core;
-                    
-                    // Enhanced audio reactivity with frequency separation
-                    float bassEffect = bassIntensity * 0.6;
-                    float midEffect = midIntensity * 0.4;
-                    float highEffect = highIntensity * 0.3;
-                    
-                    // Adjust audio reactivity based on theme
-                    if (isDayTheme > 0.5) {
-                        // For day theme, use very subtle dark colors
-                        col += vec3(bassEffect * 0.05, midEffect * 0.03, highEffect * 0.08);
-                        col += vec3(bassEffect * 0.02, midEffect * 0.04, highEffect * 0.02);
-                        
-                        // Boost the effect slightly for visibility
-                        col *= 1.1;
-                    } else {
-                        // For night theme, original audio reactivity
-                        col += vec3(bassEffect * 0.5, midEffect * 0.3, highEffect * 0.7);
-                        col += vec3(bassEffect * 0.2, midEffect * 0.4, highEffect * 0.2);
-                    }
-                    
-                    // Add pulsing effect based on audio intensity
-                    float pulse = sin(t * 2.0 + audioIntensity * 5.0) * 0.1 + 1.0;
-                    col *= pulse;
-                    
-                    gl_FragColor = vec4(col, clamp(rings + core * 0.25, 0.0, 1.0));
-                }
-            `;
-            
-            function compile(src, type) {
-                const s = gl.createShader(type);
-                gl.shaderSource(s, src);
+
+            function sh(type,src){
+                let s=gl.createShader(type);
+                gl.shaderSource(s,src);
                 gl.compileShader(s);
-                if (!gl.getShaderParameter(s, gl.COMPILE_STATUS)) console.error(gl.getShaderInfoLog(s));
+                if(!gl.getShaderParameter(s,gl.COMPILE_STATUS))
+                    console.log(gl.getShaderInfoLog(s));
                 return s;
             }
-            
             const prog = gl.createProgram();
-            gl.attachShader(prog, compile(vs, gl.VERTEX_SHADER));
-            gl.attachShader(prog, compile(fs, gl.FRAGMENT_SHADER));
+            gl.attachShader(prog,sh(gl.VERTEX_SHADER,vs));
+            gl.attachShader(prog,sh(gl.FRAGMENT_SHADER,fs));
             gl.linkProgram(prog);
             gl.useProgram(prog);
-            
-            const aLoc = gl.getAttribLocation(prog, 'a');
-            const buf = gl.createBuffer();
-            gl.bindBuffer(gl.ARRAY_BUFFER, buf);
-            gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 1, -1, -1, 1, 1, 1]), gl.STATIC_DRAW);
-            gl.enableVertexAttribArray(aLoc);
-            gl.vertexAttribPointer(aLoc, 2, gl.FLOAT, false, 0, 0);
-            
-            const resLoc = gl.getUniformLocation(prog, 'res');
-            const tLoc = gl.getUniformLocation(prog, 't');
-            const audioIntensityLoc = gl.getUniformLocation(prog, 'audioIntensity');
-            const bassIntensityLoc = gl.getUniformLocation(prog, 'bassIntensity');
-            const midIntensityLoc = gl.getUniformLocation(prog, 'midIntensity');
-            const highIntensityLoc = gl.getUniformLocation(prog, 'highIntensity');
-            const isDayThemeLoc = gl.getUniformLocation(prog, 'isDayTheme');
-            
-            let start = performance.now();
-            
-            // Expose dayThemeActive function to update WebGL theme
-            window.dayThemeActive = function(isDay) {
-                gl.useProgram(prog);
-                gl.uniform1f(isDayThemeLoc, isDay ? 1.0 : 0.0);
-            };
-            
-            function animate() {
-                // Get audio data if available
-                let avgLevel = 0;
-                let bassLevel = 0;
-                let midLevel = 0;
-                let highLevel = 0;
-                
+
+            const posB = gl.createBuffer();
+            const colB = gl.createBuffer();
+            const vao = gl.createVertexArray();
+            gl.bindVertexArray(vao);
+
+            let lp = gl.getAttribLocation(prog,"a");
+            let lc = gl.getAttribLocation(prog,"c");
+            gl.bindBuffer(gl.ARRAY_BUFFER,posB);
+            gl.enableVertexAttribArray(lp);
+            gl.vertexAttribPointer(lp,2,gl.FLOAT,false,0,0);
+            gl.bindBuffer(gl.ARRAY_BUFFER,colB);
+            gl.enableVertexAttribArray(lc);
+            gl.vertexAttribPointer(lc,4,gl.FLOAT,false,0,0);
+
+            let ur = gl.getUniformLocation(prog,"r");
+
+            gl.enable(gl.BLEND);
+            gl.blendFunc(gl.SRC_ALPHA,gl.ONE_MINUS_SRC_ALPHA);
+
+            const N = 140;
+            const S = 80;
+            let strands=[];
+            for(let i=0;i<N;i++){
+                strands.push({
+                    ang:(i/N)*Math.PI*2,
+                    s1:0.3+Math.random()*0.2,
+                    s2:0.02+Math.random()*0.02,
+                    seed:Math.random()*1000,
+                    // Audio reactive properties
+                    bassMultiplier: 0.5 + Math.random() * 1.5,
+                    midMultiplier: 0.5 + Math.random() * 1.5,
+                    highMultiplier: 0.5 + Math.random() * 1.5
+                });
+            }
+
+            let t=0;
+            function draw(){
+                requestAnimationFrame(draw);
+
+                const light = document.body.classList.contains("light-mode");
+                gl.clearColor(light?1:0.03, light?1:0.03, light?1:0.04,1);
+                gl.clear(gl.COLOR_BUFFER_BIT);
+
+                // Get audio data and calculate frequency bands
+                let bassLevel = 0, midLevel = 0, highLevel = 0;
                 if (analyser && isPlaying) {
                     analyser.getByteFrequencyData(audioData);
                     
-                    // Calculate different frequency bands
-                    const bassRange = Math.floor(audioData.length * 0.1); // 0-10%
-                    const midRange = Math.floor(audioData.length * 0.5); // 10-50%
-                    const highRange = Math.floor(audioData.length * 0.9); // 50-90%
+                    // Split frequency spectrum into bass, mid, high
+                    const bassRange = Math.floor(audioData.length * 0.1);
+                    const midRange = Math.floor(audioData.length * 0.5);
+                    const highRange = Math.floor(audioData.length * 0.9);
                     
                     for (let i = 0; i < audioData.length; i++) {
-                        avgLevel += audioData[i];
-                        
-                        if (i < bassRange) {
-                            bassLevel += audioData[i];
-                        } else if (i < midRange) {
-                            midLevel += audioData[i];
-                        } else if (i < highRange) {
-                            highLevel += audioData[i];
-                        }
+                        if (i < bassRange) bassLevel += audioData[i];
+                        else if (i < midRange) midLevel += audioData[i];
+                        else if (i < highRange) highLevel += audioData[i];
                     }
                     
-                    avgLevel /= audioData.length;
                     bassLevel /= bassRange;
                     midLevel /= (midRange - bassRange);
                     highLevel /= (highRange - midRange);
+                    
+                    // Normalize to 0-1 range
+                    bassLevel /= 255;
+                    midLevel /= 255;
+                    highLevel /= 255;
                 } else {
-                    avgLevel = Math.max(0, avgLevel * 0.9 - 2);
-                    bassLevel = Math.max(0, bassLevel * 0.9 - 2);
-                    midLevel = Math.max(0, midLevel * 0.9 - 2);
-                    highLevel = Math.max(0, highLevel * 0.9 - 2);
+                    // Subtle movement when no audio is playing
+                    const time = Date.now() * 0.001;
+                    bassLevel = Math.sin(time * 0.5) * 0.1 + 0.1;
+                    midLevel = Math.sin(time * 0.7) * 0.1 + 0.1;
+                    highLevel = Math.sin(time * 0.9) * 0.1 + 0.1;
                 }
-                
-                const normalizedAudio = avgLevel / 255;
-                const normalizedBass = bassLevel / 255;
-                const normalizedMid = midLevel / 255;
-                const normalizedHigh = highLevel / 255;
-                
-                // Update reactive colors
-                updateReactiveColors(normalizedAudio);
-                
-                gl.uniform2f(resLoc, canvas.width, canvas.height);
-                gl.uniform1f(tLoc, (performance.now() - start) / 1000);
-                gl.uniform1f(audioIntensityLoc, normalizedAudio);
-                gl.uniform1f(bassIntensityLoc, normalizedBass);
-                gl.uniform1f(midIntensityLoc, normalizedMid);
-                gl.uniform1f(highIntensityLoc, normalizedHigh);
-                gl.uniform1f(isDayThemeLoc, body.classList.contains('day-theme') ? 1.0 : 0.0);
-                gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
-                requestAnimationFrame(animate);
+
+                // Update reactive colors based on audio
+                const overallIntensity = (bassLevel + midLevel + highLevel) / 3;
+                updateReactiveColors(overallIntensity);
+
+                let cx=W/2, cy=H/2, R=Math.min(W,H)*0.4;
+                let pos = [], col=[];
+
+                for(let i=0;i<N;i++){
+                    let st = strands[i];
+                    for(let j=0;j<S;j++){
+                        let p=j/(S-1);
+                        let r=R*p;
+                        
+                        // Audio-reactive movement
+                        const bassEffect = bassLevel * st.bassMultiplier;
+                        const midEffect = midLevel * st.midMultiplier;
+                        const highEffect = highLevel * st.highMultiplier;
+                        
+                        let slow=Math.sin(t*0.005+st.seed)*st.s1*0.3 * (1 + bassEffect * 2);
+                        let micro=Math.sin(t*st.s2+j*0.1+st.seed)*0.08 * (1 + midEffect * 3);
+                        let highFreq=Math.sin(t*0.02+j*0.05+st.seed)*0.04 * (1 + highEffect * 4);
+                        
+                        let a=st.ang + (slow + micro + highFreq)*p;
+
+                        let x=cx+Math.cos(a)*r;
+                        let y=cy+Math.sin(a)*r;
+
+                        // Audio-reactive thickness
+                        let th = (1-p)*0.9*(window.devicePixelRatio*0.7) * (1 + overallIntensity * 0.8);
+                        let ox=Math.cos(a+Math.PI/2)*th;
+                        let oy=Math.sin(a+Math.PI/2)*th;
+
+                        pos.push(x-ox,y-oy, x+ox,y+oy);
+
+                        // Audio-reactive colors
+                        const light = document.body.classList.contains("light-mode");
+                        let Rc, Gc, Bc;
+                        
+                        if (isPlaying) {
+                            // Dynamic colors based on frequency bands
+                            if (light) {
+                                Rc = 0.1 + bassLevel * 0.4;
+                                Gc = 0.1 + midLevel * 0.4;
+                                Bc = 0.1 + highLevel * 0.4;
+                            } else {
+                                Rc = 0.6 + bassLevel * 0.4;
+                                Gc = 0.7 + midLevel * 0.3;
+                                Bc = 0.8 + highLevel * 0.2;
+                            }
+                        } else {
+                            // Default colors when no audio
+                            if (light) {
+                                Rc = 0;
+                                Gc = 0;
+                                Bc = 0;
+                            } else {
+                                Rc = 0.9;
+                                Gc = 0.95;
+                                Bc = 1.0;
+                            }
+                        }
+                        
+                        // Audio-reactive alpha
+                        let A = 0.35*(1-p) * (1 + overallIntensity * 0.5);
+                        col.push(Rc,Gc,Bc,A, Rc,Gc,Bc,A);
+                    }
+                }
+
+                gl.bindBuffer(gl.ARRAY_BUFFER,posB);
+                gl.bufferData(gl.ARRAY_BUFFER,new Float32Array(pos),gl.DYNAMIC_DRAW);
+                gl.bindBuffer(gl.ARRAY_BUFFER,colB);
+                gl.bufferData(gl.ARRAY_BUFFER,new Float32Array(col),gl.DYNAMIC_DRAW);
+
+                gl.useProgram(prog);
+                gl.uniform2f(ur,W,H);
+
+                let offset=0, count=S*2;
+                for(let i=0;i<N;i++){
+                    gl.drawArrays(gl.TRIANGLE_STRIP, offset, count);
+                    offset+=count;
+                }
+
+                t+=1;
             }
-            
-            animate();
-        }
-        
-        // Text canvas from reference site - modified to not show text
-        function initTextCanvas() {
-            const tCan = document.getElementById('text-canvas');
-            
-            function resize() {
-                tCan.width = window.innerWidth;
-                tCan.height = window.innerHeight;
-            }
-            
-            window.addEventListener('resize', resize);
-            resize();
-            
-            const ctx = tCan.getContext('2d');
-            
-            function drawText() {
-                ctx.clearRect(0, 0, tCan.width, tCan.height);
-                // No text is drawn to keep the background clean
-            }
-            
-            drawText();
-            setInterval(drawText, 2200);
-        }
-    </script>
-</body>
-</html>
+            draw();
+        }</script></body></html>
