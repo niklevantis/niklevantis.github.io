@@ -1,1208 +1,1036 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Nick Levantis - Experimental electronic music, live coding, and avant-garde sound art from Piraeus, Greece.">
-<meta name="keywords" content="Nick Levantis, experimental music, electronic music, live coding, avant-garde, sound art">
-<meta name="robots" content="index, follow">
-
-<!-- Open Graph for social media -->
-<meta property="og:title" content="Nick Levantis | Music">
-<meta property="og:description" content="Experimental electronic music and live coding performances.">
-<meta property="og:type" content="website">
-<meta property="og:image" content="https://nicklevantis.com/images/nick.jpg">
-<meta property="og:url" content="https://nicklevantis.com">
-    <title>Nick Levantis | Music</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <div id="loading-screen">
-  <div id="logo-container">
-    <div id="logo-text">NICK LEVANTIS</div>
-    <canvas id="logo-canvas"></canvas>
-  </div>
-</div>
-  
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-91NQ6H9GNK"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-91NQ6H9GNK');
-</script>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --bg-color: #0a0a0a;
-            --text-color: #ffffff;
-            --secondary-text: #aaaaaa;
-            --accent-color: #ffffff;
-            --ui-bg: rgba(255, 255, 255, 0.05);
-            --ui-bg-hover: rgba(255, 255, 255, 0.1);
-            --player-bg: rgba(255, 255, 255, 0.03);
-            --player-border: rgba(255, 255, 255, 0.05);
-            --progress-bg: rgba(255, 255, 255, 0.1);
-            --overlay-bg: rgba(0, 0, 0, 0.7);
-            --circle-bg: #000000;
-            --strand-base: 255, 255, 255;
-        }
-
-        body.light-mode {
-            --bg-color: #f5f5f5;
-            --text-color: #000000;
-            --secondary-text: #555555;
-            --accent-color: #000000;
-            --ui-bg: rgba(0, 0, 0, 0.05);
-            --ui-bg-hover: rgba(0, 0, 0, 0.1);
-            --player-bg: rgba(0, 0, 0, 0.03);
-            --player-border: rgba(0, 0, 0, 0.05);
-            --progress-bg: rgba(0, 0, 0, 0.1);
-            --overlay-bg: rgba(255, 255, 255, 0.7);
-            --circle-bg: #ffffff;
-            --strand-base: 0, 0, 0;
-        }
-
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            overflow: hidden;
-            min-height: 100vh;
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            transition: background-color 0.5s ease, color 0.5s ease;
-        }
-
-        #glcanvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0;
-        }
-
-        .container {
-            max-width: 100%;
-            margin: 0;
-            padding: 0;
-            position: relative;
-            z-index: 2;
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            height: 100vh;
-        }
-
-        /* HEADER - Properly aligned horizontally */
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            width: 100%;
-            padding: 25px 30px;
-            position: absolute;
-            top: 0;
-            left: 0;
-            z-index: 20;
-        }
-
-        .header-left {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-        }
-
-        .site-title {
-            font-size: 1.1rem;
-            font-weight: 400;
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            color: var(--text-color);
-            transition: color 0.5s ease;
-            line-height: 1;
-        }
-
-        .subtitle {
-            font-size: 0.8rem;
-            font-weight: 300;
-            letter-spacing: 3px;
-            color: var(--secondary-text);
-            transition: color 0.5s ease;
-            margin-top: 5px;
-            line-height: 1;
-        }
-
-        .header-controls {
-            display: flex;
-            gap: 12px;
-            align-items: center;
-        }
-
-        .theme-toggle, .about-btn {
-            background: transparent;
-            border: none;
-            width: 42px;
-            height: 42px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: var(--text-color);
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 1.1rem;
-        }
-
-        .theme-toggle:hover, .about-btn:hover {
-            transform: scale(1.1);
-        }
-
-        /* CENTER BOTTOM PLAYER - Reduced gaps */
-        .center-player {
-            position: fixed;
-            bottom: 70px;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 10;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 5px; /* Reduced from 25px */
-        }
-
-        .player-controls {
-            display: flex;
-            align-items: center;
-            gap: 10px; /* Reduced from 25px */
-        }
-
-        .control-btn {
-            background: transparent;
-            border: none;
-            width: 50px;
-            height: 50px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: var(--text-color);
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 1.3rem;
-        }
-
-        .control-btn:hover {
-            transform: scale(1.1);
-        }
-
-        .play-btn {
-            width: 60px;
-            height: 60px;
-            font-size: 1.6rem;
-        }
-
-        .player-info {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 8px; /* Reduced from 15px */
-            text-align: center;
-        }
-
-        .track-title {
-            font-size: 1.2rem;
-            font-weight: 500;
-            color: var(--text-color);
-            line-height: 1;
-        }
-
-        .track-description {
-            font-size: 0.7rem;
-            color: var(--secondary-text);
-        }
-
-        .progress-container {
-            width: 250px;
-            height: 2px;
-            background: var(--progress-bg);
-            cursor: pointer;
-        }
-
-        .progress-bar {
-            height: 100%;
-            width: 0%;
-            background: var(--text-color);
-            transition: width 0.1s;
-        }
-
-        /* About Popup Styles */
-        .about-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--overlay-bg);
-            backdrop-filter: blur(5px);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.5s ease;
-        }
-
-        .about-overlay.active {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .about-content {
-            background: transparent;
-            border: none;
-            padding: 3rem;
-            width: 450px;
-            height: auto;
-            transform: scale(0.8) translateY(50px);
-            opacity: 0;
-            transition: all 0.5s ease 0.2s;
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-        }
-
-        .about-overlay.active .about-content {
-            transform: scale(1) translateY(0);
-            opacity: 1;
-        }
-
-        .close-btn {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background: transparent;
-            border: none;
-            width: 40px;
-            height: 40px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: var(--text-color);
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 1.2rem;
-            z-index: 10;
-        }
-
-        .close-btn:hover {
-            transform: scale(1.1);
-        }
-
-        .about-title {
-            font-size: 1.8rem;
-            font-weight: 300;
-            margin-bottom: 1.5rem;
-            color: var(--text-color);
-        }
-
-        .about-text {
-            font-size: 1rem;
-            line-height: 1.6;
-            color: var(--text-color);
-            margin-bottom: 2rem;
-            max-width: 350px;
-        }
-
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            margin-top: 1.5rem;
-        }
-
-        .social-link {
-            background: transparent;
-            border: none;
-            width: 45px;
-            height: 45px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: var(--text-color);
-            text-decoration: none;
-            transition: all 0.3s ease;
-            font-size: 1.2rem;
-        }
-
-        .social-link:hover {
-            transform: translateY(-3px);
-        }
-
-        /* Theme Toggle Animation */
-        .theme-toggle i {
-            transition: transform 0.5s ease;
-        }
-
-        body.light-mode .theme-toggle .fa-moon {
-            display: none;
-        }
-
-        body.light-mode .theme-toggle .fa-sun {
-            display: block;
-        }
-
-        .theme-toggle .fa-sun {
-            display: none;
-        }
-
-        body.light-mode .theme-toggle .fa-sun {
-            display: block;
-        }
-
-        body.light-mode .theme-toggle .fa-moon {
-            display: none;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            header {
-                padding: 20px 25px;
-            }
-
-            .site-title {
-                font-size: 1rem;
-                letter-spacing: 3px;
-            }
-
-            .subtitle {
-                font-size: 0.8rem;
-            }
-
-            .center-player {
-                bottom: 30px;
-                gap: 12px;
-            }
-
-            .player-controls {
-                gap: 15px;
-            }
-
-            .control-btn {
-                width: 45px;
-                height: 45px;
-                font-size: 1.1rem;
-            }
-
-            .play-btn {
-                width: 55px;
-                height: 55px;
-                font-size: 1.4rem;
-            }
-
-            .track-title {
-                font-size: 1.2rem;
-            }
-
-            .progress-container {
-                width: 200px;
-            }
-
-            .about-content {
-                width: 350px;
-                padding: 2.5rem;
-            }
-
-            .about-title {
-                font-size: 1.6rem;
-            }
-
-            .about-text {
-                font-size: 0.95rem;
-                max-width: 280px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            header {
-                padding: 15px 20px;
-            }
-
-            .header-left {
-                align-items: center;
-            }
-
-            .site-title {
-                font-size: 0.9rem;
-            }
-
-            .subtitle {
-                font-size: 0.75rem;
-                text-align: center;
-            }
-
-            .center-player {
-                bottom: 25px;
-                gap: 10px;
-            }
-
-            .player-controls {
-                gap: 12px;
-            }
-
-            .control-btn {
-                width: 40px;
-                height: 40px;
-                font-size: 1rem;
-            }
-
-            .play-btn {
-                width: 50px;
-                height: 50px;
-                font-size: 1.2rem;
-            }
-
-            .track-title {
-                font-size: 1.1rem;
-            }
-
-            .track-description {
-                font-size: 0.8rem;
-            }
-
-            .progress-container {
-                width: 180px;
-            }
-
-            .about-content {
-                width: 300px;
-                padding: 2rem;
-            }
-
-            .about-title {
-                font-size: 1.4rem;
-            }
-
-            .about-text {
-                font-size: 0.9rem;
-                max-width: 240px;
-            }
-        }
-
-         /* Loading screen full page */
-   #loading-screen {
-    position: fixed;
-    top:0; left:0; width:100%; height:100%;
-    background: var(--bg-color);
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    z-index: 9999;
-    transition: opacity 0.8s ease;
-  }
-
-  #logo-container {
-    position: relative;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    width: 250px;
-    height: 100px;
-  }
-
-  #logo-text {
-    position: absolute;
-    font-size: 1.3rem;
-    font-weight: 300;
-    color: var(--text-color);
-    letter-spacing: 6px;
-    text-transform: uppercase;
-    z-index: 2;
-  }
-
-  #logo-canvas {
-    position: absolute;
-    top:0; left:0;
-    width:100%; height:100%;
-    pointer-events: none;
-    z-index:1;
-  }
-    </style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#ffffff">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='14'%20fill='white'/%3E%3Cpath%20d='M5%2032C15%2017%2025%2013%2032%2013C43%2013%2053%2020%2059%2032C50%2045%2041%2051%2031%2051C20%2051%2012%2045%205%2032Z'%20fill='none'%20stroke='%230a0a0a'%20stroke-width='4'/%3E%3Ccircle%20cx='32'%20cy='32'%20r='9'%20fill='%230a0a0a'/%3E%3Ccircle%20cx='29'%20cy='29'%20r='2.5'%20fill='white'/%3E%3C/svg%3E">
+  <meta name="description" content="Nick Levantis - Experimental electronic music, live coding, and avant-garde sound art from Piraeus, Greece.">
+  <meta name="keywords" content="Nick Levantis, experimental music, electronic music, live coding, avant-garde, sound art">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="Nick Levantis | Music">
+  <meta property="og:description" content="Experimental electronic music and live coding performances.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://nicklevantis.com/images/nick.jpg">
+  <meta property="og:url" content="https://nicklevantis.com">
+  <title>Nick Levantis</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #0a0a0a;
+      --paper: #fff;
+      --quiet: #8b8b8b;
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      overflow: hidden;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    }
+
+    button, a { color: inherit; }
+
+    canvas {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      touch-action: none;
+      cursor: none;
+    }
+
+    .identity {
+      position: fixed;
+      z-index: 2;
+      top: 24px;
+      left: 26px;
+      display: flex;
+      align-items: baseline;
+      gap: 14px;
+      font-size: 14px;
+      letter-spacing: .17em;
+      text-transform: uppercase;
+      user-select: none;
+    }
+
+    .identity strong { font-weight: 500; }
+    .identity span { color: var(--quiet); }
+
+    .question {
+      position: fixed;
+      z-index: 2;
+      top: 50%;
+      left: 50%;
+      width: min(72vw, 620px);
+      transform: translate(-50%, -50%);
+      margin: 0;
+      text-align: center;
+      font-size: clamp(11px, 1vw, 13px);
+      font-weight: 400;
+      line-height: 1.5;
+      letter-spacing: .24em;
+      text-transform: uppercase;
+      pointer-events: none;
+      mix-blend-mode: difference;
+      color: white;
+      opacity: .92;
+    }
+
+    .sound-toggle {
+      position: fixed;
+      z-index: 3;
+      right: 22px;
+      top: 19px;
+      width: 38px;
+      height: 38px;
+      padding: 0;
+      border: 1px solid var(--ink);
+      border-radius: 50%;
+      background: var(--paper);
+      font: 9px/1 monospace;
+      letter-spacing: .05em;
+      cursor: pointer;
+      transition: background .25s, color .25s;
+    }
+
+    .sound-toggle:hover,
+    .sound-toggle[aria-pressed="true"] {
+      background: var(--ink);
+      color: var(--paper);
+    }
+
+    .instructions {
+      position: fixed;
+      z-index: 2;
+      left: 26px;
+      bottom: 24px;
+      margin: 0;
+      color: var(--quiet);
+      font: 11px/1.65 monospace;
+      letter-spacing: .08em;
+      text-transform: lowercase;
+      pointer-events: none;
+      transition: opacity 1.2s;
+    }
+
+    .info-trigger {
+      position: fixed;
+      z-index: 3;
+      right: 24px;
+      bottom: 20px;
+      width: 60px;
+      height: 38px;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      color: white;
+      mix-blend-mode: difference;
+      cursor: pointer;
+      transition: transform .2s ease;
+    }
+
+    .info-trigger::after {
+      content: "info";
+      position: absolute;
+      right: 100%;
+      top: 50%;
+      margin-right: 9px;
+      transform: translateY(-50%);
+      font: 9px/1 monospace;
+      letter-spacing: .1em;
+    }
+
+    .info-trigger svg {
+      display: block;
+      width: 100%;
+      height: 100%;
+      overflow: visible;
+    }
+
+    .eye-outline,
+    .eye-iris {
+      fill: none;
+      stroke: currentColor;
+      vector-effect: non-scaling-stroke;
+    }
+
+    .eye-outline { stroke-width: 1.15; }
+    .eye-iris { stroke-width: 1; opacity: .68; }
+    .eye-pupil { fill: currentColor; transform-origin: center; animation: eye-wander 7s ease-in-out infinite; }
+    .eye-glint { fill: #0a0a0a; }
+
+    .info-trigger:hover { transform: scale(1.08); }
+    .info-trigger:hover .eye-pupil { animation-duration: 2.6s; }
+
+    @keyframes eye-wander {
+      0%, 18%, 100% { transform: translate(0, 0); }
+      35%, 48% { transform: translate(-3px, 1px); }
+      67%, 80% { transform: translate(3px, -1px); }
+    }
+
+    .info-dialog {
+      width: min(96vw, 920px);
+      max-width: none;
+      padding: 38px;
+      border: 0;
+      overflow: visible;
+      background: transparent;
+      color: white;
+    }
+
+    .info-dialog::backdrop {
+      background: rgba(255,255,255,.82);
+      backdrop-filter: blur(3px);
+    }
+
+    .splash {
+      position: relative;
+      isolation: isolate;
+      min-height: min(68vh, 600px);
+      display: grid;
+      place-items: center;
+      padding: 90px 120px;
+      filter: drop-shadow(0 18px 30px rgba(0,0,0,.14));
+    }
+
+    .splash::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background: #0a0a0a;
+      border-radius: 42% 58% 61% 39% / 38% 43% 57% 62%;
+      animation: ink-breath 11s ease-in-out infinite alternate;
+    }
+
+    .splash::after {
+      content: "";
+      position: absolute;
+      inset: -25px;
+      z-index: -1;
+      background:
+        radial-gradient(circle at 4% 14%, #0a0a0a 0 8px, transparent 9px),
+        radial-gradient(circle at 10% 4%, #0a0a0a 0 4px, transparent 5px),
+        radial-gradient(circle at 2% 88%, #0a0a0a 0 5px, transparent 6px),
+        radial-gradient(circle at 95% 9%, #0a0a0a 0 7px, transparent 8px),
+        radial-gradient(circle at 99% 69%, #0a0a0a 0 5px, transparent 6px),
+        radial-gradient(circle at 86% 97%, #0a0a0a 0 4px, transparent 5px);
+      pointer-events: none;
+      animation: ink-drops 11s ease-in-out infinite alternate;
+    }
+
+    .splash-content {
+      width: min(100%, 460px);
+      text-align: center;
+    }
+
+    @keyframes ink-breath {
+      0% {
+        border-radius: 42% 58% 61% 39% / 38% 43% 57% 62%;
+        transform: scale(.97, 1);
+      }
+      32% {
+        border-radius: 55% 45% 48% 52% / 44% 58% 42% 56%;
+        transform: scale(1, .96);
+      }
+      68% {
+        border-radius: 47% 53% 57% 43% / 57% 39% 61% 43%;
+        transform: scale(.985, 1.015);
+      }
+      100% {
+        border-radius: 59% 41% 44% 56% / 46% 62% 38% 54%;
+        transform: scale(1.015, .98);
+      }
+    }
+
+    @keyframes ink-drops {
+      from { transform: scale(.96); opacity: .72; }
+      to { transform: scale(1.025); opacity: 1; }
+    }
+
+    .splash-kicker {
+      margin: 0 0 18px;
+      color: #aaa;
+      font: 9px/1 monospace;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+    }
+
+    .splash h2 {
+      margin: 0 0 7px;
+      font-size: clamp(22px, 4vw, 38px);
+      font-weight: 400;
+      letter-spacing: .04em;
+    }
+
+    .splash-subtitle {
+      margin: 0 0 23px;
+      color: #bbb;
+      font: 10px/1 monospace;
+      letter-spacing: .17em;
+      text-transform: uppercase;
+    }
+
+    .splash-copy {
+      max-width: 330px;
+      margin: 0 auto 22px;
+      color: #e8e8e8;
+      font: 12px/1.65 monospace;
+    }
+
+    .paradox-player {
+      position: relative;
+      width: min(100%, 500px);
+      margin: 0 auto 25px;
+      padding: 7px 0 0;
+      text-align: left;
+    }
+
+    .player-heading {
+      display: grid;
+      grid-template-columns: 47px 1fr auto;
+      align-items: center;
+      gap: 13px;
+      min-height: 42px;
+    }
+
+    .player-play {
+      width: 42px;
+      height: 42px;
+      padding: 0;
+      border: 1px solid white;
+      border-radius: 63% 37% 57% 43% / 42% 61% 39% 58%;
+      background: white;
+      color: #0a0a0a;
+      font: 8px/1 monospace;
+      cursor: pointer;
+      transition: border-radius .35s, transform .2s;
+    }
+
+    .player-play:hover {
+      border-radius: 38% 62% 40% 60% / 61% 37% 63% 39%;
+      transform: scale(1.08);
+    }
+
+    .player-current {
+      min-width: 0;
+      font: 11px/1.2 monospace;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .player-current small {
+      display: block;
+      margin-bottom: 4px;
+      color: #888;
+      font-size: 8px;
+      letter-spacing: .18em;
+    }
+
+    .player-time {
+      color: #aaa;
+      font: 8px/1 monospace;
+      letter-spacing: .06em;
+      white-space: nowrap;
+    }
+
+    .curve-seek {
+      display: block;
+      width: 100%;
+      height: 84px;
+      margin: -8px 0 -3px;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      cursor: crosshair;
+    }
+
+    .curve-seek svg {
+      display: block;
+      width: 100%;
+      height: 100%;
+      overflow: visible;
+    }
+
+    .curve-base,
+    .curve-progress {
+      fill: none;
+      stroke-linecap: round;
+    }
+
+    .curve-base { stroke: #555; stroke-width: 1; }
+    .curve-progress { stroke: white; stroke-width: 2; stroke-dasharray: 0 100; }
+    .curve-ghost { fill: white; opacity: .16; }
+    .curve-head { fill: white; }
+
+    .player-tracks {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      align-items: end;
+      gap: 15px;
+    }
+
+    .track-choice {
+      padding: 7px 0 5px;
+      border: 0;
+      border-top: 1px solid #444;
+      background: transparent;
+      color: #777;
+      text-align: left;
+      font: 9px/1.2 monospace;
+      letter-spacing: .05em;
+      cursor: pointer;
+      transition: color .2s, border-color .2s, transform .2s;
+    }
+
+    .track-choice span {
+      display: block;
+      margin-bottom: 3px;
+      font-size: 7px;
+      color: #666;
+    }
+
+    .track-choice:hover,
+    .track-choice[aria-pressed="true"] {
+      color: white;
+      border-color: white;
+      transform: translateY(-2px);
+    }
+
+    .splash-links {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px 23px;
+    }
+
+    .splash-links a {
+      color: white;
+      font: 10px/1 monospace;
+      letter-spacing: .1em;
+      text-underline-offset: 5px;
+      text-decoration-thickness: 1px;
+    }
+
+    .splash-links a:hover,
+    .splash-links a:focus-visible { text-decoration-style: wavy; }
+
+    .dialog-close {
+      position: absolute;
+      z-index: 2;
+      top: 17%;
+      right: 16%;
+      width: 32px;
+      height: 32px;
+      border: 1px solid white;
+      border-radius: 50%;
+      background: transparent;
+      color: white;
+      font: 16px/1 monospace;
+      cursor: pointer;
+    }
+
+    .dialog-close:hover { background: white; color: #0a0a0a; }
+
+    .sound-toggle:focus-visible,
+    .info-trigger:focus-visible,
+    .dialog-close:focus-visible,
+    .player-play:focus-visible,
+    .curve-seek:focus-visible,
+    .track-choice:focus-visible,
+    .splash-links a:focus-visible {
+      outline: 1px solid var(--ink);
+      outline-offset: 4px;
+    }
+
+    @media (max-width: 600px) {
+      .identity { top: 18px; left: 18px; display: block; line-height: 1.7; }
+      .identity span { display: block; }
+      .sound-toggle { top: 15px; right: 15px; }
+      .instructions { left: 18px; bottom: 18px; }
+      .info-trigger { right: 18px; bottom: 17px; }
+      .info-dialog { width: 100vw; padding: 15px; }
+      .splash { min-height: min(72vh, 540px); padding: 86px 48px; }
+      .dialog-close { top: 16%; right: 13%; }
+      .player-heading { grid-template-columns: 43px 1fr; }
+      .player-time { display: none; }
+      .curve-seek { height: 72px; }
+      .player-tracks { gap: 9px; }
+      .track-choice { font-size: 8px; }
+      .question { width: 82vw; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .instructions { transition: none; }
+      .eye-pupil,
+      .splash::before,
+      .splash::after { animation: none; }
+    }
+  </style>
 </head>
 <body>
-    <canvas id="glcanvas"></canvas>
-    
-    <div class="container">
-        <header>
-            <div class="header-left">
-                <div class="site-title">NICK LEVANTIS</div>
-                <div class="subtitle">LANIAKEA SESSIONS</div>
-            </div>
-            <div class="header-controls">
-                <button class="theme-toggle" id="theme-toggle">
-                    <i class="fas fa-moon"></i>
-                    <i class="fas fa-sun"></i>
-                </button>
-                <button class="about-btn" id="about-btn">
-                    <i class="fas fa-info"></i>
-                </button>
-            </div>
-        </header>
+  <canvas id="world" aria-hidden="true"></canvas>
 
-        <!-- Centered Bottom Player -->
-        <div class="center-player">
-            <div class="player-controls">
-                <button class="control-btn" id="prev-btn">
-                    <i class="fas fa-step-backward"></i>
-                </button>
-                <button class="control-btn play-btn" id="play-btn">
-                    <i class="fas fa-play"></i>
-                </button>
-                <button class="control-btn" id="next-btn">
-                    <i class="fas fa-step-forward"></i>
-                </button>
+  <header class="identity">
+    <strong>Nick Levantis</strong>
+    <span></span>
+  </header>
+
+  <h1 class="question" id="question">press and stop the silence</h1>
+
+  <button class="sound-toggle" id="sound" type="button" aria-label="Begin the drone" aria-pressed="false">off</button>
+
+  <p class="instructions" id="instructions">click to hear something<br>drag the horizon to tune it</p>
+
+  <button class="info-trigger" id="open-info" type="button" aria-label="Open artist information" aria-haspopup="dialog" aria-expanded="false">
+    <svg viewBox="0 0 60 38" aria-hidden="true">
+      <path class="eye-outline" d="M2 19 C11 6 21 3 30 3 C40 3 50 9 58 19 C49 30 39 35 29 35 C19 35 10 30 2 19 Z"/>
+      <circle class="eye-iris" cx="30" cy="19" r="9"/>
+      <circle class="eye-pupil" cx="30" cy="19" r="4.5"/>
+      <circle class="eye-glint" cx="28.5" cy="17.5" r="1.2"/>
+    </svg>
+  </button>
+
+  <dialog class="info-dialog" id="info-dialog" aria-labelledby="info-title">
+    <section class="splash">
+      <button class="dialog-close" id="close-info" type="button" aria-label="Close artist information">×</button>
+      <div class="splash-content">
+        <p class="splash-kicker">if eyes could hear and ears could see</p>
+        <h2 id="info-title">Nick Levantis</h2>
+        <p class="splash-subtitle">||||</p>
+        <p class="splash-copy">Sound artist from Piraeus exploring electronic textures, live coding, and experimental minimal sonic forms.</p>
+        <div class="paradox-player" aria-label="Three songs">
+          <div class="player-heading">
+            <button class="player-play" id="player-play" type="button" aria-label="Play Fragments">play</button>
+            <div class="player-current">
+              <small id="player-number">01 / 03</small>
+              <span id="player-title">Fragments</span>
             </div>
-            <div class="player-info">
-                <div class="track-title" id="current-track-title">Fragments</div>
-                <div class="track-description" id="current-track-description">Experimental melodic fragments</div>
-                <div class="progress-container" id="progress-container">
-                    <div class="progress-bar" id="progress-bar"></div>
-                </div>
-            </div>
+            <span class="player-time" id="player-time">00:00 / --:--</span>
+          </div>
+          <button class="curve-seek" id="curve-seek" type="button" aria-label="Seek through Fragments">
+            <svg viewBox="0 0 500 100" preserveAspectRatio="none" aria-hidden="true">
+              <path class="curve-base" id="curve-base" pathLength="100" d="M 4 69 C 58 5, 187 104, 287 48 S 425 20, 496 61"/>
+              <path class="curve-progress" id="curve-progress" pathLength="100" d="M 4 69 C 58 5, 187 104, 287 48 S 425 20, 496 61"/>
+              <circle class="curve-ghost" cx="4" cy="69" r="8"/>
+              <circle class="curve-head" id="curve-head" cx="4" cy="69" r="3.5"/>
+            </svg>
+          </button>
+          <div class="player-tracks" role="list" aria-label="Choose a song">
+            <button class="track-choice" type="button" data-track="0" aria-pressed="true"><span>01</span>Fragments</button>
+            <button class="track-choice" type="button" data-track="1" aria-pressed="false"><span>02</span>Nowhere</button>
+            <button class="track-choice" type="button" data-track="2" aria-pressed="false"><span>03</span>Broken</button>
+          </div>
         </div>
-    </div>
+        <nav class="splash-links" aria-label="Nick Levantis elsewhere">
+          <a href="https://soundcloud.com/nicklevantis" target="_blank" rel="noreferrer">soundcloud</a>
+          <a href="https://youtube.com/nicklevantis" target="_blank" rel="noreferrer">youtube</a>
+          <a href="https://nicklevantis.svbtle.com" target="_blank" rel="noreferrer">notes</a>
+        </nav>
+      </div>
+    </section>
+  </dialog>
 
-    <!-- About Popup -->
-    <div class="about-overlay" id="about-overlay">
-        <div class="about-content">
-            <button class="close-btn" id="close-btn">
-                <i class="fas fa-times"></i>
-            </button>
-         
-            <div class="about-text">
-                <p>Sound artist from Piraeus exploring electronic textures, live coding, and experimental minimal sonic forms.</p>
-            </div>
-            <div class="social-links">
-                <a href="https://soundcloud.com/nicklevantis" class="social-link" target="_blank"><i class="fab fa-soundcloud"></i></a>
-                <a href="https://youtube.com/nicklevantis" class="social-link" target="_blank"><i class="fab fa-youtube"></i></a>
-                <a href="https://nicklevantis.svbtle.com" class="social-link" target="_blank"><i class="fas fa-pen-nib"></i></a>
-            </div>
-        </div>
-    </div>
+  <script>
+    const canvas = document.querySelector("#world")
+    const pen = canvas.getContext("2d")
+    const soundButton = document.querySelector("#sound")
+    const question = document.querySelector("#question")
+    const instructions = document.querySelector("#instructions")
+    const infoDialog = document.querySelector("#info-dialog")
+    const openInfo = document.querySelector("#open-info")
+    const closeInfo = document.querySelector("#close-info")
+    const playerPlay = document.querySelector("#player-play")
+    const playerTitle = document.querySelector("#player-title")
+    const playerNumber = document.querySelector("#player-number")
+    const playerTime = document.querySelector("#player-time")
+    const curveSeek = document.querySelector("#curve-seek")
+    const curveProgress = document.querySelector("#curve-progress")
+    const curveBase = document.querySelector("#curve-base")
+    const curveHead = document.querySelector("#curve-head")
+    const trackChoices = [...document.querySelectorAll(".track-choice")]
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
-    <script>
-        // Audio context and elements
-        let audioContext;
-        let audioElement;
-        let analyser;
-        let source;
-        let isPlaying = false;
-        let currentTrackIndex = 0;
-        let audioData = new Uint8Array(256);
-        let preloadedAudio = null; // For preloading next track
-        
-        // Track data with your audio URLs
-        const tracks = [
-            {
-                id: 1,
-                title: "Fragments",
-                description: "Experimental melodic fragments",
-                url: "https://nicklevantis.com/audio/fragments.mp3",
-                duration: 180
-            },
-            {
-                id: 2,
-                title: "Nowhere",
-                description: "Dystopian noisy soundscape",
-                url: "https://nicklevantis.com/audio/nowhere.mp3",
-                duration: 240
-            },
-            {
-                id: 3,
-                title: "Broken",
-                description: "Live coding exploration",
-                url: "https://nicklevantis.com/audio/broken.mp3",
-                duration: 210
-            },
-            {
-                id: 4,
-                title: "Romance",
-                description: "Sounds from the past",
-                url: "https://nicklevantis.com/audio/romance.mp3",
-                duration: 195
-            }
-        ];
-        
-        // Initialize audio context
-        function initAudio() {
-            if (audioContext) return;
-            
-            try {
-                audioContext = new (window.AudioContext || window.webkitAudioContext)();
-                audioElement = new Audio();
-                audioElement.crossOrigin = "anonymous";
-                audioElement.volume = 0.7;
-                
-                // Create analyser node
-                analyser = audioContext.createAnalyser();
-                analyser.fftSize = 512;
-                analyser.smoothingTimeConstant = 0.8;
-                
-                // Connect audio element to analyser
-                source = audioContext.createMediaElementSource(audioElement);
-                source.connect(analyser);
-                analyser.connect(audioContext.destination);
-                
-                // Set up progress bar
-                audioElement.addEventListener('timeupdate', updateProgressBar);
-                audioElement.addEventListener('ended', handleTrackEnd);
-                
-                // Load the first track
-                loadTrack(currentTrackIndex);
-                
-                console.log("Audio initialized successfully");
-            } catch (error) {
-                console.error("Error initializing audio:", error);
-            }
-        }
-        
-        // Load a track
-        function loadTrack(trackIndex) {
-            const track = tracks[trackIndex];
-            audioElement.src = track.url;
-            document.getElementById('current-track-title').textContent = track.title;
-            document.getElementById('current-track-description').textContent = track.description;
-            
-            // Reset progress bar
-            document.getElementById('progress-bar').style.width = '0%';
-            
-            // Preload the audio
-            audioElement.load();
-            
-            // Preload next track
-            preloadNextTrack(trackIndex);
-        }
-        
-        // Preload the next track for seamless playback
-        function preloadNextTrack(currentTrackIndex) {
-            const nextTrackIndex = (currentTrackIndex + 1) % tracks.length;
-            const nextTrack = tracks[nextTrackIndex];
-            
-            // If we already have a preloaded audio element, clean it up
-            if (preloadedAudio) {
-                preloadedAudio.src = '';
-                preloadedAudio = null;
-            }
-            
-            // Create and preload next track
-            preloadedAudio = new Audio();
-            preloadedAudio.src = nextTrack.url;
-            preloadedAudio.preload = 'auto';
-            preloadedAudio.load();
-            
-            console.log(`Preloaded next track: ${nextTrack.title}`);
-        }
-        
-        // Update reactive text colors based on audio intensity
-        function updateReactiveColors(intensity) {
-            const colorValue = Math.floor(255 * Math.pow((1 - intensity), 2));
-            
-            // Apply to text elements
-            const trackTitle = document.getElementById('current-track-title');
-            const trackDesc = document.getElementById('current-track-description');
-            const controlBtns = document.querySelectorAll('.control-btn');
-            const progressBar = document.getElementById('progress-bar');
-            const progressContainer = document.getElementById('progress-container');
-            
-            // For dark theme - lighter with more intensity, for light theme - darker with more intensity
-            const isLightMode = document.body.classList.contains('light-mode');
-            const invertedColorValue = isLightMode ? 255 - colorValue : colorValue;
-            
-            if (trackTitle) trackTitle.style.color = `rgb(${invertedColorValue}, ${invertedColorValue}, ${invertedColorValue})`;
-            if (trackDesc) trackDesc.style.color = `rgb(${invertedColorValue}, ${invertedColorValue}, ${invertedColorValue})`;
-            
-            // Make control buttons reactive
-            controlBtns.forEach(btn => {
-                btn.style.color = `rgb(${invertedColorValue}, ${invertedColorValue}, ${invertedColorValue})`;
-            });
-            
-            // Make progress bar reactive
-            if (progressBar) {
-                progressBar.style.background = `rgb(${invertedColorValue}, ${invertedColorValue}, ${invertedColorValue})`;
-            }
-            
-            // Make progress container reactive
-            if (progressContainer) {
-                progressContainer.style.background = `rgba(${invertedColorValue}, ${invertedColorValue}, ${invertedColorValue}, 0.2)`;
-            }
-        }
-        
-        // Play/pause track functionality
-        async function togglePlay() {
-            // Initialize audio if not already done
-            initAudio();
-            
-            // If audio context is suspended, resume it
-            if (audioContext.state === 'suspended') {
-                await audioContext.resume();
-            }
-            
-            // Toggle play/pause
-            if (isPlaying) {
-                audioElement.pause();
-                isPlaying = false;
-                updatePlayButton(false);
-            } else {
-                try {
-                    await audioElement.play();
-                    isPlaying = true;
-                    updatePlayButton(true);
-                    console.log("Audio playback started successfully");
-                } catch (error) {
-                    console.error("Error playing audio:", error);
-                }
-            }
-        }
-        
-        // Change track functionality
-        async function changeTrack(direction) {
-            // Initialize audio if not already done
-            initAudio();
-            
-            // Stop current track if playing
-            if (isPlaying) {
-                audioElement.pause();
-                isPlaying = false;
-            }
-            
-            // Calculate new track index
-            if (direction === 'next') {
-                currentTrackIndex = (currentTrackIndex + 1) % tracks.length;
-            } else {
-                currentTrackIndex = (currentTrackIndex - 1 + tracks.length) % tracks.length;
-            }
-            
-            // Load new track
-            loadTrack(currentTrackIndex);
-            
-            // Play the track if it was playing before
-            if (isPlaying) {
-                try {
-                    await audioElement.play();
-                    isPlaying = true;
-                    updatePlayButton(true);
-                } catch (error) {
-                    console.error("Error playing audio:", error);
-                }
-            }
-        }
-        
-        // Update play button appearance
-        function updatePlayButton(playing) {
-            const mainPlayBtn = document.getElementById('play-btn');
-            
-            if (playing) {
-                mainPlayBtn.innerHTML = '<i class="fas fa-pause"></i>';
-            } else {
-                mainPlayBtn.innerHTML = '<i class="fas fa-play"></i>';
-            }
-        }
-        
-        // Update progress bar
-        function updateProgressBar() {
-            if (!audioElement) return;
-            
-            const progress = (audioElement.currentTime / audioElement.duration) * 100;
-            const progressBar = document.getElementById('progress-bar');
-            if (progressBar) {
-                progressBar.style.width = `${progress}%`;
-            }
-        }
-        
-        // Handle track end
-        function handleTrackEnd() {
-            isPlaying = false;
-            updatePlayButton(false);
-            
-            // Auto-play next track
-            changeTrack('next');
-        }
-        
-        // Set theme based on local time
-        function setThemeByTime() {
-            const hour = new Date().getHours();
-            const isDayTime = hour >= 6 && hour < 18; // 6 AM to 6 PM is considered daytime
-            
-            // Check if user has a saved preference first
-            const savedTheme = localStorage.getItem('theme');
-            
-            if (!savedTheme) {
-                // Only set by time if no user preference is saved
-                if (isDayTime) {
-                    document.body.classList.add('light-mode');
-                } else {
-                    document.body.classList.remove('light-mode');
-                }
-            }
-        }
-        
-        // Toggle theme function
-        function toggleTheme() {
-            document.body.classList.toggle('light-mode');
-            
-            // Save preference to localStorage
-            const isLightMode = document.body.classList.contains('light-mode');
-            localStorage.setItem('theme', isLightMode ? 'light' : 'dark');
-        }
-        
-        // Set up event listeners
-        document.addEventListener('DOMContentLoaded', function() {
-            // Set theme based on time of day
-            setThemeByTime();
-            
-            // Initialize audio immediately
-            initAudio();
-            
-            // Check for saved theme preference
-            const savedTheme = localStorage.getItem('theme');
-            if (savedTheme === 'light') {
-                document.body.classList.add('light-mode');
-            }
-            
-            document.getElementById('play-btn').addEventListener('click', togglePlay);
-            
-            document.getElementById('prev-btn').addEventListener('click', function() {
-                changeTrack('prev');
-            });
-            
-            document.getElementById('next-btn').addEventListener('click', function() {
-                changeTrack('next');
-            });
-            
-            document.getElementById('progress-container').addEventListener('click', function(e) {
-                if (!audioElement) return;
-                
-                const rect = this.getBoundingClientRect();
-                const clickX = e.clientX - rect.left;
-                const width = rect.width;
-                const percentage = clickX / width;
-                
-                audioElement.currentTime = percentage * audioElement.duration;
-            });
-            
-            // Theme toggle functionality
-            document.getElementById('theme-toggle').addEventListener('click', toggleTheme);
-            
-            // About popup functionality
-            const aboutBtn = document.getElementById('about-btn');
-            const aboutOverlay = document.getElementById('about-overlay');
-            const closeBtn = document.getElementById('close-btn');
-            
-            aboutBtn.addEventListener('click', function() {
-                aboutOverlay.classList.add('active');
-            });
-            
-            closeBtn.addEventListener('click', function() {
-                aboutOverlay.classList.remove('active');
-            });
-            
-            aboutOverlay.addEventListener('click', function(e) {
-                if (e.target === aboutOverlay) {
-                    aboutOverlay.classList.remove('active');
-                }
-            });
-            
-            // Initialize WebGL visualization
-            initWebGLVisualization();
-        });
-        
-        /* ===== Audio Reactive WebGL Strands ===== */
-        function initWebGLVisualization() {
-            const canvas = document.getElementById("glcanvas");
-            const gl = canvas.getContext("webgl2", {alpha:false});
-            let W=0,H=0;
+    const state = {
+      width: innerWidth,
+      height: innerHeight,
+      dpr: 1,
+      x: innerWidth * .5,
+      y: innerHeight * .5,
+      targetX: innerWidth * .5,
+      targetY: innerHeight * .5,
+      previousX: innerWidth * .5,
+      previousY: innerHeight * .5,
+      dragging: false,
+      entered: false,
+      audible: false,
+      startedAt: performance.now(),
+      ripples: []
+    }
 
-            function resize(){
-                W = canvas.width = window.innerWidth * window.devicePixelRatio;
-                H = canvas.height = window.innerHeight * window.devicePixelRatio;
-                gl.viewport(0,0,W,H);
-            }
-            resize();
-            window.addEventListener("resize",resize);
+    let audio = null
+    let musicPlayer = null
+    let melodyTimer = null
+    let melodyStep = 0
+    let lastAudioTune = 0
+    let audioNeedsTune = false
+    const MUSIC_GAIN = Math.pow(10, -3 / 20)
+    const DRONE_GAIN = .72 * Math.pow(10, 3.5 / 20)
+    const MELODY_GAIN = Math.pow(10, 2 / 20)
+    const MELODY_RATIOS = [4, 4.5, 16 / 3, 6, 5, 4.5]
 
-            const vs = `#version 300 es
-            in vec2 a;
-            in vec4 c;
-            out vec4 vc;
-            uniform vec2 r;
-            void main(){
-                vec2 p=a/r*2.0-1.0;
-                gl_Position=vec4(p.x,-p.y,0,1);
-                vc=c;
-            }`;
-            const fs = `#version 300 es
-            precision highp float;
-            in vec4 vc;
-            out vec4 o;
-            void main(){o=vc;}
-            `;
+    function resize() {
+      state.dpr = Math.min(devicePixelRatio || 1, 2)
+      state.width = innerWidth
+      state.height = innerHeight
+      canvas.width = Math.round(state.width * state.dpr)
+      canvas.height = Math.round(state.height * state.dpr)
+      canvas.style.width = `${state.width}px`
+      canvas.style.height = `${state.height}px`
+      pen.setTransform(state.dpr, 0, 0, state.dpr, 0, 0)
+      if (!state.entered) {
+        state.x = state.targetX = state.width * .5
+        state.y = state.targetY = state.height * .5
+      }
+    }
 
-            function sh(type,src){
-                let s=gl.createShader(type);
-                gl.shaderSource(s,src);
-                gl.compileShader(s);
-                if(!gl.getShaderParameter(s,gl.COMPILE_STATUS))
-                    console.log(gl.getShaderInfoLog(s));
-                return s;
-            }
-            const prog = gl.createProgram();
-            gl.attachShader(prog,sh(gl.VERTEX_SHADER,vs));
-            gl.attachShader(prog,sh(gl.FRAGMENT_SHADER,fs));
-            gl.linkProgram(prog);
-            gl.useProgram(prog);
+    function makeAudio() {
+      if (audio) return audio
 
-            const posB = gl.createBuffer();
-            const colB = gl.createBuffer();
-            const vao = gl.createVertexArray();
-            gl.bindVertexArray(vao);
+      const Context = window.AudioContext || window.webkitAudioContext
+      const context = new Context()
+      const master = context.createGain()
+      const melodyBus = context.createGain()
+      const filter = context.createBiquadFilter()
+      const compressor = context.createDynamicsCompressor()
+      const delay = context.createDelay(2)
+      const feedback = context.createGain()
+      const wet = context.createGain()
+      const voices = []
 
-            let lp = gl.getAttribLocation(prog,"a");
-            let lc = gl.getAttribLocation(prog,"c");
-            gl.bindBuffer(gl.ARRAY_BUFFER,posB);
-            gl.enableVertexAttribArray(lp);
-            gl.vertexAttribPointer(lp,2,gl.FLOAT,false,0,0);
-            gl.bindBuffer(gl.ARRAY_BUFFER,colB);
-            gl.enableVertexAttribArray(lc);
-            gl.vertexAttribPointer(lc,4,gl.FLOAT,false,0,0);
+      master.gain.value = 0.0001
+      melodyBus.gain.value = 0.0001
+      filter.type = "lowpass"
+      filter.frequency.value = 700
+      filter.Q.value = .7
+      compressor.threshold.value = -18
+      compressor.knee.value = 10
+      compressor.ratio.value = 8
+      compressor.attack.value = .006
+      compressor.release.value = .28
+      delay.delayTime.value = .73
+      feedback.gain.value = .31
+      wet.gain.value = .22
 
-            let ur = gl.getUniformLocation(prog,"r");
+      master.connect(filter)
+      filter.connect(compressor)
+      compressor.connect(context.destination)
+      filter.connect(delay)
+      delay.connect(feedback)
+      feedback.connect(delay)
+      delay.connect(wet)
+      wet.connect(compressor)
+      melodyBus.connect(compressor)
+      melodyBus.connect(delay)
 
-            gl.enable(gl.BLEND);
-            gl.blendFunc(gl.SRC_ALPHA,gl.ONE_MINUS_SRC_ALPHA);
+      const partials = [1, 1.5, 2, 2.5, 4]
+      const levels = [.115, .06, .035, .018, .009]
 
-            const N = 140;
-            const S = 80;
-            let strands=[];
-            for(let i=0;i<N;i++){
-                strands.push({
-                    ang:(i/N)*Math.PI*2,
-                    s1:0.3+Math.random()*0.2,
-                    s2:0.02+Math.random()*0.02,
-                    seed:Math.random()*1000,
-                    // Audio reactive properties
-                    bassMultiplier: 0.5 + Math.random() * 1.5,
-                    midMultiplier: 0.5 + Math.random() * 1.5,
-                    highMultiplier: 0.5 + Math.random() * 1.5
-                });
-            }
+      partials.forEach((ratio, index) => {
+        const oscillator = context.createOscillator()
+        const gain = context.createGain()
+        const panner = context.createStereoPanner()
+        oscillator.type = "sine"
+        gain.gain.value = levels[index]
+        panner.pan.value = (index / (partials.length - 1)) * 1.2 - .6
+        oscillator.connect(gain).connect(panner).connect(master)
+        oscillator.start()
+        voices.push({ oscillator, ratio, gain, panner })
+      })
 
-            let t=0;
-            function draw(){
-                requestAnimationFrame(draw);
+      const lfo = context.createOscillator()
+      const lfoDepth = context.createGain()
+      lfo.type = "sine"
+      lfo.frequency.value = .052
+      lfoDepth.gain.value = 90
+      lfo.connect(lfoDepth).connect(filter.frequency)
+      lfo.start()
 
-                const light = document.body.classList.contains("light-mode");
-                gl.clearColor(light?1:0.03, light?1:0.03, light?1:0.04,1);
-                gl.clear(gl.COLOR_BUFFER_BIT);
+      audio = { context, master, melodyBus, filter, delay, voices, melodyVoices: [], root: 43.65, melodyY: .5 }
+      tuneAudio()
+      return audio
+    }
 
-                // Get audio data and calculate frequency bands
-                let bassLevel = 0, midLevel = 0, highLevel = 0;
-                if (analyser && isPlaying) {
-                    analyser.getByteFrequencyData(audioData);
-                    
-                    // Split frequency spectrum into bass, mid, high
-                    const bassRange = Math.floor(audioData.length * 0.1);
-                    const midRange = Math.floor(audioData.length * 0.5);
-                    const highRange = Math.floor(audioData.length * 0.9);
-                    
-                    for (let i = 0; i < audioData.length; i++) {
-                        if (i < bassRange) bassLevel += audioData[i];
-                        else if (i < midRange) midLevel += audioData[i];
-                        else if (i < highRange) highLevel += audioData[i];
-                    }
-                    
-                    bassLevel /= bassRange;
-                    midLevel /= (midRange - bassRange);
-                    highLevel /= (highRange - midRange);
-                    
-                    // Normalize to 0-1 range
-                    bassLevel /= 255;
-                    midLevel /= 255;
-                    highLevel /= 255;
-                } else {
-                    // Subtle movement when no audio is playing
-                    const time = Date.now() * 0.001;
-                    bassLevel = Math.sin(time * 0.5) * 0.1 + 0.1;
-                    midLevel = Math.sin(time * 0.7) * 0.1 + 0.1;
-                    highLevel = Math.sin(time * 0.9) * 0.1 + 0.1;
-                }
+    function tuneAudio() {
+      if (!audio) return
+      const now = audio.context.currentTime
+      const x = Math.max(0, Math.min(1, state.targetX / state.width))
+      const y = Math.max(0, Math.min(1, state.targetY / state.height))
+      const roots = [43.65, 49, 55, 65.41, 73.42]
+      const root = roots[Math.min(roots.length - 1, Math.floor(x * roots.length))]
+      audio.root = root
+      audio.melodyY = y
 
-                // Update reactive colors based on audio
-                const overallIntensity = (bassLevel + midLevel + highLevel) / 3;
-                updateReactiveColors(overallIntensity);
+      audio.voices.forEach((voice, index) => {
+        const breathing = 1 + Math.sin(now * (.07 + index * .011)) * .0018
+        glideParameter(voice.oscillator.frequency, root * voice.ratio * breathing, now, .85)
+      })
+      audio.melodyVoices.forEach(voice => {
+        const detune = 3 + x * 4
+        voice.oscillators.forEach(partial => {
+          glideParameter(partial.node.frequency, root * voice.ratio * partial.ratio, now, .85)
+          glideParameter(partial.node.detune, partial.detuneDirection * detune, now, .65)
+        })
+      })
+      glideParameter(audio.filter.frequency, 240 + (1 - y) * 1800, now, .95)
+    }
 
-                let cx=W/2, cy=H/2, R=Math.min(W,H)*0.4;
-                let pos = [], col=[];
+    function glideParameter(parameter, target, now, timeConstant) {
+      parameter.setTargetAtTime(target, now, timeConstant)
+    }
 
-                for(let i=0;i<N;i++){
-                    let st = strands[i];
-                    for(let j=0;j<S;j++){
-                        let p=j/(S-1);
-                        let r=R*p;
-                        
-                        // Audio-reactive movement
-                        const bassEffect = bassLevel * st.bassMultiplier;
-                        const midEffect = midLevel * st.midMultiplier;
-                        const highEffect = highLevel * st.highMultiplier;
-                        
-                        let slow=Math.sin(t*0.005+st.seed)*st.s1*0.3 * (1 + bassEffect * 2);
-                        let micro=Math.sin(t*st.s2+j*0.1+st.seed)*0.08 * (1 + midEffect * 3);
-                        let highFreq=Math.sin(t*0.02+j*0.05+st.seed)*0.04 * (1 + highEffect * 4);
-                        
-                        let a=st.ang + (slow + micro + highFreq)*p;
+    function playMelodyNote() {
+      if (!audio || !state.audible) return
+      const context = audio.context
+      const now = context.currentTime + .04
+      const x = Math.max(0, Math.min(1, state.targetX / state.width))
+      const reverse = state.targetY > state.height * .5
+      const rawIndex = melodyStep % MELODY_RATIOS.length
+      const sequenceIndex = reverse ? MELODY_RATIOS.length - 1 - rawIndex : rawIndex
+      const ratio = MELODY_RATIOS[sequenceIndex]
+      const frequency = audio.root * ratio
+      const detune = 3 + x * 4
+      const color = context.createBiquadFilter()
+      const panner = context.createStereoPanner()
+      const oscillators = []
 
-                        let x=cx+Math.cos(a)*r;
-                        let y=cy+Math.sin(a)*r;
+      color.type = "lowpass"
+      color.frequency.value = 2700 + (1 - audio.melodyY) * 2300
+      color.Q.value = .7
+      panner.pan.value = Math.max(-.72, Math.min(.72, (x - .5) * 1.15 + Math.sin(melodyStep * 1.7) * .18))
+      color.connect(panner).connect(audio.melodyBus)
 
-                        // Audio-reactive thickness
-                        let th = (1-p)*0.9*(window.devicePixelRatio*0.7) * (1 + overallIntensity * 0.8);
-                        let ox=Math.cos(a+Math.PI/2)*th;
-                        let oy=Math.sin(a+Math.PI/2)*th;
+      const partials = [
+        { ratio: 1, type: "sine", level: .021, decay: 5.8, detuneDirection: -1 },
+        { ratio: 1, type: "sine", level: .012, decay: 4.4, detuneDirection: 1 },
+        { ratio: 3.02, type: "sine", level: .008, decay: 2.1, detuneDirection: -0.35 },
+        { ratio: 5.87, type: "sine", level: .004, decay: .85, detuneDirection: .35 },
+        { ratio: 10.4, type: "triangle", level: .0025, decay: .11, detuneDirection: 0 }
+      ]
 
-                        pos.push(x-ox,y-oy, x+ox,y+oy);
+      partials.forEach(partial => {
+        const oscillator = context.createOscillator()
+        const partialGain = context.createGain()
+        oscillator.type = partial.type
+        oscillator.frequency.value = frequency * partial.ratio
+        oscillator.detune.value = partial.detuneDirection * detune
+        partialGain.gain.setValueAtTime(.0001, now)
+        partialGain.gain.linearRampToValueAtTime(partial.level, now + .004)
+        partialGain.gain.exponentialRampToValueAtTime(.0001, now + partial.decay)
+        oscillator.connect(partialGain).connect(color)
+        oscillator.start(now)
+        oscillator.stop(now + 6)
+        oscillators.push({ node: oscillator, ratio: partial.ratio, detuneDirection: partial.detuneDirection })
+      })
 
-                        // Audio-reactive colors
-                        const light = document.body.classList.contains("light-mode");
-                        let Rc, Gc, Bc;
-                        
-                        if (isPlaying) {
-                            // Dynamic colors based on frequency bands
-                            if (light) {
-                                Rc = 0.1 + bassLevel * 0.4;
-                                Gc = 0.1 + midLevel * 0.4;
-                                Bc = 0.1 + highLevel * 0.4;
-                            } else {
-                                Rc = 0.6 + bassLevel * 0.4;
-                                Gc = 0.7 + midLevel * 0.3;
-                                Bc = 0.8 + highLevel * 0.2;
-                            }
-                        } else {
-                            // Default colors when no audio
-                            if (light) {
-                                Rc = 0;
-                                Gc = 0;
-                                Bc = 0;
-                            } else {
-                                Rc = 0.9;
-                                Gc = 0.95;
-                                Bc = 1.0;
-                            }
-                        }
-                        
-                        // Audio-reactive alpha
-                        let A = 0.35*(1-p) * (1 + overallIntensity * 0.5);
-                        col.push(Rc,Gc,Bc,A, Rc,Gc,Bc,A);
-                    }
-                }
+      const voice = { oscillators, ratio }
+      audio.melodyVoices.push(voice)
+      oscillators[0].node.addEventListener("ended", () => {
+        if (audio) audio.melodyVoices = audio.melodyVoices.filter(activeVoice => activeVoice !== voice)
+      }, { once: true })
+      melodyStep++
+    }
 
-                gl.bindBuffer(gl.ARRAY_BUFFER,posB);
-                gl.bufferData(gl.ARRAY_BUFFER,new Float32Array(pos),gl.DYNAMIC_DRAW);
-                gl.bindBuffer(gl.ARRAY_BUFFER,colB);
-                gl.bufferData(gl.ARRAY_BUFFER,new Float32Array(col),gl.DYNAMIC_DRAW);
+    function scheduleMelody(delay = 1800) {
+      if (melodyTimer) clearTimeout(melodyTimer)
+      melodyTimer = setTimeout(() => {
+        melodyTimer = null
+        if (!state.audible) return
+        playMelodyNote()
+        scheduleMelody(4800 + Math.random() * 2400)
+      }, delay)
+    }
 
-                gl.useProgram(prog);
-                gl.uniform2f(ur,W,H);
+    async function setAudible(next) {
+      if (next && musicPlayer && !musicPlayer.paused) musicPlayer.pause()
+      const engine = makeAudio()
+      if (engine.context.state === "suspended") await engine.context.resume()
+      state.audible = next
+      const now = engine.context.currentTime
+      engine.master.gain.cancelScheduledValues(now)
+      engine.master.gain.setValueAtTime(Math.max(engine.master.gain.value, .0001), now)
+      engine.master.gain.exponentialRampToValueAtTime(next ? DRONE_GAIN : .0001, now + (next ? 2.8 : 1.2))
+      engine.melodyBus.gain.cancelScheduledValues(now)
+      engine.melodyBus.gain.setValueAtTime(Math.max(engine.melodyBus.gain.value, .0001), now)
+      engine.melodyBus.gain.exponentialRampToValueAtTime(next ? MELODY_GAIN : .0001, now + (next ? 2.8 : 1.2))
+      if (next) scheduleMelody(3200)
+      else if (melodyTimer) {
+        clearTimeout(melodyTimer)
+        melodyTimer = null
+      }
 
-                let offset=0, count=S*2;
-                for(let i=0;i<N;i++){
-                    gl.drawArrays(gl.TRIANGLE_STRIP, offset, count);
-                    offset+=count;
-                }
+      soundButton.textContent = next ? "on" : "off"
+      soundButton.setAttribute("aria-pressed", String(next))
+      soundButton.setAttribute("aria-label", next ? "Silence the drone" : "Begin the drone")
+      question.textContent = next ? "something is making a sound" : "press and stop the silence"
+      instructions.style.opacity = next ? ".35" : "1"
+    }
 
-                t+=1;
-            }
-            draw();
-        }
-    </script>
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-  const loadingScreen = document.getElementById("loading-screen");
-  const canvas = document.getElementById("logo-canvas");
-  const ctx = canvas.getContext("2d");
+    const siteTracks = [
+      { title: "Fragments", url: "https://nicklevantis.com/audio/fragments.mp3" },
+      { title: "Nowhere", url: "https://nicklevantis.com/audio/nowhere.mp3" },
+      { title: "Broken", url: "https://nicklevantis.com/audio/broken.mp3" }
+    ]
+    let currentSiteTrack = 0
 
-  let W = canvas.width = canvas.offsetWidth;
-  let H = canvas.height = canvas.offsetHeight;
+    function formatTime(seconds) {
+      if (!Number.isFinite(seconds)) return "--:--"
+      const minutes = Math.floor(seconds / 60)
+      const remainder = Math.floor(seconds % 60)
+      return `${String(minutes).padStart(2, "0")}:${String(remainder).padStart(2, "0")}`
+    }
 
-  window.addEventListener("resize", () => {
-    W = canvas.width = canvas.offsetWidth;
-    H = canvas.height = canvas.offsetHeight;
-  });
+    function ensureMusicPlayer() {
+      if (musicPlayer) return musicPlayer
+      musicPlayer = new Audio()
+      musicPlayer.preload = "metadata"
+      musicPlayer.volume = MUSIC_GAIN
+      musicPlayer.addEventListener("play", () => {
+        playerPlay.textContent = "pause"
+        playerPlay.setAttribute("aria-label", `Pause ${siteTracks[currentSiteTrack].title}`)
+        if (state.audible) setAudible(false)
+      })
+      musicPlayer.addEventListener("pause", () => {
+        playerPlay.textContent = "play"
+        playerPlay.setAttribute("aria-label", `Play ${siteTracks[currentSiteTrack].title}`)
+      })
+      musicPlayer.addEventListener("timeupdate", updateMusicProgress)
+      musicPlayer.addEventListener("durationchange", updateMusicProgress)
+      musicPlayer.addEventListener("ended", () => selectSiteTrack(currentSiteTrack + 1, true))
+      musicPlayer.addEventListener("error", () => {
+        playerTime.textContent = "audio unavailable"
+        playerPlay.textContent = "retry"
+      })
+      return musicPlayer
+    }
 
-  // Detect colors from root variables
-  const bgColor = getComputedStyle(document.body).getPropertyValue('--bg-color').trim();
-  const textColor = getComputedStyle(document.body).getPropertyValue('--text-color').trim();
-  const accentColor = getComputedStyle(document.body).getPropertyValue('--accent-color').trim();
+    function selectSiteTrack(index, playNow = false) {
+      const wasPlaying = musicPlayer && !musicPlayer.paused
+      currentSiteTrack = (index + siteTracks.length) % siteTracks.length
+      const track = siteTracks[currentSiteTrack]
+      const player = ensureMusicPlayer()
+      player.src = track.url
+      playerTitle.textContent = track.title
+      playerNumber.textContent = `${String(currentSiteTrack + 1).padStart(2, "0")} / 03`
+      playerPlay.setAttribute("aria-label", `Play ${track.title}`)
+      curveSeek.setAttribute("aria-label", `Seek through ${track.title}`)
+      trackChoices.forEach((choice, choiceIndex) => {
+        choice.setAttribute("aria-pressed", String(choiceIndex === currentSiteTrack))
+      })
+      updateMusicProgress()
+      if (playNow || wasPlaying) player.play().catch(() => {})
+    }
 
-  // Particle setup
-  const N = 60;
-  const particles = [];
-  for(let i=0;i<N;i++){
-    particles.push({
-      x: Math.random()*W,
-      y: Math.random()*H,
-      vx: (Math.random()-0.5)*5.2,
-      vy: (Math.random()-0.5)*5.2,
-      size: Math.random()*2 + 0.5,
-      alpha: Math.random()*0.5 + 0.5,
-      color: Math.random() < 0.7 ? textColor : accentColor
-    });
-  }
+    function updateMusicProgress() {
+      const player = musicPlayer
+      const progress = player && player.duration ? player.currentTime / player.duration : 0
+      curveProgress.style.strokeDasharray = `${progress * 100} 100`
+      const point = curveBase.getPointAtLength(curveBase.getTotalLength() * progress)
+      curveHead.setAttribute("cx", point.x)
+      curveHead.setAttribute("cy", point.y)
+      playerTime.textContent = `${formatTime(player ? player.currentTime : 0)} / ${formatTime(player ? player.duration : NaN)}`
+    }
 
-  function draw() {
-    ctx.clearRect(0,0,W,H);
+    function toggleSiteTrack() {
+      const player = ensureMusicPlayer()
+      if (!player.src) selectSiteTrack(currentSiteTrack)
+      if (player.paused) player.play().catch(() => {})
+      else player.pause()
+    }
 
-    particles.forEach(p => {
-      // Movement
-      p.x += p.vx;
-      p.y += p.vy;
+    function addRipple(x, y, force = 1) {
+      state.ripples.push({ x, y, force, born: performance.now() })
+      if (state.ripples.length > 14) state.ripples.shift()
+    }
 
-      // Attraction to center
-      const dx = W/2 - p.x;
-      const dy = H/2 - p.y;
-      p.vx += dx*0.0006;
-      p.vy += dy*0.0006;
+    function pointerPosition(event) {
+      state.previousX = state.targetX
+      state.previousY = state.targetY
+      state.targetX = event.clientX
+      state.targetY = event.clientY
+      state.entered = true
+      audioNeedsTune = true
+    }
 
-      // Slight damping
-      p.vx *= 0.98;
-      p.vy *= 0.98;
+    canvas.addEventListener("pointerdown", async event => {
+      pointerPosition(event)
+      state.dragging = true
+      canvas.setPointerCapture(event.pointerId)
+      addRipple(event.clientX, event.clientY, 1.2)
+      if (!state.audible) await setAudible(true)
+    })
 
-      ctx.fillStyle = p.color.includes('rgb') ? p.color : p.color; // simple fallback
-      ctx.globalAlpha = p.alpha;
-      ctx.beginPath();
-      ctx.arc(p.x,p.y,p.size,0,Math.PI*2);
-      ctx.fill();
-    });
+    canvas.addEventListener("pointermove", event => {
+      pointerPosition(event)
+      if (state.dragging) {
+        const speed = Math.hypot(event.movementX, event.movementY)
+        if (speed > 4) addRipple(event.clientX, event.clientY, Math.min(1.8, .35 + speed / 30))
+      }
+    })
 
-    requestAnimationFrame(draw);
-  }
+    canvas.addEventListener("pointerup", event => {
+      state.dragging = false
+      canvas.releasePointerCapture(event.pointerId)
+    })
 
-  draw();
+    canvas.addEventListener("pointercancel", () => { state.dragging = false })
+    canvas.addEventListener("pointerleave", () => { state.dragging = false })
 
-  // Fade out after animation
-  setTimeout(() => {
-    loadingScreen.style.opacity = 0;
-    setTimeout(() => loadingScreen.remove(), 800);
-  }, 2000);
-});
-</script>
+    soundButton.addEventListener("click", event => {
+      event.stopPropagation()
+      setAudible(!state.audible)
+    })
+
+    openInfo.addEventListener("click", () => {
+      infoDialog.showModal()
+      openInfo.setAttribute("aria-expanded", "true")
+    })
+    closeInfo.addEventListener("click", () => infoDialog.close())
+    infoDialog.addEventListener("click", event => {
+      if (event.target === infoDialog) infoDialog.close()
+    })
+    infoDialog.addEventListener("close", () => openInfo.setAttribute("aria-expanded", "false"))
+
+    playerPlay.addEventListener("click", toggleSiteTrack)
+    trackChoices.forEach(choice => {
+      choice.addEventListener("click", () => selectSiteTrack(Number(choice.dataset.track), true))
+    })
+    curveSeek.addEventListener("click", event => {
+      const player = ensureMusicPlayer()
+      if (!player.src) selectSiteTrack(currentSiteTrack)
+      if (!player.duration) return
+      const bounds = curveSeek.getBoundingClientRect()
+      const progress = Math.max(0, Math.min(1, (event.clientX - bounds.left) / bounds.width))
+      player.currentTime = progress * player.duration
+      updateMusicProgress()
+    })
+    curveSeek.addEventListener("keydown", event => {
+      if (event.key !== "ArrowLeft" && event.key !== "ArrowRight") return
+      event.preventDefault()
+      const player = ensureMusicPlayer()
+      if (!player.duration) return
+      player.currentTime = Math.max(0, Math.min(player.duration, player.currentTime + (event.key === "ArrowRight" ? 5 : -5)))
+      updateMusicProgress()
+    })
+
+    addEventListener("keydown", event => {
+      if (event.code === "Space" && !infoDialog.open) {
+        event.preventDefault()
+        setAudible(!state.audible)
+      }
+    })
+
+    function horizonY(x, time) {
+      const center = state.height * .5
+      const pointerPull = state.targetY - center
+      const distance = Math.abs(x - state.targetX)
+      const influence = Math.exp(-distance * distance / (2 * Math.pow(Math.max(120, state.width * .17), 2)))
+      let y = center + pointerPull * influence * .62
+
+      for (const ripple of state.ripples) {
+        const age = (time - ripple.born) / 1000
+        const radius = age * 190
+        const delta = Math.abs(x - ripple.x) - radius
+        const decay = Math.max(0, 1 - age / 5)
+        y += Math.sin(delta * .055) * Math.exp(-Math.abs(delta) * .015) * 17 * ripple.force * decay
+      }
+
+      if (state.audible) y += Math.sin(x * .008 + time * .00018) * 2.2
+      return y
+    }
+
+    function draw(time) {
+      state.x += (state.targetX - state.x) * .12
+      state.y += (state.targetY - state.y) * .12
+      state.ripples = state.ripples.filter(ripple => time - ripple.born < 5000)
+      if (audio && audioNeedsTune && time - lastAudioTune > 16) {
+        tuneAudio()
+        lastAudioTune = time
+        audioNeedsTune = false
+      }
+
+      pen.clearRect(0, 0, state.width, state.height)
+      pen.fillStyle = "#fff"
+      pen.fillRect(0, 0, state.width, state.height)
+
+      const step = Math.max(4, state.width / 260)
+      const path = new Path2D()
+      path.moveTo(0, horizonY(0, time))
+      for (let x = step; x <= state.width + step; x += step) {
+        path.lineTo(x, horizonY(x, time))
+      }
+      path.lineTo(state.width, state.height)
+      path.lineTo(0, state.height)
+      path.closePath()
+      pen.fillStyle = "#0a0a0a"
+      pen.fill(path)
+
+      // A hole whose reflection exists before it does.
+      const radius = Math.max(26, Math.min(46, state.width * .04))
+      const horizonAtPointer = horizonY(state.x, time)
+      const objectY = horizonAtPointer - radius * .72
+      const reflectedY = horizonAtPointer + radius * .72
+
+      pen.beginPath()
+      pen.arc(state.x, objectY, radius, 0, Math.PI * 2)
+      pen.fillStyle = "#0a0a0a"
+      pen.fill()
+
+      pen.beginPath()
+      pen.arc(state.width - state.x, reflectedY, radius, 0, Math.PI * 2)
+      pen.fillStyle = "#fff"
+      pen.fill()
+
+      pen.lineWidth = 1
+      pen.strokeStyle = "#fff"
+      pen.beginPath()
+      pen.arc(state.x, objectY, radius * .56, 0, Math.PI * 2)
+      pen.stroke()
+
+      pen.strokeStyle = "#0a0a0a"
+      pen.beginPath()
+      pen.arc(state.width - state.x, reflectedY, radius * .56, 0, Math.PI * 2)
+      pen.stroke()
+
+      // The cursor and its impossible counterpart.
+      if (state.entered) {
+        pen.lineWidth = 1
+        pen.strokeStyle = state.y > horizonY(state.x, time) ? "#fff" : "#0a0a0a"
+        pen.beginPath()
+        pen.arc(state.x, state.y, 7, 0, Math.PI * 2)
+        pen.stroke()
+
+        const oppositeX = state.width - state.x
+        const oppositeY = state.height - state.y
+        pen.globalAlpha = .32
+        pen.strokeStyle = oppositeY > horizonY(oppositeX, time) ? "#fff" : "#0a0a0a"
+        pen.beginPath()
+        pen.arc(oppositeX, oppositeY, 3, 0, Math.PI * 2)
+        pen.stroke()
+        pen.globalAlpha = 1
+      }
+
+      requestAnimationFrame(draw)
+    }
+
+    resize()
+    addEventListener("resize", resize)
+    requestAnimationFrame(draw)
+  </script>
 </body>
 </html>
