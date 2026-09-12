@@ -732,9 +732,414 @@ body.show-tracks .tracks {
 }
 /* synth wave removed */
 </style>
-<script src="./nick-levantis-timelines.js"></script>
-<script src="./nick-levantis-shapes.js"></script>
-<script src="./nick-levantis-app.js"></script>
+<script>
+/* Inlined assets/js/timelines.js */
+const timelines = {
+  ghostsss: [
+    {
+      time:  11,
+      style: {
+        strokeWidth: 150,
+      },
+    },
+    {
+      time:  180,
+      style: {
+        strokeWidth: 5,
+      },
+    },
+  ],
+
+  'strange attractor': [
+    {
+      time:   47,
+      params: {
+        speed: .7,
+        rotation: 1,
+        mouseEffect: 0.8,
+      },
+    },
+    {
+      time:   200,
+      params: {
+        speed: .2,
+        rotation: 0,
+        mouseEffect: 0.6,
+      },
+    },
+  ],
+
+  'fires under water': [
+    {
+      time:   181,
+      params: {
+        shiftY: -1,
+        shiftX: 0,
+      },
+    },
+    {
+      time:   465,
+      params: {
+        shiftY: -1,
+        shiftX: 1,
+      },
+    },
+  ],
+
+  'sistema': [
+    {
+      time:   31,
+      style: {
+        strokeWidth: 400,
+      },
+      params: {
+        style: {
+          strokeWidth: 400,
+        }
+      },
+    },
+    {
+      time:   151,
+      params: {
+        shiftMode: 'smaller',
+      },
+    },
+  ],
+
+  'pairs': [
+    {
+      time:   45,
+      params: {
+        shiftY: 0,
+        shiftX: -1,
+      },
+    },
+  ],
+
+  extase: [
+    {
+      time:   25,
+      params: {
+        speed: .7,
+      },
+    },
+    {
+      time:   60,
+      params: {
+        speed: 1.2,
+      },
+    },
+    {
+      time:   80,
+      params: {
+        speed: 1.5,
+      },
+    },
+  ],
+
+  'leerstelle': [
+    {
+      time:   26.3,
+      style: {
+        strokeWidth: 50,
+      },
+      params: {
+        mouseEffect: 3,
+        speed: 1.5,
+        style: {
+          strokeWidth: 50,
+        },
+        rotation: 0,
+      }
+    },
+    {
+      time:   120,
+      params: {
+        mouseEffect: 1,
+        rotation: -1,
+      }
+    },
+    {
+      time:   288,
+      style: {
+        strokeWidth: 4,
+      },
+      params: {
+        style: {
+          strokeWidth: 10,
+        },
+        rotation: -1.8,
+      }
+    },
+  ],
+
+  RFBongos: [
+    {
+      time:   57,
+      params: {
+        speed:    .15,
+        blinkRate: 2,
+      },
+    },
+    {
+      time:  163,
+      style: {
+        strokeColor: 'black',
+        strokeWidth: 0,
+      },
+      params: {
+        speed:     1,
+        blinkRate: 0,
+      },
+    },
+  ],
+
+  functiii: [
+    {
+      time:   55,
+      params: {
+        speed: 0.02,
+        incr:  1.02,
+      },
+    },
+    {
+      time:   114,
+      params: {
+        speed: 0.06,
+        incr:  1.03,
+      },
+    },
+    {
+      time:   186,
+      params: {
+        speed: 0.005,
+        incr:  1.12,
+        step:  50
+      },
+    }
+  ],
+
+  sudoka: [
+    {
+      time:   60,
+      params: {
+        incr:  1.25,
+        step:  40,
+        shift: 2,
+      },
+    },
+    {
+      time:   120,
+      params: {
+        incr:  1.18,
+        step:  25,
+        shift: 1,
+      },
+    },
+    {
+      time:   180,
+      params: {
+        incr:  1.3,
+        step:  12,
+        shift: 4,
+      },
+    },
+    {
+      time:   240,
+      params: {
+        incr:  1.35,
+        step:  5,
+        shift: 2.5,
+      },
+    },
+    {
+      time:   300,
+      params: {
+        incr:  1.25,
+        step:  40,
+        shift: 0.2,
+      },
+    },
+    {
+      time:   360,
+      params: {
+        incr:  1.18,
+        step:  25,
+        shift: 5,
+      },
+    },
+    {
+      time:   420,
+      params: {
+        incr:  1.25,
+        step:  12,
+        shift: 1.6,
+      },
+    },
+    {
+      time:   480,
+      params: {
+        incr:  1.35,
+        step:  5,
+        shift: 3,
+      },
+    },
+    {
+      time:   540,
+      params: {
+        incr:  1.25,
+        step:  40,
+        shift: 6,
+      },
+    },
+    {
+      time:   600,
+      params: {
+        incr:  1.18,
+        step:  25,
+        shift: 0.2,
+      },
+    },
+    {
+      time:   660,
+      params: {
+        incr:  1.3,
+        step:  12,
+        shift: 1.5,
+      },
+    },
+    {
+      time:   720,
+      params: {
+        incr:  1.35,
+        step:  5,
+        shift: 5,
+      },
+    },
+  ],
+
+  Fragments: [
+    {
+      time:  11,
+      style: {
+        strokeWidth: 150,
+      },
+    },
+    {
+      time:  180,
+      style: {
+        strokeWidth: 5,
+      },
+    },
+  ],
+
+  Nowhere: [
+    {
+      time:   31,
+      style: {
+        strokeWidth: 400,
+      },
+      params: {
+        style: {
+          strokeWidth: 400,
+        }
+      },
+    },
+    {
+      time:   151,
+      params: {
+        shiftMode: 'smaller',
+      },
+    },
+  ],
+
+  Broken: [
+    {
+      time:   25,
+      params: {
+        speed: .7,
+      },
+    },
+    {
+      time:   60,
+      params: {
+        speed: 1.2,
+      },
+    },
+    {
+      time:   80,
+      params: {
+        speed: 1.5,
+      },
+    },
+  ],
+
+  Nothing: [
+    {
+      time:   26.3,
+      style: {
+        strokeWidth: 50,
+      },
+      params: {
+        mouseEffect: 3,
+        speed: 1.5,
+        style: {
+          strokeWidth: 50,
+        },
+        rotation: 0,
+      }
+    },
+    {
+      time:   120,
+      params: {
+        mouseEffect: 1,
+        rotation: -1,
+      }
+    },
+    {
+      time:   288,
+      style: {
+        strokeWidth: 4,
+      },
+      params: {
+        style: {
+          strokeWidth: 10,
+        },
+        rotation: -1.8,
+      }
+    },
+  ],
+
+  Running: [
+    {
+      time:   57,
+      params: {
+        speed:    .15,
+        blinkRate: 2,
+      },
+    },
+    {
+      time:  163,
+      style: {
+        strokeColor: 'black',
+        strokeWidth: 0,
+      },
+      params: {
+        speed:     1,
+        blinkRate: 0,
+      },
+    },
+  ],
+}
+</script>
+<script>
+/* Inlined assets/js/shapes.min.js */
+function createCircle(t,e,n,o){const{step:r,incr:i,style:a}=o;var s=vw/2,l=vh/2,c=n?n.radius:r,h=r+Math.pow(c,i),m=new t.Shape.Circle({center:[s,l],radius:h,strokeWidth:a.strokeWidth||1,strokeColor:a.strokeColor||"black",opacity:a.opacity||1,fillColor:a.fillColor||"transparent",blendMode:a.blendMode||"normal"});return"random"===a.fillColor&&(m.fillColor=randomRGB()),m}function createConcentricCircles(t,e,n=[]){const{step:o,incr:r}=e;for(var i,a=getCirclesAmount(o,r),s=0;s<a;s++)i=createCircle(t,s,n[s-1],e),n.push(i);return n}function animateConcentricCircles(t,e,n){const{incr:o,step:r,shift:i,speed:a,shiftMode:s,resetMode:l,style:c}=n;for(var h,m=e.length,u=(e[0],e[m-1],0);u<m;u++)h=e[u],newRadius=Math.pow(h.radius,o)-h.radius,h.radius+=newRadius*a,strokeCircles(h,s,c.strokeWidth),shiftCircles(h.position,h.radius,i,m,s),h=resetCircle(h,o,r,l);return e}function getCirclesAmount(t,e){var n=1,o=t;do{o=t+Math.pow(o,e),n++}while(vw>o);return n}function strokeCircles(t,e,n){if("stroke"===e){var o=new paper.Point(vw/2,vh/2),r=Math.abs(o.getDistance(mousePos)-t.radius),i=Math.floor(n/vw*r+5);return t.strokeWidth=i,i}return!1}function shiftCircles(t,e,n,o,r){return"smaller"===r&&(t.x=t.x+(mousePos.x-t.x)/e/o*n,t.y=t.y+(mousePos.y-t.y)/e/o*n),"bigger"===r&&(t.x=t.x+(mousePos.x-t.x)/(100/e)/o*n,t.y=t.y+(mousePos.y-t.y)/(100/e)/o*n),t}function resetCircle(t,e,n,o){return t.radius>vw&&(t.radius=n+Math.pow(n,e),"random"===o&&(t.position.x=Math.random()*vw,t.position.y=Math.random()*vh),"center"===o&&(t.position.x=vw/2,t.position.y=vh/2)),t}function createLine(t,e,n,o){var{x:r,y:i,w:a}=linesPosition(o,n,e),{style:s}=o,l=new t.Point(r,i),c=new t.Path({strokeColor:s.strokeColor||"black",strokeWidth:s.strokeWidth||1,fillColor:s.fillColor||"transparent",blendMode:s.blendMode||"normal",translateUnit:{tx:2*Math.random()-1,ty:2*Math.random()-1}}),h=180*Math.random()-90;return c.moveTo(l),c.lineTo(l.add([a,0])),c.rotate(h,l),c}function createLines(t,e,n=[]){for(var{count:o}=e,r=0;r<o;r++){var i=createLine(t,r,n,e);n.push(i)}return n}function updateLine(t,e){return t.lineTo(mousePos),t}function updateLines(t,e){var{update:n}=t;if(n&&e.length){var o=e.pop();o=updateLine(o,t),e.unshift(o)}return e}function animateLines(t,e,n){for(var{linesMode:o,position:r,speed:i,mouseEffect:a}=n,s=0;s<e.length;s++){var l=e[s-1],c=getRotationIncrement(s,t,e,n);"chain"===r?chainAnimation(c,e[s],l):e[s].rotate(c),a&&translateLines(e[s],a)}return e}function translateLines(t,e){var n=getCenter(t),o=1/vw*n.getDistance(mousePos);checkTranslateBounds(t,n);var{tx:r,ty:i}=t.translateUnit;translateDelta={x:r*e*o,y:i*e*o},t.translate(translateDelta)}function chainAnimation(t,e,n){var o=getPoint(e,0);if(n){var r=getPoint(n,1),i={x:r.x-o.x,y:r.y-o.y};e.translate(i),e.rotate(t,r)}else e.rotate(t,o);return e}function getChainRotationIncrement(t,e,n){var o=getPoint(t[e],0).getDistance(mousePos),r=1/Math.max(.15,1/vw*o);return Math.pow(1.4,e)/t.length*n*r}function getRotationIncrement(t,e,n,o){var r,{linesMode:i,position:a,speed:s}=o;switch(i){case"rotateAndStop":r=5+5*Math.sin(e/5+t*t);break;case"rotate":r=1;break;case"oscillate":r=Math.sin(e/20+t)*s;break;default:r=1}return"chain"===a&&(r=getChainRotationIncrement(n,t,s)),r}function checkTranslateBounds(t,e){return e.x>vw?t.translateUnit.tx=-1*Math.abs(t.translateUnit.tx):e.x<0&&(t.translateUnit.tx=Math.abs(t.translateUnit.tx)),e.y>vh?t.translateUnit.ty=-1*Math.abs(t.translateUnit.ty):e.y<0&&(t.translateUnit.ty=Math.abs(t.translateUnit.ty)),t.translateUnit}function linesPosition(t,e=[],n=0){var{count:o,position:r}=t,i=e[n-1];switch(r){case"center":var{x:a,y:s,w:l}=dimensionsLinesCenter(n,o);break;case"random":var{x:a,y:s,w:l}=dimensionsLinesRandom();break;case"chain":var{x:a,y:s,w:l}=dimensionsLinesChain(n,i);break;default:var{x:a,y:s,w:l}=dimensionsLinesCenter(n,o)}return{x:a,y:s,w:l}}function dimensionsLinesCenter(t,e){var n=vh/e*2;return{x:vw/e*t,y:vh/2,w:n}}function dimensionsLinesRandom(){var t=Math.random()*vw/6+vh/12;return{x:Math.random()*(vw-t),y:Math.random()*(vh-t)+t/2,w:t}}function dimensionsLinesChain(t,e){var n=Math.random()*vw/6+vh/12;return{x:e?getPoint(e,1).x:vw/2,y:e?getPoint(e,1).y:vh/2,w:n}}function createLinesConnections(t,e,n,o=[]){var{style:r,connectionStyle:i,connectionMode:a,position:s}=n,l=(setStyle(i.strokeWidth,i.strokeColor,i.fillColor,i.blendMode),2*(e.length-1));if("draw"===a)if("chain"===s){var c=getLastChainPoint(e);o[0]=new t.Path(i),o[0].moveTo(c),o[0].lineTo(c)}else for(var h=0;h<e.length;h++){c=e[h].segments[1].point;o[h]=new t.Path(i),o[h].moveTo(c),o[h].lineTo(c)}else for(h=0;h<l/2;h++){o[h]=[];for(var m=0;m<2;m++){var u=e[h].segments[m].point.x,d=e[h+1].segments[m].point.x,v=e[h].segments[m].point.y,p=e[h+1].segments[m].point.y,f=new t.Point(u,v),g=new t.Point(d,p);o[h][m]=new t.Path(i),o[h][m].moveTo(f),o[h][m].lineTo(g)}}return o}function animateLinesConnections(t,e,n,o){var{connectionMode:r,blinkRate:i,position:a,speed:s}=o,l=n,c=e.length,h=randomInt(l.length-1),m=randomInt(1);if("draw"===r){if(t%5==0)if("chain"===a){var u=getLastChainPoint(e);l[0].lineTo(u)}else for(var d=0;d<e.length;d++){u=e[d].segments[1].point;l[d].lineTo(u)}}else for(d=0;d<c-1;d++)for(var v=0;v<2;v++)if(e[d]&&e[d+1]){var p=e[d].segments[v].point.x,f=e[d+1].segments[v].point.x,g=e[d].segments[v].point.y,w=e[d+1].segments[v].point.y,y=l[d][v];y.segments[0].point={x:p,y:g},y.segments[1].point={x:f,y:w};var x=t%randomInt(i,100*s)==0;"intermittence"===r&&x&&(y.strokeColor="transparent",l[h][m].strokeColor="black")}return n}function getLastChainPoint(t){return t[t.length-1].segments[1].point}function createSegment(t,e,n){var{style:o}=n,{x:r,y:i,w:a}=getSegmentDimensions(e,n),s=new t.Point(r,i),l=new t.Path({strokeColor:o.strokeColor||"black",strokeWidth:o.strokeWidth||1,blendMode:o.blendMode||"normal"}),c=n.angle||0;return l.moveTo(s),l.lineTo(s.add([0,a])),l.rotate(c),l}function createMatrix(t,e,n=[]){for(var o,{dimensions:r}=e,i=[],a=0;a<r.rows;a++){for(var s=[],l=0;l<r.cols;l++)o=createSegment(t,{row:a,col:l},e),s.push(o);i.push(s)}return i}function animateMatrix(t,e,n){for(var o=0;o<e.length;o++)for(var r=e[o],i=0;i<r.length;i++){var a=r[i];a=animateSegment(t,r,a,{row:o,col:i},n)}return e}function animateSegment(t,e,n,o,r){var i,{style:a,rotation:s,speed:l,mouseEffect:c,shiftMode:h,shiftX:m,shiftY:u}=r,d=new paper.Point(mousePos),v=m&&0!==m,p=u&&0!==u;if("closest"===r.matrixMode){var f=getCenter(n);i=50/(g=Math.max(10,d.getDistance(f)))+(3/vw*mousePos.x-1.5)}if((v||p)&&(i=shiftSegment(n,d,c,l,s,m,u)),"stroke"===h){f=getCenter(n);var g=d.getDistance(f),w=Math.max(0,10-20/vw*g),y=Math.sin(t/100*(o.row+o.col))*a.strokeWidth+w;n.strokeWidth=y}return n.rotate(i),resetSegments(n.segments),n}function getSegmentDimensions(t,e){var{dimensions:n}=e,o=vh/n.rows*n.length;return{x:vw/n.cols*t.col,y:vh/n.rows*t.row+(vh/n.rows-o)/2,w:o}}function shiftSegment(t,e,n,o,r,i,a){var s=t.segments[0],l=t.segments[1],c=new paper.Point(s.point),h=Math.max(10,e.getDistance(c));return incr=Math.max(1,200/n/h)*h*o*.01,i&&(s.point.x+=incr*i,l.point.x+=incr*i),a&&(s.point.y+=incr*a,l.point.y+=incr*a),angle=r-r/incr,angle}function resetSegments(t){p0=t[0].point,p1=t[1].point,distX=Math.abs(p0.x-p1.x),distY=Math.abs(p0.y-p1.y),p1.x<-50?(p0.x=vw,p1.x=vw+distX):p0.x>vw+50&&(p0.x=-1*distX,p1.x=0),p1.y<-50?(p0.y=vh,p1.y=vh+distY):p0.y>vh+50&&(p0.y=-1*distY,p1.y=0)}function createMatrixConnections(t,e,n){for(var o,{dimensions:r,connectionStyle:i}=n,a=[],s=setStyle(i.strokeWidth,i.strokeColor,i.fillColor,i.blendMode),l=0;l<r.cols;l++){var c=new t.Path(s);o=e[0][l].segments[0].point,c.moveTo(o);for(var h=1;h<r.rows;h++)o=e[h][l].segments[1].point,c.lineTo(o);a.push(c)}return a}function animateMatrixConnections(t,e,n,o){for(var r=0;r<n.length;r++)for(var i=n[r],a=0;a<i.segments.length;a++)i.segments[a].point={x:e[a]?e[a][r].segments[0].point.x:0,y:e[a]?e[a][r].segments[0].point.y:0};return n}
+</script>
+<script>
+/* Inlined assets/js/script.min.js */
+var vw,vh,_canvas,mousePos={x:0,y:0},prevMousePos={x:0,y:0},hasIntro=!0;function addZero(e){return e=e<10?"0"+e:e}function formatTime(e){var t=parseInt(e/60),a=e-60*t;return addZero(t)+":"+addZero(a)}function getCenter(e){var t=e.segments[0].point.x,a=e.segments[1].point.x,s=e.segments[0].point.y,n=t+(a-t)/2,i=s+(e.segments[1].point.y-s)/2;return new paper.Point(n,i)}function getPoint(e,t){return e.segments[t].point}function randomInt(e,t=1){return Math.floor(Math.random()*e)+t}window.onload=function(){mobileHandleTouch(),controlsHandleClick(),controlsHandleKeyboard(),initIntroAnimation()};var randomColors=()=>new paper.Color(Math.random(),Math.random(),Math.random()),randomRGB=()=>{var e=Math.random()>.5?1:0,t=Math.random()>.5?1:0,a=Math.random()>.5?1:0;return new paper.Color(e,t,a)},randomBlue=()=>new paper.Color(0,0,Math.random());function renderCanvas(e){_player.change=!0,_player.el.removeEventListener("canplaythrough",renderCanvas),controlsUpdate(),requestAudioAutoplay(e)}async function requestAudioAutoplay(e){try{await _player.el.play(),_player.isPlaying=!0,_canvas.requestTrackOnSuccess(e)}catch(t){playButtonOnSafari(e)}}function playButtonOnSafari(e){var t=$("#play-on-safari");t.css("display","flex"),t.click(function(){_canvas.requestTrackOnSuccess(e),_player.togglePlay(),_canvas.togglePlay(),controlsUpdatePlayPause(),t.remove()})}function requestTrack(e){var t=window.location.origin+"/"+e+".json";return $.ajax({url:t,type:"GET",dataType:"json",success:e=>{_player.requestTrackOnSuccess(e).addEventListener("canplaythrough",renderCanvas(e))},error:e=>{console.warn("Track not found")}}),this}function setBodyInvert(e){e.invertColors&&$("body").addClass("invert-colors")}function setMatrixDimensions(e,t,a){return{rows:e,cols:t,length:a}}var setStyle=(e=1,t="black",a="transparent",s="normal")=>{return"white"===t&&(t="#EFEFEF"),"black"===t&&(t="#000000"),"white"===a&&(a="#EFEFEF"),"black"===a&&(a="#000000"),{strokeWidth:e,strokeColor:t,fillColor:a,blendMode:s}};function shuffle(e){for(let t=e.length-1;t>0;t--){let a=randomInt(t);[e[t],e[a]]=[e[a],e[t]]}return e}function controlsHandleClick(){$(".background");var e=$(".play-track"),t=$(".nav__menu"),a=$(".nav__title, .info__overlay"),s=$(".controls__play, .controls__pause"),n=$(".controls__prev"),i=$(".controls__next"),r=$(".player__progress"),o=$(".controls__volume");t.click(handleTrackClose),a.click(handleInfo),i.click(handleTrackNext),s.click(handlePlay),n.click(handleTrackPrev),e.click(handleTrackRequest),r.click(handleSeek),o.click(handleVolume)}function controlsHandleKeyboard(){document.addEventListener("keydown",e=>{if(playerIsActive=$("body").hasClass("show-player"),playerIsActive)switch(e.key){case"ArrowRight":handleTrackNext();break;case"ArrowLeft":handleTrackPrev();break;case" ":handlePlay();break;case"Escape":handleTrackClose();break;default:return}})}function mobileHandleTouch(){document.addEventListener("mousedown",e=>{mousePos=new paper.Point(e.clientX,e.clientY)})}var handleInfo=function(){$("body").toggleClass("show-info")},handlePlay=function(){_player.isSetup&&_canvas.isSetup&&(_player.togglePlay(),_canvas.togglePlay(),controlsUpdatePlayPause())},handleSeek=function(e){if(_player.isSetup&&_canvas.isSetup){var t=_player.el.duration,a=sliderMousePosition(e,".player__progress");a=(1-a)*t,_player.seek=a,_canvas.onSeekTimeline(a)}},handleTrackClose=function(){_player.pause(),_canvas.unmount(),setTimeout(function(){_player.reset(),_canvas.reset(),showTracks()},1e3)},handleTrackNext=function(){if(_player.allowChangeTrack){var e=$(".controls__next").attr("data-slug");_player.change=!1,_player.pause(),_canvas.unmount(),setTimeout(function(){requestTrack(e),controlsUpdatePlayPause()},1e3)}},handleTrackPrev=function(){if(_player.allowChangeTrack){var e=$(".controls__prev").attr("data-slug");_player.change=!1,_player.pause(),_canvas.unmount(),setTimeout(function(){requestTrack(e),controlsUpdatePlayPause()},1e3)}},handleTrackRequest=function(){if(_player.allowChangeTrack){var e=$(this).attr("data-slug");_player.change=!1,hideTracks(1e3),setTimeout(function(){requestTrack(e)},1e3)}},handleVolume=function(e){var t=sliderMousePosition(e,".controls__volume");_player.volume=t,sliderUpdateWidth(".controls__volume",t)};function controlsUpdate(){controlsUpdatePlayPause(),controlsUpdateTime(),controlsUpdateTitle(),controlsUpdateNextPrev()}function controlsUpdatePlayPause(){$play=$(".controls__play"),$pause=$(".controls__pause"),_player.isPlaying?($play.addClass("hide"),$pause.removeClass("hide")):($play.removeClass("hide"),$pause.addClass("hide"))}function controlsUpdateTime(){setInterval(function(){var e=_player.duration,t=_player.timeLeft;!isNaN(t)&&_player.isPlaying&&$(".player__duration").html(formatTime(t)),sliderUpdateWidth(".player__progress",t,e)},500)}function controlsUpdateTitle(){var e=_player.trackTitle;$(".player__title").html(e)}function controlsUpdateNextPrev(){var e=$(".controls__prev"),t=$(".controls__next");e.attr("data-slug",_player.trackPrev),t.attr("data-slug",_player.trackNext)}function sliderMousePosition(e,t){var a=$(t).innerWidth(),s=$(t).offset().left;return 1/a*(e.clientX-s)}function sliderUpdateWidth(e,t,a=1){var s=100/a*t+"%";$(e+" .slider__bg").css("width",s)}function showTracks(){var e,t,a=$("body");$(".track").each(function(a){var s=$(this);setTimeout(function(){e=s.find(".track__title"),t=s.find(".track__duration"),e.addClass("block--appear"),t.addClass("block--fadein")},100*a)}),a.removeClass("show-player show-info").addClass("show-tracks")}function hideTracks(e){var t=$("body"),a=$(".track__title"),s=$(".track__duration");a.removeClass("block--appear"),s.removeClass("block--fadein"),setTimeout(function(){a.addClass("block--disappear"),s.addClass("block--fadeout")},1),setTimeout(function(){a.removeClass("block--disappear"),s.removeClass("block--fadeout"),t.removeClass("show-tracks").addClass("show-player")},e)}function onTrackEnded(){var e=$(".controls__next").attr("data-slug");_player.pause(),_canvas.unmount(),setTimeout(function(){requestTrack(e),controlsUpdatePlayPause()},1e3)}class Params{constructor(e){this.style=this.setStyleParams(e.style),this.connectionStyle=this.setStyleParams(e.connectionStyle),this.speed=this.setRange(e.speed),this.update=parseInt(e.update),this.mouseEffect=parseFloat(e.mouseEffect),this.animationDelay=parseFloat(e.animationDelay),this.incr=parseFloat(e.incr),this.resetMode=e.resetMode,this.shift=parseFloat(e.shift),this.shiftMode=e.shiftMode,this.step=parseFloat(e.step),this.count=this.setRange(e.count),this.connectionMode=e.connectionMode,this.blinkRate=parseFloat(e.blinkRate),this.linesMode=e.linesMode,this.position=e.position,this.angle=this.setRange(e.angle),this.dimensions=this.setDimensions(e.dimensions),this.matrixMode=e.matrixMode,this.shiftX=e.shiftX,this.shiftY=e.shiftY,this.rotation=parseFloat(e.rotation)}setDimensions(e){if(e){var t=e.cols;vw<720&&e.colsMobile&&e.colsMobile.min>0&&(t=e.colsMobile);var a=e.rows;vw<720&&e.rowsMobile&&e.rowsMobile.min>0&&(a=e.rowsMobile);var s=e.length;return vw<720&&e.lengthMobile>0&&(s=e.lengthMobile),{cols:this.setRange(t),rows:this.setRange(a),length:parseFloat(s)}}}setStyleParams(e){if(e){var t=e.strokeWidth;vw<720&&e.strokeWidthMobile&&e.strokeWidthMobile.min>0&&(t=e.strokeWidthMobile);var a=this.setRange(t),s=e.strokeColor,n=e.fillColor,i=e.blendMode;return setStyle(a,s,n,i)}return!1}setRange(e){if(e){var t=parseFloat(e.min),a=parseFloat(e.range);return isNaN(a)?t:randomInt(t,a)}return!1}}class Canvas{constructor(e){this.initialParams={style:null,connectionStyle:null},this.isSetup=!1,this.isPlaying=!1,this.params={style:null,connectionStyle:null},this.paths={main:[],conn:[]},this.time=0,this.timelineIndex=-1,this.timeline=[],this.title=null}clearPaths(){return this.paths={main:[],conn:[]},this.paths}handleMouseMove(){paper.view.onMouseMove=function(e){mousePos=e.point}}handleMouseRandomUpdate(){setInterval(()=>{mousePos.x===prevMousePos.x&&mousePos.y===prevMousePos.y&&this.setRandomMousePos(),prevMousePos=mousePos},1e4)}createPaths(e){switch(e){case"lines":return createLines(paper,this.params);case"circles":return createConcentricCircles(paper,this.params);case"matrix":return createMatrix(paper,this.params);case"linesConn":return createLinesConnections(paper,this.paths.main,this.params);case"matrixConn":return createMatrixConnections(paper,this.paths.main,this.params);default:return}}animatePaths(e){switch(e){case"lines":return animateLines(this.time,this.paths.main,this.params);case"circles":return animateConcentricCircles(this.time,this.paths.main,this.params);case"matrix":return animateMatrix(this.time,this.paths.main,this.params);case"linesConn":return animateLinesConnections(this.time,this.paths.main,this.paths.conn,this.params);case"matrixConn":return animateMatrixConnections(this.time,this.paths.main,this.paths.conn,this.params);default:return}}updatePathsStyle(e){var t=paper.project.activeLayer.children;return t.map((t,a)=>t.set(e)),t}pause(){paper.view.pause(),this.isPlaying=!1}play(){paper.view.play(),this.isPlaying=!0}requestTrackOnSuccess(e){return this.reset(),this.setup(e),this.render(e),e}render(e){var t=1e3*this.params.animationDelay||0;setTimeout(()=>(this.renderDraw(e),this.renderAnimate(e),e),t)}renderDraw(e){var{principle:t,principleConn:a}=e;return this.paths.main=this.createPaths(t),this.paths.conn=this.createPaths(a),this.isPlaying=!0,paper.view.draw(),paper.view}renderAnimate(e){var{principle:t,principleConn:a}=e;return paper.view.onFrame=(e=>{this.paths.main=this.animatePaths(t),this.paths.conn=this.animatePaths(a),this.renderUpdate(e),this.timeIncr()}),paper.view}renderUpdate(e){var t=this.params.update,a=e.count%t==0;return t&&a&&(this.paths.main=updateLines(this.params,this.paths.main)),t}reset(){return null!==paper.project&&(paper.project.clear(),this.clearPaths(),this.timelineIndex=-1,this.time=0,this.addTitle=null,this)}setup(e){return this.setCanvas(),this.setDimensions(),this.setRandomMousePos(),this.handleMouseMove(),this.addParams=e.params,this.addInitialParams=this.params,this.addTimeline=timelines[e.title]||[],this.addTitle=e.title,this}unmount(e=750){if(paper.project){var t=paper.project.activeLayer.children,a=t.length<=0,s=Math.ceil(.05*t.length),n=Math.floor(.05*e),i=setInterval(function(){a?clearInterval(i):t.splice(0,s)},n)}}checkTimelineUpdates(e){if(this.timeline.length>0){var t=this.timelineIndex+1,a=this.timeline[t]||this.timeline[this.timelineIndex];return a&&e>=a.time&&(this.updatePaths(a),this.timelineIncr()),t}return!1}onSeekTimeline(e){var t=this.updateTimelineIndex(e),a=this.timeline[t];return this.timelineIndex!==t&&(this.timelineIndex=t,-1===t?(this.resetParams(),this.updatePathsStyle(this.initialStyle)):this.updatePaths(a)),t}updatePaths(e){return e.style&&this.updatePathsStyle(e.style),e.params&&this.updateParams(e.params),e}updateTimelineIndex(e){var t=this.timeline,a=-1;return t.map((t,s)=>{e>t.time&&(a=s)}),a}updateParams(e){var t=this.params;return Object.keys(t).map((a,s)=>{var n=t[a],i=e[a];i&&n!=i&&(this.params[a]=i)}),e}resetParams(){return this.params=JSON.parse(JSON.stringify(this.initialParams)),this.params}setDimensions(){return vw=paper.view.size.width,vh=paper.view.size.height,{vw:vw,vh:vh}}setRandomMousePos(){return mousePos={x:randomInt(vw),y:randomInt(vh)}}setCanvas(){this.isSetup||(this.isSetup=!0,this.handleMouseRandomUpdate(),paper.setup("canvas"))}timeIncr(){this.time=this.time+1}timelineIncr(){this.timelineIndex=this.timelineIndex+1}togglePlay(){return this.isPlaying?this.pause():this.play(),this.isPlaying}get SVG(){return paper.project.exportSVG()}set addParams(e){this.params=new Params(e)}set addInitialParams(e){this.initialParams={...e}}set addTimeline(e){this.timeline=e}set addTitle(e){this.title=e}}_canvas=new Canvas;class Player{constructor(e){this.allowChangeTrack=!0,this.autoplayNext=!1,this.el=document.createElement("audio"),this.isPlaying=!1,this.isSetup=!1,this.trackIndex=null,this.trackTitle=null,this.trackPrev=null,this.trackNext=null}pause(){this.el.pause(),this.isPlaying=!1}play(){this.el.play(),this.isPlaying=!0}requestTrackOnSuccess(e){return this.setup(e),this.onTrackEnded(),this.el}reset(){return this.pause(),this.isSetup=!1,this.isPlaying=!1,this.trackIndex=null,this.trackTitle=null,this}setup(e){var{src:t,title:a,index:s,nextTrack:n,prevTrack:i}=e;return this.isSetup=!0,this.source=t,this.trackTitle=a,this.trackIndex=s,this.trackPrev=i,this.trackNext=n,this}togglePlay(){return this.isPlaying?this.pause():this.play(),this.isPlaying}onTrackEnded(){this.autoplayNext||(this.autoplayNext=!0,this.el.addEventListener("ended",()=>onTrackEnded()))}set source(e){this.el.src=e}set seek(e){this.el.currentTime=e}set volume(e){this.el.volume=e}set change(e){this.allowChangeTrack=e}get duration(){return parseInt(this.el.duration)}get currentTime(){return parseInt(this.el.currentTime)}get timeLeft(){return parseInt(this.el.duration)-parseInt(this.el.currentTime)}}const _player=new Player;function initIntroAnimation(){var e=$(".start"),t=$(".tracks");hasIntro?(e.css("display","flex"),t.css("pointer-events","none"),setTimeout(function(){e.fadeOut(250),t.css("pointer-events","all"),showTracks()},2500)):showTracks()}_player.el.ontimeupdate=(()=>_canvas.checkTimelineUpdates(_player.currentTime));
+</script>
 </head>
 <body class="show-tracks">
 
@@ -841,7 +1246,73 @@ Space: play / pause. Arrow keys: previous / next recording. Escape: close.</p></
 </div>
 </main>
 
-<script src="./nick-levantis-tracks.js"></script>
+<script>
+/* Local track data. This replaces the original "/<slug>.json" AJAX fetch
+   (same object shape the original engine expects) so the page also works
+   from a static host or file. script.min.js, shapes.min.js, timelines.js
+   and index.css are otherwise the original files, unmodified in behaviour. */
+var TRACK_DATA = {
+  'tracks/fragments': {
+    src: 'https://nicklevantis.com/audio/fragments.mp3',
+    title: 'Fragments', index: 0,
+    prevTrack: 'tracks/running', nextTrack: 'tracks/nowhere',
+    principle: 'circles', principleConn: '',
+    params: {"style":{"strokeWidth":{"min":"5","range":""},"strokeColor":"black","fillColor":"transparent","blendMode":"normal","strokeWidthMobile":{"min":"","range":null}},"connectionStyle":{"strokeWidth":{"min":"","range":""},"strokeColor":"","fillColor":"","blendMode":""},"speed":{"min":"0.02","range":""},"update":"","animationDelay":"0.35","incr":"1.08","resetMode":"","shift":"0.4","shiftMode":"bigger","step":"35","count":{"min":"","range":""},"connectionMode":"","blinkRate":"","linesMode":"","position":"","angle":{"min":"","range":""},"dimensions":{"cols":{"min":"","range":""},"rows":{"min":"","range":""},"length":"","colsMobile":{"min":"","range":null},"rowsMobile":{"min":"","range":null},"lengthMobile":""},"matrixMode":"","shiftX":"","shiftY":"","mouseEffect":"","rotation":""}
+  },
+  'tracks/nowhere': {
+    src: 'https://nicklevantis.com/audio/nowhere.mp3',
+    title: 'Nowhere', index: 1,
+    prevTrack: 'tracks/fragments', nextTrack: 'tracks/broken',
+    principle: 'circles', principleConn: '',
+    params: {"style":{"strokeWidth":{"min":"20","range":""},"strokeColor":"black","fillColor":"transparent","blendMode":"normal","strokeWidthMobile":{"min":"","range":null}},"connectionStyle":{"strokeWidth":{"min":"","range":""},"strokeColor":"","fillColor":"","blendMode":""},"speed":{"min":"0.8","range":""},"update":"","animationDelay":"0.6","incr":"1.001","resetMode":"random","shift":"3","shiftMode":"stroke","step":"100","count":{"min":"","range":""},"connectionMode":"","blinkRate":"","linesMode":"","position":"","angle":{"min":"","range":""},"dimensions":{"cols":{"min":"","range":""},"rows":{"min":"","range":""},"length":"","colsMobile":{"min":"","range":null},"rowsMobile":{"min":"","range":null},"lengthMobile":""},"matrixMode":"","shiftX":"","shiftY":"","mouseEffect":"","rotation":""}
+  },
+  'tracks/broken': {
+    src: 'https://nicklevantis.com/audio/broken.mp3',
+    title: 'Broken', index: 2,
+    prevTrack: 'tracks/nowhere', nextTrack: 'tracks/nothing',
+    principle: 'lines', principleConn: 'linesConn',
+    params: {"style":{"strokeWidth":{"min":"1","range":""},"strokeColor":"transparent","fillColor":"transparent","blendMode":"normal","strokeWidthMobile":{"min":"","range":null}},"connectionStyle":{"strokeWidth":{"min":"2","range":""},"strokeColor":"black","fillColor":"transparent","blendMode":"normal"},"speed":{"min":"0.15","range":""},"update":"","animationDelay":"","incr":"","resetMode":"","shift":"","shiftMode":"","step":"","count":{"min":"8","range":""},"connectionMode":"draw","blinkRate":"","linesMode":"oscillate","position":"center","angle":{"min":"","range":""},"dimensions":{"cols":{"min":"","range":""},"rows":{"min":"","range":""},"length":"","colsMobile":{"min":"","range":null},"rowsMobile":{"min":"","range":null},"lengthMobile":""},"matrixMode":"","shiftX":"","shiftY":"","mouseEffect":"2","rotation":""}
+  },
+  'tracks/nothing': {
+    src: 'https://nicklevantis.com/audio/nothing.mp3',
+    title: 'Nothing', index: 3,
+    prevTrack: 'tracks/broken', nextTrack: 'tracks/running',
+    principle: 'matrix', principleConn: '',
+    params: {"style":{"strokeWidth":{"min":"5","range":""},"strokeColor":"black","fillColor":"transparent","blendMode":"normal","strokeWidthMobile":{"min":"","range":null}},"connectionStyle":{"strokeWidth":{"min":"","range":""},"strokeColor":"","fillColor":"","blendMode":""},"speed":{"min":"0.7","range":""},"update":"","animationDelay":"","incr":"","resetMode":"","shift":"","shiftMode":"stroke","step":"","count":{"min":"","range":""},"connectionMode":"","blinkRate":"","linesMode":"","position":"","angle":{"min":"90","range":""},"dimensions":{"cols":{"min":"6","range":"6"},"rows":{"min":"8","range":"12"},"length":"1","colsMobile":{"min":"5","range":null},"rowsMobile":{"min":"","range":null},"lengthMobile":""},"matrixMode":"shift-vertical","shiftX":"0","shiftY":"1","mouseEffect":"1","rotation":"0"}
+  },
+  'tracks/running': {
+    src: 'https://nicklevantis.com/audio/running.mp3',
+    title: 'Running', index: 4,
+    prevTrack: 'tracks/nothing', nextTrack: 'tracks/fragments',
+    principle: 'lines', principleConn: 'linesConn',
+    params: {"style":{"strokeWidth":{"min":"1","range":""},"strokeColor":"transparent","fillColor":"transparent","blendMode":"normal","strokeWidthMobile":{"min":"","range":null}},"connectionStyle":{"strokeWidth":{"min":"150","range":""},"strokeColor":"black","fillColor":"transparent","blendMode":"difference"},"speed":{"min":"0.1","range":""},"update":"600","animationDelay":"2.1","incr":"","resetMode":"","shift":"","shiftMode":"","step":"","count":{"min":"5","range":"20"},"connectionMode":"intermittence","blinkRate":"1","linesMode":"oscillate","position":"random","angle":{"min":"","range":""},"dimensions":{"cols":{"min":"","range":""},"rows":{"min":"","range":""},"length":"","colsMobile":{"min":"","range":null},"rowsMobile":{"min":"","range":null},"lengthMobile":""},"matrixMode":"","shiftX":"","shiftY":"","mouseEffect":"","rotation":""}
+  }
+};
+requestTrack = function (slug) {
+  var data = TRACK_DATA[slug];
+  if (!data) { console.warn('Track not found'); return this; }
+  _player.requestTrackOnSuccess(data).addEventListener('canplaythrough', renderCanvas(data));
+  return this;
+};
+(function () {
+  // Fill in each track's duration next to its title, as on the original index.
+  function fmt(s) {
+    if (!Number.isFinite(s)) return '--:--';
+    s = Math.max(0, Math.floor(s));
+    return String(Math.floor(s / 60)).padStart(2, '0') + ':' + String(s % 60).padStart(2, '0');
+  }
+  Object.keys(TRACK_DATA).forEach(function (slug) {
+    var probe = new Audio();
+    probe.preload = 'metadata';
+    probe.addEventListener('loadedmetadata', function () {
+      var el = document.querySelector('.track[data-slug="' + slug + '"] .track__duration');
+      if (el && Number.isFinite(probe.duration)) el.textContent = fmt(probe.duration);
+    });
+    probe.addEventListener('error', function () { /* keep the --:-- placeholder */ });
+    probe.src = TRACK_DATA[slug].src;
+  });
+})();
+</script>
 
 
 
