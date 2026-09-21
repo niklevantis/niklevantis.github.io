@@ -2,30 +2,6 @@
 <html lang="en" data-build="town-v59-hidden-player-scrollbar">
 <head>
 <!-- Google Tag Manager -->
-<script>
-(function(){
-  var HEAVY='index.html', LIGHT='index2.html';
-  var q=new URLSearchParams(location.search).get('site');
-  try{
-    if(q==='heavy'||q==='light'){localStorage.setItem('nl-tier',q);location.replace(q==='heavy'?HEAVY:LIGHT);return;}
-    var s=localStorage.getItem('nl-tier');
-    if(s==='heavy'||s==='light'){location.replace(s==='heavy'?HEAVY:LIGHT);return;}
-  }catch(e){}
-
-  var cores=navigator.hardwareConcurrency||8;
-  var ram=Number.isFinite(navigator.deviceMemory)?navigator.deviceMemory:8;
-  var c=navigator.connection||{};
-  var light = c.saveData || c.effectiveType==='slow-2g' || c.effectiveType==='2g'
-    || matchMedia('(prefers-reduced-motion: reduce)').matches
-    || cores<=4 || ram<=4;
-
-  if(!light){
-    try{var t=document.createElement('canvas').getContext('webgl'); if(!t) light=true;}catch(e){light=true;}
-  }
-  try{localStorage.setItem('nl-tier',light?'light':'heavy');}catch(e){}
-  location.replace(light?LIGHT:HEAVY);
-})();
-</script>
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
 j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
