@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-build="town-v59-hidden-player-scrollbar">
+<html lang="en" data-build="town-v72-layout-follows-zoom">
 <head>
 <!-- Google Tag Manager -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -97,6 +97,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     padding:18px 22px;
     color:var(--accent);
   }
+  .orbit-hint{transition:opacity .6s ease}
+  .keys-hint{transition:opacity .6s ease}
+  body.zoomed .orbit-hint,body.zoomed .keys-hint{opacity:0}
   .logo{font-size:12px;letter-spacing:.22em;line-height:1.5;font-weight:500}
   .logo h1{display:block;font-size:14px;letter-spacing:.2em;font-weight:400;line-height:1.25;margin:0}
   .logo h1 span{display:block;font-size:9px;letter-spacing:.14em;opacity:.6;font-weight:400;margin-top:2px}
@@ -119,9 +122,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
   body{--bass:0;--mid:0;--high:0;--lvl:0}
   .side-note{bottom:auto;top:44%}
-  .songhead{--title-size:clamp(54px,8.4vw,124px);--title-offset:clamp(14px,2.3vw,34px);position:fixed;top:104px;left:22px;z-index:100;pointer-events:none;color:var(--accent)}
+  .songhead{--title-size:clamp(54px,8.4vw,124px);--title-offset:clamp(14px,2.3vw,34px);position:fixed;top:104px;left:22px;z-index:100;pointer-events:none;color:var(--accent);transform-origin:left top;transition:transform 1.15s cubic-bezier(.2,.72,.15,1),top 1.15s cubic-bezier(.2,.72,.15,1)}
   .songhead .sub{position:relative;z-index:15;font-size:11px;font-weight:500;letter-spacing:.22em;color:var(--mut);margin-top:8px;transform:translateY(0);transition:transform .82s cubic-bezier(.2,.72,.15,1)}
-  body.playing .songhead .sub{transform:translateY(var(--title-offset))}
+  body.zoomed .songhead .sub{transform:none;opacity:.62}
   .songhead .counter{color:var(--acc);font-weight:700}
   .songhead .tag{opacity:.75}
   .songhead h2{
@@ -132,7 +135,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     text-shadow:var(--title-edge);
     transform:scale(1);transform-origin:left top;transition:transform .82s cubic-bezier(.2,.72,.15,1);
   }
-  body.playing .songhead h2{transform:scale(1.3)}
+  body.zoomed .songhead{top:86px;transform:rotate(90deg) scale(.42)}
+  body.zoomed .songhead h2{transform:none}
   .songhead h2.morphing{animation:titlePhase .56s ease}
   @keyframes titlePhase{
     0%{opacity:1;filter:blur(0);text-shadow:var(--title-edge)}
@@ -143,7 +147,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .dock{position:fixed;left:22px;right:auto;top:50%;bottom:auto;transform:translateY(-50%);
     width:min(340px,calc(100vw - 28px));height:auto;z-index:20;
     display:flex;flex-direction:column;gap:0;pointer-events:none;align-items:flex-start;
-    scrollbar-width:none;-ms-overflow-style:none}
+    scrollbar-width:none;-ms-overflow-style:none;
+    transition:left 1.15s cubic-bezier(.2,.72,.15,1),top 1.15s cubic-bezier(.2,.72,.15,1),opacity .25s}
   .dock::-webkit-scrollbar{display:none;width:0;height:0}
   .transport,.setlist{pointer-events:auto;width:100%}
   .setlist{order:1;display:block;background:transparent;border:none;
@@ -168,8 +173,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     font-family:var(--font);font-size:11px;font-weight:500;letter-spacing:.09em;opacity:1;text-shadow:none;cursor:pointer;animation:none}
   .transport .play svg{display:block;width:11px;height:14px;fill:currentColor;flex-shrink:0;pointer-events:none}
   .transport .play:hover{background:transparent;color:var(--acc);text-decoration:none}
-  .play .pause-mark,body.playing .play .play-mark{display:none}
-  body.playing .play .pause-mark{display:inline}
+  .play .pause-mark,body.zoomed .play .play-mark{display:none}
+  body.zoomed .play .pause-mark{display:inline}
   .transport .tbtns{display:flex;align-items:center;gap:4px;flex-shrink:0}
   .transport .tbtns button{display:inline-flex;align-items:center;justify-content:center;width:26px;height:32px;
     border:none;border-radius:0;padding:4px;color:var(--mut);opacity:1;text-shadow:none;letter-spacing:0}
@@ -243,6 +248,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   #townCanvas:focus-visible{outline:1px dashed var(--mut);outline-offset:-8px}
   .orbit-hint{position:fixed;right:24px;bottom:22px;z-index:5;pointer-events:none;font-size:9px;
     letter-spacing:.14em;color:var(--mut);opacity:.68}
+  .keys-hint{position:fixed;left:24px;bottom:22px;z-index:5;pointer-events:none;font-size:9px;
+    letter-spacing:.14em;color:var(--mut);opacity:.68}
   .play,.playing .play{animation:none}
   .songhead h2{min-height:1.05em}
   button:focus-visible,a:focus-visible,input:focus-visible{outline:1px solid var(--acc);outline-offset:5px}
@@ -263,7 +270,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .transport{margin-top:9px;padding-top:7px;gap:4px}.t-row{gap:7px}
     .t-time{font-size:10px;gap:5px}.tbtns button{font-size:9px;padding:7px 4px}
     .play{font-size:11px;padding:8px 0}.transport .status{font-size:8px;min-height:10px}
-    .v-label{font-size:8px!important}.orbit-hint{font-size:7px;left:18px;right:auto;bottom:calc(10px + env(safe-area-inset-bottom));letter-spacing:.08em}
+    .v-label{font-size:8px!important}.orbit-hint{font-size:7px;left:auto;right:18px;bottom:calc(10px + env(safe-area-inset-bottom));letter-spacing:.08em;max-width:46vw;text-align:right}.keys-hint{font-size:7px;left:18px;right:auto;bottom:calc(10px + env(safe-area-inset-bottom));letter-spacing:.08em;max-width:46vw}
   }
   @media (max-height:600px) and (orientation:landscape){
     header{padding:11px 17px}.logo h1{font-size:15px}.logo h1 span{display:none}header nav button{font-size:9px;padding:7px}
@@ -271,7 +278,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .dock{left:18px;width:250px;top:auto;bottom:24px;transform:none}.tracks{grid-template-columns:repeat(2,minmax(0,1fr));gap:5px 14px}.track{padding:3px 0;gap:2px;min-width:0}.track small{font-size:9px}.track strong{font-size:11px;letter-spacing:.02em}
     .t-row{gap:5px}.t-time{font-size:8px}.tbtns button{font-size:8px;padding:4px 1px}
     .transport{padding-top:5px;margin-top:5px;gap:2px}.play{font-size:10px;padding:7px 0}
-    .status{font-size:8px!important;min-height:9px!important}.orbit-hint{bottom:10px;right:15px;font-size:7px}
+    .status{font-size:8px!important;min-height:9px!important}.orbit-hint{bottom:10px;right:15px;font-size:7px}.keys-hint{bottom:10px;left:15px;font-size:7px}
   }
 
 
@@ -320,6 +327,42 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     header .site-controls #btnAbout{margin-left:3px;padding-left:6px}
     .control-tip{font-size:11px;max-width:min(210px,calc(100vw - 30px))}
   }
+  /* Playback composition from modern-abandoned: icon transport with two parallel
+     vertical sliders. Frees the fullscreen canvas on Play. */
+  body.zoomed .songhead{
+    left:10px;top:78px;
+    transform:translateX(41px) rotate(90deg) scale(.28);
+  }
+  body.zoomed .dock{
+    left:var(--play-dock-left,8px)!important;right:auto!important;top:var(--play-dock-top,230px)!important;bottom:auto!important;
+    width:58px!important;max-height:none!important;overflow:visible!important;
+    transform:none!important;opacity:.92;
+  }
+  body.zoomed .dock:hover,body.zoomed .dock:focus-within{opacity:1}
+  body.zoomed .setlist{display:none}
+  body.zoomed .transport{margin:0;padding:0;gap:7px;border:0;text-shadow:none;align-items:center}
+  body.zoomed .transport .t-row{display:flex;flex-direction:column;align-items:center;gap:2px;width:58px}
+  body.zoomed .transport .play{display:flex;width:30px;height:30px;min-width:30px;justify-content:center;gap:0;padding:0}
+  body.zoomed .transport .play svg{width:12px;height:14px}
+  body.zoomed #mPlayLabel{display:none}
+  body.zoomed .transport .tbtns{display:flex;flex-direction:column;gap:0}
+  body.zoomed .transport .tbtns button{width:28px;height:25px;padding:4px}
+  body.zoomed .transport .t-time{display:none}
+  body.zoomed .slider-row{display:flex;flex-direction:row;align-items:flex-start;justify-content:center;gap:0;width:55px;height:126px}
+  body.zoomed .timeline{display:none}
+  body.zoomed .v-row{position:relative;display:block;width:24px!important;height:112px;overflow:visible}
+  body.zoomed .v-label{display:none}
+  body.zoomed #mVol{position:absolute;left:0;top:112px;width:112px!important;height:22px!important;transform-origin:0 0;transform:rotate(-90deg)}
+  body.zoomed .transport .status{display:none}
+  @media(max-width:700px){
+    body.zoomed .songhead{left:5px;top:62px;transform:translateX(24px) rotate(90deg) scale(.34)}
+    body.zoomed .dock{width:52px!important}
+    body.zoomed .transport .t-row{width:52px}
+    body.zoomed .slider-row{gap:0;width:50px;height:103px;justify-content:center}
+    body.zoomed .timeline{display:none}
+    body.zoomed .v-row{height:90px}
+    body.zoomed #mVol{top:90px;width:90px!important}
+  }
   @media (prefers-reduced-motion:reduce){
     *,*::before,*::after{animation:none!important;transition:none!important}
   }
@@ -328,7 +371,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <body>
 <div class="grain" aria-hidden="true"></div>
 <header>
-  <div class="logo"><h1>NICK LEVANTIS <span>- MUSIC AND DIGITAL ARTWORK</span></h1></div>
+  <div class="logo"><h1>NICK LEVANTIS <span>MUSIC AND DIGITAL ARTWORK</span></h1></div>
   <nav class="site-controls" aria-label="View controls">
     <button id="btnInvert" class="icon-toggle" type="button" aria-label="Invert colors" aria-pressed="false" aria-describedby="tipInvert">
       <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="8"/><path d="M12 4a8 8 0 0 1 0 16Z" fill="currentColor" stroke="none"/></svg>
@@ -342,16 +385,21 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.5 15.5 4.5 4.5M7.5 10.5h6"/><path class="when-off" d="M10.5 7.5v6"/></svg>
       <span class="control-tip" id="tipZoom" role="tooltip"><span class="when-off">Zoom in the town and visuals. Music keeps playing.</span><span class="when-on">Zoom out to the full town. Music and visuals continue.</span></span>
     </button>
+    <button id="btnFs" class="icon-toggle" type="button" aria-label="Fullscreen" aria-pressed="false" aria-describedby="tipFs">
+      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 9V4h5M15 4h5v5M20 15v5h-5M9 20H4v-5"/></svg>
+      <span class="control-tip" id="tipFs" role="tooltip"><span class="when-off">Enter fullscreen.</span><span class="when-on">Exit fullscreen.</span></span>
+    </button>
     <button id="btnAbout" type="button" aria-haspopup="dialog" aria-controls="about">ABOUT</button>
   </nav>
 </header>
 <main class="stage" id="stage" aria-label="Interactive floating town">
- <canvas id="townCanvas" tabindex="0" aria-label="Three-dimensional doodle town. Drag to orbit, scroll or pinch to zoom, double-click or press Home to reset.">
+  <canvas id="townCanvas" tabindex="0" aria-label="Three-dimensional doodle town. Drag to orbit, scroll or pinch to zoom, double-click to reset. Press Spacebar to play or pause, left and right arrows for previous and next song.">
   An ink-drawn floating town with terraced houses, towers, arches, stairs and waterfalls. Select a song to listen.
  </canvas>
  <p id="townFallback" hidden>Your browser cannot display the town canvas. The music player remains available.</p>
 </main>
-<div class="orbit-hint" aria-hidden="true">DRAG TO ORBIT · ALT + DRAG SKY TO INTERACT · SCROLL / PINCH TO ZOOM · DOUBLE-CLICK TO RESET</div>
+<div class="keys-hint" aria-hidden="true">SPACEBAR TO PLAY/PAUSE · LEFT/RIGHT ARROW: PREVIOUS/NEXT SONG</div>
+<div class="orbit-hint" aria-hidden="true">DRAG TO ORBIT · SCROLL TO ZOOM · 2 CLICKS TO RESET</div>
 <div class="songhead">
   <h2 id="mBigTitle" aria-live="polite">Nothing</h2>
   <div class="sub"><span class="counter" id="mCount">01 / 06</span>&nbsp;&nbsp; <span class="tag" id="mTag"> VOID BREATH</span></div>
@@ -402,7 +450,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <a href="https://nicklevantis.svbtle.com" target="_blank" rel="noopener">Notes</a>
     <a href="https://nicklevantis.com/" target="_blank" rel="noopener">nicklevantis.com</a>
   </nav>
-  <p class="footnote">SELECTED SONGS: NOTHING · RUNNING · FRAGMENTS · NOWHERE · BROKEN · ROMANCE<br>Composed, performed, produced and mixed by Nick Levantis.<br>Space: play / pause · ← →: change song · Esc: close<br>© Nick Levantis · Audio streams from nicklevantis.com</p>
+  <p class="footnote">SELECTED SONGS: NOTHING · RUNNING · FRAGMENTS · NOWHERE · BROKEN · ROMANCE<br>Composed, performed, produced and mixed by Nick Levantis.<br>Spacebar: play / pause · ← →: previous / next song · Double-click: reset · Esc: close<br>© Nick Levantis · Audio streams from nicklevantis.com</p>
 </dialog>
 
 <script>
@@ -438,6 +486,12 @@ const rgb=a=>'rgb('+a.map(Math.round).join(',')+')';
 const faces=[],groups=[],sprites=[];
 const paper=[240,234,217], ink=[30,29,26], red=[165,63,44];
 let W=0,H=0,DPR=1,cx=0,cy=0,cyBase=0,cyFocus=0,scale=1,viewWidth=0;
+/* Center-on-play/zoom: idle layout reserves room for the full dock+title,
+   zoomed layout recenters the town (only the icon transport remains).
+   frame() eases between them with the zoom state. Sky stays circular. */
+let cxIdle=0,scaleIdle=1,cxPlay=0,scalePlay=1,cyFocusIdle=0,cyFocusPlay=0;
+let focusZoomIdle=2.2,focusZoomPlay=2.2,zoomCapIdle=2.2,zoomCapPlay=2.2;
+let skyFocusIdle={x:0,y:0,r:211},skyFocusPlay={x:0,y:0,r:211};
 /* Keep every object and detail, but avoid asking older GPUs to paint an
    unnecessarily dense backing buffer. The CSS size remains unchanged. */
 const cpuThreads=navigator.hardwareConcurrency||8;
@@ -1612,6 +1666,15 @@ function layoutPlayer(){
  const el=document.querySelector('.dock'),heading=document.querySelector('.songhead');
  if(!el||!heading)return;
  const portrait=W<=700&&H>W,shortLandscape=H<=600&&W>=H;
+ /* Fixed icon-player position: independent of song-title width, always
+    100px below the rotated title, sharing its visible left edge. */
+ const verticalScale=portrait?.34:.28,titleTop=portrait?62:78,titleLeft=portrait?5:10,titleShift=portrait?24:41;
+ const titleAxis=titleLeft+titleShift-heading.offsetHeight*verticalScale;
+ const nominalTitleLen=portrait?260:300;
+ const titleEnd=titleTop+nominalTitleLen*verticalScale;
+ const playerHeight=portrait?182:220;
+ el.style.setProperty('--play-dock-left',Math.max(4,Math.round(titleAxis))+'px');
+ el.style.setProperty('--play-dock-top',Math.min(Math.max(titleEnd+100,4),Math.max(4,H-playerHeight-8))+'px');
  const hint=document.querySelector('.orbit-hint');
  const bottom=portrait?Math.max(26,(hint?parseFloat(getComputedStyle(hint).bottom)||10:10)+16):24;
  const top=Math.ceil(Math.max(heading.getBoundingClientRect().bottom+22,document.querySelector('header').getBoundingClientRect().bottom+16));
@@ -1628,15 +1691,27 @@ function resize(){
  townBuffer.width=canvas.width;townBuffer.height=canvas.height;townCacheReady=false;lastTownPaint=-Infinity;
  const portrait=W<=700&&H>W;
  if(portrait){
-  cx=W*.50;cyBase=146+(H-374)*.49;
-  scale=Math.min((W-22)/650,(H-360)/800,.87);
+  cxIdle=W*.50;cyBase=146+(H-374)*.49;
+  scaleIdle=Math.min((W-22)/650,(H-360)/800,.87);
+  cxPlay=cxIdle;scalePlay=scaleIdle;
  }else{
   const left=W>=1050?350:W>=701?285:215;
-  cx=left+(W-left)*.5;cyBase=H*.485;
-  scale=Math.min((W-left-30)/680,(H-160)/800,1.12);
-  if(H<=600){scale=Math.min((W-left-35)/650,(H-65)/800,.85);cyBase=H*.48;}
+  cxIdle=left+(W-left)*.5;
+  scaleIdle=Math.min((W-left-30)/680,(H-160)/800,1.12);
+  const playLeft=78;
+  cxPlay=playLeft+(W-playLeft)*.5;
+  scalePlay=Math.min((W-playLeft-30)/680,(H-160)/800,1.12);
+  if(H<=600){
+    scaleIdle=Math.min((W-left-35)/650,(H-65)/800,.85);
+    scalePlay=Math.min((W-playLeft-35)/650,(H-65)/800,.85);
+    cyBase=H*.48;
+  } else {
+    cyBase=H*.485;
+  }
+  scaleIdle=Math.max(.23,scaleIdle);scalePlay=Math.max(.23,scalePlay);
  }
- scale=Math.max(.23,scale);viewWidth=W;
+ if(portrait){scaleIdle=Math.max(.23,scaleIdle);scalePlay=scaleIdle;}
+ scale=scaleIdle;cx=cxIdle;viewWidth=W;
  cy=cyBase;
  layoutPlayer();
  /* Focus framing. The skyline (top of tallest spire) is pinned just below
@@ -1648,10 +1723,13 @@ function resize(){
  const spanP=Math.max(1,topP-botP);
  const mTop=H*.07, mBot=H*.03;
  const availH=Math.max(120,H-mTop-mBot);
-focusZoom=clamp(availH/(spanP*scale)*0.80,1.05,2.85);
- const szF=scale*focusZoom;
- cyFocus=mTop+topP*szF;
- zoomCap=Math.max(1.68,focusZoom*1.35);
+ focusZoomIdle=clamp(availH/(spanP*scaleIdle)*0.80,1.05,2.85);
+ focusZoomPlay=clamp(availH/(spanP*scalePlay)*0.80,1.05,2.85);
+ cyFocusIdle=mTop+topP*scaleIdle*focusZoomIdle;
+ cyFocusPlay=mTop+topP*scalePlay*focusZoomPlay;
+ zoomCapIdle=Math.max(1.68,focusZoomIdle*1.35);
+ zoomCapPlay=Math.max(1.68,focusZoomPlay*1.35);
+ focusZoom=focusZoomIdle;cyFocus=cyFocusIdle;zoomCap=zoomCapIdle;
 
  // Artwork layout is independent of camera zoom; partial occlusion is intentional.
  const dock=document.querySelector('.dock').getBoundingClientRect();
@@ -1662,9 +1740,13 @@ focusZoom=clamp(availH/(spanP*scale)*0.80,1.05,2.85);
  stageRect={left,right:W-(portrait?18:28),top,bottom};
  const width=Math.max(100,stageRect.right-left),height=Math.max(140,bottom-top);
  const legacyRadius=Math.min(width*.47,height*(portrait?.35:.385));
- const radius=Math.max(211*scale*focusZoom*1.34,legacyRadius*1.06);
- const shiftX=Math.min(75,Math.max(0,W-cx-radius-4));
- skyFocus={x:cx+shiftX,r:radius,y:Math.max(radius+34,cyFocus-113*scale*focusZoom)};
+ const radiusIdle=Math.max(211*scaleIdle*focusZoomIdle*1.34,legacyRadius*1.06);
+ const radiusPlay=Math.max(211*scalePlay*focusZoomPlay*1.34,legacyRadius*1.06);
+ const shiftIdle=Math.min(75,Math.max(0,W-cxIdle-radiusIdle-4));
+ const shiftPlay=Math.min(75,Math.max(0,W-cxPlay-radiusPlay-4));
+ skyFocusIdle={x:cxIdle+shiftIdle,r:radiusIdle,y:Math.max(radiusIdle+34,cyFocusIdle-113*scaleIdle*focusZoomIdle)};
+ skyFocusPlay={x:cxPlay+shiftPlay,r:radiusPlay,y:Math.max(radiusPlay+34,cyFocusPlay-113*scalePlay*focusZoomPlay)};
+ skyFocus={...skyFocusIdle};
  ctx.lineJoin='round';ctx.lineCap='round';
 }
 function updateGroups(t){
@@ -1710,6 +1792,17 @@ function frame(now){
  focusAmt+=((focus?1:0)-focusAmt)*(1-Math.exp(-dt*2.2));
  if(Math.abs(focusAmt-(focus?1:0))<.00001)focusAmt=focus?1:0;
  impulse*=Math.exp(-dt*3.6);
+ /* Center + enlarge follows the zoom state (zoom button / playback).
+    layEase mirrors the 1.15s dock/title CSS transition. Sky stays circular. */
+ const layEase=focusAmt*focusAmt*(3-2*focusAmt);
+ scale=lerp(scaleIdle,scalePlay,layEase);
+ cx=lerp(cxIdle,cxPlay,layEase);
+ focusZoom=lerp(focusZoomIdle,focusZoomPlay,layEase);
+ cyFocus=lerp(cyFocusIdle,cyFocusPlay,layEase);
+ zoomCap=lerp(zoomCapIdle,zoomCapPlay,layEase);
+ skyFocus.x=lerp(skyFocusIdle.x,skyFocusPlay.x,layEase);
+ skyFocus.y=lerp(skyFocusIdle.y,skyFocusPlay.y,layEase);
+ skyFocus.r=lerp(skyFocusIdle.r,skyFocusPlay.r,layEase);
  cy=cyBase+(cyFocus-cyBase)*focusAmt;
  const zT=clamp(tzoom*lerp(NON_ZOOM_SCALE,focusZoom,focusAmt)+impulse,.64,zoomCap);
  const pT=tpitch-focusAmt*Math.max(0,tpitch-FOCUS_PITCH)*.72;
@@ -1809,6 +1902,13 @@ document.getElementById('btnZoom').onclick=e=>{
  zoomOverride=!focus;tzoom=1;impulse=0;skyArt.release();syncZoom(false);
  if(e.detail>0)e.currentTarget.blur();
 };
+const fsBtn=document.getElementById('btnFs');
+function fsOn(){return !!(document.fullscreenElement||document.webkitFullscreenElement);}
+function syncFs(){if(fsBtn)fsBtn.setAttribute('aria-pressed',String(fsOn()));}
+if(fsBtn){fsBtn.onclick=e=>{try{if(fsOn()){(document.exitFullscreen||document.webkitExitFullscreen||(()=>{})).call(document);}else{const el=document.documentElement;if(el.requestFullscreen){const p=el.requestFullscreen();if(p&&p.catch)p.catch(()=>{});}else if(el.webkitRequestFullscreen)el.webkitRequestFullscreen();}}catch(_){} if(e.detail>0)e.currentTarget.blur();};}
+document.addEventListener('fullscreenchange',syncFs);
+document.addEventListener('webkitfullscreenchange',syncFs);
+syncFs();
 window.addEventListener('resize',resize,{passive:true});
 window.addEventListener('pagehide',()=>cancelAnimationFrame(raf));
 window.addEventListener('pageshow',e=>{if(e.persisted){lastTime=performance.now();raf=requestAnimationFrame(frame);}});
@@ -1818,6 +1918,9 @@ function syncZoom(withImpulse){
  if(on&&!focus&&withImpulse)impulse=reduced.matches?0:focusZoom*.14;
  if(!on)impulse=0;
  focus=on;
+ /* Compact layout (rotated title + icon transport) follows zoom, not audio:
+    zooming out reveals the normal title and horizontal player. */
+ document.body.classList.toggle('zoomed',on);
  if(reduced.matches)focusAmt=on?1:0;
  document.getElementById('btnZoom').setAttribute('aria-pressed',String(on));
 }
@@ -1861,23 +1964,26 @@ const $=id=>document.getElementById(id), E=window.IsleEnergy||(window.IsleEnergy
 const audio=new Audio();audio.preload='metadata';audio.crossOrigin='anonymous';audio.volume=.8;
 const BASE_TITLE='Nick Levantis - Music and Digital Artwork';
 let index=0,token=0,actx=null,analyser=null,freq=null,powerBins=null,lastTick=0,playRequest=0;
+/* Play intent: keeps the vertical player + centered visuals across the
+   loading gap when changing songs while playing. */
+let wantPlay=false;
 let ranges=null,lastAnalysisTime=-1;
 const peaks=new Float32Array(16).fill(.015),prevLevels=new Float32Array(16),fluxMean=new Float32Array(16).fill(.04);
 E.bands=new Float32Array(16);E.hits=new Float32Array(16);E.rawBands=new Float32Array(16);E.time=0;
 function resetSpectrum(){peaks.fill(.015);prevLevels.fill(0);fluxMean.fill(.04);E.bands.fill(0);E.hits.fill(0);E.rawBands.fill(0);E.bass=E.mid=E.high=E.lvl=0;lastAnalysisTime=-1;}
 
-let storage=null,themeExplicit=false;
-try{if(location.protocol!=='file:')storage=window.localStorage;}catch(_){}
+/* No theme persistence: the theme always follows the time of day.
+   Any stale saved choice is cleared once. Manual toggle flips it
+   immediately but the next automatic check re-applies the time theme. */
+try{if(location.protocol!=='file:'&&window.localStorage)window.localStorage.removeItem('di-theme');}catch(_){}
 function autoDark(){const h=new Date().getHours();return h>=19||h<7;}
-function setDark(dark,explicit){
+function setDark(dark){
  document.body.classList.toggle('inverted',!dark);
  $('btnInvert').setAttribute('aria-pressed',String(!dark));
- if(explicit){themeExplicit=true;try{if(storage)storage.setItem('di-theme',dark?'d':'l');}catch(_){}}
 }
-let saved=null;try{if(storage)saved=storage.getItem('di-theme');}catch(_){}
-themeExplicit=saved==='d'||saved==='l';setDark(themeExplicit?saved==='d':autoDark(),false);
-$('btnInvert').onclick=()=>setDark(document.body.classList.contains('inverted'),true);
-setInterval(()=>{if(!themeExplicit&&!document.hidden)setDark(autoDark(),false);},60000);
+setDark(autoDark());
+$('btnInvert').onclick=()=>setDark(document.body.classList.contains('inverted'));
+setInterval(()=>{if(!document.hidden)setDark(autoDark());},60000);
 const buttons=names.map((name,i)=>{
  const b=document.createElement('button');b.className='track';b.type='button';
  b.innerHTML='<small>0'+(i+1)+'</small><strong>'+name+'</strong>';
@@ -1886,7 +1992,7 @@ const buttons=names.map((name,i)=>{
 });
 const fmt=s=>Number.isFinite(s)?String(Math.floor(s/60)).padStart(2,'0')+':'+String(Math.floor(s%60)).padStart(2,'0'):'--:--';
 function state(){
- const playing=!audio.paused&&!audio.ended;E.playing=playing;
+ const playing=wantPlay||(!audio.paused&&!audio.ended);E.playing=playing;
  document.body.classList.toggle('playing',playing);$('mPlayLabel').textContent=playing?'Pause':'Play';
  $('mPlay').setAttribute('aria-label',(playing?'Pause ':'Play ')+names[index]);
  document.title=BASE_TITLE;
@@ -1908,7 +2014,7 @@ function scramble(text){
  }requestAnimationFrame(tick);
 }
 function select(i,start=false){
- playRequest++;audio.pause();resetSpectrum();index=(i+names.length)%names.length;
+ wantPlay=!!start;playRequest++;audio.pause();resetSpectrum();index=(i+names.length)%names.length;
  audio.src=base+slugs[index]+'.mp3';document.body.dataset.song=slugs[index];
  scramble(names[index]);$('mCount').textContent='0'+(index+1)+' / 06';$('mTag').textContent='· '+tags[index];
  buttons.forEach((b,j)=>b.setAttribute('aria-current',String(j===index)));
@@ -1931,12 +2037,12 @@ function ensureGraph(){
  }catch(_){analyser=null;freq=null;}
 }
 async function play(){
- const request=++playRequest;ensureGraph();$('mStatus').textContent='LOADING SONG…';
+ const request=++playRequest;wantPlay=true;state();ensureGraph();$('mStatus').textContent='LOADING SONG…';
  try{await audio.play();if(request===playRequest)$('mStatus').textContent='';}
- catch(e){if(request===playRequest&&e.name!=='AbortError')$('mStatus').textContent='UNABLE TO PLAY — CHECK CONNECTION, PRESS PLAY';}
+ catch(e){if(request===playRequest){if(e.name!=='AbortError')$('mStatus').textContent='UNABLE TO PLAY — CHECK CONNECTION, PRESS PLAY';wantPlay=false;}}
  if(request===playRequest)state();
 }
-$('mPlay').onclick=e=>{if(e.detail>0)e.currentTarget.blur();if(audio.paused)play();else{playRequest++;audio.pause();}};
+$('mPlay').onclick=e=>{if(e.detail>0)e.currentTarget.blur();if(audio.paused)play();else{wantPlay=false;playRequest++;audio.pause();}};
 $('mNext').onclick=e=>{select(index+1,true);if(e.detail>0)e.currentTarget.blur();};
 $('mPrev').onclick=e=>{select(index-1,true);if(e.detail>0)e.currentTarget.blur();};
 audio.onplay=state;audio.onpause=state;audio.onended=()=>select(index+1,true);
@@ -1945,7 +2051,7 @@ audio.ontimeupdate=()=>{
  $('mElapsed').textContent=fmt(audio.currentTime);
  if(Number.isFinite(audio.duration)&&audio.duration>0){const p=audio.currentTime/audio.duration*100;$('mSeek').value=p*10;$('mSeek').style.setProperty('--p',p+'%');}
 };
-audio.onerror=()=>{$('mStatus').textContent='SONG UNAVAILABLE — TRY ANOTHER';state();};
+audio.onerror=()=>{$('mStatus').textContent='SONG UNAVAILABLE — TRY ANOTHER';wantPlay=false;state();};
 audio.onwaiting=()=>{if(!audio.paused)$('mStatus').textContent='BUFFERING…';};
 audio.onplaying=()=>{$('mStatus').textContent='';state();};
 $('mSeek').oninput=e=>{if(Number.isFinite(audio.duration))audio.currentTime=(+e.target.value)/1000*audio.duration;e.target.style.setProperty('--p',(e.target.value/10)+'%');};
