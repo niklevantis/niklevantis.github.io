@@ -272,6 +272,11 @@ html::backdrop{background:var(--paper)}
 }
 @media(max-width:380px){.music{column-gap:9px}.helpToggle{min-width:38px}.music .timeline{gap:5px}.timeline time{min-width:27px}.helpKeyRow{grid-template-columns:91px minmax(0,1fr);gap:12px}}
 
+/* The camera never scales typography. Only the artwork is magnified. */
+body.art-arriving .siteHeader,body.art-arriving .music{position:relative;z-index:31;opacity:0;pointer-events:none}
+body.art-arriving.art-controls .siteHeader,body.art-arriving.art-controls .music{opacity:1;transition:opacity .28s ease}
+#circleEntry.art-camera{background:transparent}
+#circleEntry.art-camera .entryHeader,#circleEntry.art-camera .cornerTheme,#circleEntry.art-camera .cornerHelp{visibility:hidden}
 </style>
 </head>
 <body class="discovering">
@@ -318,7 +323,7 @@ html::backdrop{background:var(--paper)}
  <section class="helpGlance" aria-labelledby="helpTitle">
   <h2 id="helpTitle">At a glance.</h2>
   <dl class="helpKeys">
-   <div class="helpKeyRow"><dt>Mouse / touch</dt><dd>Choose a song from the circle. While paused, move over the artwork to explore its form.</dd></div>
+   <div class="helpKeyRow"><dt>Mouse / touch</dt><dd>Choose a song from the circle. During playback, the ink details respond to separate frequency bands. While paused, move over the artwork to explore its form.</dd></div>
    <div class="helpKeyRow"><dt><kbd>Space</kbd></dt><dd>Play / pause, including inside Help and About.</dd></div>
    <div class="helpKeyRow"><dt><kbd>←</kbd> <kbd>→</kbd></dt><dd>Previous / next song, with no panel open. Sliders keep their arrow controls.</dd></div>
    <div class="helpKeyRow"><dt><kbd>↑</kbd> <kbd>↓</kbd><br><kbd>Home</kbd> <kbd>End</kbd></dt><dd>Explore the transformation while paused, with the artwork focused.</dd></div>
@@ -701,63 +706,250 @@ const InkScenes=(()=>{
  return {frame:(i,m,s,phase=0,beats=0)=>scenes[i].frame(clamp(m),s,phase,beats),parameter};
 })();
 
+/* Small sound-driven engravings belong to the ink, not to an overlay image.
+ * The original spline control points and their distance maps are never edited.
+ * Articulation is rigid (translation/rotation); every incision is clipped to
+ * the current body and uses round-ended cubic curves. No random displacement. */
+const InkArtwork=(()=>{
+ 'use strict';
+ const G=InkGeometry,{TAU,mix,smooth,clamp}=G,INK='#222321',RED='#bd432f',PAPER='#eae5d9';
+ const flower=G.newFlowerFrame(),nothingShapes=[{points:flower.stem,color:INK},{points:flower.bodies[0],color:INK},{points:flower.bodies[1],color:INK},{points:flower.seed,color:RED}];
+ const bands=(s,k)=>clamp(Math.max(s.bands?.[k]??[s.bass,s.bass,s.mid,s.mid,s.high,s.high,s.high][k]??0,(s.echoBands?.[k]??0)*.76));
+ const currentLevel=(s,key)=>clamp(Number(s?.[key])||0);
+ const echoLevel=(s,key)=>clamp(Number(s?.echo?.[key])||0);
+ const drift=(phase,seed,rate=.55)=>.5+.5*Math.sin(phase*rate+seed);
+ function center(q){let x=0,y=0;for(const p of q){x+=p[0];y+=p[1];}return {x:x/q.length,y:y/q.length};}
+ function frame(i,m,s,phase,beats){
+  if(i===0){G.facesToFlower(m,s,phase,flower);return nothingShapes;}
+  return InkScenes.frame(i,m,s,phase,beats);
+ }
+ function focus(i,q){return center(q[[3,3,1,2,2,1][i]].points);}
+ function render(c,i,m,s,phase,beats,{opaque=false,detail=true,shapes=null}={}){
+  const q=shapes||frame(i,m,s,phase,beats),g=smooth(m);
+  const colour=token=>InkTheme.color(token);
+  function paint(points,color=INK){
+   c.save();if(color===PAPER&&!opaque)c.globalCompositeOperation='destination-out';
+   G.fill(c,points,color===PAPER&&!opaque?'#000':colour(color));c.restore();
+  }
+  function clip(shapes,job){
+   c.save();c.beginPath();for(const points of shapes)G.trace(c,points);c.clip();job();c.restore();
+  }
+  function stroke(cmd,width=.004,color=PAPER){
+   if(width<=.00002)return;c.save();
+   if(color===PAPER&&!opaque)c.globalCompositeOperation='destination-out';
+   c.strokeStyle=color===PAPER&&!opaque?'#000':colour(color);c.lineWidth=width;c.lineCap='round';c.lineJoin='round';
+   c.beginPath();c.moveTo(cmd[0][0],cmd[0][1]);
+   for(let k=1;k<cmd.length;k++){const a=cmd[k];c.bezierCurveTo(...a);}c.stroke();c.restore();
+  }
+  function aperture(x,y,rx,ry=rx,color=PAPER){
+   if(rx<=.00002||ry<=.00002)return;c.save();if(color===PAPER&&!opaque)c.globalCompositeOperation='destination-out';
+   c.fillStyle=color===PAPER&&!opaque?'#000':colour(color);c.beginPath();c.ellipse(x,y,rx,ry,0,0,TAU);c.fill();c.restore();
+  }
+  function spiral(x,y,radius=.03,turns=2.3,width=.004,color=PAPER,rotation=0,squash=.88){
+   if(radius<=.00002||width<=.00002||turns<=.1)return;c.save();
+   // A single negative-space stroke exposes the page, not a black centre or halo.
+   if(color===PAPER&&!opaque)c.globalCompositeOperation='destination-out';
+   c.strokeStyle=color===PAPER&&!opaque?'#000':colour(color);c.lineWidth=width;c.lineCap='round';c.lineJoin='round';
+   // Shared analytic tangents keep the spiral smooth even during the entry zoom.
+   const steps=Math.max(24,Math.ceil(turns*24)),dt=1/steps,omega=TAU*turns,dr=radius*.90;
+   const at=t=>{const a=rotation+omega*t,r=radius*(.10+.90*t),cs=Math.cos(a),sn=Math.sin(a);
+    return [x+cs*r,y+sn*r*squash,dr*cs-r*omega*sn,(dr*sn+r*omega*cs)*squash];};
+   let p=at(0);c.beginPath();c.moveTo(p[0],p[1]);
+   for(let j=1;j<=steps;j++){
+    const next=at(j/steps);
+    c.bezierCurveTo(p[0]+p[2]*dt/3,p[1]+p[3]*dt/3,next[0]-next[2]*dt/3,next[1]-next[3]*dt/3,next[0],next[1]);p=next;
+   }
+   c.stroke();c.restore();
+  }
+  function between(a,b,t){return a.map((v,j)=>v.map((x,k)=>mix(x,b[j][k],t)));}
+  function rigid(points,dx,dy,angle,job){
+   const p=center(points);c.save();c.translate(p.x+dx,p.y+dy);c.rotate(angle);c.translate(-p.x,-p.y);job();c.restore();
+  }
+  // A current is sampled from the existing swept shape, not a duplicate path.
+  function onSpine(shape,u,n=129){
+   const points=shape.points,k=clamp(u)*(n-1),a=Math.min(n-2,Math.floor(k)),t=k-a,j=2*n+8;
+   const at=z=>[(points[z][0]+points[j-z][0])/2,(points[z][1]+points[j-z][1])/2];
+   const p=at(a),r=at(a+1);return [mix(p[0],r[0],t),mix(p[1],r[1],t)];
+  }
+  function spineWidth(shape,u,n=129){
+   const points=shape.points,k=clamp(u)*(n-1),a=Math.min(n-2,Math.floor(k)),t=k-a,j=2*n+8;
+   const at=z=>Math.hypot(points[z][0]-points[j-z][0],points[z][1]-points[j-z][1])*.5;
+   return mix(at(a),at(a+1),t);
+  }
+  function strokeSpine(shape,start,end,width,offset=0){
+   // Uniform cubic B-spline, open and clamped at its end stations.
+   const pts=[];
+   for(let k=0;k<=20;k++){
+    const u=mix(start,end,k/20),p=onSpine(shape,u),a=onSpine(shape,Math.max(0,u-.003)),b=onSpine(shape,Math.min(1,u+.003));
+    const dx=b[0]-a[0],dy=b[1]-a[1],len=Math.hypot(dx,dy)||1,o=typeof offset==='function'?offset(u):offset;pts.push([p[0]-dy/len*o,p[1]+dx/len*o]);
+   }
+   pts.unshift(pts[0],pts[0]);pts.push(pts.at(-1),pts.at(-1));
+   const commands=[pts[0]];
+   for(let k=0;k<pts.length-2;k++){const a=pts[k],b=pts[k+1],d=pts[k+2];commands.push([(2*a[0]+b[0])/3,(2*a[1]+b[1])/3,(a[0]+2*b[0])/3,(a[1]+2*b[1])/3,(a[0]+4*b[0]+d[0])/6,(a[1]+4*b[1]+d[1])/6]);}
+   stroke(commands,width);
+  }
+  if(!detail){for(const shape of q)paint(shape.points,shape.color);return;}
+  if(i===0){
+   // Thought traces develop into seven petal veins. The two silhouettes stay intact.
+   for(let k=0;k<3;k++)paint(q[k].points,q[k].color);
+   clip([q[1].points,q[2].points],()=>{
+    for(let k=0;k<7;k++){
+     const a=-Math.PI/2+k*TAU/7,side=Math.cos(a)>.12?1:-1,now=bands(s,k),memory=echoLevel(s,['bass','bass','mid','mid','high','high','high'][k]),e=Math.max(now,memory*.84),x=side<0?-.245:.279;
+     const y=-.19+(k%4)*.087;
+     const pulse=drift(phase,k*.78,.28),wake=.58+.42*pulse;
+     const from=[[x-side*.015,y+.05],[x+side*(.018+e*.018),y+.033,x+side*.063,y-.013,x+side*(.071+e*.008),y-.051]];
+     const reach=.196+.044*e+.014*wake*memory,bend=.085*(bands(s,(k+2)%7)-.45)+.014*(pulse-.5),b=a+bend;
+     const to=[[Math.cos(a)*.105,-.105+Math.sin(a)*.105],[Math.cos(a-.11)*.144,-.105+Math.sin(a-.11)*.144,Math.cos(b)*reach*.90,-.105+Math.sin(b)*reach*.90,Math.cos(b)*reach,-.105+Math.sin(b)*reach]];
+     stroke(between(from,to,g),.0032+.0035*e+.0012*memory*wake);
+    }
+   });
+   paint(q[3].points,RED);
+   const p=center(q[3].points),bassEcho=Math.max(currentLevel(s,'bass'),echoLevel(s,'bass')*.78),r=mix(.009,.011,g)+.021*(.52*bassEcho+.26*currentLevel(s,'beat')+.22*echoLevel(s,'beat'));
+   aperture(p.x,p.y,r,r*(.93+.10*bands(s,4)));
+  }else if(i===1){
+   // Two short unprinted currents glide independently inside the original ribbons.
+   paint(q[0].points);paint(q[1].points);paint(q[2].points,PAPER);
+   for(let k=0;k<2;k++)clip([q[k].points],()=>{
+    const bandIndex=k?4:1,e=bands(s,bandIndex),hold=(s.echoBands?.[bandIndex]??0),sweep=drift(phase,k*2.3,.58),u=.5+.29*(sweep*2-1)+.025*Math.sin(phase*.21+k*3.1),len=.07+.10*e+.055*hold;
+    strokeSpine(q[k],clamp(u-len),clamp(u+len),.0045+.0065*e+.0025*hold);
+   });
+   paint(q[3].points,RED);
+   const p=center(q[3].points);aperture(p.x,p.y,(.007+.010*Math.max(currentLevel(s,'beat'),echoLevel(s,'beat')*.75))*(1+.18*drift(phase,1.8,.42))*mix(1,.7,g));
+  }else if(i===2){
+   // Four memories: each fragment retains its curvature and listens separately.
+   // The transformation now feels more face-forming: upper pieces look first,
+   // lower pieces answer later, and shared brow / bridge gestures help the
+   // figure assemble psychologically before it settles.
+   const assemble=Math.sin(Math.PI*g),settle=smooth(clamp((g-.30)/.70,0,1));
+   const faceMask=q.map(piece=>piece.points);
+   for(let k=0;k<4;k++){
+    const bandIndex=[0,3,2,5][k],e=bands(s,bandIndex),hold=(s.echoBands?.[bandIndex]??0),lead=drift(phase,k*1.1,.34),sx=k%2?1:-1,sy=k<2?-1:1;
+    const local=smooth(clamp((g-[.02,.07,.12,.16][k])/(1-[.02,.07,.12,.16][k]),0,1));
+    const gather=.022*assemble*(.55+.45*lead),sweep=.012*assemble*(lead-.5),hinge=.16*assemble*(1-.22*settle);
+    const dx=sx*(.0025*e+.0045*Math.max(currentLevel(s,'beat'),echoLevel(s,'beat')*.7))-sx*gather*local+sy*sweep*local;
+    const dy=sy*(.0025*hold+.0022*lead)-sy*.014*assemble*local*(.55+.45*lead)+(k<2?-1:1)*.004*(1-local);
+    const turn=(k%2?1:-1)*(.007*e+.004*hold)+sx*sy*hinge*local;
+    rigid(q[k].points,dx,dy,turn,()=>{
+     paint(q[k].points,q[k].color);
+     clip([q[k].points],()=>{
+      const sources=[[-.18,-.21],[.15,-.19],[-.21,.17],[.15,.20]],ends=[[-.14,-.175],[.14,-.166],[-.149,.165],[.149,.170]],sign=sx;
+      const x=mix(sources[k][0],ends[k][0],g),travel=(lead*2-1)*(.013+.013*assemble)*sign,y=mix(sources[k][1],ends[k][1],g)+.006*(currentLevel(s,'level')*.55+echoLevel(s,'level')*.45)*Math.sin(phase*.35+k);
+      const reach=.024*Math.max(e,hold)*assemble;
+      stroke([[x+sign*.031+travel,y-.060],[x+sign*(.068+e*.018)+travel+reach*.45,y-.028-e*.012-hold*.010-reach,x+sign*(.065+e*.018)+travel*.5+reach*.18,y+.025,x+sign*.027-reach*.25,y+.054+.020*Math.max(e,hold)]],.0034+.0048*e+.0014*hold);
+      if(assemble>.02){
+       const bridge=.002+.0038*assemble*(.45+.55*lead);
+       stroke([[x+sign*.020,y-.020],[x+sign*(.034+reach*.4),y+.004-reach*.35,x+sign*(.026+reach*.25),y+.026,x+sign*.008,y+.040+.014*assemble]],bridge);
+      }
+     });
+    });
+   }
+   if(assemble>.01)clip(faceMask,()=>{
+    const breath=.55+.45*Math.max(currentLevel(s,'mid'),echoLevel(s,'mid'));
+    stroke([[-.116,-.112],[-.078,-.146,-.018,-.138,.006,-.106]],.0018+.0032*assemble*breath);
+    stroke([[.116,-.112],[.078,-.146,.018,-.138,-.006,-.106]],.0018+.0032*assemble*breath);
+    stroke([[-.012,-.024],[-.010,.008,-.004,.040,.006,.074]],.0015+.0028*assemble*(.5+.5*breath));
+    if(settle>.14)stroke([[-.070,.112],[-.032,.126,.032,.126,.070,.112]],.0014+.0026*settle*(.45+.55*Math.max(currentLevel(s,'high'),echoLevel(s,'high'))));
+   });
+  }else if(i===3){
+   // The question's red point becomes a focusing iris, not a new eye image.
+   paint(q[0].points);paint(q[1].points,PAPER);
+   clip([q[0].points],()=>{
+    const wake=Math.max(bands(s,5),(s.echoBands?.[5]??0)*.74);
+    strokeSpine(q[1],.16,.80,.0035+.0028*wake,u=>-(spineWidth(q[1],u)+.021+.009*Math.max(bands(s,3),(s.echoBands?.[3]??0)*.72)));
+   });
+   paint(q[2].points,RED);paint(q[3].points,INK);
+   const p=center(q[2].points),radius=mix(.047,.074,g),bassEcho=Math.max(currentLevel(s,'bass'),echoLevel(s,'bass')*.82),beatEcho=Math.max(currentLevel(s,'beat'),echoLevel(s,'beat')*.72),r=radius*(.18+.29*bassEcho+.06*beatEcho);
+   clip([q[2].points],()=>{
+    const dx=radius*.16*(bands(s,4)-bands(s,1));
+    aperture(p.x+dx,p.y,r,r*(.87+.13*bands(s,3)));
+    aperture(p.x+dx,p.y,r*.28,r*.28,INK);
+   });
+  }else if(i===4){
+   // Quills remain incisions in the two wings. Only a tiny rigid articulation
+   // changes their pose: no pointwise flapping, stretching, or noisy edge.
+   for(let k=0;k<2;k++){
+    const e=bands(s,k?3:1),hold=(s.echoBands?.[k?3:1]??0),angle=(k?1:-1)*g*(.010*e+.007*hold+.010*Math.max(currentLevel(s,'beat'),echoLevel(s,'beat')*.7)),dy=(k?1:-1)*(.0025*hold+.003*e);
+    rigid(q[k].points,0,dy,angle,()=>{
+     paint(q[k].points);
+     clip([q[k].points],()=>{
+      const from=k?[[[-.21,.15],[-.07,.22,.11,.19,.23,.10]],[[-.15,.23],[-.04,.27,.07,.24,.15,.20]]]:[[[-.23,-.11],[-.15,-.23,.04,-.25,.17,-.17]],[[-.19,-.06],[-.10,-.14,.02,-.15,.10,-.12]]];
+      const to=k?[[[-.090,.266],[.035,.185,.154,.128,.308,.145]],[[-.016,.232],[.078,.183,.146,.169,.211,.168]]]:[[[-.172,.061],[-.137,-.035,-.142,-.193,-.118,-.288]],[[-.110,.033],[-.014,-.010,.093,-.051,.196,-.116]]];
+      for(let j=0;j<2;j++){
+       const wake=Math.max(bands(s,k*2+j),(s.echoBands?.[k*2+j]??0)*.72),sway=.008*(drift(phase,k*2+j,.31)-.5);
+       const cmds=between(from[j],to[j],g);cmds[1][0]+=sway;cmds[1][2]+=(bands(s,j?5:2)-.3)*.013+sway;cmds[1][3]+=e*.012+hold*.008;
+       stroke(cmds,.0032+.0042*wake);
+      }
+     });
+     paint(q[k+2].points,RED);
+    });
+   }
+  }else{
+   // Two lifelines answer one another. The shared empty space stays empty.
+   // The transformation is more tender and ceremonial: the left hand initiates,
+   // the right answers a moment later, and both rise into a shared offering arc
+   // before resolving as two cupped hands.
+   const approach=Math.sin(Math.PI*g),blessing=smooth(clamp((g-.18)/.64,0,1));
+   for(let k=0;k<2;k++){
+    const e=bands(s,k?3:0),hold=echoLevel(s,k?'mid':'bass'),sign=k?1:-1,reply=drift(phase,k?1.8:.6,.26);
+    const local=smooth(clamp((g-(k?.10:.02))/(1-(k?.10:.02)),0,1));
+    const embrace=-sign*.028*approach*local*(.55+.45*reply),lift=-.010*approach*local*(.45+.55*reply),cup=-sign*.15*approach*local*(.55+.45*reply);
+    const offering=-sign*.010*blessing*(.35+.65*reply),bow=(k?1:-1)*-.006*blessing;
+    rigid(q[k].points,embrace+offering-sign*g*.0068*(.55*e+.45*hold),lift+bow+sign*.002*Math.max(bands(s,4),(s.echoBands?.[4]??0)*.7),cup-sign*g*.009*(.65*e+.35*hold),()=>{
+     paint(q[k].points,q[k].color);
+     clip([q[k].points],()=>{
+      const left=[between([[[-.245,.206],[-.295,.114,-.305,-.060,-.212,-.145]]][0],[[[-.271,.256],[-.321,.105,-.298,-.025,-.232,-.095]]][0],g),between([[[-.275,-.074],[-.245,-.017,-.191,.023,-.152,.039]]][0],[[[-.303,-.043],[-.270,-.005,-.232,.012,-.202,-.005]]][0],g)];
+      for(let j=0;j<2;j++){
+       let cmds=left[j],lead=(reply*2-1)*(.010+.013*approach*local)*sign,extend=.018*approach*local*(.45+.55*reply),vow=.010*blessing*(j?(.3+.7*reply):(.5+.5*reply));
+       cmds[1][0]+=lead+(k?1:-1)*.006*blessing;
+       cmds[1][2]+=.012*Math.max(bands(s,k?4:2),(s.echoBands?.[k?4:2]??0)*.72)+lead+extend;
+       cmds[1][3]-=.018*e-.009*hold-.012*approach*local-vow;
+       if(k)cmds=cmds.map(cmd=>{const out=[];for(let z=0;z<cmd.length;z+=2){const x=-cmd[z],y=cmd[z+1]-.022*g,a=-.055*g;out.push(x*Math.cos(a)-y*Math.sin(a),x*Math.sin(a)+y*Math.cos(a));}return out;});
+       stroke(cmds,.0038+.0048*Math.max(bands(s,k*3+j),(s.echoBands?.[k*3+j]??0)*.72));
+      }
+      // One enlarged vortex per hand; the smaller outer vortex is removed.
+      // Its centre follows the palm interior rather than the thumb edge.
+      const vortexEnvelope=smooth(clamp(approach/.12));
+      if(vortexEnvelope>.0001){
+       const spin=phase*(.55+.25*k)+(k?1.4:.3),swirl=.5+.5*Math.sin(spin),echo=Math.max(currentLevel(s,'mid'),echoLevel(s,'mid'));
+       let vx=mix(-.145,-.220,g),vy=mix(.073,.110,g);
+       if(k){
+        const rot=-.055*g,tx=-vx,ty=vy-.022*g;
+        vx=tx*Math.cos(rot)-ty*Math.sin(rot);vy=tx*Math.sin(rot)+ty*Math.cos(rot);
+       }
+       const radius=1.65*(.015+.020*approach*(.40+.60*reply))*(.78+.22*(1-swirl))*vortexEnvelope;
+       const width=(.0029+.0025*(.35+.65*blessing)*(.45+.55*echo))*vortexEnvelope;
+       spiral(vx,vy,radius,2.1+.95*(1-swirl),width,PAPER,-spin*.32,.86);
+      }
+     });
+    });
+   }
+  }
+ }
+ return {frame,render,focus};
+})();
+
+
 function createPainting(canvas,{defer=false}={}){
  const c=canvas.getContext('2d',{alpha:true});if(!c)return null;
  const G=InkGeometry,{TAU,clamp,smooth,mix}=G,paper='#eae5d9',ink='#222321',red='#bd432f';
  const reduced=matchMedia('(prefers-reduced-motion: reduce)');
  let w=1,h=1,unit=1,cx=0,cy=0,index=0,frame=0,last=0,phase=0,paused=defer,initialized=false,playing=false;
- let rect=null,hoverValue=0,manual=false,morph=0,keyboardMorph=false;
+ let rect=null,hoverValue=0,manual=false,morph=0,keyboardMorph=false,presenting=false,detailsEnabled=true;
  let travel=0,previewVelocity=0,rhythmReader=null,previewAligner=null,previewDirty=false;
  const flowerFrame=G.newFlowerFrame();
  let rhythm={morph:0,locked:false,active:false,position:0,period:.5};
- let sound={bass:0,mid:0,high:0,beat:0,level:0,phrase:0},targetSound={...sound};
- const keys=Object.keys(sound);let pen=0,debugFreeze=null,frames=0;
+ let sound={bass:0,mid:0,high:0,beat:0,level:0,phrase:0},targetSound={...sound},echoSound={...sound};
+ const keys=Object.keys(sound),spectra=new Float32Array(7),targetSpectra=new Float32Array(7),echoSpectra=new Float32Array(7);
+ sound.bands=spectra;sound.echo=echoSound;sound.echoBands=echoSpectra;
+ let debugFreeze=null,frames=0;
  const descriptions=[
   'Two profiles become a round-petalled flower. Motion begins immediately on play: eight seconds per direction before tempo detection, then smoothly follows sixteen detected beats. It continues through missing beats. While paused, move towards the centre or use arrow up and down to preview it.',
-  'Two open ink currents curl into an asymmetric infinity. A red drop follows the same changing channel.',
-  'Four pieces acquire a forehead, eye rims, nose and jaw. The face remains fractured; its features are the gaps.',
-  'A winding passage uncurls and widens into an eye. The same red point becomes its pupil.',
-  'The two sides of a fracture extend into an asymmetric bird in flight.',
-  'Two ink bodies grow into cupped hands around a shared empty space.'
+  'Two open ink currents curl into an asymmetric infinity. A red drop follows the same changing channel; two inner currents respond independently to the sound.',
+  'Four pieces acquire a forehead, eye rims, nose and jaw. Their memory traces listen independently; the face features remain the gaps.',
+  'A winding passage uncurls and widens into an eye. The same red point becomes a sound-sensitive focusing iris.',
+  'The two sides of a fracture extend into an asymmetric bird in flight. Engraved feather lines and a small rigid wing articulation respond to sound.',
+  'Two ink bodies grow into cupped hands around a shared empty space. Separate palm lines answer the low and middle registers.'
  ];
- function fill(q,color=ink){
-  if(color===paper){c.save();c.globalCompositeOperation='destination-out';G.fill(c,q,ink);c.restore();}
-  else G.fill(c,q,InkTheme.color(color));
- }
- function warp(x,y){
-  // Low-order continuous fields operate on individual contours, not on the canvas.
-  const k=pen++,shift=(k%3)*.8;
-  const a=sound.mid*.022,b=sound.bass*.019;
-  return [x+a*Math.sin(y*7+phase+shift)*(1-Math.min(1,Math.abs(x))),y+b*Math.sin(x*7-phase*.8+shift)];
- }
- function path(commands,color=ink){
-  const p=G.resample(G.sample(commands,12),80),q=[];
-  // One phase per shape: no random or point-index-dependent jitter.
-  const shift=(pen++%4)*.7;
-  for(const [x,y] of p)q.push([x+sound.mid*.024*Math.sin(y*7+phase+shift),y+sound.bass*.018*Math.sin(x*8-phase+shift)]);
-  fill(q,color);
- }
- function blob(x,y,rx,ry,color=ink,seed=0){
-  const q=[],pulse=(sound.bass*.055+sound.beat*.07),harmonic=sound.mid*.025;
-  for(let i=0;i<64;i++){
-   const a=i/64*TAU,r=1+.025*Math.sin(a*3+seed)+.012*Math.cos(a*5+seed)+pulse*(.45+.55*Math.sin(a*2+seed))+harmonic*Math.sin(a*3+phase+seed);
-   q.push([x+Math.cos(a)*rx*r,y+Math.sin(a)*ry*r]);
-  }fill(q,color);
- }
- function oval(x,y,rx,ry,color=ink,angle=0){
-  const q=[],cs=Math.cos(angle),sn=Math.sin(angle),width=rx*(1+sound.high*.1);
-  for(let i=0;i<48;i++){const a=i/48*TAU,u=Math.cos(a)*width,v=Math.sin(a)*ry;q.push([x+u*cs-v*sn,y+u*sn+v*cs]);}fill(q,color);
- }
- const cut=commands=>path(commands,paper);
- function nothing(){
-  const q=G.facesToFlower(morph,sound,phase,flowerFrame);
-  fill(q.stem);for(const p of q.bodies)fill(p);fill(q.seed,red);
- }
- function newScene(i){
-  for(const q of InkScenes.frame(i,morph,sound,phase,rhythm.position||0))fill(q.points,q.color);
- }
- const running=()=>newScene(1),fragments=()=>newScene(2),nowhere=()=>newScene(3),broken=()=>newScene(4),romance=()=>newScene(5);
- const scenes=[nothing,running,fragments,nowhere,broken,romance];
  function resize(){
   if(paused&&!initialized)return;initialized=true;
   rect=canvas.getBoundingClientRect();w=Math.max(1,rect.width);h=Math.max(1,rect.height);
@@ -778,15 +970,43 @@ function createPainting(canvas,{defer=false}={}){
   else travel=clamp(travel+step);
  }
  function renderCurrent(){
-  c.clearRect(0,0,w,h);c.save();c.translate(cx,cy);c.scale(unit,unit);c.globalAlpha=1;pen=0;
-  scenes[index](reduced.matches?0:sound.bass*.75+sound.beat*.35);c.restore();
+  if(presenting)return;
+  c.clearRect(0,0,w,h);c.save();c.translate(cx,cy);c.scale(unit,unit);
+  InkArtwork.render(c,index,morph,sound,phase,rhythm.position||0,{detail:detailsEnabled});c.restore();
+ }
+ function present(target,progress,spot){
+  if(!initialized)return;if(!rect)rect=canvas.getBoundingClientRect();
+  const ease=smooth(clamp(progress)),zoom=Math.exp(Math.log([7.8,7.2,5.2,7.4,6.4,5.4][index])*(1-ease));
+  const shapes=InkArtwork.frame(index,morph,sound,phase,rhythm.position||0),focus=InkArtwork.focus(index,shapes);
+  const left=rect?.left||0,top=rect?.top||0,scale=unit*zoom;
+  const x=mix(spot.x,left+cx,ease)-focus.x*scale*(1-ease),y=mix(spot.y,top+cy,ease)-focus.y*scale*(1-ease);
+  target.save();target.translate(x,y);target.scale(scale,scale);
+  InkArtwork.render(target,index,morph,sound,phase,rhythm.position||0,{opaque:true,detail:detailsEnabled,shapes});target.restore();
+ }
+ function screenFocus(){
+  if(!rect)rect=canvas.getBoundingClientRect();
+  const shapes=InkArtwork.frame(index,morph,sound,phase,rhythm.position||0),p=InkArtwork.focus(index,shapes);
+  return {x:(rect?.left||0)+cx+p.x*unit,y:(rect?.top||0)+cy+p.y*unit,r:Math.max(12,unit*.025)};
  }
  InkTheme.subscribe(()=>{if(initialized&&!document.hidden)renderCurrent();});
  function draw(now){
   frame=0;if(paused||document.hidden)return;
   const elapsed=last?Math.max(0,(now-last)/1000):0,dt=Math.min(.1,elapsed);last=now;frames++;
   if(playing&&rhythmReader)rhythm=rhythmReader(now);
-  for(const k of keys){const v=reduced.matches?0:targetSound[k];sound[k]+=(v-sound[k])*(1-Math.exp(-dt*(v>sound[k]?19:8)));if(Math.abs(sound[k])<1e-6)sound[k]=0;}
+  for(const k of keys){
+   const v=reduced.matches?0:targetSound[k];
+   sound[k]+=(v-sound[k])*(1-Math.exp(-dt*(v>sound[k]?19:8)));
+   if(Math.abs(sound[k])<1e-6)sound[k]=0;
+   echoSound[k]=sound[k]>=echoSound[k]?sound[k]:Math.max(sound[k],echoSound[k]*Math.exp(-dt*1.15));
+   if(echoSound[k]<1e-6)echoSound[k]=0;
+  }
+  for(let k=0;k<7;k++){
+   const v=reduced.matches?0:targetSpectra[k];
+   spectra[k]+=(v-spectra[k])*(1-Math.exp(-dt/(v>spectra[k]?.065:.24)));
+   if(spectra[k]<1e-6)spectra[k]=0;
+   echoSpectra[k]=spectra[k]>=echoSpectra[k]?spectra[k]:Math.max(spectra[k],echoSpectra[k]*Math.exp(-dt*1.05));
+   if(echoSpectra[k]<1e-6)echoSpectra[k]=0;
+  }
   if(playing&&!reduced.matches&&sound.level>.005)phase+=elapsed*(.5+sound.mid*.8);
   if(debugFreeze!==null)morph=debugFreeze;
   else {
@@ -795,7 +1015,7 @@ function createPainting(canvas,{defer=false}={}){
    morph=index===0?G.morphAtDistance(travel):InkScenes.parameter(index,travel);
   }
   renderCurrent();
-  const unsettled=(!playing&&(manual||keyboardMorph)&&(Math.abs(travel-hoverValue)>.00001||Math.abs(previewVelocity)>.0005/MORPH_DURATION_SCALE))||keys.some(k=>Math.abs(sound[k]-targetSound[k])>.0001);
+  const unsettled=(!playing&&(manual||keyboardMorph)&&(Math.abs(travel-hoverValue)>.00001||Math.abs(previewVelocity)>.0005/MORPH_DURATION_SCALE))||keys.some(k=>Math.abs(sound[k]-targetSound[k])>.0001)||spectra.some((v,k)=>Math.abs(v-targetSpectra[k])>.0001);
   if(!reduced.matches&&(playing||unsettled))wake();
  }
  function wake(){if(!frame&&!paused&&!document.hidden)frame=requestAnimationFrame(draw);}
@@ -820,13 +1040,15 @@ function createPainting(canvas,{defer=false}={}){
  document.addEventListener('visibilitychange',()=>{if(document.hidden){cancelAnimationFrame(frame);frame=0;}else{last=0;wake();}});
  reduced.addEventListener('change',()=>{last=0;wake();});canvas.setAttribute('aria-label',descriptions[0]);resize();
  return {
-  select(i){index=clamp(Math.trunc(i),0,5);morph=travel=hoverValue=previewVelocity=0;rhythm={morph:0,locked:false,active:false,position:0,period:.5};manual=keyboardMorph=previewDirty=false;debugFreeze=null;canvas.setAttribute('aria-label',descriptions[index]);wake();},
-  energy(v){if(v?.rhythm)rhythm={...v.rhythm};for(const k of keys)targetSound[k]=clamp(Number(v?.[k])||0);if(!reduced.matches)wake();},
-  transport(v){const starting=!!v&&!playing;playing=!!v;if(starting){if(previewDirty&&previewAligner)previewAligner(travel);previewDirty=false;manual=keyboardMorph=false;canvas.style.cursor='default';}if(!playing){manual=keyboardMorph=false;hoverValue=travel;previewVelocity=0;for(const k of keys)targetSound[k]=0;}wake();},
+  select(i){index=clamp(Math.trunc(i),0,5);morph=travel=hoverValue=previewVelocity=phase=0;rhythm={morph:0,locked:false,active:false,position:0,period:.5};for(const k of keys)sound[k]=targetSound[k]=echoSound[k]=0;spectra.fill(0);targetSpectra.fill(0);echoSpectra.fill(0);manual=keyboardMorph=previewDirty=false;debugFreeze=null;canvas.setAttribute('aria-label',descriptions[index]);wake();},
+  energy(v){if(v?.rhythm)rhythm={...v.rhythm};for(const k of keys)targetSound[k]=clamp(Number(v?.[k])||0);for(let k=0;k<7;k++)targetSpectra[k]=clamp(Number(v?.bands?.[k]??v?.[['bass','bass','mid','mid','high','high','high'][k]])||0);if(!reduced.matches)wake();},
+  transport(v){const starting=!!v&&!playing;playing=!!v;if(starting){if(previewDirty&&previewAligner)previewAligner(travel);previewDirty=false;manual=keyboardMorph=false;canvas.style.cursor='default';}if(!playing){manual=keyboardMorph=false;hoverValue=travel;previewVelocity=0;for(const k of keys)targetSound[k]=0;targetSpectra.fill(0);}wake();},
   pause(v){paused=!!v;if(paused){cancelAnimationFrame(frame);frame=0;}else{last=0;resize();wake();}},
   bindRhythm(reader,aligner){rhythmReader=reader;previewAligner=aligner;},
+  presentation(value){presenting=!!value;if(!presenting&&initialized)renderCurrent();},present,screenFocus,
+  details(value){if(!location.hash.includes('study'))return;detailsEnabled=!!value;wake();},
   geometry(){if(!location.hash.includes('study'))return null;return index===0?G.facesToFlower(morph,sound,phase):InkScenes.frame(index,morph,sound,phase,rhythm.position||0);},
-  inspect(){return {index,morph,travel,previewVelocity,manual,rhythm:{...rhythm},sound:{...sound},frames,unit,cx,cy,width:w,height:h,paused,playing};},
+  inspect(){return {index,morph,travel,previewVelocity,manual,rhythm:{...rhythm},sound:{...sound,bands:Array.from(spectra)},frames,unit,cx,cy,width:w,height:h,paused,playing,presenting};},
   // An explicit, opt-in test hook. It never changes opacity or draws target overlays.
   study(t){if(!location.hash.includes('study'))return;debugFreeze=t===null?null:clamp(t);morph=debugFreeze??morph;wake();}
  };
@@ -838,18 +1060,18 @@ function createPainting(canvas,{defer=false}={}){
 function createCircleEntry(root,canvas,buttons,callbacks){
  const c=canvas.getContext('2d');root.classList.toggle('canvas-unavailable',!c);
  const reduced=matchMedia('(prefers-reduced-motion: reduce)'),titles=['Nothing','Running','Fragments','Nowhere','Broken','Romance'];
- const TAU=Math.PI*2,STEP=TAU/6,accent='#bd432f',ink='#222321',ZOOM_MS=760,PRINT_HOLD_MS=120;
+ const TAU=Math.PI*2,STEP=TAU/6,accent='#bd432f',ink='#222321',CAMERA_MS=1760,COVER_MS=420;
  const clamp=(x,a,b)=>Math.max(a,Math.min(b,x)),smooth=x=>x*x*(3-2*x);
  let width=1,height=1,base=150,reach=220,nodeRadius=27,opened=0,target=0,bornAt=0,birth=0,clock=0,last=0,frameId=0;
  let active=true,paused=false,pinned=false,skipTouchClick=false,pointer=null,focusIndex=-1,hoverIndex=-1,hoverAnchor=null;
- let growth=0,buds=0,nodes=[],core=null,selected=-1,selectedAt=0,covered=false,frozen=null,comic=null;
+ let growth=0,buds=0,nodes=[],core=null,selected=-1,selectedAt=0,covered=false,frozen=null,cameraProgress=0,hiddenAt=0;
  let switchMode=false,switchDirection=1;
  let weights=new Float64Array(6),letters=[],fontSize=12,lastPaint=0,lastInput=0;
  const nodeShapes=[[-94,1,1],[-32,.96,.97],[29,1.025,1.03],[91,.99,.99],[151,1.015,1.02],[213,.965,.98]].map(([degrees,length,size])=>{const angle=degrees*Math.PI/180;return {angle,cos:Math.cos(angle),sin:Math.sin(angle),length,size};});
  const buttonCache=buttons.map(()=>({}));
  function sizeCanvas(fullscreen=false){
   const side=Math.ceil((reach*1.25+nodeRadius+65)*2),cw=fullscreen?width:side,ch=fullscreen?height:side;
-  const left=fullscreen?0:(width-side)/2,top=fullscreen?0:(height-side)/2,d=Math.min(Math.max(2,devicePixelRatio||1),3,Math.sqrt(6000000/(cw*ch)));
+  const left=fullscreen?0:(width-side)/2,top=fullscreen?0:(height-side)/2,d=Math.min(fullscreen?(devicePixelRatio||1):Math.max(2,devicePixelRatio||1),fullscreen?2.5:3,Math.sqrt(6000000/(cw*ch)));
   canvas.width=Math.round(cw*d);canvas.height=Math.round(ch*d);canvas.style.inset='auto';canvas.style.left=left+'px';canvas.style.top=top+'px';canvas.style.width=cw+'px';canvas.style.height=ch+'px';
   if(c)c.setTransform(canvas.width/cw,0,0,canvas.height/ch,-left*canvas.width/cw,-top*canvas.height/ch);
  }
@@ -931,73 +1153,44 @@ function createCircleEntry(root,canvas,buttons,callbacks){
   const namesVisible=smooth(clamp((buds-.66)/.34,0,1));
   for(const n of nodes)label(n,fade*namesVisible);
  }
- function makeComic(i){
-  const tile=document.createElement('canvas'),size=i===0?144:128;tile.width=tile.height=size*2;const g=tile.getContext('2d');if(!g)return null;g.scale(2,2);g.fillStyle='#361c17';
-  if(i===0){for(let row=-1;row<=6;row++)for(let col=-1;col<=6;col++){const x=col*24+(Math.abs(row)%2)*12,y=row*24;g.beginPath();g.arc(x,y,4.4,0,TAU);g.fill();}}
-  else if(i===1){for(let k=-1;k<8;k++){const x=k*32;g.beginPath();g.moveTo(x,0);g.lineTo(x+10,0);g.lineTo(x-54,128);g.lineTo(x-64,128);g.closePath();g.fill();}}
-  else if(i===2){for(let y=0;y<4;y++)for(let x=0;x<4;x++)if((x+y)%3!==0)g.fillRect(x*32+4,y*32+4,12+(x%2)*10,9+(y%2)*8);}
-  else if(i===3){for(let k=1;k<4;k++){const r=k*16;for(let a=0;a<TAU;a+=.28){g.beginPath();g.arc(64+Math.cos(a)*r,64+Math.sin(a)*r,2.8,0,TAU);g.fill();}}}
-  else if(i===4){for(let y=-32;y<160;y+=32){g.beginPath();g.moveTo(0,y);g.lineTo(32,y+8);g.lineTo(64,y-8);g.lineTo(96,y+8);g.lineTo(128,y);g.lineTo(128,y+8);g.lineTo(96,y+16);g.lineTo(64,y);g.lineTo(32,y+16);g.lineTo(0,y+8);g.closePath();g.fill();}}
-  else{for(let y=-32;y<160;y+=32){g.beginPath();g.moveTo(0,y);g.bezierCurveTo(32,y-17,96,y+17,128,y);g.lineTo(128,y+8);g.bezierCurveTo(96,y+25,32,y-9,0,y+8);g.closePath();g.fill();}}
-  const pattern=c.createPattern(tile,'repeat');if(pattern&&pattern.setTransform)pattern.setTransform({a:.5,b:0,c:0,d:.5,e:0,f:0});return pattern;
- }
-
- function revealPrint(i,p){
-  c.save();c.setTransform(canvas.width/width,0,0,canvas.height/height,0,0);c.globalCompositeOperation='destination-out';c.fillStyle='#000';
-  if(p>=1){c.fillRect(0,0,width,height);c.restore();return;}
-  const ease=x=>1-Math.pow(1-clamp(x,0,1),3);
-  if(i===0){
-   const step=width<650?49:76,max=Math.hypot(width/2,height/2);c.beginPath();
-   for(let y=0;y<=height+step;y+=step)for(let x=0;x<=width+step;x+=step){const delay=Math.hypot(x-width/2,y-height/2)/max*.22,r=step*.78*ease((p-delay)/(1-delay));if(r>.1){c.moveTo(x+r,y);c.arc(x,y,r,0,TAU);}}c.fill();
-  }else if(i===1){
-   const rows=9,dh=height/rows;for(let j=0;j<rows;j++){const q=ease((p-(j%3)*.045)/.9);c.fillRect(-2,j*dh-1,(width+4)*q,dh+2);}
-  }else if(i===2){
-   const cols=width<650?5:9,rows=6,cw=width/cols,ch=height/rows;
-   for(let y=0;y<rows;y++)for(let x=0;x<cols;x++){const delay=((x*7+y*11)%9)/9*.25,q=ease((p-delay)/(1-delay));c.fillRect((x+.5)*cw-cw*q*.52,(y+.5)*ch-ch*q*.52,cw*q*1.04,ch*q*1.04);}
-  }else if(i===3){
-   const r=Math.hypot(width,height)*.52*ease(p);c.beginPath();c.arc(width/2,height/2,r,0,TAU);c.fill();
-  }else if(i===4){
-   const edge=(width+160)*ease(p)-80,amplitude=Math.sin(p*Math.PI)*45;c.beginPath();c.moveTo(-1,-1);
-   for(let j=0;j<=18;j++)c.lineTo(edge+(j%2?amplitude:-amplitude),j/18*height);c.lineTo(-1,height+1);c.closePath();c.fill();
-  }else{
-   const base=height*(1-ease(p)),a=Math.sin(p*Math.PI)*height*.07;c.beginPath();c.moveTo(-1,height+1);c.lineTo(-1,base);
-   for(let j=0;j<4;j++){const x=j*width/4;c.bezierCurveTo(x+width/12,base-a,x+width/6,base+a,x+width/4,base);}c.lineTo(width+1,height+1);c.closePath();c.fill();
-  }
-  c.restore();
- }
-
-
- function printCircle(n,raw,zoom){
-  if(!comic||raw<=0)return;c.save();c.beginPath();c.arc(n.x,n.y,n.r,0,TAU);c.clip();c.globalAlpha=Math.min(1,raw*3)*.32;c.fillStyle=comic;
-  const travel=(1-zoom)*34;c.translate(selected%2?travel:-travel,travel*.32);c.fillRect(-80,-80,width+160,height+160);c.restore();
- }
- function paintSwitch(now){
-  const elapsed=now-selectedAt,cover=reduced.matches?1:clamp(elapsed/240,0,1),reveal=reduced.matches?1:clamp((elapsed-300)/420,0,1);
+ // The incoming artwork is drawn live through a growing aperture. Once the
+ // aperture covers the viewport, that SAME vector scene pulls back to its
+ // exact stage position. No poster image, red texture, crossfade or second copy.
+ function paintCamera(now){
+  const elapsed=Math.max(0,now-selectedAt),cover=reduced.matches?1:clamp(elapsed/COVER_MS,0,1);
+  const ce=InkGeometry.smooth(cover),progress=reduced.matches?1:clamp((elapsed-100)/(CAMERA_MS-100),0,1);
+  cameraProgress=progress;
   c.clearRect(0,0,width,height);
+  if(!switchMode&&cover<1){c.fillStyle=InkTheme.palette.paper;c.fillRect(0,0,width,height);drawNetwork(1,selected);}
+  const origin=frozen||{x:width/2,y:height/2,r:18};
+  const spot={x:origin.x+(width/2-origin.x)*ce,y:origin.y+(height/2-origin.y)*ce};
   c.save();
   if(cover<1){
-   const edge=width*smooth(cover),bend=Math.sin(cover*Math.PI)*Math.min(70,width*.06);
-   if(switchDirection<0){c.translate(width,0);c.scale(-1,1);}
-   c.beginPath();c.moveTo(-1,-1);c.lineTo(edge,-1);c.bezierCurveTo(edge+bend,height*.27,edge-bend,height*.72,edge,height+1);c.lineTo(-1,height+1);c.closePath();c.clip();
-   if(switchDirection<0){c.scale(-1,1);c.translate(-width,0);}
+   const goal=Math.hypot(Math.max(spot.x,width-spot.x),Math.max(spot.y,height-spot.y))+4;
+   const radius=origin.r+(goal-origin.r)*ce;c.beginPath();c.arc(spot.x,spot.y,Math.max(.1,radius),0,TAU);c.clip();
   }
-  c.fillStyle=InkTheme.palette.red;c.fillRect(0,0,width,height);
-  if(comic){c.globalAlpha=.32;c.fillStyle=comic;c.fillRect(0,0,width,height);}
-  c.restore();
-  if(cover>=1&&!covered){covered=true;callbacks.covered(selected,true);}
-  if(covered)revealPrint(selected,reveal);
-  if(reveal>=1){finish();return;}wake();
+  c.fillStyle=InkTheme.palette.paper;c.fillRect(0,0,width,height);
+  callbacks.paint?.(c,progress,spot);c.restore();
+  if(cover>=1&&!covered){covered=true;callbacks.covered(selected,switchMode);}
+  if(progress>.72)document.body.classList.add('art-controls');
+  if(progress>=1){finish();return;}wake();
+ }
+ function begin(i,shortcut,origin){
+  cancelAnimationFrame(frameId);frameId=0;active=true;paused=false;switchMode=shortcut;
+  frozen=origin;selected=i;selectedAt=performance.now();cameraProgress=0;covered=false;width=innerWidth;height=innerHeight;sizeCanvas(true);
+  root.hidden=false;root.classList.add('choosing','unveiling','art-camera');root.classList.toggle('track-switch',shortcut);
+  callbacks.selected(i,shortcut);syncButtons();
+  if(!c||reduced.matches){covered=true;callbacks.covered(i,shortcut);finish();return;}
+  paint(selectedAt);
  }
  function transition(i,direction=1){
-  cancelAnimationFrame(frameId);frameId=0;active=true;paused=false;switchMode=true;switchDirection=direction<0?-1:1;
-  selected=i;selectedAt=performance.now();covered=false;width=innerWidth;height=innerHeight;sizeCanvas(true);comic=c?makeComic(i):null;
-  root.hidden=false;root.classList.add('choosing','unveiling','track-switch');callbacks.selected(i,true);syncButtons();
-  if(!c||reduced.matches){covered=true;callbacks.covered(i,true);finish();return;}wake();
+  switchDirection=direction<0?-1:1;
+  begin(i,true,callbacks.anchor?.()||{x:innerWidth/2,y:innerHeight/2,r:18});
  }
 
  function paint(now){
   frameId=0;if(!active||paused||document.hidden)return;
-  if(switchMode){paintSwitch(now);return;}
+  if(selected>=0){if(c)paintCamera(now);return;}
   const unsettled=weights.some((weight,i)=>Math.abs(weight-((focusIndex>=0?focusIndex:hoverIndex)===i?1:0))>.001);
   const interacting=selected>=0||birth<1||opened!==target||unsettled||now-lastInput<240;
   if(!interacting&&opened>0&&!reduced.matches&&now-lastPaint<32){wake();return;}lastPaint=now;
@@ -1012,15 +1205,7 @@ function createCircleEntry(root,canvas,buttons,callbacks){
   }
   syncButtons();if(!c)return;
   c.fillStyle=InkTheme.palette.paper;c.fillRect(0,0,width,height);
-  const raw=selected<0?0:reduced.matches?1:clamp((now-selectedAt)/ZOOM_MS,0,1),zoom=raw<.5?4*raw*raw*raw:1-Math.pow(-2*raw+2,3)/2;
-  if(selected<0)drawNetwork();
-  else{
-   drawNetwork(Math.max(0,1-zoom*3),selected);
-   const goal=Math.hypot(width,height)/2+12,n={x:frozen.x+(width/2-frozen.x)*zoom,y:frozen.y+(height/2-frozen.y)*zoom,r:frozen.r*Math.pow(goal/frozen.r,zoom)};
-   ball(n,accent);printCircle(n,raw,zoom);
-  }
-  if(selected>=0&&raw>=1&&!covered){covered=true;root.classList.add('unveiling');callbacks.covered(selected);}
-  if(covered){const reveal=reduced.matches?1:clamp((now-selectedAt-ZOOM_MS-PRINT_HOLD_MS)/660,0,1);revealPrint(selected,reveal);if(reveal>=1){finish();return;}}
+  drawNetwork();
   const settling=weights.some((weight,i)=>Math.abs(weight-((focusIndex>=0?focusIndex:hoverIndex)===i?1:0))>.001);
   if(selected>=0||birth<1||opened!==target||settling||(opened>0&&!reduced.matches))wake();
  }
@@ -1029,12 +1214,11 @@ function createCircleEntry(root,canvas,buttons,callbacks){
   cancelAnimationFrame(frameId);frameId=0;lastPaint=0;paint(performance.now());
  });
  function wake(){if(active&&!paused&&!document.hidden&&!frameId)frameId=requestAnimationFrame(paint);}
- function finish(){const shortcut=switchMode;switchMode=false;active=false;root.hidden=true;canvas.width=canvas.height=1;comic=null;root.classList.remove('unveiling','track-switch');callbacks.finished(selected,shortcut);}
+ function finish(){const shortcut=switchMode;switchMode=false;active=false;root.hidden=true;canvas.width=canvas.height=1;root.classList.remove('unveiling','track-switch','art-camera');callbacks.finished(selected,shortcut);}
  function choose(i){
   if(!active||paused||selected>=0)return;
   if(buds<.68){opened=target=1;birth=1;buildScene();}
-  frozen={...nodes[i],r:Math.max(2,nodes[i].r*.56*smooth(weights[i]))};selected=i;selectedAt=performance.now();covered=false;sizeCanvas(true);comic=c?makeComic(i):null;
-  root.classList.add('choosing');callbacks.selected(i);syncButtons();if(!c){callbacks.covered(i);finish();return;}wake();
+  begin(i,false,{...nodes[i],r:Math.max(2,nodes[i].r*.56*smooth(weights[i]))});
  }
  root.addEventListener('pointermove',e=>{
   if(selected>=0||e.pointerType==='touch')return;lastInput=performance.now();focusIndex=-1;pointer={x:e.clientX,y:e.clientY};
@@ -1050,9 +1234,9 @@ function createCircleEntry(root,canvas,buttons,callbacks){
   button.addEventListener('blur',()=>{if(focusIndex===i)focusIndex=-1;if(!pointer&&!pinned&&selected<0)target=0;wake();});
   button.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key==='ArrowDown'){e.preventDefault();buttons[(i+1)%6].focus();}else if(e.key==='ArrowLeft'||e.key==='ArrowUp'){e.preventDefault();buttons[(i+5)%6].focus();}else if(e.key==='Escape'){e.preventDefault();button.blur();focusIndex=-1;pinned=false;pointer=null;target=0;wake();}});
  });
- function show(){cancelAnimationFrame(frameId);frameId=0;active=true;paused=false;switchMode=false;selected=-1;selectedAt=0;covered=false;opened=target=0;bornAt=performance.now();birth=reduced.matches?1:.014;pointer=null;hoverIndex=focusIndex=-1;hoverAnchor=null;pinned=false;skipTouchClick=false;weights.fill(0);growth=buds=0;root.hidden=false;root.classList.remove('choosing','unveiling','track-switch');layout();}
- addEventListener('resize',layout,{passive:true});document.addEventListener('visibilitychange',()=>{if(document.hidden){cancelAnimationFrame(frameId);frameId=0;}else{last=performance.now();wake();}});reduced.addEventListener('change',wake);show();
- return {show,choose,transition,study(value){if(!location.hash.includes('study'))return;opened=target=clamp(value,0,1);birth=1;bornAt=performance.now()-10000;buildScene();wake();},inspect(){return {opened,birth,selected,nodes:nodes.map(n=>({...n})),width,height};},pause(value){paused=value;if(value){cancelAnimationFrame(frameId);frameId=0;}else{last=performance.now();wake();}}};
+ function show(){cancelAnimationFrame(frameId);frameId=0;active=true;paused=false;switchMode=false;selected=-1;selectedAt=0;covered=false;opened=target=0;bornAt=performance.now();birth=reduced.matches?1:.014;pointer=null;hoverIndex=focusIndex=-1;hoverAnchor=null;pinned=false;skipTouchClick=false;weights.fill(0);growth=buds=0;root.hidden=false;root.classList.remove('choosing','unveiling','track-switch','art-camera');layout();}
+ addEventListener('resize',layout,{passive:true});document.addEventListener('visibilitychange',()=>{if(document.hidden){hiddenAt=performance.now();cancelAnimationFrame(frameId);frameId=0;}else{const now=performance.now();if(selected>=0&&hiddenAt)selectedAt+=now-hiddenAt;hiddenAt=0;last=now;wake();}});reduced.addEventListener('change',wake);show();
+ return {show,choose,transition,study(value){if(!location.hash.includes('study'))return;opened=target=clamp(value,0,1);birth=1;bornAt=performance.now()-10000;buildScene();wake();},inspect(){return {opened,birth,selected,cameraProgress,active,switchMode,nodes:nodes.map(n=>({...n})),width,height};},pause(value){paused=value;if(value){cancelAnimationFrame(frameId);frameId=0;}else{last=performance.now();wake();}}};
 }
 </script>
 <script>
@@ -1158,10 +1342,12 @@ function createAudioBridge(audio,receive){
  let outputVolume=.8,peaks=[.055,.030,.012,.24],previousBass=0,beat=0,phrase=0;
  const G=InkGeometry,clock=createMorphClock();
  let visualRequested=false;
- const report={state:'idle',rms:0,bass:0,mid:0,high:0,beat:0,level:0,phrase:0,samples:0,rhythm:clock.inspect()};
+ const bandRanges=[[40,110],[110,260],[260,650],[650,1500],[1500,3500],[3500,7000],[7000,12000]];
+ const detailPeaks=new Float32Array([.04,.025,.020,.014,.008,.004,.0025]),detailBands=new Float32Array(7);
+ const report={state:'idle',rms:0,bass:0,mid:0,high:0,beat:0,level:0,phrase:0,bands:detailBands,samples:0,rhythm:clock.inspect()};
  function zero(){
   for(const k of ['bass','mid','high','beat','level','phrase'])report[k]=0;
-  report.rms=0;previousBass=beat=phrase=0;report.rhythm=clock.inspect();receive(report);
+  report.rms=0;detailBands.fill(0);previousBass=beat=phrase=0;report.rhythm=clock.inspect();receive(report);
  }
  function sample(now){
   frame=0;if(!analyser||audio.paused||audio.ended||document.hidden)return;
@@ -1175,6 +1361,10 @@ function createAudioBridge(audio,receive){
   for(let i=0;i<4;i++){peaks[i]=Math.max(floors[i],raw[i]*1.08,peaks[i]*Math.exp(-dt*.12));values[i]=G.clamp(Math.pow(raw[i]/peaks[i],.82));}
   const gate=G.smooth((rms-.0004)/.003);
   for(let i=0;i<values.length;i++)values[i]*=gate;
+  for(let i=0;i<7;i++){
+   const rawBand=band(...bandRanges[i]);detailPeaks[i]=Math.max(.0012,rawBand*1.12,detailPeaks[i]*Math.exp(-dt*.16));
+   detailBands[i]=G.clamp(Math.pow(rawBand/detailPeaks[i],.90))*gate;
+  }
   const delta=Math.max(0,values[0]-previousBass-.022);previousBass=values[0];
   beat=Math.max(beat*Math.exp(-dt*9),G.clamp(delta*4));
   phrase+=(values[3]-phrase)*(1-Math.exp(-dt*.75));
@@ -1199,7 +1389,7 @@ function createAudioBridge(audio,receive){
  audio.addEventListener('playing',wake);
  audio.addEventListener('pause',()=>{cancelAnimationFrame(frame);frame=0;last=0;report.state='paused';zero();});
  audio.addEventListener('seeking',()=>{resetClock(true);zero();});audio.addEventListener('seeked',wake);
- audio.addEventListener('emptied',()=>{peaks=[.055,.030,.012,.24];last=0;resetClock(false);zero();});
+ audio.addEventListener('emptied',()=>{peaks=[.055,.030,.012,.24];detailPeaks.set([.04,.025,.020,.014,.008,.004,.0025]);last=0;resetClock(false);zero();});
  audio.addEventListener('error',()=>{cancelAnimationFrame(frame);frame=0;report.state='unavailable';zero();});
  document.addEventListener('visibilitychange',()=>{
   if(document.hidden){cancelAnimationFrame(frame);frame=0;clock.suspend();}
@@ -1214,7 +1404,7 @@ function createAudioBridge(audio,receive){
   clock.reset(keepPosition);
   if(visualRequested&&!document.hidden)clock.start(performance.now()/1000);
  }
- return {enable,transport,rhythmAt:now=>clock.at(now/1000),alignPreview:clock.alignPreview,inspect:()=>({...report,rhythm:clock.inspect(),context:context?.state??'not-created',volume:outputVolume}),volume(v){outputVolume=G.clamp(v);if(gain)gain.gain.setTargetAtTime(outputVolume,context.currentTime,.025);else audio.volume=outputVolume;},wake};
+ return {enable,transport,rhythmAt:now=>clock.at(now/1000),alignPreview:clock.alignPreview,inspect:()=>({...report,bands:Array.from(detailBands),rhythm:clock.inspect(),context:context?.state??'not-created',volume:outputVolume}),volume(v){outputVolume=G.clamp(v);if(gain)gain.gain.setTargetAtTime(outputVolume,context.currentTime,.025);else audio.volume=outputVolume;},wake};
 }
 
 'use strict';
@@ -1277,25 +1467,26 @@ function openSong(i,direction=1){
 }
 function stepSong(direction){openSong((pendingSong?.index??current)+direction,direction);}
 function discover(){
- pause();pendingSong=null;
+ pause();pendingSong=null;painting?.presentation(false);document.body.classList.remove('art-arriving','art-controls');
  document.activeElement?.blur();mode='discover';document.body.classList.add('discovering');document.body.classList.remove('listening','entering');site.inert=true;site.setAttribute('aria-hidden','true');painting?.pause(true);entry?.show();
 }
 entry=createCircleEntry(gate,$('circleCanvas'),choices,{
  selected(i,shortcut=false){
+  mode=shortcut?'switching':'entering';site.inert=true;site.setAttribute('aria-hidden','true');
+  painting?.presentation(true);document.body.classList.add('art-arriving');document.body.classList.remove('art-controls');
+  prepareSong(i,true);$('songTitle').textContent=names[i];painting?.select(i);
+  if(!shortcut)showArtwork();
   mode=shortcut?'switching':'entering';
-  if(shortcut){painting?.pause(true);site.inert=true;site.setAttribute('aria-hidden','true');}
-  else document.body.classList.add('entering');
-  prepareSong(i,shortcut);
  },
- covered(i,shortcut=false){
-  if(shortcut){$('songTitle').textContent=names[i];painting?.select(i,true);showArtwork();mode='switching';}
-  else showArtwork();
- },
- finished(i,shortcut=false){
-  if(shortcut)mode='listen';unlockArtwork();
+ anchor(){return painting?.screenFocus();},
+ paint(context,progress,spot){painting?.present(context,progress,spot);},
+ covered(){},
+ finished(){
+  painting?.presentation(false);document.body.classList.remove('art-arriving','art-controls');mode='listen';unlockArtwork();
   const next=pendingSong;pendingSong=null;if(next&&next.index!==current)openSong(next.index,next.direction);
  }
 });
+
 function toggle(){
  if(wantsPlay||!audio.paused){pause();return;}
  if(mode==='discover'&&!about.open){entry.choose(current);return;}
