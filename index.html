@@ -9,7 +9,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-TVFR7S');</script>
 <!-- End Google Tag Manager -->
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#eae5d9">
 <script id="ink-theme">
 /* Local-clock scheduling. No geolocation, external service or OS-theme dependency.
@@ -132,8 +132,12 @@ button,input{font:inherit}button{background:none;border:0;color:inherit;cursor:p
 .aboutButton{font-size:var(--control-font-size,11px);font-weight:700;letter-spacing:var(--control-letter-spacing,3px);padding:12px 0 12px 20px;color:var(--ink)}
 .surface{position:relative;min-height:0;isolation:isolate;overflow:hidden}.artCanvas{position:absolute;inset:0;display:block;width:100%;height:100%;touch-action:none}#painting{z-index:1;cursor:default;touch-action:pan-y}
 .music{position:relative;display:grid;grid-template-columns:minmax(180px,1fr) minmax(200px,1.5fr) auto;gap:34px;align-items:center;padding-bottom:20px}
-.now{display:flex;gap:17px;align-items:center;min-width:0}#play{display:grid;place-items:center;width:46px;height:46px;border:1px solid var(--ink);border-radius:50%;flex-shrink:0}#play:hover{background:var(--ink);color:var(--paper)}
-.playShape{width:0;height:0;border-top:6px solid transparent;border-bottom:6px solid transparent;border-left:10px solid currentColor;margin-left:3px}.playing .playShape{width:10px;height:13px;border:0;border-left:3px solid currentColor;border-right:3px solid currentColor;margin-left:0}
+.now{display:flex;gap:17px;align-items:center;min-width:0}#play{position:relative;display:inline-flex;align-items:center;justify-content:center;box-sizing:border-box;width:46px;height:46px;padding:0;margin:0;border:1px solid var(--ink);border-radius:50%;flex:0 0 auto;appearance:none;-webkit-appearance:none;line-height:0;touch-action:manipulation}
+@media(hover:hover) and (pointer:fine){#play:hover{background:var(--ink);color:var(--paper)}}
+/* Both states share one centred SVG box; no native button padding or baseline. */
+.playShape{display:block;flex:none;width:20px;height:20px;margin:0;padding:0;border:0;fill:currentColor;pointer-events:none}
+.playShape .pauseGlyph{display:none}.playing .playShape .playGlyph{display:none}.playing .playShape .pauseGlyph{display:block}
+.transportIcon{display:block;width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.65;stroke-linecap:round;stroke-linejoin:round;pointer-events:none}
 .waiting #play{animation:pulse 1.2s ease-in-out infinite}#songTitle{font-size:30px;font-weight:400;letter-spacing:-1.3px;margin:0}
 .timeline{display:flex;align-items:center;gap:12px;font-size:10px;color:var(--grey);font-variant-numeric:tabular-nums}.timeline time{min-width:30px}
 input[type=range]{appearance:none;-webkit-appearance:none;height:25px;background:none;cursor:pointer;min-width:0}input[type=range]::-webkit-slider-runnable-track{height:2px;background:var(--line)}input[type=range]::-moz-range-track{height:2px;background:var(--line)}input[type=range]::-webkit-slider-thumb{appearance:none;-webkit-appearance:none;width:7px;height:7px;background:var(--red);border-radius:50%;margin-top:-2.5px;border:0}input[type=range]::-moz-range-thumb{width:7px;height:7px;background:var(--red);border-radius:50%;border:0}#seek{flex:1;width:100%}#seek:disabled{opacity:.3;cursor:default}
@@ -164,7 +168,7 @@ body.discovering,body.entering{height:100dvh;overflow:hidden}body.discovering .s
 
 
 .transportControls{display:flex;align-items:center;gap:5px;flex-shrink:0}
-#previousSong,#nextSong{width:29px;height:40px;padding:0;font-size:27px;line-height:1;color:var(--grey)}
+#previousSong,#nextSong{display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;width:29px;height:40px;padding:0;appearance:none;-webkit-appearance:none;line-height:0;color:var(--grey);touch-action:manipulation}
 #previousSong:hover,#nextSong:hover{color:var(--red)}
 .now>div:last-child{min-width:0}#songTitle{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 @media(max-width:650px){.now{gap:10px}.transportControls{gap:3px}#previousSong,#nextSong{width:25px}#songTitle{font-size:25px}}
@@ -277,14 +281,131 @@ body.art-arriving .siteHeader,body.art-arriving .music{position:relative;z-index
 body.art-arriving.art-controls .siteHeader,body.art-arriving.art-controls .music{opacity:1;transition:opacity .28s ease}
 #circleEntry.art-camera{background:transparent}
 #circleEntry.art-camera .entryHeader,#circleEntry.art-camera .cornerTheme,#circleEntry.art-camera .cornerHelp{visibility:hidden}
+
+/* Mobile v8: compact player, safe areas and browser-toolbar-aware height.
+   Pinch zoom is not disabled. Artwork geometry and motion are unchanged. */
+:root{--app-height:100vh;--safe-top:env(safe-area-inset-top,0px);--safe-right:env(safe-area-inset-right,0px);--safe-bottom:env(safe-area-inset-bottom,0px);--safe-left:env(safe-area-inset-left,0px)}
+@supports(height:100svh){:root{--app-height:100svh}}
+@supports(height:100dvh){:root{--app-height:100dvh}}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+button,input[type=range]{-webkit-tap-highlight-color:transparent}
+input[type=range]{margin:0;touch-action:pan-y pinch-zoom}
+@media(max-width:800px), (max-height:500px){
+ :root{--page-gutter:18px;--control-font-size:10px;--control-letter-spacing:2px;--corner-bottom:18px;--mobile-header:64px;--mobile-player:120px}
+ html,body{max-width:100%;overflow-x:hidden}
+ .site{height:var(--app-height);min-height:0;padding:0 max(var(--page-gutter),var(--safe-right)) 0 max(var(--page-gutter),var(--safe-left));grid-template-rows:calc(var(--mobile-header) + var(--safe-top)) minmax(0,1fr) calc(var(--mobile-player) + var(--safe-bottom))}
+ .surface{height:auto;min-height:0;width:100%}
+ .siteHeader{min-width:0;padding-top:var(--safe-top);grid-template-columns:minmax(0,1fr) 44px auto;gap:10px}
+ .identity{min-width:0;font-size:12px;letter-spacing:2.5px;line-height:1.2}
+ .siteHeader .identity{min-height:44px;text-align:left}
+ .headerActions .aboutButton{min-width:44px;min-height:44px}
+ #returnCircle{display:inline-flex;align-items:center;justify-content:center;width:44px;min-height:44px;padding:0;font-size:0;line-height:1}
+ #returnCircle::before{content:'←';font-size:20px;line-height:1}
+ .entryHeader{height:calc(var(--mobile-header) + var(--safe-top));padding:var(--safe-top) max(var(--page-gutter),var(--safe-right)) 0 max(var(--page-gutter),var(--safe-left));gap:10px}
+ #circleEntry{height:var(--app-height);bottom:auto;overflow:hidden;touch-action:manipulation}
+ .cornerHelp{left:max(var(--page-gutter),var(--safe-left))}
+ .cornerTheme{right:max(var(--page-gutter),var(--safe-right))}
+ .music{grid-template-columns:44px minmax(0,1fr) 58px;grid-template-rows:52px 44px;column-gap:12px;row-gap:6px;align-content:center;padding-bottom:calc(12px + var(--safe-bottom));min-width:0}
+ .music .now{grid-column:1/3;grid-row:1;gap:10px;min-width:0;min-height:44px}
+ .transportControls{gap:2px}
+ #play,#previousSong,#nextSong{width:44px;height:44px;min-width:44px;min-height:44px}
+ #songTitle{font-size:clamp(19px,5.4vw,25px);letter-spacing:-.8px;line-height:1.2}
+ .music .volume{grid-column:3;grid-row:1;min-height:44px;gap:0;justify-self:end}
+ .music .volume label{display:none}
+ #volume{width:58px;max-width:100%}
+ #siteHelp{grid-column:1;grid-row:2;min-width:44px;min-height:44px}
+ .music .timeline{grid-column:2;grid-row:2;min-width:0;height:44px;gap:6px;font-size:10px}
+ .timeline time{min-width:27px;flex-shrink:0}
+ .timeline time:last-child{text-align:right}
+ #seek{flex:1 1 0;width:0;min-width:0}
+ #siteTheme{grid-column:3;grid-row:2;min-height:44px;min-width:44px;margin-left:0;justify-self:end}
+ #notice{max-width:100%;margin:0 0 6px;font-size:11px;line-height:1.35;pointer-events:none}
+ input[type=range]{height:44px}
+ input[type=range]::-webkit-slider-thumb{width:12px;height:12px;margin-top:-5px}
+ input[type=range]::-moz-range-thumb{width:12px;height:12px}
+ .themeToggle,.helpToggle{min-width:44px;min-height:44px;font-size:var(--control-font-size);letter-spacing:var(--control-letter-spacing)}
+ #about{height:var(--app-height);max-height:var(--app-height);overscroll-behavior:contain;-webkit-overflow-scrolling:touch}
+ #about[data-panel="about"],#about[data-panel="help"]{padding:0 max(18px,var(--safe-right)) calc(96px + var(--safe-bottom)) max(18px,var(--safe-left))}
+ .helpHead{padding:calc(8px + var(--safe-top)) 0 8px;min-height:56px}
+ #about[data-panel="about"]::after{content:"";position:fixed;inset:auto 0 0;height:calc(var(--corner-bottom) + 56px + var(--safe-bottom));background:var(--paper);z-index:2;pointer-events:none}
+ #about[data-panel="about"] #aboutTheme{z-index:3}
+ .bio{display:block;margin:26px 0}
+ .bio h2{font-size:64px;margin-bottom:26px}
+ .bio p{font-size:16px;line-height:1.6;overflow-wrap:break-word}
+ .bioLinks{gap:16px}
+ .bioLinks a{display:inline-flex;align-items:center;min-height:44px}
+ .helpGlance{margin-top:22px}
+ .helpGlance h2{font-size:36px;margin-bottom:18px}
+ .helpKeyRow{grid-template-columns:96px minmax(0,1fr);gap:12px}
+ .helpKeyRow dd{font-size:13px;overflow-wrap:break-word}
+ .keyAction{min-height:44px;min-width:44px!important;padding-top:10px!important;padding-bottom:10px!important}
+}
+@media(max-width:380px){
+ :root{--page-gutter:14px;--control-letter-spacing:1.7px}
+ .siteHeader{gap:6px}
+ .identity{font-size:11px;letter-spacing:2px}
+ .music{grid-template-columns:44px minmax(0,1fr) 50px;column-gap:8px}
+ .music .now{gap:8px}
+ #volume{width:50px}
+ #songTitle{font-size:20px;letter-spacing:-.8px}
+ .helpKeyRow{grid-template-columns:88px minmax(0,1fr);gap:10px}
+}
+@media(max-width:340px){
+ :root{--page-gutter:12px;--control-letter-spacing:1.4px}
+ .identity{letter-spacing:1.8px}
+ #songTitle{font-size:18px;letter-spacing:-.7px}
+ .music .now{gap:6px}
+ .music .timeline{gap:4px;font-size:9px}
+ .timeline time{min-width:24px}
+ .helpGlance h2{font-size:32px}
+ .bio h2{font-size:58px}
+}
+/* Landscape mini: a single player row leaves the artwork a useful height. */
+@media(min-width:650px) and (max-height:500px){
+ :root{--page-gutter:20px;--mobile-header:52px;--mobile-player:64px;--corner-bottom:10px;--control-font-size:10px;--control-letter-spacing:1.7px}
+ .site{height:var(--app-height);min-height:0;padding-left:max(var(--page-gutter),var(--safe-left));padding-right:max(var(--page-gutter),var(--safe-right));grid-template-rows:calc(52px + var(--safe-top)) minmax(0,1fr) calc(64px + var(--safe-bottom))}
+ .surface{height:auto;min-height:0}
+ .music{grid-template-columns:44px minmax(210px,1.1fr) minmax(92px,1fr) 50px 48px;grid-template-rows:48px;gap:8px;align-content:center;padding-bottom:calc(8px + var(--safe-bottom))}
+ #siteHelp{grid-column:1;grid-row:1}
+ .music .now{grid-column:2;grid-row:1;gap:6px}
+ .music .timeline{grid-column:3;grid-row:1;gap:4px}
+ .music .volume{grid-column:4;grid-row:1}
+ #siteTheme{grid-column:5;grid-row:1}
+ #volume{width:50px}
+ #songTitle{font-size:20px}
+ .entryHeader{height:calc(52px + var(--safe-top))}
+}
+@media(pointer:coarse){
+ #painting{touch-action:pinch-zoom;-webkit-touch-callout:none}
+ #play:active{background:var(--ink);color:var(--paper)}
+ button{-webkit-touch-callout:none;user-select:none;-webkit-user-select:none}
+}
 </style>
+
+<script id="mobile-viewport">
+/* Older mobile engines: one batched update, never a timer or a zoom lock. */
+(()=>{
+ if(window.CSS&&CSS.supports('height','100dvh'))return;
+ let frame=0,lastHeight=0;
+ function update(){
+  frame=0;const v=window.visualViewport;
+  if(v&&Math.abs(v.scale-1)>.02)return;
+  const h=Math.round(v?v.height:innerHeight);
+  if(h>0&&h!==lastHeight){lastHeight=h;document.documentElement.style.setProperty('--app-height',h+'px');}
+ }
+ function schedule(){if(!frame)frame=requestAnimationFrame(update);}
+ addEventListener('resize',schedule,{passive:true});
+ window.visualViewport?.addEventListener('resize',schedule,{passive:true});
+ addEventListener('pageshow',schedule);update();
+})();
+</script>
 </head>
 <body class="discovering">
 <!-- Google Tag Manager (noscript) -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TVFR7S" height="0" width="0" style="display:none;visibility:hidden" title="Google Tag Manager"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 <h1 class="srOnly">Nick Levantis - Music and Digital Artwork</h1>
-<nav id="circleEntry" aria-label="Six compositions. Hover over the central circle to reveal one growing ink body and its six songs, or tab through the choices.">
+<nav id="circleEntry" aria-label="Six compositions. Tap or hover over the central circle to reveal six songs, then choose one. Keyboard users can tab through the choices.">
  <canvas id="circleCanvas" aria-hidden="true"></canvas>
  <div class="entryHeader"><span class="identity">NICK LEVANTIS</span><div class="headerActions"><button id="gateAbout" class="aboutButton" type="button">ABOUT</button></div></div>
  <button class="circleSlice" data-track="0" type="button" aria-label="Open and play Nothing"><span class="srOnly">Nothing</span></button>
@@ -298,14 +419,14 @@ body.art-arriving.art-controls .siteHeader,body.art-arriving.art-controls .music
 </nav>
 
 <div class="site" id="site" inert aria-hidden="true">
- <header class="siteHeader"><button id="discoverButton" class="identity" type="button" aria-label="Back to the circle">NICK LEVANTIS</button><button id="returnCircle" class="returnCircle" type="button">← Back to circle</button><div class="headerActions"><button id="aboutOpen" class="aboutButton" type="button">ABOUT</button></div></header>
+ <header class="siteHeader"><button id="discoverButton" class="identity" type="button" aria-label="Back to the circle">NICK LEVANTIS</button><button id="returnCircle" class="returnCircle" type="button" aria-label="Back to the circle">← Back to circle</button><div class="headerActions"><button id="aboutOpen" class="aboutButton" type="button">ABOUT</button></div></header>
  <main class="surface" id="surface">
   <canvas id="painting" tabindex="0" class="artCanvas" aria-label="Ink composition. Move towards the centre to continuously transform the ink. No click is required."></canvas>
  </main>
  <section class="music" aria-label="Music player">
     <p id="notice" role="status" aria-live="polite"></p>
   <button id="siteHelp" class="aboutButton helpToggle" type="button" aria-haspopup="dialog" aria-controls="about" aria-keyshortcuts="?" title="Mouse and keyboard controls (?)">HELP</button>
-  <div class="now"><div class="transportControls"><button id="previousSong" type="button" aria-label="Previous song" title="Previous song">‹</button><button id="play" type="button" aria-label="Play Nothing" aria-keyshortcuts="Space" title="Play / pause (Space)"><span class="playShape" aria-hidden="true"></span></button><button id="nextSong" type="button" aria-label="Next song" title="Next song">›</button></div><div><h2 id="songTitle">Nothing</h2></div></div>
+  <div class="now"><div class="transportControls"><button id="previousSong" type="button" aria-label="Previous song" title="Previous song"><svg class="transportIcon" viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M12.5 4.5L7 10L12.5 15.5"/></svg></button><button id="play" type="button" aria-label="Play Nothing" aria-keyshortcuts="Space" title="Play / pause (Space)"><svg class="playShape" viewBox="0 0 20 20" width="20" height="20" aria-hidden="true" focusable="false"><path class="playGlyph" d="M6 4L17 10L6 16Z"/><g class="pauseGlyph"><rect x="5.5" y="4" width="3" height="12"/><rect x="11.5" y="4" width="3" height="12"/></g></svg></button><button id="nextSong" type="button" aria-label="Next song" title="Next song"><svg class="transportIcon" viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M7.5 4.5L13 10L7.5 15.5"/></svg></button></div><div><h2 id="songTitle">Nothing</h2></div></div>
   <div class="timeline"><time id="elapsed">0:00</time><input id="seek" type="range" min="0" max="100" step="0.1" value="0" aria-label="Playback position" disabled><time id="duration">—:—</time></div>
   <div class="volume"><label for="volume">VOL</label><input id="volume" type="range" min="0" max="1" step="0.01" value="0.8" aria-label="Volume" aria-valuetext="80 percent"></div>
   <button id="siteTheme" class="themeToggle aboutButton" data-theme-toggle type="button" aria-label="Automatic day and night theme" title="AUTO / LIGHT / DARK" hidden><span class="themeLabel" aria-hidden="true">AUTO</span></button>
@@ -323,7 +444,7 @@ body.art-arriving.art-controls .siteHeader,body.art-arriving.art-controls .music
  <section class="helpGlance" aria-labelledby="helpTitle">
   <h2 id="helpTitle">At a glance.</h2>
   <dl class="helpKeys">
-   <div class="helpKeyRow"><dt>Mouse / touch</dt><dd>Choose a song from the circle. During playback, the ink details respond to separate frequency bands. While paused, move over the artwork to explore its form.</dd></div>
+   <div class="helpKeyRow"><dt>Mouse / touch</dt><dd>Tap the circle, then choose a song. During playback, details respond to the sound. While paused, move or drag over the artwork to explore its form. Double-click or double-tap to reset the preview.</dd></div>
    <div class="helpKeyRow"><dt><kbd>Space</kbd></dt><dd>Play / pause, including inside Help and About.</dd></div>
    <div class="helpKeyRow"><dt><kbd>←</kbd> <kbd>→</kbd></dt><dd>Previous / next song, with no panel open. Sliders keep their arrow controls.</dd></div>
    <div class="helpKeyRow"><dt><kbd>↑</kbd> <kbd>↓</kbd><br><kbd>Home</kbd> <kbd>End</kbd></dt><dd>Explore the transformation while paused, with the artwork focused.</dd></div>
@@ -951,12 +1072,16 @@ function createPainting(canvas,{defer=false}={}){
   'Two ink bodies grow into cupped hands around a shared empty space. Separate palm lines answer the low and middle registers.'
  ];
  function resize(){
-  if(paused&&!initialized)return;initialized=true;
-  rect=canvas.getBoundingClientRect();w=Math.max(1,rect.width);h=Math.max(1,rect.height);
-  unit=Math.min(w*.75,h*.91);cx=w*.5;cy=h*.47;
-  const d=Math.min(devicePixelRatio||1,2.5,Math.sqrt(5000000/(w*h)));
-  canvas.width=Math.round(w*d);canvas.height=Math.round(h*d);c.setTransform(canvas.width/w,0,0,canvas.height/h,0,0);last=0;wake();
+  if(paused&&!initialized)return;
+  rect=canvas.getBoundingClientRect();
+  const nw=Math.max(1,rect.width),nh=Math.max(1,rect.height),d=Math.min(devicePixelRatio||1,2.5,Math.sqrt(5000000/(nw*nh)));
+  const bw=Math.round(nw*d),bh=Math.round(nh*d);
+  if(initialized&&w===nw&&h===nh&&canvas.width===bw&&canvas.height===bh)return;
+  initialized=true;w=nw;h=nh;unit=Math.min(w*.75,h*.91);cx=w*.5;cy=h*.47;
+  canvas.width=bw;canvas.height=bh;c.setTransform(bw/w,0,0,bh/h,0,0);last=0;
+  renderCurrent();wake();
  }
+ if('ResizeObserver' in window)new ResizeObserver(resize).observe(canvas);
  function previewStep(dt){
   const delta=hoverValue-travel;
   if(Math.abs(delta)<.00001&&Math.abs(previewVelocity)<.0005/MORPH_DURATION_SCALE){travel=hoverValue;previewVelocity=0;return;}
@@ -1028,9 +1153,29 @@ function createPainting(canvas,{defer=false}={}){
  }
  function leave(){if(!keyboardMorph&&!playing){hoverValue=0;}canvas.style.cursor='default';wake();}
  canvas.addEventListener('pointermove',move);
- canvas.addEventListener('pointerdown',e=>{if(e.pointerType==='touch'){move(e);canvas.focus({preventScroll:true});}});
- canvas.addEventListener('pointerleave',e=>{if(e.pointerType!=='touch')leave();});canvas.addEventListener('pointercancel',leave);
- canvas.addEventListener('dblclick',()=>{if(playing)return;manual=true;previewDirty=true;hoverValue=0;keyboardMorph=false;wake();});
+ let touchPress=null,lastTap=null;
+ function resetPreview(){if(playing)return;manual=true;previewDirty=true;hoverValue=0;keyboardMorph=false;wake();}
+ canvas.addEventListener('pointerdown',e=>{
+  if(e.pointerType!=='touch'||!e.isPrimary)return;
+  if(paused||playing){touchPress=lastTap=null;return;}
+  touchPress={id:e.pointerId,x:e.clientX,y:e.clientY,at:performance.now(),moved:false};
+  canvas.setPointerCapture(e.pointerId);canvas.focus({preventScroll:true});move(e);
+ });
+ canvas.addEventListener('pointermove',e=>{
+  if(touchPress&&e.pointerId===touchPress.id&&Math.hypot(e.clientX-touchPress.x,e.clientY-touchPress.y)>10)touchPress.moved=true;
+ });
+ canvas.addEventListener('pointerup',e=>{
+  if(!touchPress||e.pointerId!==touchPress.id)return;
+  const press=touchPress,now=performance.now();touchPress=null;
+  if(canvas.hasPointerCapture(e.pointerId))canvas.releasePointerCapture(e.pointerId);
+  if(!press.moved&&now-press.at<400){
+   if(lastTap&&now-lastTap.at<320&&Math.hypot(e.clientX-lastTap.x,e.clientY-lastTap.y)<28){lastTap=null;resetPreview();}
+   else lastTap={x:e.clientX,y:e.clientY,at:now};
+  }else lastTap=null;
+ });
+ canvas.addEventListener('pointerleave',e=>{if(e.pointerType!=='touch')leave();});
+ canvas.addEventListener('pointercancel',e=>{touchPress=lastTap=null;if(e.pointerType!=='touch')leave();});
+ canvas.addEventListener('dblclick',resetPreview);
  canvas.addEventListener('keydown',e=>{
   if(playing||!['ArrowUp','ArrowDown','Home','End'].includes(e.key))return;e.preventDefault();e.stopPropagation();
   keyboardMorph=true;manual=false;previewDirty=true;hoverValue=e.key==='Home'?0:e.key==='End'?1:clamp(hoverValue+(e.key==='ArrowUp'?.1:-.1));wake();
@@ -1075,9 +1220,10 @@ function createCircleEntry(root,canvas,buttons,callbacks){
   canvas.width=Math.round(cw*d);canvas.height=Math.round(ch*d);canvas.style.inset='auto';canvas.style.left=left+'px';canvas.style.top=top+'px';canvas.style.width=cw+'px';canvas.style.height=ch+'px';
   if(c)c.setTransform(canvas.width/cw,0,0,canvas.height/ch,-left*canvas.width/cw,-top*canvas.height/ch);
  }
+ function entrySize(){const r=root.getBoundingClientRect();width=Math.max(1,r.width||innerWidth);height=Math.max(1,r.height||innerHeight);}
  function layout(){
-  if(!active){width=innerWidth;height=innerHeight;return;}
-  width=innerWidth;height=innerHeight;base=Math.min(168,width*.22,height*.23);reach=Math.min(base*1.065,width*.29);nodeRadius=Math.max(24,base*.235);fontSize=width<650?10.5:12;
+  if(!active)return;
+  entrySize();base=Math.min(168,width*.22,height*.23);reach=Math.min(base*1.065,width*.29);nodeRadius=Math.max(24,base*.235);fontSize=width<650?10.5:12;
   sizeCanvas(selected>=0);
   if(c){c.font='700 '+fontSize+'px Arial, Helvetica, sans-serif';letters=titles.map(name=>{const glyphs=[...name.toUpperCase()].map(char=>({char,width:c.measureText(char).width+1.05}));glyphs.totalWidth=glyphs.reduce((sum,g)=>sum+g.width,0);return glyphs;});}
   buildScene();wake();
@@ -1177,7 +1323,7 @@ function createCircleEntry(root,canvas,buttons,callbacks){
  }
  function begin(i,shortcut,origin){
   cancelAnimationFrame(frameId);frameId=0;active=true;paused=false;switchMode=shortcut;
-  frozen=origin;selected=i;selectedAt=performance.now();cameraProgress=0;covered=false;width=innerWidth;height=innerHeight;sizeCanvas(true);
+  frozen=origin;selected=i;selectedAt=performance.now();cameraProgress=0;covered=false;entrySize();sizeCanvas(true);
   root.hidden=false;root.classList.add('choosing','unveiling','art-camera');root.classList.toggle('track-switch',shortcut);
   callbacks.selected(i,shortcut);syncButtons();
   if(!c||reduced.matches){covered=true;callbacks.covered(i,shortcut);finish();return;}
@@ -1235,6 +1381,7 @@ function createCircleEntry(root,canvas,buttons,callbacks){
   button.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key==='ArrowDown'){e.preventDefault();buttons[(i+1)%6].focus();}else if(e.key==='ArrowLeft'||e.key==='ArrowUp'){e.preventDefault();buttons[(i+5)%6].focus();}else if(e.key==='Escape'){e.preventDefault();button.blur();focusIndex=-1;pinned=false;pointer=null;target=0;wake();}});
  });
  function show(){cancelAnimationFrame(frameId);frameId=0;active=true;paused=false;switchMode=false;selected=-1;selectedAt=0;covered=false;opened=target=0;bornAt=performance.now();birth=reduced.matches?1:.014;pointer=null;hoverIndex=focusIndex=-1;hoverAnchor=null;pinned=false;skipTouchClick=false;weights.fill(0);growth=buds=0;root.hidden=false;root.classList.remove('choosing','unveiling','track-switch','art-camera');layout();}
+ if('ResizeObserver' in window)new ResizeObserver(()=>{if(active&&!root.hidden&&(Math.abs(root.clientWidth-width)>.5||Math.abs(root.clientHeight-height)>.5))layout();}).observe(root);
  addEventListener('resize',layout,{passive:true});document.addEventListener('visibilitychange',()=>{if(document.hidden){hiddenAt=performance.now();cancelAnimationFrame(frameId);frameId=0;}else{const now=performance.now();if(selected>=0&&hiddenAt)selectedAt+=now-hiddenAt;hiddenAt=0;last=now;wake();}});reduced.addEventListener('change',wake);show();
  return {show,choose,transition,study(value){if(!location.hash.includes('study'))return;opened=target=clamp(value,0,1);birth=1;bornAt=performance.now()-10000;buildScene();wake();},inspect(){return {opened,birth,selected,cameraProgress,active,switchMode,nodes:nodes.map(n=>({...n})),width,height};},pause(value){paused=value;if(value){cancelAnimationFrame(frameId);frameId=0;}else{last=performance.now();wake();}}};
 }
@@ -1383,7 +1530,7 @@ function createAudioBridge(audio,receive){
     gain=context.createGain();gain.gain.value=outputVolume;source=context.createMediaElementSource(audio);
     source.connect(analyser);analyser.connect(gain);gain.connect(context.destination);audio.volume=1;
    }
-   const ready=context.state==='suspended'?context.resume():Promise.resolve();wake();return ready;
+   const ready=context.state!=='running'&&context.state!=='closed'?context.resume():Promise.resolve();wake();return ready;
   }catch(error){report.state='unavailable';return Promise.reject(error);}
  }
  audio.addEventListener('playing',wake);
@@ -1433,6 +1580,7 @@ function sync(){
  document.body.classList.toggle('playing',playing);
  document.body.classList.toggle('waiting',waiting&&wantsPlay);
  $('play').setAttribute('aria-label',(playing?'Pause ':'Play ')+names[current]);
+ $('play').setAttribute('aria-pressed',String(playing));
 }
 function progress(){const valid=Number.isFinite(audio.duration)&&audio.duration>0;$('duration').textContent=valid?fmt(audio.duration):'—:—';$('elapsed').textContent=fmt(audio.currentTime);$('seek').disabled=!valid;if(valid&&!seeking)$('seek').value=String(audio.currentTime/audio.duration*100);$('seek').setAttribute('aria-valuetext',fmt(audio.currentTime)+(valid?' of '+fmt(audio.duration):''));}
 async function play(){
