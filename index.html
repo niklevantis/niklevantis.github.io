@@ -829,6 +829,12 @@ function nbLights(){const o=[];nbCells.forEach(([c,r],i)=>{if(nbOurs(c,r)||nbRan
 const NB_BARS=[88,96,104,112],NB_BW=2.6;
 const nbBarGhosts=()=>NB_BARS.map((c,k)=>NB('nbbar:'+k,SH(124+(c-NB_BW/2-100)/2.6,100+(32-100)/2.6,NB_BW/2.6,28/2.6,'V'),'ghost'));
 const nbFacade=()=>[nbBlock(),nbHole(5,3),...nbBarGhosts(),...nbCells.filter(([c,r])=>!nbOurs(c,r)).map(([c,r])=>nbHole(c,r)),...nbCells.filter(([c,r])=>!nbOurs(c,r)).map(([c,r])=>nbFig(c,r,'ghost')),...nbLights(),NB('red',SH(118.6,93.6,10.8,12.8,'R'),'red')];
+const NB_SLITS=[[80,86.7],[89.3,94.7],[97.3,102.7],[105.3,110.7],[113.3,120]];
+// the light passes every eight bars; the person inside shrinks from it and the heart hides its glow
+function nbSweep(beat,q){const u=fract(beat/16),w=u/.45;if(w>1)return{S:0,a:0,hit:0};
+ const S=lerp(-120,120,w),a=Math.sin(Math.PI*w)*ease(clamp((q-.08)/.1))*(1-ease(clamp((q-.9)/.1)));return{S,a,hit:a*Math.exp(-((S/22)**2))};}
+function nbFB(beat,sc,q,cx){if(sc!==3&&sc!==5)return{x:0,a:0,cover:0};const w=fract(beat/16+.5)/.5;if(w>1)return{x:0,a:0,cover:0};
+ const x=lerp(-30,230,w),a=Math.sin(Math.PI*w)*ease(clamp((q-.05)/.1))*(1-ease(clamp((q-.9)/.1)));return{x,a,cover:cx==null?0:a*Math.exp(-(((cx-x)/10)**2))};}
 function nbCell(){
  const used=['5:2'];
  const ghosts=[...nbCells.filter(([c,r])=>!used.includes(c+':'+r)).map(([c,r])=>nbHole(c,r,'ghost')),...nbCells.filter(([c,r])=>!nbOurs(c,r)).map(([c,r])=>nbFig(c,r,'ghost'))];
@@ -836,9 +842,10 @@ function nbCell(){
   NB('nbh:5:2',rr(80,32,40,28,5,'I'),'window'),
   ...NB_BARS.map((c,k)=>NB('nbbar:'+k,SH(c-NB_BW/2,32,NB_BW,28,'V'),'bar')),
   NB('nb-floor',ell(100,167,34,2.8,'I4'),'floor'),
+  ...NB_SLITS.map(([a,b],k)=>NB('nbsl:'+k,SP([0,.1],a,60,b,60,100+(b-100)*1.6,166,100+(a-100)*1.6,166),'sweep',{k})),
   NB('nbf:5:3',sil(100,166,92,'stand',1,'V')[0],'cellfig'),
   NB('red',heartF(103,98,4.3,'R'),'heart')];}
-const nbEveryone=()=>[nbBlock(),...nbCells.map(([c,r])=>nbHole(c,r)),...nbBarGhosts(),...nbCells.map(([c,r])=>nbFig(c,r)),NB('red',heartF(nbX(5)+7.6,nbY(3)+6,1.2,'R'),'heart')];
+const nbEveryone=()=>[nbBlock(),NB('nb-fbeam',SH(-7,-60,14,320,[0,.09]),'fbeam'),...nbCells.map(([c,r])=>nbHole(c,r)),...nbBarGhosts(),...nbCells.map(([c,r])=>nbFig(c,r)),NB('red',heartF(nbX(5)+7.6,nbY(3)+6,1.2,'R'),'heart')];
 // the camera: 1 at rest, 2.6 inside the red window
 // Musical form of this recording: pad, metallic bridge, drive, reveal, absence, reprise, tail.
 const NB_ROOM_AT=45;
@@ -848,8 +855,8 @@ function nbDrive(t){return clamp(nbEase(t,NB_ROOM_AT-.35,NB_ROOM_AT-.13)*(1-.9*n
 function nbMetal(t){let lo=0,hi=NB_METAL[0].length-1;while(lo<=hi){const m=(lo+hi)>>1;if(NB_METAL[0][m]<=t)lo=m+1;else hi=m-1;}
  return{i:hi,v:hi<0||t>=30?0:NB_METAL[1][hi]*Math.exp(-Math.max(0,t-NB_METAL[0][hi]-.025)*13)};}
 function nbPopulation(t,off,ours){if(ours)return 1;
- const appear=nbEase(t,79.87+off*10,83.87+off*10),leave=nbEase(t,108.368+off*3,110.368+off*3),back=nbEase(t,120.865+off*3,123.365+off*3);
- return clamp(appear*(1-leave)+back)*(1-nbEase(t,140.865+off*3,142.865+off*3));}
+ const appear=nbEase(t,79.87+off*10,83.87+off*10),leave=nbEase(t,108.368+off*3,110.368+off*3);
+ return clamp(appear*(1-leave));}
 function nbZoom(scene,q,t){return scene===1?1+1.6*nbEase(t,35,NB_ROOM_AT-4):scene===2?2.6:scene>=3?1+1.6*(1-nbEase(t,77.87,94.865)):1;}
 function nbOn(i,beat){const s=Math.floor(beat/4+i*.37),h=Math.sin(i*12.9898+s*78.233)*43758.5453;return h-Math.floor(h)>.38;}
 // the city first: towers, factories, smoke under a sick sky; the block stands among them, small.
@@ -927,6 +934,14 @@ function rnRunner(){const x=112,base=172,h=54,dir=-1,speed=2;
 // while he runs, the wall takes one step towards him on every bar
 function rnAdvance(time){const s=SCORES[1],a=s.cues[0]+s.width/2,b=s.cues[1]-s.width/2,t=clamp(time,a,b),n=(t-a)*s.bpm/60/4;
  return time<a?0:Math.min(12,1.5*(Math.floor(n)+ease(clamp((n-Math.floor(n))/.2))));}
+function rnGuardAt(gi,t){const Gb=-36,Gf=9,span=Gf-Gb,v=.76*17*SCORES[1].bpm/120,per=span/v,hold=1.2,cyc=2*(per+hold),
+ tc=((t%cyc)+cyc)%cyc,back=tc>=per+hold,G=tc<per?Gb+v*tc:tc<per+hold?Gf:tc<2*per+hold?Gf-v*(tc-per-hold):Gb;return{X:G+(back?66-gi*22:gi*22),back};}
+const rnFallMemo=[];
+function rnGuardFall(gi){if(rnFallMemo[gi])return rnFallMemo[gi];const s=SCORES[1],a=s.cues[2]+s.width/2,b=s.cues[3]-s.width/2,cr=rnCrackX(17);
+ // the guard goes as soon as any brick under its feet (top four rows) starts to go
+ const support=X=>{let m_=1;for(let r=14;r<18;r++){const o=(r%2)*.5,c=Math.floor((X+60)/RN_BW-o),bx=-60+(c+o)*RN_BW+RN_BW/2;m_=Math.min(m_,.35*clamp(Math.abs(bx-rnCrackX(r))/90));}return m_;};
+ let t=a,P=rnGuardAt(gi,t),q0=0;for(;t<b;t+=.02){P=rnGuardAt(gi,t);q0=support(P.X);if((t-a)/(b-a)>=q0)break;}
+ return rnFallMemo[gi]={...P,t0:t,q0,t1:a+(q0+.15)*(b-a)};}
 const rnGuards=()=>{const o=[];for(let i=0;i<7;i++)o.push(...rnMarch('guard:'+i,100,44.4,17,1,1,'rn-guard',{x0:-60+i*22,P:154},[0,1,1,.42],[0,1,1,.6]));return o;};
 const rnGround=()=>mark('rn-ground',SH(-80,171,360,90,'I4'),'rn-static');
 // the bricks: one per limb of the crowd, laid bottom-up in running bond
@@ -940,12 +955,43 @@ function rnFence(){const o=[mark('rn-post:0',SH(24,58,4.5,113,[0,1,1,.66]),'rn-s
  [72,90,108].forEach((y0,w)=>{const pts=[];for(let x=-60;x<=260;x+=20)pts.push(x,y0+4*(1-Math.pow((x-100)/160,2)));o.push(mark('rn-wire:'+w,brush('I2',2,2,false,...pts),'wire',{part:w}));
   for(let x=-52+w*5;x<=252;x+=16){const y=y0+4*(1-Math.pow((x-100)/160,2));o.push(mark('rn-barb:'+w+':'+x,SP('I2',x,y-2.6,x+2.2,y,x,y+2.6,x-2.2,y),'rn-barb',{part:w,x}));}});
  return o;}
+/* The crack opens already while the wall is being built. Inside it, the crowd that became the wall
+   climbs towards the top, hand over hand on the beat; when the wall falls they drop with it and stand
+   in front of the fence, reaching up while the bird gets away. */
+const rnQ=(i,t)=>{const s=SCORES[1],a=i?s.cues[i-1]+s.width/2:0,b=i<s.cues.length?s.cues[i]-s.width/2:s.duration;return clamp((t-a)/(b-a));};
+function rnGapT(t){const s=SCORES[1];return t<s.cues[1]?2.2*ease(clamp((rnQ(1,t)-.5)/.5)):2.2+3.8*ease(rnQ(2,t));}
+function rnEdge(r,g){const o=(r%2)*.5,c=Math.ceil((rnCrackX(r)+60)/RN_BW-o-.5);return -60+(c+o)*RN_BW-.2*g;}
+function rnCrackAt(y,g){const rf=clamp((170-y)/7-.5,0,17),r0=Math.floor(rf),r1=Math.min(17,r0+1);return lerp(rnEdge(r0,g),rnEdge(r1,g),rf-r0);}
+const RN_CT=[0,1,1,.42],RN_CL=6;
+function rnClimberRaw(h,ph,pose){const t=RN_CT,o=[],sh=-h*.76,hip=-h*.46;
+ for(const s of [-1,1]){const a=ph+(s>0?0:Math.PI),lift=.5+.5*Math.sin(a+Math.PI);
+  o.push(pose==='climb'?brush(t,h*.11,h*.08,false,s*h*.04,hip,s*h*.11,-h*(.25+.14*lift),s*h*.06,-h*.17*lift):brush(t,h*.11,h*.08,false,s*h*.04,hip,s*h*.06,-h*.24,s*h*.065,0));}
+ o.push(brush(t,h*.18,h*.14,false,0,sh-h*.02,0,hip+h*.02),ell(0,-h*.9,h*.075,h*.085,t));
+ for(const s of [-1,1]){const reach=.5+.5*Math.sin(ph+(s>0?0:Math.PI));
+  o.push(pose==='climb'?brush(t,h*.075,h*.06,false,s*h*.07,sh,s*h*.15,-h*(.86+.06*reach),s*h*.11,-h*(.98+.22*reach))
+   :pose==='reach'?brush(t,h*.075,h*.06,false,s*h*.07,sh,s*h*.13,-h*.96,s*h*.17,-h*1.16)
+   :brush(t,h*.075,h*.06,false,s*h*.08,sh,s*h*.12,-h*.6,s*h*.11,-h*.43));}
+ return o;}
+const rnClimberPts=(ph,pose)=>animParts('cl|'+pose,ph,p=>finalize(rnClimberRaw(8,p,pose)).map(f=>f.p));
+const rnAligned=new Map();
+function rnPoseMix(a,b,part,u){if(u<=0)return a[part];const key=a[part].length+'|'+part+'|'+(b===rnClimberPts(0,'reach')?'r':'s');let B=rnAligned.get(key);
+ if(!B){B=alignClosed(a[part],b[part]);rnAligned.set(key,B);}if(u>=1)return B;return Float32Array.from(a[part],(v,i)=>lerp(v,B[i],u));}
+// each one climbs at its own pace so that it is still climbing when the wall gives way: nobody waits, nobody freezes
+function rnClimb(k,t){const s=SCORES[1],a=s.cues[0]+s.width/2,b=s.cues[1]-s.width/2,end=s.cues[2]-s.width/2,tk=a+.55*(b-a)+2.6*k,
+ total=(end-tk)*s.bpm/60,cap=118-k*11,rate=cap/Math.floor(total),n=Math.max(0,(Math.min(t,end)-tk)*s.bpm/60),
+ up=Math.min(cap,(Math.floor(n)+ease(clamp((n-Math.floor(n))/.6)))*rate),y=168-up;
+ return{x:rnCrackAt(y-4,rnGapT(t))+rnAdvance(t),y,n,vis:clamp(n*2)};}
+function rnMixLive(a,b,u){if(u<=0)return a;const B=alignClosed(a,b);if(u>=1)return B;return Float32Array.from(a,(v,i)=>lerp(v,B[i],u));}
+const rnClimbers=()=>{const o=[];for(let k=0;k<RN_CL;k++)rnClimberPts(0,'stand').forEach((p,i)=>o.push(mark('cl:'+k+':'+i,F(Array.from(p),RN_CT,false,{exact:1}),'rn-climber',{k,part:i})));return o;};
+/* A signpost beside the wall, pointing away from it. On every bar it names another way out. */
+const RN_WORDS=['EXIT','SUCCESS','VANITY','LIES','EGOMANIA','FAKE','LIKES','FAME','GREED','STATUS','IMAGE','ENVY','SELFIE','HYPE','APPROVAL','FILTER','ME FIRST','MORE','FOLLOW','OBEY','DIE'],RN_SIGN=[0,1,1,.32];let rnSignA=0;
+const rnSign=()=>[mark('sign:pole',SH(158.6,110,2.8,61,[0,1,1,.55]),'rn-sign'),mark('sign:board',SP(RN_SIGN,134,95.5,177,95.5,185,103,177,110.5,134,110.5),'rn-sign',{board:1})];
 const rnDawn=()=>[1.7,1.3,1].map((k,i)=>mark('rn-glow:'+i,ell(100,180,90*k,20*k,[0,.07]),'rn-static'));
 BUILD[1]=()=>replaceScenes(running,1,[
  [rnGround(),...rnCrowd(),...rnRunner()],
- [rnGround(),...rnGuards(),...rnBricks(),...rnRunner()],
- [rnGround(),...rnGlow(),...rnGuards(),...rnBricks(),...rnRunner()],
- [rnGround(),...rnGlow(),...rnGuards(),...rnBricks(),...flyingBird('R')],
+ [rnGround(),...rnGuards(),...rnBricks(),...rnSign(),...rnRunner()],
+ [rnGround(),...rnGlow(),...rnGuards(),...rnBricks(),...rnSign(),...rnRunner()],
+ [rnGround(),...rnGlow(),...rnGuards(),...rnBricks(),...rnSign(),...flyingBird('R')],
  [rnGround(),...rnDawn(),...rnFence(),...rnBricks(),...flyingBird('R',true)]
 ]);
 /* III. FRAGMENTS — THE EYE. A face made of pixels looks at the moon. The moon narrows to a
@@ -987,16 +1033,21 @@ function frEyeState(scene,q,time){const W=[2*Math.sin(time*.31),1.2*Math.sin(tim
  if(scene===1){lid=.04+.96*ease(clamp(q/.4));const a=ease(clamp((q-.3)/.4));lx*=a;ly*=a;}
  // full, the eye rises to the middle at the end of the feeding; the city falls out of it right away
  else if(scene===2){dil=1+.5*ease(q);const e=ease(clamp((q-.74)/.26));cx=lerp(38,100,e);cy=lerp(52,40,e);s=lerp(.78,1.3,e);lx=lerp(7,0,e)+W[0];ly=lerp(3,6,e)+W[1];}
- else if(scene>=3){const e=1;cx=lerp(38,100,e);cy=lerp(52,40,e);s=lerp(.78,1.3,e);lx=lerp(7,0,e)+W[0];ly=lerp(3,6,e)+W[1];dil=scene===3?1.5-.5*ease(clamp(q/.4)):1;if(scene===4)lid=Math.max(.001,1-ease(clamp(q/.3)));}
+ else if(scene>=3){const e=1;cx=lerp(38,100,e);cy=lerp(52,40,e);s=lerp(.78,1.3,e);lx=lerp(7,0,e)+W[0];ly=lerp(3,6,e)+W[1];dil=scene===3?1.5-.5*ease(clamp(q/.4)):1;if(scene===4)lid=Math.max(.001,1-ease(clamp(q/.3)));} if(scene===3){lid=Math.max(.02,lid*(1-.97*frBlink(time)));lx+=(frSweep(time)-100)*.1;}
  // the iris never leaves the eye: limit the gaze to the almond's height at that point
  {const ri=13*1.11+.8,hx=18.75*Math.pow(Math.max(0,1-Math.pow(lx/44,2)),.9),L=Math.max(0,hx-ri);ly=clamp(ly,-L,L);lx=clamp(lx,-(44-ri-4),44-ri-4);}
  if(scene>=1)dil*=1+.34*(A.playing?kickAt(scoreTime(2),2):0);
  return{cx,cy,s,lid,lx,ly,dil,px:cx+lx*s,py:cy+ly*s*lid};}
+const frBeat=t=>(t-SCORES[2].offset)*SCORES[2].bpm/60;
+const frSweep=t=>100+62*Math.sin(frBeat(t)*Math.PI/32);
+function frBlink(t){const b=((frBeat(t)%16)+16)%16;return b<.7?Math.sin(Math.PI*b/.7):0;}
+const frBeamEnv=q=>ease(clamp((q-.12)/.1))*(1-ease(clamp((q-.9)/.1)));
+const frBeam=()=>mark('fr-beam',SP([0,.08],100,40,78,176,122,176),'fr-beam');
 BUILD[2]=()=>replaceScenes(fragments,2,[
  [...frMoon(),...frPieces(0),...frFace(true)],
  [...frEye(),...frTears(),...frPieces(1),...frFace(true)],
  [...frEye(),...frPieces(2),...frFace(false)],
- [frGround(),...frPieces(3),...frEye()],
+ [frGround(),frBeam(),...frPieces(3),...frEye()],
  [frGround(),...frPieces(4),...frEye()]
 ]);
 /* IV. NOWHERE — THE WASTELAND. Factories, smoke, pylons and a toxic sun; the red traveller
@@ -1032,10 +1083,11 @@ function nwInnerScroll(t){const s=SCORES[3],start=s.cues[3]+s.width/2,slow=s.cue
  const dt=clamp(t-slow,0,end-slow);return NW_V*(slow-start+dt-dt*dt/(2*(end-slow)));}
 function nwZoom(sc,q){if(sc===3){const Z=Math.pow(NW_ZMAX,ease(clamp((q-.5)/.5)));return{Z,w:(Z-1)/(NW_ZMAX-1)};}return sc>=4?{Z:NW_ZMAX,w:1}:{Z:1,w:0};}
 const nwZ=(X,Y,z)=>[(X-NW_DC[0])*z.Z+NW_DC[0]+(100-NW_DC[0])*z.w,(Y-NW_DC[1])*z.Z+NW_DC[1]+(100-NW_DC[1])*z.w];
+const nwShadow=()=>v7Walker(60,160,26).map((f,i)=>{f.anim={...f.anim,type:'nw-walk'};f.key='nwsh:'+i;f.t=[0,1,1,.68];f.motion={role:'nw-shadow',part:i};return f;});
 BUILD[3]=()=>replaceScenes(nowhere,3,[
- [...nwWorld('o:',false),nwDoorway(),...nwWall(),nwDoor(),...nwWalker()],
- [...nwWorld('o:',false),nwDoorway(),...nwWall(),nwDoor(),...nwWalker()],
- [...nwWorld('o:',false),nwDoorway(),...nwWall(),nwDoor(),...nwWalker()],
+ [...nwWorld('o:',false),nwDoorway(),...nwWall(),nwDoor(),...nwShadow(),...nwWalker()],
+ [...nwWorld('o:',false),nwDoorway(),...nwWall(),nwDoor(),...nwShadow(),...nwWalker()],
+ [...nwWorld('o:',false),nwDoorway(),...nwWall(),nwDoor(),...nwShadow(),...nwWalker()],
  [...nwWorld('o:',false),nwDoorway(),...nwWorld('i:',true),...nwWall(),nwDoor(),...nwWalker()],
  [...nwWorld('o:',false),nwDoorway(),...nwWorld('i:',true),...nwWall(),nwDoor(),...nwWalker()],
  [...nwWorld('i:',true),...group('traveler',sil(90,160,26,'stand',1,'R'),'nw-arrived')]
@@ -1110,9 +1162,33 @@ function brPress(time,q,sc){const C=43,impact=brImpact();
 function brParts(x,B,h,t){return[ell(x,B-h*.9,h*.075,h*.09,t),rr(x-h*.12,B-h*.8,h*.24,h*.36,h*.06,t),
  brush(t,h*.07,h*.055,false,x-h*.13,B-h*.76,x-h*.17,B-h*.6,x-h*.16,B-h*.44),brush(t,h*.07,h*.055,false,x+h*.13,B-h*.76,x+h*.17,B-h*.6,x+h*.16,B-h*.44),
  brush(t,h*.09,h*.07,false,x-h*.06,B-h*.46,x-h*.07,B-h*.24,x-h*.075,B),brush(t,h*.09,h*.07,false,x+h*.06,B-h*.46,x+h*.07,B-h*.24,x+h*.075,B)];}
-function brGear(cx,cy,r,n){const v=[],w=Math.PI/n,R=r*1.2;for(let k=0;k<n;k++){const a=k*2*w;for(const [d,rad] of [[-.5,r],[-.3,R],[.3,R],[.5,r]])v.push(cx+Math.cos(a+d*w)*rad,cy+Math.sin(a+d*w)*rad);}return SP(BR_DARK,...v);}
-function brWorks(){const o=[];
- [[30,74,36,12,1],[168,62,28,10,-1],[64,18,18,8,-1]].forEach(([x,y,r,n,d],i)=>o.push(mark('gear:'+i,brGear(x,y,r,n),'br-gear',{cx:x,cy:y,r,d}),mark('gearhole:'+i,ell(x,y,r*.24,r*.24,'V'),'br-static')));
+function brGearV(cx,cy,r,n){const v=[],w=Math.PI/n,R=r*1.2;for(let k=0;k<n;k++){const a=k*2*w;for(const [d,rad] of [[-.5,r],[-.3,R],[.3,R],[.5,r]])v.push(cx+Math.cos(a+d*w)*rad,cy+Math.sin(a+d*w)*rad);}return v;}
+function brGear(cx,cy,r,n){return SP(BR_DARK,...brGearV(cx,cy,r,n));}
+/* The end of the machine: the stopped gears come off their axles one by one and fall onto the belt.
+   The big one, the last, breaks in two when it hits. */
+// a real fracture: both halves share one jagged break line, so they fit back together
+function brSplit(v,x,side,cy,rh){const p=clipX(v,x,side<0),n=p.length/2;
+ for(let i=0;i<n;i++){const j=(i+1)%n;if(Math.abs(p[2*i]-x)>1e-6||Math.abs(p[2*j]-x)>1e-6)continue;
+  const y0=p[2*i+1],y1=p[2*j+1],lo=Math.min(y0,y1),hi=Math.max(y0,y1),rnd=seeded(29);let pts=[],a=0,y=lo;
+  // an irregular wandering break that runs through the axle: each half keeps half of the axle hole
+  while(true){y+=3+9*rnd();if(y>hi-3)break;a=clamp(a+(rnd()-.5)*9,-6,6);const d=Math.abs(y-cy)-rh;if(d<1.5)continue;pts.push([x+a*clamp(d/8),y]);}
+  const up=pts.filter(q=>q[1]<cy),dn=pts.filter(q=>q[1]>cy),arc=[];
+  for(let k=0;k<=12;k++){const t=-Math.PI/2+k/12*Math.PI;arc.push([x+side*Math.cos(t)*rh,cy+Math.sin(t)*rh]);}
+  pts=up.concat(arc,dn);if(y0>y1)pts.reverse();
+  return p.slice(0,2*i+2).concat(pts.flat(),p.slice(2*i+2));}
+ return p;}
+const BR_GEARS=[[30,74,36,12,1],[168,62,28,10,-1],[64,18,18,8,-1]];
+const brGearBase=[];
+function brLowest(pts,ox,oy,rot,dx=0){const c=Math.cos(rot),s_=Math.sin(rot);let m=-1e9;for(let k=0;k<pts.length;k+=2){const y=oy+(pts[k]-ox)*s_+(pts[k+1]-oy)*c;if(y>m)m=y;}return m;}
+function brGearDrop(i,time){const [cx,cy,r,n,d]=BR_GEARS[i],w=(i%2?1:-1)*1.2,t0=brA(5)+[25,17,9][i],tau=time-t0,
+ pts=brGearBase[i]||(brGearBase[i]=brGearV(cx,cy,r,n)),r0=d*brBelt(brB(4))/r;
+ let H=150-r*1.2-cy,T=Math.sqrt(2*H/120);for(let it=0;it<3;it++){H=150-brLowest(pts,cx,cy,r0+w*T);T=Math.sqrt(2*H/120);}
+ if(tau<=0)return{dy:0,spin:0,landed:false,tl:t0+T};
+ if(tau<T)return{dy:60*tau*tau,spin:w*tau,landed:false,tl:t0+T};
+ return{dy:H-(i===0?0:4*Math.sin(Math.PI*clamp((tau-T)/.35))),spin:w*T,landed:true,tl:t0+T};}
+function brWorks(broken=false){const o=[];
+ BR_GEARS.forEach(([x,y,r,n,d],i)=>{o.push(mark('gear:'+i,brGear(x,y,r,n),'br-gear',{cx:x,cy:y,r,d,gi:i}),mark('gearhole:'+i,ell(x,y,r*.24,r*.24,'V'),'br-gearhole',{cx:x,cy:y,r,d,gi:i}));
+  if(broken&&i===0){const v=brGearV(x,y,r,n);for(const side of [-1,1])o.push(mark('gearhalf:'+side,SP(BR_DARK,...brSplit(v,x,side,y,r*.24)),'br-gearhalf',{cx:x,cy:y,r,d,side}));}});
  o.push(mark('press:0',SH(86,-40,28,62,BR_DARK),'br-static'),mark('press:1',SH(94,22,12,38,[0,1,1,.7]),'br-press',{ram:1}),mark('press:2',SH(82,60,36,7,[0,1,1,.66]),'br-press',{ram:0}));
  o.push(mark('belt',rr(-90,150,380,9,4.5,[0,.3]),'br-static'));
  for(let k=0;k<17;k++)o.push(mark('roller:'+k,ell(-90+k*24,154.5,1.6,1.6,'V'),'br-roller',{k}));
@@ -1136,13 +1212,14 @@ function brHeartHalves(){const whole=finalize([heartF(100,92,9,'R')])[0],crack=[
  left=[...curve([50,90],[21,69],[6,51],[18,33]),...curve([18,33],[28,19],[44,21],[50,35]),...crack.slice(0,-1)],
  right=[...curve([50,35],[56,21],[72,19],[82,33]),...curve([82,33],[94,51],[79,69],[50,90]),...crack.slice().reverse().slice(0,-1)];
  return[-1,1].map((side,i)=>mark('red-half:'+side,SP('R',...(i?right:left).flatMap(([x,y])=>[100+(x-50)*.18,92+(y-55)*.18])),'br-heart-half',{side,hx:whole.cx,hy:whole.cy,tip:98.3}));}
+const brFHearts=()=>[0,1,2,4,5,6].map(i=>mark('bfh:'+i,heartF(101.2,123.6,2,'R'),'br-fheart',{i}));
 BUILD[4]=()=>replaceScenes(brokenD,4,[
  [...brWorks(),...brCrowd(),...brHim()],
  [...brWorks(),...brCrowd(),...brHim()],
  [...brWorks(),...brCrowd(),...brHim()],
  [...brWorks(),...brCrowd(),...brSpokes()],
  [...brWorks(),...brCrowd(),...brSpokes()],
- [...brWorks(),...brCrowd(),...brSpokes(),...brHeartHalves()]
+ [...brWorks(true),...brCrowd(),...brSpokes(),...brHeartHalves()]
 ]);
 /* VI. ROMANCE — THE MASKS. Two lovers in gas masks under a red umbrella, acid rain, ruins.
    The rain eats holes in the umbrella and the wind takes it. A fence rises between them.
@@ -1177,13 +1254,18 @@ function roRose(){const o=[mark('stem',brush('I2',3,1.6,false,100,175,97,150,103
  mark('leaf:0',svgF('M98 146 C80 146 76 132 80 127 C92 127 99 136 98 146 Z','I2'),'ro-stem'),mark('leaf:1',svgF('M102 128 C116 130 127 117 123 110 C110 111 103 118 102 128 Z','I2'),'ro-stem')];
  for(let i=0;i<7;i++){const a=i/7*Math.PI*2-Math.PI/2;o.push(mark('petal:'+i,ell(100+Math.cos(a)*9,96+Math.sin(a)*8,12,7.5,i%2?'R2':'R',a),'ro-bloom',{part:i}));}
  o.push(mark('seed',ell(100,96,6.5,5.5,'R2'),'ro-bloom',{part:7}));return o;}
+function roGaze(sc,q,beat){const env=sc===3?ease(clamp(q/.25)):sc===4?1:sc===5?1-ease(clamp(q/.3)):0;return[6*clamp(3*Math.sin(beat*Math.PI/32),-1,1)*env,2*env];}
+function roCryWindow(){const s=SCORES[5],a=s.cues[2]+s.width/2,b=s.cues[3]-s.width/2;return[a+.45*(b-a),s.cues[4]-s.width/2];}
+const roTears=()=>[0,1,2].map(k=>mark('rtear:'+k,svgF('M0 -5.2 C2.3 -1.3 3.9 1.3 3.9 3.4 C3.9 6 2.1 7.8 0 7.8 C-2.1 7.8 -3.9 6 -3.9 3.4 C-3.9 1.3 -2.3 -1.3 0 -5.2 Z',[0,.9]),'ro-tear',{k}));
+const roTearSide=nk=>Math.sin((nk+.5)*Math.PI/8)>=0?1:-1;
+const roPool=()=>[-1,1].map(side=>mark('rpool:'+side,ell(100,177,13,2,[0,.34]),'ro-pool',{side}));
 BUILD[5]=()=>replaceScenes(romance,5,[
  [...roRuins(),...roLovers(),...roSmallRose(),...roUmbrella(),...roRain()],
  [...roRuins(),...roLovers(),...roSmallRose(),...roUmbrella(),...roRain()],
  [...roRuins(),...roEye(),...roLovers(),...roSmallRose(),...roUmbrella(),...roRain()],
- [...roRuins(),...roEye(),...roFence(),...roLovers(),...roSmallRose(),...roRain()],
- [...roRuins(),...roEye(),...roFence(),...roLovers(),...roSmallRose(),...roRain()],
- [...roRuins(),...roEye(),...roFence(),...roMask(-1,86,110.6,4.2),...roMask(1,112.7,104,4.7),...roRose(),...roDome(),...roRain()]
+ [...roRuins(),...roEye(),...roFence(),...roPool(),...roLovers(),...roSmallRose(),...roTears(),...roRain()],
+ [...roRuins(),...roEye(),...roFence(),...roPool(),...roLovers(),...roSmallRose(),...roTears(),...roRain()],
+ [...roRuins(),...roEye(),...roFence(),...roPool(),...roMask(-1,86,110.6,4.2),...roMask(1,112.7,104,4.7),...roRose(),...roDome(),...roRain()]
 ]);
 const GEO=[[1,1,1,0,1,1,1],[0,1,1,0,0],[0,0,0,1,0],[0,0,1,1,0,0],[1,1,0,1,1,1],[0,0,0,0]]; // 1 = architecture: zoom, never bend
 const SONGS=[
@@ -1424,7 +1506,7 @@ PHR[1]=['Run to catch the end','Running to stand still','Every wall has a crack'
 PHR[2]=['Fragments of thought touch the improbable','The moon opens its eye','It takes us piece by piece','We built a city out of it','The pieces keep another sky'];
 {const s=SCORES[3];s.cues=[56,128,200,296,392].map(n=>s.offset+n*60/s.bpm);s.width=10*60/s.bpm;}
 PHR[3]=['A journey to nowhere','Every step moves the destination','A wall, and a door in it','Inside is another outside','The same road again','Arrived. Nowhere.'];
-PHR[0]=['Something is nothing','One window is still red','Every light goes out but one','Inside, someone is still awake','Everyone has the same window','One by one, no one','The same windows. Someone again.','The city closes its eyes','Nothing has no end'];
+PHR[0]=['Something is nothing','One window is still red','Every light goes out but one','Inside, someone is still awake','Everyone has the same window','One by one, no one','The empty windows keep watching','The city closes its eyes','Nothing has no end'];
 PHR[4]=['something moves inside','The press keeps time','Taken apart to be understood','A heart to drive the machine','The machine forgets how to turn','Broken, still beating'];
 // each song opens with its own line
 
@@ -1452,7 +1534,7 @@ const WF=48/N; // keep the breathing as broad as before, whatever the resolution
 const THEME={dark:[[201,198,189],[6,6,7],[214,36,26],[128,20,15],[146,158,112],[141,159,168],[176,176,176]],light:[[29,31,30],[216,220,213],[178,32,22],[112,20,14],[88,100,62],[69,87,96],[176,176,176]]};
 let themeK=document.body.classList.contains('light')?1:0,PAL=THEME.dark;
 function hue(t){const c=t[4]?PAL[0].map((_,j)=>t[4].reduce((s,w,i)=>s+w*PAL[i][j],0)):t.length>2?PAL[t[0]].map((v,i)=>lerp(v,PAL[t[2]][i],t[3])):PAL[t[0]];return[c[0],c[1],c[2],t[1]];}
-function formTone(f,t=f?.t){return f?.motion?.song===4&&(f.motion.role==='br-heart'||f.motion.role==='br-heart-half')?brHeartTone(scoreTime(4),t[1]):t;}
+function formTone(f,t=f?.t){if(f?.motion?.role==='br-gearhalf')return f.motion.side>0?t:[0,1,1,lerp(.955,.55,themeK)];return f?.motion?.song===4&&(f.motion.role==='br-heart'||f.motion.role==='br-heart-half')?brHeartTone(scoreTime(4),t[1]):t;}
 function mixTone(a,b,e,aa=1,ab=1){const tone=[a[0],lerp(a[1]*aa,b[1]*ab,e),b[0],e];
  if(a.length>2||b.length>2){const weights=t=>{if(t[4])return t[4];const w=PAL.map(()=>0);w[t[0]]+=t.length>2?1-t[3]:1;if(t.length>2)w[t[2]]+=t[3];return w;},wa=weights(a),wb=weights(b);tone.push(wa.map((w,i)=>lerp(w,wb[i],e)));}return tone;}
 /* live forms: sleepers that keep passing, a runner who keeps running */
@@ -1465,21 +1547,27 @@ function scoreTime(song=cur){return clockHold!==null&&song===cur?clockHold*SCORE
 function storyAt(song,index){const s=SCORES[song],t=scoreTime(song),start=index?s.cues[index-1]+s.width/2:0,end=index<s.cues.length?s.cues[index]-s.width/2:s.duration;return clamp((t-start)/Math.max(1,end-start));}
 const motionCache=new Map();
 function sampleForm(f,lazy){if(motionCache.has(f))return motionCache.get(f);
- const base=f.anim?v7AnimPts(f.anim):f.p,m=f.motion;
+ let base=f.anim?v7AnimPts(f.anim):f.p;const m=f.motion;
  if(!m||!m.role){const o={p:base,alpha:1};motionCache.set(f,o);return o;}
  const time=scoreTime(m.song),score=SCORES[m.song],q=storyAt(m.song,m.scene),beat=(time-score.offset)*score.bpm/60,ph=beat*Math.PI*2;
  // Transient accents and sustained bands are independent, from this recording.
  const active=A.playing&&m.song===cur,kick=active?kickAt(time,m.song):0,bass=active?A.bass*.8:0,high=active?A.high*.5:0,hit=kick;
- let dx=0,dy=0,sx=1,sy=1,rot=0,ox=f.cx,oy=f.cy,alpha=1,warp=null,shade=0,horizonClip=null;
+ let dx=0,dy=0,sx=1,sy=1,rot=0,ox=f.cx,oy=f.cy,alpha=1,warp=null,shade=0,horizonClip=null,xClip=null;
  switch(m.role){
  case 'v7-room-wall':break;
  case 'rn-static':case 'rn-runner':break;
+ case 'rn-sign':{if(m.scene===3)alpha=1-ease(clamp((q-.3)/.3));if(m.board)rnSignA=Math.max(rnSignA,alpha);break;}
  case 'rn-crowd':{shade=.3*kick;const X=-60+fract((m.x0+60+time*m.v*score.bpm/120)/m.P)*m.P;dx=X-100;break;}
  case 'rn-guard':{
-  // they patrol the top of the wall; when it falls, they fall
-  const adv=rnAdvance(time),X=-60+fract((m.x0+60+time*.76*17*score.bpm/120)/m.P)*m.P;dx=X-100+adv;
-  alpha=clamp((86+adv-X)/8)*clamp((X+56)/8);
-  if(m.scene===3){const u=ease(clamp((q-.25)/.45));dy=112*u;rot=(m.part%2?1:-1)*1.2*u;ox=100;oy=38;alpha*=1-u;}
+  // they patrol the top of the wall in a file and turn back before the ends; they never stop over the crack.
+  // When the wall comes down, each one stops where it is and falls with the bricks under its feet.
+  // original patrol across the top. Near each end they walk down (and up) a stair on the far side of the wall,
+  // so the bricks hide them: nobody steps over the edge. When the wall starts to go, they all go down the stair.
+  const adv=rnAdvance(time),X=-60+fract((m.x0+60+time*.76*17*score.bpm/120)/m.P)*m.P,L=-60+.5*RN_BW,R=-60+13.5*RN_BW;dx=X-100+adv;
+  let down=Math.max(ease(clamp((X-(R-5.4-28))/24)),1-ease(clamp((X-(L+4))/14)));
+  if(m.scene===3){const s_=SCORES[1];down=Math.max(down,ease(clamp((time-(s_.cues[2]+s_.width/2))/1.2)));}
+  dy=22*down;alpha=down>=.999||X>R-8||X<L+2?0:1;
+  if(down<.01){const g=m.scene===2?6*ease(q):m.scene===3?6:0,c=rnEdge(17,g),a=c-.8*g-3.5,b=c+.8*g+3.5;if(g>.2&&X>a&&X<b)dy=-(3+.8*g)*Math.sin(Math.PI*(X-a)/(b-a));}
   break;}
  case 'rn-brick':{
   const sc=m.scene;shade=.35*kick;
@@ -1514,9 +1602,44 @@ function sampleForm(f,lazy){if(motionCache.has(f))return motionCache.get(f);
    // the face is pieces at once: they come loose and drift apart, then the eye takes them one by one
    const u=ease(clamp((q-m.d2)/.3)),E=frEyeState(2,q,time),l=ease(clamp(q/.03))*(1-u);
    sx=sy=(1-.85*u)*(1-.24*l);dx=(E.px-f.cx)*u+(m.r-.5)*4*l;dy=(E.py-f.cy)*u-18*Math.sin(Math.PI*u)*m.r2+((m.r2-.5)*4+Math.sin(time*1.3+m.i)*.9)*l;alpha=clamp(q/.008)*(1-clamp((u-.82)/.18));}
-  else if(sc===3){if(!m.red)shade=.4*kick;const u=ease(clamp((q-m.d3)/.22)),E=frEyeState(3,q,time);sx=sy=.2+.8*u;dx=(E.px-f.cx)*(1-u);dy=(E.py-f.cy)*(1-u);alpha=clamp(u*5);}
+  else if(sc===3){if(!m.red){const E=frEyeState(3,q,time),u=clamp((f.cy-E.py)/(176-E.py)),cb=lerp(E.px,frSweep(time),u),hw=22*u+3,cov=1-clamp((Math.abs(f.cx-cb)-hw*.6)/(hw*.8));shade=Math.max(.4*kick,.5*(1-cov)*frBeamEnv(q)*clamp(E.lid));}const u=ease(clamp((q-m.d3)/.22)),E=frEyeState(3,q,time);sx=sy=.2+.8*u;dx=(E.px-f.cx)*(1-u);dy=(E.py-f.cy)*(1-u);alpha=clamp(u*5);}
   else{const u=ease(clamp((q-.25-.5*m.r)/.3)),tw=Math.pow(Math.sin(time*(1+m.r*2)+m.r*9),2);sx=sy=1-(m.red?.3:.62)*u;dx=(m.starX-f.cx)*u;dy=(m.starY-f.cy)*u;alpha=m.red?1:1-u*.45*tw;shade=m.red?0:.8*(1-u);}
   break;}
+ case 'rn-climber':{
+  const sc=m.scene,s=score,P=rnClimb(m.k,time),stand=rnClimberPts(0,'stand');ox=oy=0;
+  if(sc<=2){base=rnClimberPts(P.n*Math.PI,'climb')[m.part];dx=P.x;dy=P.y;alpha=P.vis;}
+  else{const hx=66+m.k*13;
+   if(sc===3){
+    // the wall goes from the crack outwards, so they go first: thrown out towards the light, tumbling, limbs flailing,
+    // one full turn in the air, they land on their feet and stand up
+    const t0=s.cues[2]+s.width/2+3+.35*m.k,u=clamp((time-t0)/2.2),up=clamp((time-t0-2.2)/.9),flail=rnClimberPts(time*14+m.k,'climb')[m.part];
+    base=u<1?flail:rnMixLive(flail,stand[m.part],ease(up));
+    dx=lerp(P.x,hx,ease(u));dy=P.y+(171-P.y)*u*u-18*Math.sin(Math.PI*Math.min(1,u*1.6))*(1-u);
+    rot=(m.k%2?1:-1)*Math.PI*2*ease(u);sx=sy=1+.5*ease(u);ox=0;oy=-4;}
+   else{base=rnPoseMix(stand,rnClimberPts(0,'reach'),m.part,ease(clamp((q-.15-.03*m.k)/.3)));dx=hx;dy=171;sx=sy=1.5;ox=0;oy=0;}}
+  break;}
+ case 'br-fheart':{
+  dx=-60+((((100+60+(m.i-3)*44+brBelt(time)-brStop())%BR_P)+BR_P)%BR_P)-100;
+  const sc=m.scene,d=[.12,.38,.62][Math.abs(m.i-3)-1],on=sc===2?ease(clamp((q-d)/.14)):sc<2?0:sc===5?1-ease(clamp(q/.45)):1;
+  alpha=on*(.75+.25*clamp(kick*1.4));ox=101.2;oy=123.6;sx=sy=1.3+.4*kick;break;}
+ case 'nw-shadow':{
+  const sc=m.scene,S_=SCORES[3],td=S_.cues[0]+S_.width/2+12;
+  let X=sc===0?60+30*ease(q):90;if(sc>=1&&time>td)X=90-(nwScroll(time).o-nwScroll(td).o);
+  const k=.45+1.7*clamp(time/170);
+  warp=(x,y)=>[x+(X-60)-(160-y)*k,160+(160-y)*.4];alpha=sc<=2?clamp((X+30)/30):0;break;}
+ case 'fr-beam':{
+  const E=frEyeState(3,q,time),sw=frSweep(time);
+  warp=(x,y)=>{const u=clamp((y-40)/136);return[lerp(E.px,sw,u)+(x-100),lerp(E.py,176,u)];};
+  alpha=frBeamEnv(q)*clamp(E.lid);break;}
+ case 'ro-tear':{
+  const sc=m.scene,c=Math.floor(beat/4),nk=c-(((c-m.k)%3)+3)%3,t=(beat-4*nk)/4,te=score.offset+4*nk*60/score.bpm,W=roCryWindow(),
+   cry=te>=W[0]&&te<=W[1]&&Math.floor(nk/4)%2===0,side=roTearSide(nk),[ex,ey]=RO_E;
+  // as in Fragments: it gathers in the corner of the eye on the side it is looking at, slips along the lid, then falls
+  const sl=t<.25?0:ease(clamp((t-.25)/.2)),k=t<.25?.2+.8*ease(t/.25):1,fall=t<.25?0:123*Math.pow((t-.25)/.75,2);
+  ox=f.cx;oy=f.cy;sx=k*.8;sy=k*.8*(t>.25?1.2:1);dx=ex+side*(40-4*sl)-f.cx;dy=ey+2+5*sl+fall+3*k-f.cy;alpha=cry&&t<1?1:0;break;}
+ case 'ro-pool':{
+  const W=roCryWindow();let g=clamp((Math.min(time,W[1])-W[0])/40);dx=m.side*38;if(m.scene===5)g*=1-.75*ease(clamp((q-.25)/.4));
+  ox=100;oy=176.5;sx=Math.max(.001,g);sy=Math.max(.001,.4+.6*g);alpha=g>.005?1:0;break;}
  case 'nw-arrived':break;
  case 'nw-land':{
   const sc=m.scene,sh=nwScroll(time),inner=m.inner,part=m.part;
@@ -1550,7 +1673,17 @@ function sampleForm(f,lazy){if(motionCache.has(f))return motionCache.get(f);
   else{const u=ease(clamp((q-.18)/.3));dx=68;dy=-10*u;sx=sy=1-.35*u;alpha=1-u;}
   break;}
  case 'br-static':break;
- case 'br-gear':ox=m.cx;oy=m.cy;rot=m.d*brBelt(time)/m.r;shade=.45*kick;break;
+ case 'br-gear':case 'br-gearhole':{ox=m.cx;oy=m.cy;rot=m.d*brBelt(time)/m.r;if(m.role==='br-gear')shade=.45*kick;
+  if(m.scene===5){const D=brGearDrop(m.gi,time);dy=D.dy;rot+=D.spin;if(m.gi===0&&D.landed)alpha=0;}break;}
+ case 'br-gearhalf':{const D=brGearDrop(0,time);ox=m.cx;oy=m.cy;rot=m.d*brBelt(time)/m.r+D.spin;shade=.45*kick;
+  if(m.scene!==5||!D.landed){alpha=0;break;}
+  // each half tips outwards and keeps resting on the belt: its lowest point stays on the floor
+  // a half gear cannot stand on its edge: each one tips over onto its curved side and settles with the broken face up,
+  // rocking a little as it rolls, always touching the belt
+  const tau=time-D.tl,R0=rot,base0=m.side<0?-Math.PI/2:Math.PI/2;let tg=base0+2*Math.PI*Math.round((R0-base0)/(2*Math.PI));
+  const dR=tg-R0,u=ease(clamp(tau/1.3)),rock=tau>1.3?.14*Math.exp(-2.2*(tau-1.3))*Math.sin(7*(tau-1.3)):0;
+  rot=R0+dR*u+rock*Math.sign(dR||1);dx=clamp(.4*m.r*(rot-R0),-26,26);
+  dy=150-brLowest(base,ox,oy,rot)-7*Math.sin(Math.PI*clamp(tau/.55));break;}
  case 'br-roller':{const a=brBelt(time)/4+m.k;dx=Math.cos(a)*2.2;dy=Math.sin(a)*2.2;break;}
  case 'br-mark':dx=((brBelt(time)%24)+24)%24;break;
  case 'br-fig':shade=.25*kick;dx=-60+((((100+60+(m.i-3)*44+brBelt(time)-brStop())%BR_P)+BR_P)%BR_P)-100;break;
@@ -1592,7 +1725,7 @@ function sampleForm(f,lazy){if(motionCache.has(f))return motionCache.get(f);
   break;}
  case 'ro-eye':{
   // the pupil stays centred; at the end the eye fades into the dark as it drifts up, it does not flatten
-  const sc=m.scene,lid=sc<2?0:sc===2?ease(clamp((q-.6)/.25)):1,lx=0,ly=0,p=m.part,[ex,ey]=RO_E,gone=sc===5?ease(clamp(q/.3)):0;
+  const sc=m.scene,lid=sc<2?0:sc===2?ease(clamp((q-.6)/.25)):1,[lx,ly]=roGaze(sc,q,beat),p=m.part,[ex,ey]=RO_E,gone=sc===5?ease(clamp(q/.3)):0;
   // the clock: one hand goes round every two bars, the other every sixteen
   const a=p===3?beat/64*Math.PI*2:p===4?beat/8*Math.PI*2:0,c=Math.cos(a),sn=Math.sin(a),ib=1+.14*kick;
   warp=(x,y)=>{let X=x,Y=y;if(p>=3){const u=X-ex,v=Y-ey;X=ex+u*c-v*sn;Y=ey+u*sn+v*c;}if(p>=1){X=ex+(X-ex)*ib+lx;Y=ey+(Y-ey)*ib+ly;}return[X,ey+(Y-ey)*Math.max(.001,lid)];};
@@ -1638,15 +1771,17 @@ function sampleForm(f,lazy){if(motionCache.has(f))return motionCache.get(f);
   if(sc===2&&k!=='ghost'){
    // Intimate scale: movement belongs to the person and the heart, not to every window.
    if(k==='window')alpha=.55+.3*low+.15*thump;
-   else if(k==='cellfig'){ox=100;oy=166;sy=1+.006*Math.sin(ph/8);}
-   else if(k==='heart'){sx=sy=1+.15*low+.28*thump;}
+   else if(k==='sweep'){const L=nbSweep(beat,q);warp=(x,y)=>[x+L.S*(y-60)/106,y];alpha=L.a;}
+   else if(k==='cellfig'){const L=nbSweep(beat,q);ox=100;oy=166;sy=(1+.006*Math.sin(ph/8))*(1-.05*L.hit);sx=1+.03*L.hit;}
+   else if(k==='heart'){const L=nbSweep(beat,q);sx=sy=(1+.15*low+.28*thump)*(1-.35*L.hit);alpha=1-.8*L.hit;}
    break;}
   const Z=nbZoom(sc,q,time),e=(Z-1)/1.6;ox=124;oy=100;sx=sy=Z;dx=-24*e;
   if(k==='block')shade=.12*thump;
   if(k==='ghost')alpha=0;
   else if(k==='light'){alpha=nbOn(m.i,beat)?1:0;if(sc===1)alpha*=1-ease(clamp((q-m.off)/.04));}
   else if(k==='red')alpha=.72-.32*drive+.6*thump;
-  else if(k==='fig')alpha=nbPopulation(time,m.off,m.ours);
+  else if(k==='fig')alpha=nbPopulation(time,m.off,m.ours)*(m.ours?1:1-.92*nbFB(beat,sc,q,m.cx).cover);
+  else if(k==='fbeam'){const B=nbFB(beat,sc,q);warp=(x,y)=>[x+B.x,y];alpha=B.a;}
   if(sc>=6){
    // The city seals one window at a time. Absolute times keep the final handoff seamless.
    const mono=1-.62*nbEase(time,142.865,148.495);ox=100;oy=100;sx=mono;sy=1;dx=0;
@@ -2004,6 +2139,8 @@ function sampleForm(f,lazy){if(motionCache.has(f))return motionCache.get(f);
  for(let i=0;i<N;i++){let x=base[2*i],y=base[2*i+1];if(warp){const w=warp(x,y);x=w[0];y=w[1];}const X=(x-ox)*sx,Y=(y-oy)*sy;p[2*i]=ox+X*c-Y*s+dx;p[2*i+1]=oy+X*s+Y*c+dy;}
  // Clip the sun itself, so it cannot shine through the translucent ground, even on an accent.
  if(horizonClip!==null){const visible=clipY(Array.from(p),-1e6,horizonClip);if(visible.length<6)alpha=0;else p=finalize([F(visible,f.t,false)])[0].p;}
+ if(xClip&&alpha>0){let lo=1e9,hi=-1e9;for(let i=0;i<p.length;i+=2){if(p[i]<lo)lo=p[i];if(p[i]>hi)hi=p[i];}
+  if(hi<=xClip[0]||lo>=xClip[1])alpha=0;else if(lo<xClip[0]||hi>xClip[1]){const v=clipX(clipX(Array.from(p),xClip[0],false),xClip[1],true);if(v.length<6)alpha=0;else p=finalize([F(v,f.t,false)])[0].p;}}
  const out={p,alpha:clamp(alpha),shade:clamp(shade)};motionCache.set(f,out);return out;
 }
 
@@ -2218,9 +2355,18 @@ function paintPointerSeam(ctx,batch,pointer){
 }
 
 const ringPair=p=>!!((p.af?.ring||p.bf?.ring)&&(!p.af||p.af.ring)&&(!p.bf||p.bf.ring));
+function rnSignText(a,alpha){if(!(a>.003)||cur!==1||(trans&&trans.track))return;
+  // the word changes on a steady grid, twice per beat (eighth notes), locked to the song's tempo
+  const sc=SCORES[1],st=(scoreTime(1)-sc.offset)*sc.bpm/60*2,ki=Math.floor(st),word=RN_WORDS[((ki%RN_WORDS.length)+RN_WORDS.length)%RN_WORDS.length],
+   on=ease(clamp((st-ki)*30/sc.bpm/.03)),c=PAL[1];
+  g.save();g.textAlign='center';g.textBaseline='middle';try{g.letterSpacing='.7px';}catch(_){}
+  let fs=6;g.font='500 '+fs+"px 'IBM Plex Mono',ui-monospace,monospace";
+  g.fillStyle=`rgba(${c[0]|0},${c[1]|0},${c[2]|0},${(a*on).toFixed(3)})`;g.fillText(word,155.5,103.4);g.restore();
+ }
+
 function draw(list,t,alpha=power){
  const k=S/200,isPairs=t!=null,e=isPairs?ease(clamp(t)):0,pointer=pointerForDrawing(list,t),shelter=rainProtection(list,t,pointer);
- g.setTransform(dpr*k,0,0,dpr*k,dpr*OX,dpr*OY);
+ rnSignA=0;g.setTransform(dpr*k,0,0,dpr*k,dpr*OX,dpr*OY);
  // Depth order follows the moving doors; the traveller remains in front.
  let ordered=isPairs&&list.track?trackOrder(list,t):list;
  if(!isPairs&&list.some(f=>f.motion?.role==='recursive-door')){
@@ -2255,6 +2401,7 @@ function draw(list,t,alpha=power){
    for(let q=0;q<N;q++){const x=PX[q*2],y=PX[q*2+1];if(x<gooRun.x0)gooRun.x0=x;if(x>gooRun.x1)gooRun.x1=x;if(y<gooRun.y0)gooRun.y0=y;if(y>gooRun.y1)gooRun.y1=y;}
   }else{
    flushGoo();g.fillStyle=style;if(isDrop)fillRainPath(g,shelter,path);else g.fill(path);
+   if((isPairs?(it.bf||it.af):it)?.key==='sign:board')rnSignText(opacity*alpha);
   }
  flushGoo();
  }
