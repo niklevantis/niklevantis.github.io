@@ -43,7 +43,7 @@ gtag('config','G-91NQ6H9GNK');
 <meta name="twitter:image:alt" content="Portrait of Nick Levantis">
 <link rel="canonical" href="https://nicklevantis.com/">
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Person","@id":"https://nicklevantis.com/#nick-levantis","name":"Nick Levantis","url":"https://nicklevantis.com/","image":"https://nicklevantis.com/images/nick.jpg","jobTitle":"Electronic musician and digital artist","homeLocation":{"@type":"Place","name":"Piraeus, Greece"},"sameAs":["https://soundcloud.com/nicklevantis","https://youtube.com/nicklevantis","https://nicklevantis.svbtle.com"]},{"@type":"WebSite","@id":"https://nicklevantis.com/#website","url":"https://nicklevantis.com/","name":"Nick Levantis - Music and Digital Artwork","description":"Music and digital artwork by Nick Levantis, an electronic musician from Piraeus, Greece. Listen to six compositions and explore interactive ink artworks.","inLanguage":"en","publisher":{"@id":"https://nicklevantis.com/#nick-levantis"}},{"@type":"MusicPlaylist","@id":"https://nicklevantis.com/#selected-songs","name":"Selected Songs","description":"Six compositions by Nick Levantis accompanied by interactive ink artworks.","numTracks":6,"creator":{"@id":"https://nicklevantis.com/#nick-levantis"},"track":[{"@type":"MusicRecording","@id":"https://nicklevantis.com/#recording-nothing","name":"Nothing","byArtist":{"@id":"https://nicklevantis.com/#nick-levantis"},"audio":{"@type":"AudioObject","contentUrl":"https://nicklevantis.com/audio/nothing.mp3","encodingFormat":"audio/mpeg"}},{"@type":"MusicRecording","@id":"https://nicklevantis.com/#recording-running","name":"Running","byArtist":{"@id":"https://nicklevantis.com/#nick-levantis"},"audio":{"@type":"AudioObject","contentUrl":"https://nicklevantis.com/audio/running.mp3","encodingFormat":"audio/mpeg"}},{"@type":"MusicRecording","@id":"https://nicklevantis.com/#recording-fragments","name":"Fragments","byArtist":{"@id":"https://nicklevantis.com/#nick-levantis"},"audio":{"@type":"AudioObject","contentUrl":"https://nicklevantis.com/audio/fragments.mp3","encodingFormat":"audio/mpeg"}},{"@type":"MusicRecording","@id":"https://nicklevantis.com/#recording-nowhere","name":"Nowhere","byArtist":{"@id":"https://nicklevantis.com/#nick-levantis"},"audio":{"@type":"AudioObject","contentUrl":"https://nicklevantis.com/audio/nowhere.mp3","encodingFormat":"audio/mpeg"}},{"@type":"MusicRecording","@id":"https://nicklevantis.com/#recording-broken","name":"Broken","byArtist":{"@id":"https://nicklevantis.com/#nick-levantis"},"audio":{"@type":"AudioObject","contentUrl":"https://nicklevantis.com/audio/broken.mp3","encodingFormat":"audio/mpeg"}},{"@type":"MusicRecording","@id":"https://nicklevantis.com/#recording-romance","name":"Romance","byArtist":{"@id":"https://nicklevantis.com/#nick-levantis"},"audio":{"@type":"AudioObject","contentUrl":"https://nicklevantis.com/audio/romance.mp3","encodingFormat":"audio/mpeg"}}]}]}</script>
-<meta name="theme-color" content="#060607">
+<meta name="theme-color" content="#d8dcd5">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,300;1,400&family=IBM+Plex+Mono:wght@400&display=swap" rel="stylesheet">
@@ -170,13 +170,13 @@ body.ready #loading{opacity:0;pointer-events:none}
 <!-- Google Tag Manager (noscript) -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TVFR7S" height="0" width="0" style="display:none;visibility:hidden" title="Google Tag Manager"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
-<script>try{const v=localStorage.getItem('nl-ink-theme')||'auto',h=new Date().getHours();if(v==='light'||(v==='auto'&&h>=7&&h<19))document.body.classList.add('light');}catch(_){}</script>
+<script>try{const v=localStorage.getItem('nl-ink-theme')||'light',h=new Date().getHours();if(v==='light'||(v==='auto'&&h>=7&&h<19))document.body.classList.add('light');}catch(_){}</script>
 <div id="loading" aria-hidden="true"><i></i></div>
 <script>(()=>{const W=innerWidth,H=innerHeight,d=Math.min(H*.58,W*.86,660)*.024,c=.28*Math.min(W,H);document.documentElement.style.setProperty('--lk',(d/c).toFixed(4));window.__lt=performance.now();})();</script>
 <h1 class="sr">Nick Levantis — music</h1>
 <header><span class="mono">Nick Levantis</span><div class="hr"><button id="aboutBtn" class="mono" type="button" aria-expanded="false" aria-controls="about">About</button></div></header>
 <button id="helpBtn" class="mono corner" type="button" aria-expanded="false" aria-controls="help" aria-keyshortcuts="?">Help</button>
-<button id="themeBtn" class="mono corner" type="button">Auto</button>
+<button id="themeBtn" class="mono corner" type="button">Light</button>
 <div id="stage"><canvas id="c" role="img" aria-label="A progressive pen drawing for Nothing. Touch the drawing to listen or pause. Drag to leaf through its changes; the line below selects all six compositions."></canvas></div>
 <div id="gate" class="mono">touch the drawing · sound on</div>
 <div id="below">
@@ -190,7 +190,7 @@ body.ready #loading{opacity:0;pointer-events:none}
  <p class="f" style="transition-delay:.15s"><b>Touch the drawing</b> to play or pause. While a song plays the drawing fills the screen and the controls withdraw; <b>move the mouse</b> to bring them back. <b>Drag sideways</b> to leaf through its transformations by hand.</p>
  <p class="f" style="transition-delay:.3s"><b>The line below is the whole album.</b> Hover to see the scene that lives at that moment; click or drag to travel there.</p>
  <dl class="keys mono f" style="transition-delay:.45s"><dt>Space</dt><dd>play / pause</dd><dt>← →</dt><dd>previous / next song</dd><dt>Shift ← →</dt><dd>back / forward 10 s</dd><dt>[ ]</dt><dd>previous / next act</dd><dt>↑ ↓</dt><dd>volume</dd><dt>?</dt><dd>help</dd><dt>F11</dt><dd>fullscreen</dd><dt>Esc</dt><dd>close</dd></dl>
- <p class="f small" style="transition-delay:.6s">Theme: <b>Auto</b> follows the day — light from 07:00 to 19:00, dark at night. Choose <b>Light</b> or <b>Dark</b> to keep one.</p>
+ <p class="f small" style="transition-delay:.6s">Theme: <b>Light</b> is the default. <b>Dark</b> keeps the night; <b>Auto</b> follows the day — light from 07:00 to 19:00, dark at night.</p>
 </section>
 <section id="about" class="panel" aria-labelledby="bioTitle" aria-hidden="true">
  <h2 id="bioTitle" class="f">Nick Levantis.</h2>
@@ -1217,7 +1217,7 @@ let ac=null,an=null,gain=null,spectrum=null,wave=null,volume=1;
 let cur=0,started=false,loadEpoch=0,pendingMetadata=null,loadTimer=0,playWanted=true,failed=false,waiting=false;
 let W=innerWidth,H=innerHeight,dpr=1,Sb=480,Sp=800,S=480,OX=0,OY=0,restCy=0,playCy=0,zoom=0,transition=null,reading=null;
 let last=performance.now(),acc=0,uiClock=0,scrub=0,drag=null,pointer={x:0,y:0,inside:false},idleTimer=0,lastPhrase=-1;
-let pref='auto';const THEMES=['auto','light','dark'],themeBtn=$('#themeBtn');try{const p=localStorage.getItem('nl-ink-theme');if(THEMES.includes(p))pref=p;}catch(_){}
+let pref='light';const THEMES=['light','dark','auto'],themeBtn=$('#themeBtn');try{const p=localStorage.getItem('nl-ink-theme');if(THEMES.includes(p))pref=p;}catch(_){}
 const mediaMotion=matchMedia('(prefers-reduced-motion:reduce)');let reduced=mediaMotion.matches;
 let palette={paper:'#d8dcd5',ink:'#1d1f1e',accent:'#b22016'},dynamic={level:.4,bass:.2,high:.2};
 const scenes=new Array(6);
