@@ -356,7 +356,7 @@ function makeInkEngine(spec,song){
   const W=o.wipe;
   for(const c of G.commands){
    if(c.type==='fill'){if(o.noFill||acp<.02)continue;ctx.save();if(W){ctx.beginPath();const k=W.keep,at=W.at;if(W.axis==='x')ctx.rect(k>0?at:-9999,-9999,k>0?9999:at+9999,29999);else ctx.rect(-9999,k>0?at:-9999,29999,k>0?9999:at+9999);ctx.clip();}
-    ctx.globalAlpha=alpha*(o.fillAlpha??1);ctx.fillStyle=PAPER;ctx.fill(c.path);ctx.restore();continue;}
+    const fa=smooth(.72,1,Math.min(o.cp??CP,acp));if(fa<=.001){ctx.restore();continue;}ctx.globalAlpha=alpha*(o.fillAlpha??1)*fa;ctx.fillStyle=PAPER;ctx.fill(c.path);ctx.restore();continue;}
    const r=c.r;let v=r.kind==='contour'?clamp(Math.min(o.cp??CP,acp)*1.8-r.order*.55):clamp((fillP-r.order)*30);
    if(W)v*=clamp(W.keep*((W.axis==='x'?r.cx:r.cy)-W.at)/24);
    if(v<.002)continue;ctx.lineWidth=r.width*(o.weight||1);ctx.globalAlpha=alpha*r.alpha;if(v>.985)ctx.stroke(r.path);else partial(ctx,r,v);}
@@ -809,7 +809,7 @@ const INK_ROMANCE={seed:6607,D:218.88,
   const order=[...petals].sort((a,b)=>a.idx-b.idx);
   order.forEach((p,j)=>{const born=4+j*((r2-6)/order.length),cp=smooth(born,born+7,t),fp=K.fill(p.n.startsWith('p')?'petal':'inner',t);
    const fall=smooth(r4+(order.length-1-j)*2.2,r4+(order.length-1-j)*2.2+16,t);if(fall>=1||cp<=0)return;
-   const sway=Math.sin(t*1.7+j)*40*fall,o={cp,dx:sway+Math.cos(p.ang)*30*fall,dy:fall*fall*760,rot:fall*(j%2?2.4:-2.2),pivot:p.mid,scale:1+.05*kick*(1-fall)};
+   const sway=Math.sin(t*1.7+j)*40*fall,breathe=smooth(r2+4,r2+12,t)*(fall>0?0:1),o=fall>0?{cp,dx:sway+Math.cos(p.ang)*30*fall,dy:fall*fall*760,rot:fall*(j%2?2.4:-2.2),pivot:p.mid}:{cp,scale:1+.035*kick*breathe,pivot:C};
    K.draw(c,p.n,fp,1-fall*.4,o);});
   K.draw(c,'heart',K.fill('heart',t),1,{cp:smooth(2,12,t)});
   // the eye: closed while the petals come, open in full bloom, closing at the end
@@ -1233,7 +1233,8 @@ function clock(){const a=audio.currentTime||0,now=performance.now();
  if(audio.paused||audio.seeking||waiting){clockA=a;clockP=now;clockS=a;return a;}
  if(a!==clockA){clockA=a;clockP=now;}
  const est=clockA+(now-clockP)/1000*(audio.playbackRate||1);
- clockS=Math.abs(est-clockS)>.25?est:clockS+(est-clockS)*.35;return Math.max(0,clockS);}
+ // never step backwards while playing (that would un-draw lines); a real jump (a seek) is followed at once
+ clockS=Math.abs(est-clockS)>.25?est:Math.max(clockS,est);return Math.max(0,clockS);}
 function renderState(i,t,active){const k=kick(t,i);return{t,u:clamp(t/SCORES[i].duration),duration:SCORES[i].duration,kick:k,level:active?dynamic.level:.4+k*.25,bass:active?dynamic.bass:k*.5,high:active?dynamic.high:k*.3,playing:active,started:started||i!==0,reducedMotion:reduced,...palette,hoverX:!started&&pointer.inside?clamp((pointer.x/S-.5)*20,-12,12):0,hoverY:!started&&pointer.inside?clamp((pointer.y/S-.5)*20,-12,12):0};}
 function renderInto(ctx,i,t,box,alpha=1,active=false){
  const {model,api}=scene(i);if(api)api.setPalette(palette);
